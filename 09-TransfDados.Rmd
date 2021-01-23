@@ -1,0 +1,767 @@
+# Manipulação de dados com o dplyr
+
+
+A visualização de dados é uma ferramenta importante para a geração de *insights*, mas é raro que tenhamos os dados exatamente na forma necessário para essa tarefa. Muitas vezes precisamos realizar recortes no banco de dados, selecionar certas observações, criar novas variáveis, transformá-la, renomeá-las, reordenar observações entre outras manipulações. 
+
+Para a manipulação dos nossos dados, vamos utilizar o pacote `dplyr`, que é um pacote específico para a manipulação de dados, unido ao pacote `ggplot2` é um poderoso recurso para exploração, transformação e visualização de dados. Ambos os pacotes fazem parte do `tidyverse`, que, como já dito, é um pacote de pacotes.
+
+## Principais funções (verbos) do `dplyr`.  
+
+  * `filter()`: seleciona/filtra por linhas (observações) a base de dados.  
+  * `arrange()`:  ordena a base de dados de acordo com alguma coluna (variável).  
+  * `select()`:  seleciona colunas (variáveis).  
+  * `mutate()`:  modifica/transforma/cria variáveis (colunas).  
+  * `summarise()`:  resume/agrega, variáveis (colunas) de uma base de dados.  
+
+## Regras para manipulação:  
+   1- O primeiro argumento sempre será um `data.frame`.  
+   2- Demais argumentos, descrevem como deve ser a manipulação.  
+   3- A resposta (retorno) sempre será um `data.frame`.  
+   4- Manipulação é realizada com o operador "PIPE" (`%>%`) - `CTRL SHIFT + M`.  
+
+
+**Importação dos dados** 
+
+Vamos realizar a importação, via web, do banco de dados [geomorfologia.txt](https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt).
+
+```{r}
+library(tidyverse)
+URL <- "https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt"
+geomorfologia<-read.table(URL,header = TRUE)
+glimpse(geomorfologia)
+```
+
+As práticas abaixo serão realizadas sem o armazenamento dos resultados em novos objetos, assim ao final de cada operação será utilizado a função `View()` para gerar a visualização do data.frame resposta em uma nova aba do RStudio. 
+
+## filter()
+
+O `filter()` permite que você crie um subconjuto de observações com base em seus valores. Por exemplo, vamos selecionar somente as observações **linhas** para superfície geomórfica `II`. Para isso, dentro da função `filter()` faremos uma operação relacional, perguntando quais os valores de `SUP` iguais a `II`.
+
+```{r}
+geomorfologia %>% 
+  filter(SUP == "II") %>% 
+  View()
+```
+
+Quando executamos essa linha de código o `dplyr` realiza a operação de filtragem e retorna um novo data.frame. As entradas não são modificadas, então, para salvar o resultado em um novo objeto, será necessário o operador de atribuição (`<-`) e a atribuição a um novo objeto, por exemplo `dado_auxiliar`:
+
+```{r}
+dado_auxiliar <- geomorfologia %>% 
+                    filter(SUP == "II")
+glimpse(dado_auxiliar)
+```
+
+
+Agora vamos selecionar as observações com teor de argila maior do que `10%`, provenientes da superfície `III`. Para realizarmos essa operação, serão necessárias duas operações relacionais, uma com a coluna `ARGILA` e outra com a coluna `SUP`, tais operações serão realizadas dentro de `filter()` separadas por uma vírgula.
+
+```{r}
+geomorfologia %>% 
+   filter(ARGILA > 10, SUP == "III") %>% 
+   View()
+```
+
+Selecione todas as observações que não sejam Regossolo, ou seja, todas os registros cujo tipo de solo seja diferente de `R`.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(Solo != "R") %>% 
+  View()
+```
+
+ou
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(!(Solo == "R")) %>% 
+  View()
+```
+
+Anteriormente utilizamos a geometria `geom_bar()` para contar o número de pontos experimentais existentes em cada uma dessas superfícies. Para observarmos a tabela com a contagem poderíamos utilizar as função `group_by()` para agruparmos as categorias da variável `SUP` e, posteriormente, a função `count()` para realizar o processo de contagem das observações em cada grupo, gerando uma tabela com as colunas `SUP` para as categorias de superfície e `n` para a contagem.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  count() %>% 
+  View() 
+```
+
+Pronto, agora podemos associar o `ggplot()` a essa filtragem:
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  count() %>% 
+  ggplot(aes(x=SUP, y=n)) +
+  geom_col()
+```
+
+Agora vamos selecionar somente os registros referentes aos Latossolos, ou seja, todos aqueles que tenham nomes iguais a `LV` ou `LVp`.
+
+Para essa manipulação, podemos utilizar o operador lógico de disjunção **OU** `|`.
+
+```{r}
+geomorfologia %>% 
+  filter(Solo == "LV" | Solo == "LVp") %>% 
+  View()
+```
+
+Um atalho útil para a solução desse problema é o operador `x %in% y`. Isso selecionará toda linha em que `x` seja um dos valores em `y`, então, vamos reescrever o código acima de uma forma mais elegante.
+
+```{r}
+geomorfologia %>% 
+  filter(Solo %in% c("LV","LVp")) %>% 
+  View()
+```
+
+
+### Valores Faltantes
+
+Um recurso importante do R que pode complicar as comparações e, consequentemente as operações de fintragem, são os valores faltantes ou `NA`s (*not availables*). `NA` representa um valor desconhecido, então valores faltantes se propagam nas operações, são *contagiosos*, ou seja, quase toda operação envolvendo valor(es) desconhecido(s) terá como resultado um valor desconhecido.
+
+```{r}
+NA > 5
+10 == NA
+NA + 10
+NA / 2
+NA == NA
+```
+
+Seja `x` a idade de Maria. Não sabemos a idade de Maria:
+```{r}
+x <- NA
+```
+
+Seja `y` a idade de João. Não sabemos a idade de João:
+```{r}
+y <- NA
+```
+
+Maria e João têm a mesma idade?
+```{r}
+x == y
+# Não sabemos.
+```
+
+
+Se quisermos determinar se há um valor faltantE, usamos `is.na()`.
+
+```{r}
+is.na(x)
+is.na(y)
+```
+
+A função `filter()` somente inclui linhas onde a condição é `TRUE`, ele exclui valores `FALSE` e `NA`. Vamos criar um exemplo rápido referente a nota de 7 alunos na primeira prova da disciplina de estatística da FCAV.
+
+```{r}
+df <- tibble(nome = c("Ana","Beatriz","Douglas","Luis","Marcela","Paulo","Renata"), 
+             P1 = c(8,NA,6,3,NA,6,3), 
+             P2=c(9,7,4,2,NA,NA,4),
+             Psub=c(NA,8,7,9,NA,5,6))
+df
+```
+
+
+
+Se quisermos realizar a filtragem para todos os valores de `P1` maiores que 4:
+
+```{r}
+df %>% 
+  filter(P1 > 4)
+```
+
+Se quisermos preservar o `NA`, devemos pedir explicitamente, caso contrário eles serão excluídos da filtragem.
+
+```{r}
+df %>% 
+  filter(P1 > 4 | is.na(P1))
+```
+
+Vamos selecionar os alunos que fizeram, pelo menos, uma prova. 
+
+```{r}
+df %>% 
+  filter(!is.na(P1)|!is.na(P2)|!is.na(Psub))
+```
+
+Vamos selecionar os alunos que fizeram as 3 provas. 
+
+```{r}
+df %>% 
+  filter(!is.na(P1), !is.na(P2), !is.na(Psub))
+```
+
+### Strings e Regex
+
+A função `str_detect()` pertence ao pacote `stringr` e tem a finalidade de detectar a presença ou a ausência de um padrão de caracteres dentro de uma `string` (cadeia de caracteres). 
+
+O pacote `stringr` faz parte do pacote `tidyverse`, cuja sintaxe é o *Regex* do inglês (*Regular Expressions*) são expressões regulares, ou seja, ferramenta para descrever os padrões dentro da string.
+
+Portanto, uma breve explicação se faz necessária para aplicações posteriores.
+
+Vamos criar duas strings:
+
+```{r}
+string1 <- "Isso é uma string"
+string2 <- 'Se você quiser adicionar "aspas duplas" dentro da string, utilize aspas simples'
+string1
+string2
+```
+
+A representação impressa de uma string mostra as barras transversas `\`, já o conteúdo bruto da string pode ser apresentado por `writeLines()`.
+```{r}
+writeLines(string2)
+```
+Observe mais esse exemplo.
+ * `\"` aspas duplas    
+ * `\\` caractere de barra transversa   
+ * `\n` nova linha  
+ * `\t` tabulação  
+ * `\u00b5` caracteres que não pertencem ao inglês.
+ 
+```{r}
+string3 <- c("\"", "\n", "\\", "A\tB", "\n", "\u00b5") 
+string3
+writeLines(string3)
+```
+
+O pacote básico do R contém muitas funções para trabalhar com strings, mas vamos evitá-las porque podem ser inconsistentes, o que as torna difíceis de lembrar. Já o pacote `stringr` é de mais simples utilização, pois têm nomes intuitivos, todos começam com `str_`. Por exemplo, `str_length()` informa o número de caracteres em uma string:
+
+```{r}
+meu_texto <- c('a','R para data science', NA, 'UNESP-FCAV')
+str_length(meu_texto)
+```
+
+A combinação de strings pode ser feita com o `str_c()`, utilizando o argumento `sep` para controlar o separador entre as strings.
+
+```{r}
+str_c("objeto", 1:5, sep="_")
+```
+
+**OBS** Poderíamos ter o mesmo efeito com a função `paste()` do pacote base do R.
+
+```{r}
+paste("objeto", 1:5, sep="_")
+```
+Contudo, observe a forma com a qual as funções operam valores faltantes `NA`.
+
+```{r}
+paste("objeto", c(1,NA,3), sep="_")
+str_c("objeto", c(1,NA,3), sep="_")
+str_c("objeto", str_replace_na(c(1,NA,3)), sep="_")
+```
+
+
+Como a maioria das outras funções em R, os valores ausentes se propagam nas operações. Se você quiser que eles sejam impressos como **NA**, use `str_replace_na()`:
+
+```{r}
+str_c("---", meu_texto, "---")
+str_c("---", str_replace_na(meu_texto), "---")
+```
+
+Para colapsar um vetor de strings em uma única string, use o argumento `colappse` n função `str_c()`:
+
+```{r}
+y <- c("A","mais","bonita")
+str_c(y, collapse = " " )
+str_c(meu_texto, collapse = ", ") # propagação do NA
+str_c(str_replace_na(meu_texto), collapse = ", ")
+```
+
+Podemos extrair partes de uma string usando `str_sub()`, que leva os argumentos inicial e final que fornecem a posição (inclusiva) da substring. No exemplo abaixo, vamos extrair do primeiro ao quarto caracter de cada string do objeto `x`.
+
+```{r}
+x <- c ("testemunha","escarificador","arado de disco","grade aradora","subsolador")
+str_sub(x,1,4)
+```
+
+Números negativos contam de trás para frente para a realizar a extração.
+
+```{r}
+str_sub(x,-4,-1)
+```
+
+Podemos utilizar essa função para alterar uma string, por exemplo, passar as primeira letras para maiúsculas
+```{r}
+str_sub(x,1,1) <- str_to_upper(str_sub(x,1,1))
+x
+```
+
+Ou podemos passar todas para maiúsculas.
+```{r}
+str_sub(x,1,str_length(x)) <- str_to_upper(str_sub(x,1,256))
+x
+```
+
+Ou podemos passar todas para minúsculas, novamente...
+```{r}
+str_sub(x,1,str_length(x)) <- str_to_lower(str_sub(x,1,256))
+x
+```
+
+Podemos buscar combinações simples, para facilitar a verificação, vamos utilizar `str_view()`.
+
+```{r}
+str_view(x, "ad")
+```
+Podemos utilizar o ponto `.` para encontrar a combinação com qualquer caractere (exceto no início ou no final da string). 
+
+```{r}
+str_view(x, ".a.")
+```
+
+Se estivermos procurando o caractere ponto `.`, vamos utilizar `\\.`. 
+```{r}
+meu_texto_2 <- c("abc", "a*b", "a b" ,"a.c")
+str_view(meu_texto_2, "\\.")
+```
+
+
+
+Por *default*, as expressões regulares corresponderão a qualquer parte de uma string. Muitas vezes, é útil ancorar a expressão regular de forma que corresponda desde o início ou ao final da string. Assim, podemos utilizar as *âncoras*:
+
+  *`^` para combinar com o início da string.
+  
+  *`$` para combinar com o final da string.
+
+```{r}
+str_view(x, "^a")
+str_view(x, "r$")
+```
+
+Para forçar uma expressão regular a corresponder apenas a uma string completa, ancore-a com `^` e `$`:
+
+```{r}
+z<-c("Arado","Arado de disco","Arado de aiveca", "Grade aradora")
+str_view(z,"Arado")
+str_view(z,"^Arado$")
+```
+
+Voltando à manipulação dos dados de `geomorfologia`, podemos filtrar todos os Argissolos utilizando o *regex*, ou seja, podemos selecionar todos aqueles solos que començam com a letra **P**.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(str_detect(Solo,"^P")) %>% # ^, significa "começa com"
+  View()
+```
+
+Selecione os registros cujo solo é "PV4".
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(str_detect(Solo,"PV4")) %>% 
+  View()
+```
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(str_detect(Solo,"4$")) %>% 
+  View()
+```
+
+
+Podemos criar nossas próprias classes de personagens usando `[ ]`:
+
+`[abc]`: corresponde `a`, `b` ou `c`.  
+`[a-z] `: corresponde a todos os caracteres entre `a` e `z`.  
+`[^abc]`: corresponde a qualquer coisa, exceto `a`, `b` ou `c`.  
+`[\^\-]`: corresponde a `^` ou `-`.  
+
+Por exemplo, retirando, novamente, o Regossolo.
+```{r}
+geomorfologia %>% 
+  filter(str_detect(Solo,"[^R]")) %>% 
+  View()
+```
+
+[:punct:]: pontuação.  
+[:alpha:]: letras.  
+[:lower:]: letras minúsculas.  
+[:upper:]: letras maiúsculas.  
+[:digit:]: dígitos.  
+[:xdigit:]: dígitos hexadecimais.  
+[:alnum:]: letras e números.  
+[:cntrl:]:  caracteres de controle.  
+[:graph:]: letras, números e pontuação.  
+[:print:]: letras, números, pontuação e espaços em branco.  
+[:space:]: caracteres de espaço (basicamente equivalente a `\s`).  
+[:blank:]: espaço e tabulação.  
+
+Selecione os registros que terminam com um número.
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(str_detect(Solo,"[:digit:]$")) %>% 
+  View()
+```
+
+Selecione todos aqueles que não tenham dígitos nos nomes.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(!str_detect(Solo,"[:digit:]")) %>% 
+  View()
+```
+
+**OBS**: Todos eles vão dentro de `[ ]` para classes de caracteres, ou seja, `[[:dígito:]AX]` corresponde a todos os dígitos, a letra `A` e a letra `X`.
+
+Selecione todos Regossolo ou Latossolo.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(str_detect(Solo,"R|LV")) %>% 
+  View()
+```
+
+Selecione todos Regossolo ou Latossolo `LV`, excluindo o `LVp`.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  filter(str_detect(Solo,"R|^LV$")) %>% 
+  View()
+```
+
+
+
+
+```{r echo=FALSE, fig.cap="Um exemplo patológico devido à complexidade de endereços de e-mail.",fig.align='center',out.width = "500px"}
+knitr::include_graphics("img/regex_meme.jpg")
+```
+ 
+## arrange()
+
+A funçao `arrange()` funciona de maneira similar a `filter()`, mas, ao invés de selecionar linhas, ela muda a ordem delas. Ela recebe um data.frame e um conjunto de nomes de colunas pelos quais ordenar. Se fornecermos mais de um nome de coluna, cada coluna adicional será usada para desempate nos valores das colunas anteriores.
+
+Vamos classificar os registros por ordem crescente de teor de argila.
+```{r eval=FALSE}
+geomorfologia %>% 
+  arrange(ARGILA) %>% 
+  View()
+```
+
+Classifique os registros por ordem decrescente de teor de acidez $H+Al$. Para isso vamos utilizar a função `desc()` que reordena a coluna em ordem descendente.
+```{r eval=FALSE}
+geomorfologia %>% 
+  arrange(desc(H_Al)) %>% 
+  View()
+```
+
+Classifique os registros por ordem alfabéticas de solos e utilize como crotério de desempate o teor de fósforo disponível no solo em ordem decrescente.
+```{r eval=FALSE}
+geomorfologia %>% 
+  arrange(Solo, desc(P)) %>% 
+  View()
+```
+
+
+Valores flatantes são sempre colocados no final, veja o exemplo abaixo utilizando as notas de alunos anterioremente criadas.
+```{r}
+df %>% 
+  arrange(desc(Psub))
+```
+
+
+## select()
+
+Não é incomum obter conjuntos de dados com centenasou até milhares de variáveis. Neste caso, o rimeiro desafio frequentemente é limitar-se às variávies em que você realmente está interessado. A função `select()` permite que você foque em um subconjunto útil usando operações baseadas em nomes de vaiávies.
+
+Seleciona colunas de uma tabela e pode ser utilizado com as funções: 
+
+    * starts_with("abc"): seleciona nomes que começam com "abc"
+
+    * ends_with("xyz"): seleciona nomes que terminam com "xyz"
+
+    * contains("ijk"): seleciona nomes que contêm "ijk"
+
+    * matches("(.)\\1"): seleciona nomes usando Expressões Regulares 
+
+    * num_range("x", 1:3): seleciona x1, x2 e x3
+
+
+Selecione as colunas SUP, Solo e ARGILA.
+```{r eval=FALSE}
+geomorfologia %>% 
+  select(SUP, Solo, ARGILA) %>% 
+  View()
+```
+
+Selecione as colunas que comecem com a letra "A".
+```{r eval=FALSE}
+geomorfologia %>% 
+  select(starts_with("A")) %>% 
+  View()
+```
+
+Selecione as colunas que NÃO comecem com a letra "A".
+```{r eval=FALSE}
+geomorfologia %>% 
+  select(-starts_with("A")) %>% 
+  View()
+```
+
+## mutate()
+
+Vamos voltar ao exemplo das notas dos alunos, que estão armazenadas no objeto `df`.
+
+```{r}
+df
+```
+
+Devemos agora calcular a média final do aluno, seguindo o critério:
+
+$$
+MF = \frac{P1+P2}{2}
+$$
+Se o aluno fez a prova substitutiva (`Psub`) ela deve substituir a prova faltante, ou a menor nota de prova.
+
+```{r}
+df %>% 
+  mutate(
+    SOMA = if_else(is.na(Psub),P1+P2,
+                   if_else(is.na(P1),P2+Psub, 
+                           if_else(is.na(P2),P1+Psub,
+                                   if_else(P1<P2,P2+Psub,P1+Psub)))),
+    MF=SOMA/2
+)
+```
+
+
+Calcule a soma dos teores de ARGILA + SILTE e, em seguida, coloque o teor de fósforo na escala logarítmica.
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  mutate(
+    ARG_SILT = ARGILA + SILTE,
+    log_P = log10(P)) %>% 
+  View()
+```
+
+Classifique a Textura do solo.
+
+
+```{r echo=FALSE, fig.cap="A figura 1 apresenta os intervalos de argila e a respectiva classificação do solo. . FONTE (https://www.pedologiafacil.com.br/textura.php)",fig.align='center',out.width = "600px"}
+knitr::include_graphics("img/textura.gif")
+```
+
+```{r eval=FALSE}
+geomorfologia %>% 
+  mutate(
+    TEXTURA = case_when(
+        ARGILA < 15 ~ "Arenosa",
+        ARGILA <= 35 ~ "Media",
+        ARGILA <= 60 ~ "Argilosa",
+        ARGILA > 60 ~ "Muito argilosa",
+        TRUE ~ "Sem classificação")
+  )
+```
+
+## Resumos Agrupados com summarize()
+
+A função `summarize()` reduz um data frame a uma única linha:
+```{r}
+geomorfologia %>% 
+  summarize(media_ARGILA = mean(ARGILA, na.rm = TRUE))
+```
+
+Essa função é extremamente útil quando combinada à função `group_by()`. Isso muda a unidade da análise de tdo o conjunto de dados para os grupos de indivíduais. Então, ao usarmos os verbos do **dplyr** em um data.frame agrupado, eles são automaticamente aplicados "por grupo". Por exemplo, vamos aplicar o mesmo código anterior ao data.frame agrupado por superfície geomórfica, obteremos o atraso médio por data.
+
+```{r}
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(media_ARGILA = mean(ARGILA, na.rm = TRUE))
+```
+
+### Valores faltantes
+
+O argumento `na.rm = TRUE` esse arguento é utilizado para remoção dos valores faltantes da variáviel. Isso porque as funções de agregação obedecem à regra usual de `NA`s, ou seja, qualquer valor faltando na entrada, a saída será um valor faltante. Assim o uso desse argumento é essencial.
+
+
+### Counts
+
+Sempre que fizer agregação, sugerimos que inclua uma contagem `n()` ou uma contagem de valores não faltantes (`sum(!is.na(x))`). Deste modo podemos verificar que não estamos tirando conclusões com base em quantidades muito pequenas de dados.
+
+Por exemplo, vamos pedir a média da variável `AMG` (areia muito grossa) para cada tipo de solo identificado no levantamento em função do número de observações (`n`). Para isso vamos unir as funções `group_by()`, `summarize()` e `ggplot()`.
+
+```{r message=FALSE}
+geomorfologia %>% 
+  group_by(Solo) %>% 
+  summarize( media_AMG = mean(AMG, na.rm=TRUE),
+             n = n()) %>% 
+  ggplot(aes(x=n, y=media_AMG, fill=Solo)) +
+  geom_point(shape=21, size=3)
+```
+
+Observe que `PV1`, `PV5` e `R` apresentaram $n < 10$. 
+
+
+### Algumas funções de resumo
+
+Aliadas à média e à contagem, várias outras funções podem ser utilizadas em R.
+
+*Medidas de localização*
+
+A função `median()` retorna a mediana do conjunto de dados, ou seja,  um valor onde $50\%$ de $x$ está acima e $50\%$ está abaixo dela. Já a média `mean()` é a soma dividida pelo comprimento. Assim, a mediana não é influenciada por valores extremos, diferente da média. Compare a diferença entre média e mediana para as variáveis `ARGILA` e em seguida `P`.
+
+
+```{r,message=FALSE}
+# Para Argila
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(ARGILA, na.rm = TRUE),
+            Mediana = median(ARGILA, na.rm = TRUE))
+
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE))
+```
+
+
+*Medidas de dispersão*
+
+O desvio padrão `sd()` é a medida de dispersão padrão. Outras medidas podem ser utilizadas, como a variação interquartil `IQR()` e o desvio absoluto mediano `mad()` são equivalentes obustos que podem ser mais úteis se você tiver outliers.
+```{r,message=FALSE}
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE),
+            DP=sd(P, na.rm = TRUE),
+            IQR=IQR(P, na.rm = TRUE),
+            DA_mediano = mad(P, na.rm = TRUE))
+```
+
+*Medidas de classificação*
+
+São os valores mínimo/máximo e os quantis. Quantis são generalizações da mediana. Por exemplo, `quantile(x, 0.25)` encontrará o valor de `x` que é maior que $25\%$ dos valores e menor do que os $75\%$ restantes. Já `quantile(x, 0.75)` encontrará o valor de `x` que é maior que $75\%$ dos valores e menor do que os $25\%$ restantes.
+
+```{r,message=FALSE}
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE),
+            DP=sd(P, na.rm = TRUE),
+            IQR=IQR(P, na.rm = TRUE),
+            DA_mediano = mad(P, na.rm = TRUE),
+            Mínimo = min(P, na.rm = TRUE),
+            Q1 = quantile(P, 0.25, na.rm = TRUE),
+            Q3 = quantile(P, 0.75, na.rm = TRUE),
+            Máximo = max(P, na.rm = TRUE)) 
+```
+
+*Contagens*
+
+Vamos agora contar o número de observações e o número de valores não faltantes, utilizando as funções `n()` e `sum(!is.na(x))`:
+
+```{r,message=FALSE}
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE),
+            DP=sd(P, na.rm = TRUE),
+            IQR=IQR(P, na.rm = TRUE),
+            DA_mediano = mad(P, na.rm = TRUE),
+            Mínimo = min(P, na.rm = TRUE),
+            Q1 = quantile(P, 0.25, na.rm = TRUE),
+            Q3 = quantile(P, 0.75, na.rm = TRUE),
+            Máximo = max(P, na.rm = TRUE),
+            N=n(),
+            N_na = sum(!is.na(P))) 
+```
+
+Contagens e proporções de valores lógicos `sum(x > 10)`, `mean(y == 0)`. Quando usado com funções numéricas, `TRUE` é convertido em $1$, e `FALSE` em $0$. ISso  torna `sum()` e `mean()` muito úteis: `sum()` retorna o número de `TRUE` em x e `mean(x)` retorna a proporção. 
+
+Por exemplo, em cada supefície geomórfica, vamos calcular o número e a proporção de valores de `P` inferiores a 10.
+
+```{r,message=FALSE}
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE),
+            DP=sd(P, na.rm = TRUE),
+            IQR=IQR(P, na.rm = TRUE),
+            DA_mediano = mad(P, na.rm = TRUE),
+            Mínimo = min(P, na.rm = TRUE),
+            Q1 = quantile(P, 0.25, na.rm = TRUE),
+            Q3 = quantile(P, 0.75, na.rm = TRUE),
+            Máximo = max(P, na.rm = TRUE),
+            N=n(),
+            N_na = sum(!is.na(P)),
+            n10=sum(P<10),
+            n10p=mean(P<10)) 
+```
+
+*Medidas da Forma da Distribuição*
+
+As medidas da forma da distribuição são os coeficientes de assimetria e curtosis.
+
+**Assimetria** - é uma medida da simetria da distribuição de frequência. Ela mostra se os desvios da média são maiores para um lado da distribuição do que para o outro. Usualmente, a estimativa do Coeficiente de Assimetria pode ser calculada pela fórmula:
+
+$$
+G_1 = \frac{n}{(n-1)(n-2)} \cdot \frac{\sum_{i=1}^n(x_i - \bar{x})^3}{s^3}
+$$
+
+Vamos utilizar a função `skewness()` do pacote `agricolae` para calcular o coeficente de assimetria.
+
+```{r,message=FALSE}
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE),
+            DP=sd(P, na.rm = TRUE),
+            IQR=IQR(P, na.rm = TRUE),
+            DA_mediano = mad(P, na.rm = TRUE),
+            Mínimo = min(P, na.rm = TRUE),
+            Q1 = quantile(P, 0.25, na.rm = TRUE),
+            Q3 = quantile(P, 0.75, na.rm = TRUE),
+            Máximo = max(P, na.rm = TRUE),
+            N=n(),
+            N_na = sum(!is.na(P)),
+            n10=sum(P<10),
+            n10p=mean(P<10),
+            G1 = agricolae::skewness(P)) 
+```
+
+Se as observações apresentam distribuição simétrica, $G_1= 0$, ou próximas a $0$.
+
+O coeficiente de assimetria é o indicativo mais comum de Normalidade. Em dados assimétricos, existem dúvidas sobre qual medida de tendência central devemos utilizar para resumir os dados. Nesses casos, comparações entre médias de diferentes conjuntos de observações são não confiáveis, uma vez que a variância pode diferir substancialmente de um conjunto de observações para outro.
+
+```{r}
+geomorfologia %>% 
+  ggplot(aes(x=P,y=..density..)) + 
+  geom_histogram(bins=30, color="black", fill="white")+
+  facet_wrap(~SUP, scales = "free")+
+  geom_density(alpha=0.1,fill="red")
+```
+
+
+**Curtose** - Indica o grau de achatamento de uma distribuição, é a medida do peso das  caudas da distribuição. Se as observações seguem uma distribuição normal, então o coeficiente de curtose é zero, e sua estimativa é dado por: 
+
+$$
+G_2 = \frac{\frac{\sum{i=1}^n(x-\bar{x})^4}{s^4}}{(n-3)(n-2)(n-1)}-3 \cdot \frac{(n-1)^2}{(n-2)(n-3)}
+$$
+
+Vamos utilizar a função `kurtosis()` do pacote `agricolae` para calcular o coeficente de assimetria.
+
+```{r,message=FALSE}
+# Para P
+geomorfologia %>% 
+  group_by(SUP) %>% 
+  summarize(Media = mean(P, na.rm = TRUE),
+            Mediana = median(P, na.rm = TRUE),
+            DP=sd(P, na.rm = TRUE),
+            IQR=IQR(P, na.rm = TRUE),
+            DA_mediano = mad(P, na.rm = TRUE),
+            Mínimo = min(P, na.rm = TRUE),
+            Q1 = quantile(P, 0.25, na.rm = TRUE),
+            Q3 = quantile(P, 0.75, na.rm = TRUE),
+            Máximo = max(P, na.rm = TRUE),
+            N=n(),
+            N_na = sum(!is.na(P)),
+            n10=sum(P<10),
+            n10p=mean(P<10),
+            G1 = agricolae::skewness(P),
+            G2 = agricolae::kurtosis(P)) 
+```

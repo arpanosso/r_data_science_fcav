@@ -1,4 +1,3 @@
-
 # Ambientação
 
 ## Instalando o R

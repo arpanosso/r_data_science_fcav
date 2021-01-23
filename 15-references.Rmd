@@ -1,0 +1,25 @@
+`r if (knitr::is_html_output()) '
+# Referências {-}
+
+Andrade, P. F. & Ogliari, P. (2010) **Estatística para Ciências Agrárias e Biológicas e Noções de Experimentação**. Florianópolis, Ed.: UFSC.
+
+Ascencio, A. F. G. & de Campos, E. A. V. (2007) **Fundamentos da programação de computadores**. 2 ed. ed.  São Paulo: Pearson Prentice Hall, 434 p.
+
+Bussab, W. O. & Morettin, P. A. (2002) **Estatística Básica**. 5 ed.  São Paulo: Saraiva,   p.
+
+Magalhães, M. N. & Lima, A. C. P. (2005) **Noções de Probabilidade e Estatística**.  São Paulo: Editora da Universidade de São Paulo, 392 p.
+
+Crawley, M. J. (2007) **The R Book**. UK, Ed. Willey & Sons Ltda, 950 p. (pdf).
+
+Forbellone, A. L. V. & Eberspächer, H. F. (2005) **Lógica de programação: a construção de algoritmos e estruturas de dados**. 3 ed ed.  São Paulo: Pearson Prentice Hall, 218 p.
+
+Long, J. D. & Teetor, P. (2019) **R Cookbook**. USA: O’Reilly Media, Inc, https://rc2e.com/.
+
+Peternelli, L. A. & Mello, M. P. (2011) **Conhecendo o R: uma visão estatística**. 2ª ed. Viçosa, MG, Ed. UFV, 185 p.
+
+Pimentel-Gomes,  F. (2000) **Curso de Estatística Experimental**. 10ª ed. Piracicaba, SP, Brasil: F. Pimentel-Gomes,  477 p.
+
+Vieira, S. (1999) **Estatística experimental**. 2ª ed. São Paulo, Ed.: Editora Atlas S.A, 185 p. 
+
+Wickham, H. & Grolemund G. (2019) **R for Data Science**. https://r4ds.had.co.nz/.
+'`
