@@ -1,0 +1,27 @@
+
+# Ambientação
+
+## Instalando o R
+
+Baixe o R do site oficial The R Project for Statistical Computing <https://www.r-project.org/>
+
+Acesso rápido: [Download](<https://cran-r.c3sl.ufpr.br/bin/windows/base/R-4.0.3-win.exe>)
+
+
+Salve o arquivo de instalação em um diretório de seu computador e em seguida execute-o. 
+
+O processo é simples e intuitivo.
+
+## Instalando o RStudio
+
+É um ambiente de desenvolvimento integrado (IDE) para o R, disponível em <https://rstudio.com/products/rstudio/download/>
+
+Escolha o instalador de acordo com o seu sistema operacional. **Windows** no nosso caso.
+
+Novamente, salve o arquivo de instalação em um diretório de seu computador e em seguida execute-o.
+
+Após a instalação procure o ícone do R criado pelo instalador e clique nele.
+
+Um breve tutorial para instalação do R e do RStudio pode ser encontrado no vídeo abaixo.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AqTzQzuQUPw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

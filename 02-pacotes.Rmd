@@ -1,0 +1,60 @@
+# Pacotes no R 
+
+Um pacote é uma coleção de funções, exemplos e documentação. A funcionalidade de um pacote é frequentemente focada em uma metodologia estatística especial" (**Everitt & Hothorn**).
+
+```{r echo=FALSE, fig.cap="Pacotes no R são coleções de funções, exemoplos e documentações, os quais devem ser previamente instalados e alocados no ambiente por meio da função `library` ou `require`.",fig.align='center',out.width = "400px"}
+knitr::include_graphics("img/Fig08.png")
+```
+
+## Pacotes básicos
+
+Liste os pacotes carregados no ambiente com:
+
+```{r}
+(.packages())
+```
+
+Observe que o retorno da função é uma lista de nomes, `caracteres` (ou `strings`), na forma de um *objeto* denominado **vetor**. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro $[\;i\;]$ apresentado entre colchetes **[i]**, onde $i$ varia de $1$ a $7$, em nosso exemplo.
+
+Carregue um pacote, utilize a função `library`.
+
+```{r,message=FALSE}
+library(MASS)
+```
+
+Ou, utilize a função `require`.
+
+```{r,message=FALSE}
+require(car)
+```
+
+Agora, liste novamente os pacotes e observe a diferença no retorno da função.
+
+```{r}
+(.packages())
+```
+
+## Instalando pacotes
+
+**Utilizando a opção** `Install/Packages`
+
+Instale alguns pacotes:  
+ 
+ * `tidyverse`   
+ * `agricolae`  
+ * `readxl`
+ * `stringr`
+ * `lubridate`
+
+Os pacotes também podem ser instalados a partir das linhas de comandos (códigos):
+
+```{r,eval=FALSE}
+install.packages("tidyverse")
+install.packages("agricolae")
+install.packages("readxl")
+install.packages("stringr")
+install.packages("lubridate")
+```
+
+
+

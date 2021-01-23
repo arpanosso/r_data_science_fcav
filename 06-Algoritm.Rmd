@@ -1,0 +1,259 @@
+# Algoritmos
+
+
+**Definição**: Sequência lógica e não ambígua de instruções que levam à solução de um problema num tempo finito.
+
+  -Sequência lógica: As instruções devem ser definidas em uma ordem correta.  
+  -Não ambígua: A sequência lógica e as instruções não  devem dar margem à dupla interpretação.  
+  -Solução de um problema: A sequência lógica deve resolver exatamente (nem mais e nem menos) o problema identificado.  
+  -Tempo finito: A sequência lógica não deve possuir iterações infinitas.  
+  -Um algoritmo é **"uma solução"** e não **"a solução"** de um problema.  
+  -Um problema pode ser resolvido por mais de um algoritmo! **SEMPRE**.  
+  -Tarefas que possuem "padrão de comportamento" podem ser descritas por um algoritmo.  
+  
+
+Entender algoritmos é fundamental para desenvolver o raciocínio lógico e conceber uma solução a um dado problema, independente de uma linguagem de programação. (Ex: Fortran, Pascal, C e Python, R). 
+
+A partir do algoritmo desenvolvido, fica mais fácil implementar o respectivo programa.
+
+
+## Estruturas de Controle
+
+Na criação de algoritmos, utilizamos os conceitos de bloco lógico, entrada e saída de dados, variáveis, constantes, atribuições, expressões lógicas, relacionais e aritméticas, bem como comandos que traduzam esses conceitos de forma a representar o conjunto de ações. 
+
+Para que esse conjunto de ações se torne viável, deve existir uma perfeita relação lógica intrínseca ao modo pelo qual essas ações são executadas, ao modo pelo qual é regido o fluxo de execução do algoritmo.
+
+Por meio das estrutura básicas de controle do fluxo de execução – sequencial, seleção, repetição e da combinação delas – poderemos criar algoritmos para solucionar nossos problemas.
+
+
+**Estruturas básicas de um algoritmo**: 
+
+### Sequêncial 
+
+Representa o **Início/Fim**, e define uma estrutura onde as instruções serão executadas na ordem que aparecem.
+
+Corresponde ao fato de que o conjunto de ações primitivas será executado em uma sequência linear de cima para baixo da esquerda para a direita. Para exemplificarmos, vamos resolver o seguinte exercício.  
+
+**Exemplo**: Construa um algoritmo que calcule a média aritmética entre quatro notas bimestrais quaisquer fornecidas:
+
+```{r}
+# Entrada 
+n1 <- 4
+n2 <- 5
+n3 <- 6
+n4 <- 7
+
+# Processamento
+media <- (n1+n2+n3+n4) / 4 
+
+# Saída
+media
+```
+
+
+
+### Seleção
+
+**a) Se-Então/Senão**
+Define uma estrutura condicional que, dada a sua avaliação (V ou F), determina qual "caminho" do algoritmo será executado.
+
+
+Permite a escolha de um grupo de ações (bloco) a ser executado quando determinadas condições, representadas por expressões lógicas e/ou relacionais, são satisfeitas ou não. Os tipo de seleção apresentados serão: Simples, Composta e Encadeada.
+
+**Exemplo - Seleção Simples**: Classifique um valor qualquer fornecido `X`, se é maior que zero.
+
+Quando precisamos testar uma certa condição antes de executar uma ação.
+
+```{r}
+X <- 7
+if(X > 0)
+  { # Início do bloco Verdadeiro
+  print("Valor maior que zero")
+  } # Final do bloco Verdadeiro
+```
+
+**OBS**: Quando houver somente uma ação primitiva, a estrutura pode ser: 
+```{r}
+X <- 7
+if(X > 0)  print("Valor maior que zero")
+```
+
+**Exemplo - Seleção Composta**: Classifique um valor qualquer fornecido `X`, se é maior que zero, ou menor ou igual a zero.
+
+Utilizadas em situações em que duas alternativas dependem de uma mesma condição: uma da condição VERDADEIRA, e outra da condição FALSA.
+
+
+```{r}
+X <- -0.8987
+if(X > 0){ 
+  print("Valor maior que zero")
+  }else{ # Início do bloco Falso
+  print("Valor menor ou igual a zero") 
+  } # Fim do bloco Falso
+```
+
+**Exemplo - Seleção Encadeada**: Classifique um valor qualquer fornecido `X`, se é maior que zero, menor do que zero ou igual a zero.
+
+É o agrupamento de várias seleções, ocorre quanto uma determinada ação, ou bloco deve ser executado se um grande conjunto de possibilidades ou combinações de situações for satisfeito.
+
+```{r}
+X <- 0.1
+if(X > 0){ 
+  print("Valor maior que zero")
+}else{ 
+      if(X< 0 ){
+        print("Valor menor que zero")
+      }else{
+        print("Valor igual a zero")
+      }
+}
+```
+
+Observe que as etruturas acima apresentadas são funcionais para classificação de um único valor. Contudo para a classificação de vários valores em um vetor, recomenda-e o uso da função `if_else` do pacote `dplyr` disponível no `tidyverse`.
+
+```{r}
+library(tidyverse)
+numeros <- c(-0.8, 1, 5, 0, -4)
+if_else(numeros<0,"Negativo",if_else(numeros==0,"Nulo","Positivo"))
+```
+
+**b) Selecione caso**
+
+Muitas vezes nos deparamos com situações onde são necessários necessário duas ou mais operações condicionais para classificação. Nessa situações poderemos utilizar a estrutura **Selecione caso**, que no R pode ser acessada com a função `case_when` (do pacote `dplyr`).
+
+Essa função é útil para vetorizar instruções condicionais. Isso é semelhante a `if_else` mas pode gerar qualquer número de valores, em vez de apenas TRUE ou FALSE. Aqui está um exemplo que retorna o dia da semana em função do número de 1 a 7, onde qualquer valor fora desse intervalo é classificado como `número inválido`. 
+
+```{r}
+dia <- c(1,2,3,4,5,6,7,0,8)
+case_when(
+  dia == 1 ~ "Domingo",
+  dia == 2 ~ "Segunda-feira",
+  dia == 3 ~ "Terça-feira",
+  dia == 4 ~ "Quarta-feira",
+  dia == 5 ~ "Quinta-feira",
+  dia == 6 ~ "Sexta-feira",
+  dia == 7 ~ "Sábado",
+  TRUE ~ "número inválido"
+  )
+```
+
+
+### Repetição 
+
+**Enquanto, Faça-Enquanto ou Para**
+Define uma estrutura de iteração condicional (V ou F) ou contada (pré-definida) de instruções.
+
+
+É uma estrutura da controle do fluxo de execução que permite repetir diversas vezes um mesmo trecho do algoritmo, porém, sempre verificando ANTES de cada execução se é 'permitido' executar o mesmo trecho. 
+
+
+**a) Repetição com teste no Início**
+
+O Enquanto (`while`) permite que um determinado comando (ou bloco) seja repetido enquanto uma determinada <condição> for *VERDADEIRA*.
+
+Muitas vezes precisamos estabelecer um modo de contagem (contador), ou seja, uma variável ($i$ por exemplo) com um dado valor inicial que é incrementado a cada repetição. 
+
+Quando o resultado da <condição> for *FALSO* o comando de repetição é abandonado. Se na primeira vez o resultado for FALSO, os comandos **NÃO SÃO EXECUTADOS**.
+
+
+**Exemplo**: Imprima os números menores ou iguais a 10.
+
+```{r}
+i=1
+while(i<=10){
+  print(i)
+  i=i+1
+}
+```
+
+**b) Repetição com teste no Final**
+
+Uma das estruturas com teste no final é a Repita...Se (`repeat...if`), que permite que um comando, ou bloco de comandos sejam executados enquanto uma determinada <condição> seja *FALSA*.
+
+Verificamos que, devido a sua sintaxe os comandos dentro do bloco **São Executados Pelo Menos Uma Vez**, independentemente da validade da condição. Isso ocorre pois a inspeção da <condição> ocorre no **FINAL** da estrutura.
+
+Quando o resultado da <condição> for *VERDADEIRO* o comando de repetição é abandonado. Entretanto, os comandos **SÃO EXECUTADOS PELO MENOS UMA VEZ**.
+
+**Exemplo**: Imprima os números menores ou iguais a 10.
+```{r}
+i=1
+repeat{
+  print(i)
+  i=i+1
+  if(i>10) break
+}
+```
+
+**c) Repetição com Variável de Controle**
+
+As estruturas `while` e `repeat...if` ocorrem em casos de difícil determinação do número de vezes que um comando, ou bloco, será executado. 
+
+A Estrutura Para (`for`) é diferente, já que sempre repete a execução do bloco um número pré-determinado de vezes, pois ela **não prevê uma condição** e possui **limites fixos**. 
+
+**Exemplo**: Imprima os números menores ou iguais a 10.
+```{r}
+for(i in 1:10){
+  print(i)
+}
+```
+
+**Exemplo:** Elabore um algoritmo que, utilizando uma das estruturas de repetição imprima a tabuada do número 5.
+
+```{r}
+for(i in 1:10){
+  print(paste("5 x",i,"=",i*5))
+}
+```
+
+
+
+## Exercícios  
+**1)** Crie uma script/função que peça dois números e imprima o maior deles.
+
+**2)** Crie um script/função que peça um número e informe se o número é inteiro ou decimal.
+
+**3)** Crie um script/função que leia um número de 1 a 7 e exiba o dia correspondente da semana. (1- Domingo, 2- Segunda, ..., 7-Sábado.). Caso o usuário digitar um número diferente o programa deve escrever `Valor invalido`.
+
+**4)** Crie um script/função que verifique se uma letra digitada é vogal ou consoante.
+
+**5)** Crie um script/função que leia três números e mostre o maior e o menor deles.
+
+**6)** Elabore um algoritmo que, classifique um número $X$, fornecido pelo usuário, em par ou ímpar, utilize o operador `%` para o cálculo do resto da divisão.
+
+**7)** Construa um algoritmo sequencial que calcule as raízes de uma equação do 2º grau ($ax^2 + bx + c$), sendo os valores de $a$, $b$ e $c$ devem ser fornecidos pelo usuário. Considere:
+
+$$
+\Delta = b^2-4 a  c
+$$
+
+se $\Delta > 0$
+
+$$
+x_1 = \frac{-b+\sqrt{\Delta} }{2a} \\
+x_2 = \frac{-b-\sqrt{\Delta} }{2a}
+$$
+se $\Delta = 0$
+
+$$
+x= \frac{-b}{2a}
+$$
+
+se $\Delta < 0$
+
+*As raízes são imaginárias*
+
+**8)** Faça um programa que imprima uma frase $n$ vezes na tela do computador, $n$ deve ser um número fornecido pelo usuário.
+
+**9)** Faça um programa que imprima na tela os números de 1 a 20.
+
+**10)** Faça um programa para obter as sequências de 0 a 25 com passo igual a 2.
+
+**11)** Escreva um programa no qual o usuário digite dois números e o programa deve apresentar todos os números inteiros entre esses dois números. Se os números forem iguais, o programa deve exibir uma mensagem dizendo para o usuário digitar dois números inteiros diferentes.
+
+**12)** Elabore um algoritmo que calcule e escreva o valor S, em que:
+
+$$
+S = 1 - \frac{2}{4} + \frac{3}{9} - \frac{4}{16} + \cdots - \frac{10}{100} = 0,6456349
+$$
+
+**13)** Construa um algoritmo que verifique se o número fornecido pelo usuário (inteiro maior que 1) é primo ou não (números primos são os números naturais que têm apenas dois divisores o 1 e ele mesmo, exemplo (2, 3, 5, 7, 11, 13, 17...).

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Tópicos iniciais | Análise de Dados de Ciência do Solo no R</title>
+  <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Tópicos iniciais | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Tópicos iniciais | Análise de Dados de Ciência do Solo no R" />
+  
+  <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  
+
+<meta name="author" content="Alan R. Panosso alan.panosso@unesp.br &amp; Gener T. Pereira gener.t.pereira@unesp.br" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introdução-à-ciência-dos-dados.html"/>
+<link rel="next" href="algoritmos.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-vindos!!</a></li>
+<li class="chapter" data-level="1" data-path="ambientação.html"><a href="ambientação.html"><i class="fa fa-check"></i><b>1</b> Ambientação</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ambientação.html"><a href="ambientação.html#instalando-o-r"><i class="fa fa-check"></i><b>1.1</b> Instalando o R</a></li>
+<li class="chapter" data-level="1.2" data-path="ambientação.html"><a href="ambientação.html#instalando-o-rstudio"><i class="fa fa-check"></i><b>1.2</b> Instalando o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html"><i class="fa fa-check"></i><b>2</b> Pacotes no R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#pacotes-básicos"><i class="fa fa-check"></i><b>2.1</b> Pacotes básicos</a></li>
+<li class="chapter" data-level="2.2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#instalando-pacotes"><i class="fa fa-check"></i><b>2.2</b> Instalando pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html"><i class="fa fa-check"></i><b>3</b> Lógica de Programação</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#introdução"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#conceitos-básicos"><i class="fa fa-check"></i><b>3.2</b> Conceitos básicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Introdução à Ciência dos Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#importação"><i class="fa fa-check"></i><b>4.1</b> Importação</a></li>
+<li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
+<li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
+<li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html"><i class="fa fa-check"></i><b>5</b> Tópicos iniciais</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#identificadores"><i class="fa fa-check"></i><b>5.1</b> Identificadores</a></li>
+<li class="chapter" data-level="5.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#palavras-reservadas"><i class="fa fa-check"></i><b>5.2</b> Palavras Reservadas</a></li>
+<li class="chapter" data-level="5.3" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#regras-para-os-nomes-de-identificadores"><i class="fa fa-check"></i><b>5.3</b> Regras para os nomes de Identificadores</a></li>
+<li class="chapter" data-level="5.4" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#tipos-de-dados"><i class="fa fa-check"></i><b>5.4</b> Tipos de dados</a></li>
+<li class="chapter" data-level="5.5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#atribuição"><i class="fa fa-check"></i><b>5.5</b> Atribuição</a></li>
+<li class="chapter" data-level="5.6" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operadores"><i class="fa fa-check"></i><b>5.6</b> Operadores</a></li>
+<li class="chapter" data-level="5.7" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operação-aritmética"><i class="fa fa-check"></i><b>5.7</b> Operação aritmética</a></li>
+<li class="chapter" data-level="5.8" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#funções-matemáticas-e-trigonométricas"><i class="fa fa-check"></i><b>5.8</b> Funções matemáticas e trigonométricas</a></li>
+<li class="chapter" data-level="5.9" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-relacionais"><i class="fa fa-check"></i><b>5.9</b> Operações Relacionais</a></li>
+<li class="chapter" data-level="5.10" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-lógicas"><i class="fa fa-check"></i><b>5.10</b> Operações Lógicas</a></li>
+<li class="chapter" data-level="5.11" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>5.11</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="algoritmos.html"><a href="algoritmos.html"><i class="fa fa-check"></i><b>6</b> Algoritmos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="algoritmos.html"><a href="algoritmos.html#estruturas-de-controle"><i class="fa fa-check"></i><b>6.1</b> Estruturas de Controle</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="algoritmos.html"><a href="algoritmos.html#sequêncial"><i class="fa fa-check"></i><b>6.1.1</b> Sequêncial</a></li>
+<li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
+<li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#atomic-vector"><i class="fa fa-check"></i><b>7.1</b> Atomic vector</a></li>
+<li class="chapter" data-level="7.2" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#factor"><i class="fa fa-check"></i><b>7.2</b> Factor</a></li>
+<li class="chapter" data-level="7.3" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#matrizes-e-arrays"><i class="fa fa-check"></i><b>7.3</b> Matrizes e Arrays</a></li>
+<li class="chapter" data-level="7.4" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#listas"><i class="fa fa-check"></i><b>7.4</b> Listas</a></li>
+<li class="chapter" data-level="7.5" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#data-frames"><i class="fa fa-check"></i><b>7.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html"><i class="fa fa-check"></i><b>8</b> Visualização de dados com o ggplot2</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#criando-um-gráfico"><i class="fa fa-check"></i><b>8.1</b> Criando um gráfico</a></li>
+<li class="chapter" data-level="8.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#definindo-temas"><i class="fa fa-check"></i><b>8.2</b> Definindo temas</a></li>
+<li class="chapter" data-level="8.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#controle-de-elementos-do-tema"><i class="fa fa-check"></i><b>8.3</b> Controle de elementos do tema</a></li>
+<li class="chapter" data-level="8.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#mapeando-estéticos"><i class="fa fa-check"></i><b>8.4</b> Mapeando estéticos</a></li>
+<li class="chapter" data-level="8.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#facetas"><i class="fa fa-check"></i><b>8.5</b> Facetas</a></li>
+<li class="chapter" data-level="8.6" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#objetos-geométricos"><i class="fa fa-check"></i><b>8.6</b> Objetos geométricos</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-colunas"><i class="fa fa-check"></i><b>8.6.1</b> Gráfico de Colunas</a></li>
+<li class="chapter" data-level="8.6.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>8.6.2</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="8.6.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#smoothers"><i class="fa fa-check"></i><b>8.6.3</b> Smoothers</a></li>
+<li class="chapter" data-level="8.6.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#boxplot"><i class="fa fa-check"></i><b>8.6.4</b> Boxplot</a></li>
+<li class="chapter" data-level="8.6.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#histograma"><i class="fa fa-check"></i><b>8.6.5</b> Histograma</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados de Ciência do Solo no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tópicos-iniciais" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Tópicos iniciais</h1>
+<div id="identificadores" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Identificadores</h2>
+<p>São nomes únicos definidos pelos programadores para identificar/distinguir os elementos de um programa.</p>
+</div>
+<div id="palavras-reservadas" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Palavras Reservadas</h2>
+<p>São instruções primitivas que têm significados pré-determinados e fazem parte da estrutura de qualquer linguagem de programação.</p>
+</div>
+<div id="regras-para-os-nomes-de-identificadores" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Regras para os nomes de Identificadores</h2>
+<p><em>1) Devem começar por um caractere alfabético;<br />
+</em>2) Podem ser seguidos por mais caracteres alfabéticos e/ou numéricos;<br />
+<em>3) Não é permitido o uso de espaço em branco ou de caracteres especiais, como: @, #, &amp;, ?, $ (exceto o _ e o .);<br />
+</em>4) Não poderá ser uma palavra reservada a uma instrução do algoritmo (if, else, for, while, entre outras);<br />
+*5) Devem ser significativos.</p>
+<p>Geralmente, desejamos que os nomes dos objetos sejam descritivos, então precisaremos de uma convenção para várias palavras.</p>
+<p>Recomendamos <em>snake_case</em>, onde você separa palavras minúsculas com _ .</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tópicos-iniciais.html#cb38-1" aria-hidden="true" tabindex="-1"></a>eu_uso_snake_case</span>
+<span id="cb38-2"><a href="tópicos-iniciais.html#cb38-2" aria-hidden="true" tabindex="-1"></a>outrasPessoasUsamCamelCase</span>
+<span id="cb38-3"><a href="tópicos-iniciais.html#cb38-3" aria-hidden="true" tabindex="-1"></a>algumas.pessoas.usam.pontos</span>
+<span id="cb38-4"><a href="tópicos-iniciais.html#cb38-4" aria-hidden="true" tabindex="-1"></a>E_algumasPoucas.Pessoas_RENUNCIAMconvenções</span></code></pre></div>
+</div>
+<div id="tipos-de-dados" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Tipos de dados</h2>
+<p>As fases de Entrada, Processamento e Saída podem manipular vários tipos primitivos de dados, a saber:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-34"></span>
+<img src="img/tipo_dados.png" alt="Tipos primitivos de dados" width="600px" />
+<p class="caption">
+Figure 5.1: Tipos primitivos de dados
+</p>
+</div>
+<p>Um Caractere SEMPRE deve estar entre <strong>" "</strong>. Por exemplo: “A,” “Fone 3333-33333,” “1,” “3.1415,” etc.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tópicos-iniciais.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; Olá, eu sou um texto.&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot; Olá, eu sou um texto.&quot;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tópicos-iniciais.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;1&quot;</span> <span class="co"># não pode ser feito cálculos</span></span></code></pre></div>
+<pre><code>## [1] &quot;1&quot;</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tópicos-iniciais.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.14</span> <span class="co"># DOUBLE: valor real, de ponto flutuante.</span></span></code></pre></div>
+<pre><code>## [1] 3.14</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tópicos-iniciais.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="co"># valor numérico inteiro, sufixo L temos números inteiros em vez de double</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tópicos-iniciais.html#cb47-1" aria-hidden="true" tabindex="-1"></a>pi <span class="co"># constante com o valor de pi</span></span></code></pre></div>
+<pre><code>## [1] 3.141593</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tópicos-iniciais.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="co"># valor lógico</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="tópicos-iniciais.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="co"># valor lógico</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="atribuição" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Atribuição</h2>
+<p>Serve para atribuir um valor a uma variável/objeto no R.</p>
+<p>A expressão do lado direito do operador é avaliada e seu resultado é armazenado na variável à esquerda.</p>
+<p>O operador de atribuição pode ser o <code>&lt;-</code> ou o <code>=</code>, preferencialmente utilizaremos o <code>&lt;-</code> para a criação dos <strong>objetos</strong> e deixaremos o <code>=</code> para a definição de valores em <strong>argumentos</strong> dentro da funções.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="tópicos-iniciais.html#cb53-1" aria-hidden="true" tabindex="-1"></a>texto<span class="ot">&lt;-</span><span class="st">&quot; Olá, eu sou um texto.&quot;</span></span>
+<span id="cb53-2"><a href="tópicos-iniciais.html#cb53-2" aria-hidden="true" tabindex="-1"></a>x_chr<span class="ot">&lt;-</span><span class="st">&quot;1&quot;</span> <span class="co"># não pode ser feito cálculo</span></span>
+<span id="cb53-3"><a href="tópicos-iniciais.html#cb53-3" aria-hidden="true" tabindex="-1"></a>c<span class="ot">&lt;-</span><span class="dv">1</span> <span class="co"># valor numérico inteiro</span></span>
+<span id="cb53-4"><a href="tópicos-iniciais.html#cb53-4" aria-hidden="true" tabindex="-1"></a>PI<span class="ot">&lt;-</span><span class="fl">3.14</span> <span class="co"># valor real, de ponto flutuante</span></span>
+<span id="cb53-5"><a href="tópicos-iniciais.html#cb53-5" aria-hidden="true" tabindex="-1"></a>logico_1<span class="ot">&lt;-</span><span class="cn">TRUE</span> <span class="co"># valor lógico</span></span>
+<span id="cb53-6"><a href="tópicos-iniciais.html#cb53-6" aria-hidden="true" tabindex="-1"></a>logico_2<span class="ot">&lt;-</span><span class="cn">FALSE</span> <span class="co"># valor lógico</span></span></code></pre></div>
+</div>
+<div id="operadores" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> Operadores</h2>
+<p><strong>Aritméticos</strong>: são as operações aritméticas básicas.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operador</th>
+<th align="center">Tipo</th>
+<th align="center">Operação</th>
+<th align="center">Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>-</code></td>
+<td align="center">Unário</td>
+<td align="center">Inversão do Sinal</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="left"><code>+</code></td>
+<td align="center">Unário</td>
+<td align="center">Manutenção do Sinal</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>sqrt(x)</code></td>
+<td align="center">Binário</td>
+<td align="center">Radiciação</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="left"><code>x^y</code> ou <code>x**y</code></td>
+<td align="center">Binário</td>
+<td align="center">Potenciação</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>%</code></td>
+<td align="center">Binário</td>
+<td align="center">Resto da divisão inteira</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="left"><code>/</code></td>
+<td align="center">Binário</td>
+<td align="center">Divisão</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>*</code></td>
+<td align="center">Binário</td>
+<td align="center">Multiplicação</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="left"><code>-</code></td>
+<td align="center">Binário</td>
+<td align="center">Subtração</td>
+<td align="center">4</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>+</code></td>
+<td align="center">Binário</td>
+<td align="center">Adição</td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relacionais</strong>: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos V (TRUE) ou F(FALSE).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operador</th>
+<th align="center">Comparação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">&gt;</td>
+<td align="center">maior que</td>
+</tr>
+<tr class="even">
+<td align="left">&lt;</td>
+<td align="center">menor que</td>
+</tr>
+<tr class="odd">
+<td align="left">&gt;=</td>
+<td align="center">maior ou igual</td>
+</tr>
+<tr class="even">
+<td align="left">&lt;=</td>
+<td align="center">menor ou igual</td>
+</tr>
+<tr class="odd">
+<td align="left">==</td>
+<td align="center">igual a</td>
+</tr>
+<tr class="even">
+<td align="left">!=</td>
+<td align="center">diferente de</td>
+</tr>
+</tbody>
+</table>
+<p>Estes somente são usados para efetuar comparações, as quais só podem ser feitas entre dados do mesmo tipo.</p>
+<p>O resultado de uma comparação é sempre um valor lógico V (TRUE) ou F(FALSE).</p>
+<p><strong>Lógicos</strong> ou <strong>Booleanos</strong>: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos V (TRUE) ou F(FALSE).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Operador</th>
+<th align="center">Tipo</th>
+<th align="center">Operação</th>
+<th align="center">Prioridade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">NÃO (<code>!</code>)</td>
+<td align="center">Unário</td>
+<td align="center">Negação</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="left">E (<code>&amp;</code>)</td>
+<td align="center">Binário</td>
+<td align="center">Conjunção</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="left">OU (<code>|</code>)</td>
+<td align="center">Binário</td>
+<td align="center">Disjunção</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="operação-aritmética" class="section level2" number="5.7">
+<h2><span class="header-section-number">5.7</span> Operação aritmética</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; a) 1+7 = 8\\
+&amp; b)1 - 2 \times10 = 19\\
+&amp; c) 2^{10} = 1024\\
+&amp; d) \frac{10}{3} = 3,33333
+\end{aligned}
+\]</span></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tópicos-iniciais.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">7</span> </span>
+<span id="cb54-2"><a href="tópicos-iniciais.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">10</span> </span>
+<span id="cb54-3"><a href="tópicos-iniciais.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">**</span> <span class="dv">10</span> </span>
+<span id="cb54-4"><a href="tópicos-iniciais.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">/</span><span class="dv">3</span> </span></code></pre></div>
+</div>
+<div id="funções-matemáticas-e-trigonométricas" class="section level2" number="5.8">
+<h2><span class="header-section-number">5.8</span> Funções matemáticas e trigonométricas</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; a)\;\sqrt{9} = 3\\
+&amp; b)\;seno\;\pi = 0\\
+&amp; c)\;5! =120\\
+&amp; d)\; e^5 = 148,4132 \\
+&amp; e=2,718282
+\end{aligned}
+\]</span></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="tópicos-iniciais.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">9</span>) </span>
+<span id="cb55-2"><a href="tópicos-iniciais.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi) </span>
+<span id="cb55-3"><a href="tópicos-iniciais.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">5</span>)</span>
+<span id="cb55-4"><a href="tópicos-iniciais.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">5</span>)</span>
+<span id="cb55-5"><a href="tópicos-iniciais.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
+</div>
+<div id="operações-relacionais" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> Operações Relacionais</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; a)\;7 &gt; 5 \text{ retorna &#39;verdadeiro&#39;}\\
+&amp; b)\;8 \leq 4 \text{ retorna &#39;falso&#39;}\\
+&amp; c)\;5 = \frac{25}{5} \text{ retorna &#39;verdadeiro&#39;}\\
+&amp; d)\; 4\neq 8 \text{ retorna &#39;verdadeiro&#39;}
+\end{aligned}
+\]</span></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tópicos-iniciais.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;</span> <span class="dv">5</span> ; <span class="dv">4</span> <span class="sc">!=</span> <span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tópicos-iniciais.html#cb59-1" aria-hidden="true" tabindex="-1"></a>nome <span class="ot">&lt;-</span> <span class="st">&#39;Alan&#39;</span></span>
+<span id="cb59-2"><a href="tópicos-iniciais.html#cb59-2" aria-hidden="true" tabindex="-1"></a>nome <span class="sc">==</span> <span class="st">&#39;Rodrigo&#39;</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tópicos-iniciais.html#cb61-1" aria-hidden="true" tabindex="-1"></a>nome <span class="sc">==</span> <span class="st">&quot;Alan&quot;</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="operações-lógicas" class="section level2" number="5.10">
+<h2><span class="header-section-number">5.10</span> Operações Lógicas</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; a)\;7 &gt; 5 \; OU \; 8 \leq 4 \text{ retorna &#39;verdadeiro&#39;}\\
+&amp; b)\;5 = \frac{25}{5} \; E \; 4 &gt; 8 \text{ retorna &#39;falso&#39;} \\
+&amp; c) \text{ Não} \; \text{TRUE}\; \text{retorna &#39;falso&#39;} \\
+&amp; d) \text{ Não} \; \text{FALSE} \; \text{retorna &#39;verdadeiro&#39;}
+\end{aligned}
+\]</span></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tópicos-iniciais.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> <span class="dv">8</span> <span class="sc">&lt;=</span> <span class="dv">4</span> </span>
+<span id="cb63-2"><a href="tópicos-iniciais.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">25</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">&amp;</span> <span class="dv">4</span> <span class="sc">&gt;</span> <span class="dv">8</span></span>
+<span id="cb63-3"><a href="tópicos-iniciais.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">TRUE</span></span>
+<span id="cb63-4"><a href="tópicos-iniciais.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">FALSE</span></span>
+<span id="cb63-5"><a href="tópicos-iniciais.html#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-6"><a href="tópicos-iniciais.html#cb63-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">8</span>)</span>
+<span id="cb63-7"><a href="tópicos-iniciais.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
+<span id="cb63-8"><a href="tópicos-iniciais.html#cb63-8" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span></code></pre></div>
+</div>
+<div id="exercícios" class="section level2" number="5.11">
+<h2><span class="header-section-number">5.11</span> Exercícios</h2>
+<p>Resolva as seguintes expressões:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; a)\; log\;3 \\
+&amp; b)\; ln\;10\\
+&amp; c)\; e^{2,302585}\\
+&amp; d)\; \sqrt{225}\\
+&amp; e)\; 5!\\
+&amp; f)\; seno\;30°\\
+\end{aligned}
+\]</span></p>
+<p><strong>Algumas funções do R</strong></p>
+<table>
+<colgroup>
+<col width="44%" />
+<col width="55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Função</th>
+<th align="center">Significado/ação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>q()</code></td>
+<td align="center">Sair do programa.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>save.image()</code></td>
+<td align="center">Salva o trabalho realizado.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ls()</code></td>
+<td align="center">Lista todos os objetos da área de trabalho atual.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>rm(x)</code></td>
+<td align="center">Remove o objeto x.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rm(x,y)</code></td>
+<td align="center">Remove os objetos x e y.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>rm(list=ls(all=TRUE))</code></td>
+<td align="center">Remove todos os objetos (R Console – Misc/Remover todos os objetos).</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>is.na(x)</code></td>
+<td align="center">Verdadeiro se existir dado(s) ausente(s) no objeto x.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sqrt(x)</code></td>
+<td align="center">raiz quadrada de x.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>log(x,n)</code></td>
+<td align="center">logaritmo de x na base n.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>log(x)</code></td>
+<td align="center">logaritmo neperiano de x.</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>log10(x)</code></td>
+<td align="center">logaritmo decimal de x.</td>
+</tr>
+</tbody>
+</table>
+<p><code>exp(x)|</code>antilogaritmo - ex.
+<code>sin(x)</code>|seno de x (em radianos).
+<code>asin(x)</code>|arco-seno de x.
+<code>abs(x)</code>|modulo(x).
+<code>factorial(x)</code>|x !.
+<code>floor(x)</code>|maior inteiro &lt; x.
+<code>ceiling(x)</code>|menor inteiro &gt;x.
+<code>trunc(x)</code>|inteiro de x, descartando seus decimais.
+<code>round(x, digits=0)</code>|arredondando o valor x para um inteiro.
+<code>signif(x, digits=6)</code>|apresentar 6 dígitos significativos de x.
+<code>runif(n)</code>|gera n números aleatórios entre 0 e 1 a partir de uma distribuição uniforme.
+<code>c()</code>|concatenação, criação de vetores.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introdução-à-ciência-dos-dados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="algoritmos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_data_science_fcav.pdf", "r_data_science_fcav.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
