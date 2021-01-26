@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7 Estrutura de dados | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7 Estrutura de dados | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
@@ -50,7 +50,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
 <li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+<li class="chapter" data-level="6.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
 <ul>
@@ -291,13 +291,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 7.1: O objeto identificado como X possui um tipo numérico inteiro cujo valor é 5.
 </p>
 </div>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="estrutura-de-dados.html#cb90-1" aria-hidden="true" tabindex="-1"></a>(meu_inteiro <span class="ot">&lt;-</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="estrutura-de-dados.html#cb91-1" aria-hidden="true" tabindex="-1"></a>(meu_inteiro <span class="ot">&lt;-</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="estrutura-de-dados.html#cb92-1" aria-hidden="true" tabindex="-1"></a>(meu_double <span class="ot">&lt;-</span> <span class="fl">8.50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="estrutura-de-dados.html#cb93-1" aria-hidden="true" tabindex="-1"></a>(meu_double <span class="ot">&lt;-</span> <span class="fl">8.50</span>)</span></code></pre></div>
 <pre><code>## [1] 8.5</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="estrutura-de-dados.html#cb94-1" aria-hidden="true" tabindex="-1"></a>(meu_logico <span class="ot">&lt;-</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="estrutura-de-dados.html#cb95-1" aria-hidden="true" tabindex="-1"></a>(meu_logico <span class="ot">&lt;-</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="estrutura-de-dados.html#cb96-1" aria-hidden="true" tabindex="-1"></a>(meu_char <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="estrutura-de-dados.html#cb97-1" aria-hidden="true" tabindex="-1"></a>(meu_char <span class="ot">&lt;-</span> <span class="st">&quot;A&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot;</code></pre>
 <p>De forma análoga, no conceito de estrutura de dados uma caixa poderá comportar não apenas uma e somente uma informação, a caixa comportará um conjunto de dados, desde que previamente organizada, ou seja, dividida em compartimentos. A função <code>c()</code>, o c é de concatenate utilizada para criação de um atomic vector com mais de um valor.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-54"></span>
@@ -306,44 +306,44 @@ Figure 7.1: O objeto identificado como X possui um tipo numérico inteiro cujo v
 Figure 7.2: O objeto identificado como X possui um tipo numérico inteiro cujos valores são 5, 8, 0, 2, 1 e 9.
 </p>
 </div>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="estrutura-de-dados.html#cb98-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">9</span>)</span>
-<span id="cb98-2"><a href="estrutura-de-dados.html#cb98-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">6.8</span>)</span>
-<span id="cb98-3"><a href="estrutura-de-dados.html#cb98-3" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, T, F)</span>
-<span id="cb98-4"><a href="estrutura-de-dados.html#cb98-4" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;mais&quot;</span>, <span class="st">&quot;bonita&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="estrutura-de-dados.html#cb99-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">9</span>)</span>
+<span id="cb99-2"><a href="estrutura-de-dados.html#cb99-2" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">6.8</span>)</span>
+<span id="cb99-3"><a href="estrutura-de-dados.html#cb99-3" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, T, F)</span>
+<span id="cb99-4"><a href="estrutura-de-dados.html#cb99-4" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;mais&quot;</span>, <span class="st">&quot;bonita&quot;</span>)</span></code></pre></div>
 <p>As funções class e mode auxiliam na determinação do tipo de objeto.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="estrutura-de-dados.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="estrutura-de-dados.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(X)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="estrutura-de-dados.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="estrutura-de-dados.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(X)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="estrutura-de-dados.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(M)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="estrutura-de-dados.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(M)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="estrutura-de-dados.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(M)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="estrutura-de-dados.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(M)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p><strong>Observação:</strong> Coerção ocorre quando dois tipos de objetos são inseridos uma estrutura homogênea (atomic vectors, arrays ou matrizes), o R converterá o objeto para o tipo mais flexível, na ordem:</p>
 <p>1-Lógico</p>
 <p>2-Inteiro</p>
 <p>3-Double</p>
 <p>4-Caracter</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="estrutura-de-dados.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(T,<span class="dv">3</span>,<span class="fl">5.5</span>,<span class="st">&quot;bela&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="estrutura-de-dados.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(T,<span class="dv">3</span>,<span class="fl">5.5</span>,<span class="st">&quot;bela&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;TRUE&quot; &quot;3&quot;    &quot;5.5&quot;  &quot;bela&quot;</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="estrutura-de-dados.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(T,<span class="dv">3</span>,<span class="fl">5.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="estrutura-de-dados.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(T,<span class="dv">3</span>,<span class="fl">5.5</span>)</span></code></pre></div>
 <pre><code>## [1] 1.0 3.0 5.5</code></pre>
 </div>
 <div id="factor" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Factor</h2>
 <p>Factors são utilizados para armazernar dados categorizados e são caracterizados por conterem apenas valores pré-definidos, chamados levels; e se basearem num vetor de inteiros. Dentro do objeto, os levels são organizados em ordem alfabética.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="estrutura-de-dados.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função factor</span></span>
-<span id="cb111-2"><a href="estrutura-de-dados.html#cb111-2" aria-hidden="true" tabindex="-1"></a>trat<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T3&quot;</span>,<span class="st">&quot;T3&quot;</span>,<span class="st">&quot;T3&quot;</span>))</span>
-<span id="cb111-3"><a href="estrutura-de-dados.html#cb111-3" aria-hidden="true" tabindex="-1"></a>trat</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="estrutura-de-dados.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função factor</span></span>
+<span id="cb112-2"><a href="estrutura-de-dados.html#cb112-2" aria-hidden="true" tabindex="-1"></a>trat<span class="ot">&lt;-</span><span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T3&quot;</span>,<span class="st">&quot;T3&quot;</span>,<span class="st">&quot;T3&quot;</span>))</span>
+<span id="cb112-3"><a href="estrutura-de-dados.html#cb112-3" aria-hidden="true" tabindex="-1"></a>trat</span></code></pre></div>
 <pre><code>## [1] T1 T1 T1 T2 T2 T2 T3 T3 T3
 ## Levels: T1 T2 T3</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="estrutura-de-dados.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função gf (Generate Factor)</span></span>
-<span id="cb113-2"><a href="estrutura-de-dados.html#cb113-2" aria-hidden="true" tabindex="-1"></a>TRAT <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>,<span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T3&quot;</span>) )</span>
-<span id="cb113-3"><a href="estrutura-de-dados.html#cb113-3" aria-hidden="true" tabindex="-1"></a>TRAT</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="estrutura-de-dados.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Função gf (Generate Factor)</span></span>
+<span id="cb114-2"><a href="estrutura-de-dados.html#cb114-2" aria-hidden="true" tabindex="-1"></a>TRAT <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>,<span class="dv">3</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;T1&quot;</span>,<span class="st">&quot;T2&quot;</span>,<span class="st">&quot;T3&quot;</span>) )</span>
+<span id="cb114-3"><a href="estrutura-de-dados.html#cb114-3" aria-hidden="true" tabindex="-1"></a>TRAT</span></code></pre></div>
 <pre><code>## [1] T1 T1 T1 T2 T2 T2 T3 T3 T3
 ## Levels: T1 T2 T3</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="estrutura-de-dados.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo o níveis de um fator</span></span>
-<span id="cb115-2"><a href="estrutura-de-dados.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="estrutura-de-dados.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo o níveis de um fator</span></span>
+<span id="cb116-2"><a href="estrutura-de-dados.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(trat)</span></code></pre></div>
 <pre><code>## [1] &quot;T1&quot; &quot;T2&quot; &quot;T3&quot;</code></pre>
 </div>
 <div id="matrizes-e-arrays" class="section level2" number="7.3">
@@ -357,8 +357,8 @@ Figure 7.3: O objeto identificado como X possui um tipo numérico inteiro bidime
 </div>
 <p>No R dois argumentos são utilizados na função <code>matrix()</code> para determinar o número de colunas e forma com a qual será o preeenchimento dos elementos na matriz, por linha (<code>byrow=FALSE</code>, default) ou por coluna (<code>byrow=TRUE</code>). Compare as duas matriz do exemplo abaixo.</p>
 <p>Preenchimento da matriz por coluna.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="estrutura-de-dados.html#cb117-1" aria-hidden="true" tabindex="-1"></a>mat1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb117-2"><a href="estrutura-de-dados.html#cb117-2" aria-hidden="true" tabindex="-1"></a>mat1</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="estrutura-de-dados.html#cb118-1" aria-hidden="true" tabindex="-1"></a>mat1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb118-2"><a href="estrutura-de-dados.html#cb118-2" aria-hidden="true" tabindex="-1"></a>mat1</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
 ## [1,]    1    7   13   19   25   31
 ## [2,]    2    8   14   20   26   32
@@ -367,8 +367,8 @@ Figure 7.3: O objeto identificado como X possui um tipo numérico inteiro bidime
 ## [5,]    5   11   17   23   29   35
 ## [6,]    6   12   18   24   30   36</code></pre>
 <p>Preenchimento da matriz por linha</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="estrutura-de-dados.html#cb119-1" aria-hidden="true" tabindex="-1"></a>mat2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb119-2"><a href="estrutura-de-dados.html#cb119-2" aria-hidden="true" tabindex="-1"></a>mat2</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="estrutura-de-dados.html#cb120-1" aria-hidden="true" tabindex="-1"></a>mat2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>, <span class="at">ncol =</span> <span class="dv">6</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb120-2"><a href="estrutura-de-dados.html#cb120-2" aria-hidden="true" tabindex="-1"></a>mat2</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
 ## [1,]    1    2    3    4    5    6
 ## [2,]    7    8    9   10   11   12
@@ -380,8 +380,8 @@ Figure 7.3: O objeto identificado como X possui um tipo numérico inteiro bidime
 <p>Os arrays podem armazenar os valores tendo apenas um tipo semelhante de tipos de dados. Os dados podem ser mais de uma dimensão, onde existem linhas e colunas e dimensões de algum comprimento.</p>
 <p>A função <code>array()</code> possui dois argumentos, <code>data</code> que receberá o vetor contendo os elementos e <code>dim</code> que receberá um vetor decrevendo o tamanho de cada dimensão.</p>
 <p>Vamos criar um array com duas matrizes de 4 linhas e 3 colunas</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="estrutura-de-dados.html#cb121-1" aria-hidden="true" tabindex="-1"></a>meu_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
-<span id="cb121-2"><a href="estrutura-de-dados.html#cb121-2" aria-hidden="true" tabindex="-1"></a>meu_array</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="estrutura-de-dados.html#cb122-1" aria-hidden="true" tabindex="-1"></a>meu_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>))</span>
+<span id="cb122-2"><a href="estrutura-de-dados.html#cb122-2" aria-hidden="true" tabindex="-1"></a>meu_array</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2] [,3]
@@ -398,11 +398,11 @@ Figure 7.3: O objeto identificado como X possui um tipo numérico inteiro bidime
 ## [3,]   15   19   23
 ## [4,]   16   20   24</code></pre>
 <p>Os nomes das linhas, colunas e matrizes do array podem ser nomeados a partir de uma lista definida no argumento <code>dimnames</code> da função <code>array()</code>, como apresentado abaixo:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="estrutura-de-dados.html#cb123-1" aria-hidden="true" tabindex="-1"></a>linhas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lin1&quot;</span>, <span class="st">&quot;Lin2&quot;</span>, <span class="st">&quot;Lin3&quot;</span>, <span class="st">&quot;Lin4&quot;</span>)</span>
-<span id="cb123-2"><a href="estrutura-de-dados.html#cb123-2" aria-hidden="true" tabindex="-1"></a>colunas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Col1&quot;</span>,<span class="st">&quot;Col2&quot;</span>,<span class="st">&quot;Col3&quot;</span>)</span>
-<span id="cb123-3"><a href="estrutura-de-dados.html#cb123-3" aria-hidden="true" tabindex="-1"></a>matrizes<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Matriz1&quot;</span>, <span class="st">&quot;Matriz2&quot;</span>)</span>
-<span id="cb123-4"><a href="estrutura-de-dados.html#cb123-4" aria-hidden="true" tabindex="-1"></a>meu_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">dimnames =</span> <span class="fu">list</span>(linhas,colunas, matrizes) )</span>
-<span id="cb123-5"><a href="estrutura-de-dados.html#cb123-5" aria-hidden="true" tabindex="-1"></a>meu_array</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="estrutura-de-dados.html#cb124-1" aria-hidden="true" tabindex="-1"></a>linhas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Lin1&quot;</span>, <span class="st">&quot;Lin2&quot;</span>, <span class="st">&quot;Lin3&quot;</span>, <span class="st">&quot;Lin4&quot;</span>)</span>
+<span id="cb124-2"><a href="estrutura-de-dados.html#cb124-2" aria-hidden="true" tabindex="-1"></a>colunas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Col1&quot;</span>,<span class="st">&quot;Col2&quot;</span>,<span class="st">&quot;Col3&quot;</span>)</span>
+<span id="cb124-3"><a href="estrutura-de-dados.html#cb124-3" aria-hidden="true" tabindex="-1"></a>matrizes<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Matriz1&quot;</span>, <span class="st">&quot;Matriz2&quot;</span>)</span>
+<span id="cb124-4"><a href="estrutura-de-dados.html#cb124-4" aria-hidden="true" tabindex="-1"></a>meu_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">24</span>, <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>), <span class="at">dimnames =</span> <span class="fu">list</span>(linhas,colunas, matrizes) )</span>
+<span id="cb124-5"><a href="estrutura-de-dados.html#cb124-5" aria-hidden="true" tabindex="-1"></a>meu_array</span></code></pre></div>
 <pre><code>## , , Matriz1
 ## 
 ##      Col1 Col2 Col3
@@ -419,62 +419,62 @@ Figure 7.3: O objeto identificado como X possui um tipo numérico inteiro bidime
 ## Lin3   15   19   23
 ## Lin4   16   20   24</code></pre>
 <p>Para saber qual é o tipo de um objeto, utilizamos a função <code>typeof()</code> e <code>class</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="estrutura-de-dados.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array</span></span>
-<span id="cb125-2"><a href="estrutura-de-dados.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(meu_array)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="estrutura-de-dados.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array</span></span>
+<span id="cb126-2"><a href="estrutura-de-dados.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(meu_array)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="estrutura-de-dados.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(meu_array)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="estrutura-de-dados.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(meu_array)</span></code></pre></div>
 <pre><code>## [1] &quot;array&quot;</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="estrutura-de-dados.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz</span></span>
-<span id="cb129-2"><a href="estrutura-de-dados.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="estrutura-de-dados.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz</span></span>
+<span id="cb130-2"><a href="estrutura-de-dados.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(mat1)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="estrutura-de-dados.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="estrutura-de-dados.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mat1)</span></code></pre></div>
 <pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="estrutura-de-dados.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fator</span></span>
-<span id="cb133-2"><a href="estrutura-de-dados.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="estrutura-de-dados.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fator</span></span>
+<span id="cb134-2"><a href="estrutura-de-dados.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(trat)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="estrutura-de-dados.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="estrutura-de-dados.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(trat)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="estrutura-de-dados.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atomic vector</span></span>
-<span id="cb137-2"><a href="estrutura-de-dados.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="estrutura-de-dados.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atomic vector</span></span>
+<span id="cb138-2"><a href="estrutura-de-dados.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(Y)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="estrutura-de-dados.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="estrutura-de-dados.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(Y)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>As funções <code>length()</code>, <code>dim()</code>, <code>nrow()</code>, <code>ncol()</code> são usadas para determinar o comprimento de cada dimensão de um objeto. Observe que <em>atomic vector</em> e <em>factor</em> são estruturas unidimensionais, assim, somente a função <code>length()</code> retornará o número de elementos do objeto, e as demais função retornarão valor nulo <em>NULL</em>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="estrutura-de-dados.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array</span></span>
-<span id="cb141-2"><a href="estrutura-de-dados.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(meu_array)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="estrutura-de-dados.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array</span></span>
+<span id="cb142-2"><a href="estrutura-de-dados.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(meu_array)</span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="estrutura-de-dados.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(meu_array)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="estrutura-de-dados.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(meu_array)</span></code></pre></div>
 <pre><code>## [1] 4 3 2</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="estrutura-de-dados.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(meu_array)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="estrutura-de-dados.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(meu_array)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="estrutura-de-dados.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(meu_array)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="estrutura-de-dados.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(meu_array)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="estrutura-de-dados.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz</span></span>
-<span id="cb149-2"><a href="estrutura-de-dados.html#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="estrutura-de-dados.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Matriz</span></span>
+<span id="cb150-2"><a href="estrutura-de-dados.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(mat1)</span></code></pre></div>
 <pre><code>## [1] 36</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="estrutura-de-dados.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="estrutura-de-dados.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(mat1)</span></code></pre></div>
 <pre><code>## [1] 6 6</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="estrutura-de-dados.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="estrutura-de-dados.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(mat1)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="estrutura-de-dados.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="estrutura-de-dados.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(mat1)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="estrutura-de-dados.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fator</span></span>
-<span id="cb157-2"><a href="estrutura-de-dados.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="estrutura-de-dados.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fator</span></span>
+<span id="cb158-2"><a href="estrutura-de-dados.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(trat)</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="estrutura-de-dados.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="estrutura-de-dados.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(trat)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="estrutura-de-dados.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="estrutura-de-dados.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(trat)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="estrutura-de-dados.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(trat)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="estrutura-de-dados.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(trat)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="estrutura-de-dados.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atomic vector</span></span>
-<span id="cb165-2"><a href="estrutura-de-dados.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="estrutura-de-dados.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Atomic vector</span></span>
+<span id="cb166-2"><a href="estrutura-de-dados.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(Y)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="estrutura-de-dados.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="estrutura-de-dados.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Y)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="estrutura-de-dados.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="estrutura-de-dados.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(Y)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="estrutura-de-dados.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(Y)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="estrutura-de-dados.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(Y)</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p>Todos os objetos apresentados até agora (<em>atomic vector, factor, matrix</em> e <em>arrays</em>) podem ser classificados como estruturas de dados <strong>HOMOGÊNEA</strong>, pois são compostas por variáveis do mesmo tipo primitivo (inteiro, double, lógico ou caracter).</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-66"></span>
@@ -495,12 +495,12 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 <h2><span class="header-section-number">7.4</span> Listas</h2>
 <p>São estrutras de dados heterogêneas, ou seja, podem ser formadas por vetores de <strong>diferentes tipos de dados</strong> e de <strong>diferentes comprimentos</strong>. Em R são frequentemente utilizadas para a passagem de vários argumentos de controle dentro de uma função.</p>
 <p>Começaremos criando uma lista que consiste em três partes: 4 informações de caracteres em um vetor denominado <strong>a</strong>, 8 informações numéricas em um vetor denominado <strong>b</strong> e 3 informações lógicas em um vetor denominado <strong>c</strong>:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="estrutura-de-dados.html#cb173-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>)</span>
-<span id="cb173-2"><a href="estrutura-de-dados.html#cb173-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
-<span id="cb173-3"><a href="estrutura-de-dados.html#cb173-3" aria-hidden="true" tabindex="-1"></a>c<span class="ot">&lt;-</span><span class="fu">c</span>(T,T,F)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="estrutura-de-dados.html#cb174-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>)</span>
+<span id="cb174-2"><a href="estrutura-de-dados.html#cb174-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)</span>
+<span id="cb174-3"><a href="estrutura-de-dados.html#cb174-3" aria-hidden="true" tabindex="-1"></a>c<span class="ot">&lt;-</span><span class="fu">c</span>(T,T,F)</span></code></pre></div>
 <p>Agora vamos utilizar a função <code>list()</code> para agrupar esses objetos.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="estrutura-de-dados.html#cb174-1" aria-hidden="true" tabindex="-1"></a>minha_lista <span class="ot">&lt;-</span> <span class="fu">list</span>(a,b,c)</span>
-<span id="cb174-2"><a href="estrutura-de-dados.html#cb174-2" aria-hidden="true" tabindex="-1"></a>minha_lista</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="estrutura-de-dados.html#cb175-1" aria-hidden="true" tabindex="-1"></a>minha_lista <span class="ot">&lt;-</span> <span class="fu">list</span>(a,b,c)</span>
+<span id="cb175-2"><a href="estrutura-de-dados.html#cb175-2" aria-hidden="true" tabindex="-1"></a>minha_lista</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
 ## 
@@ -510,14 +510,14 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## [[3]]
 ## [1]  TRUE  TRUE FALSE</code></pre>
 <p>Observe que as funções <code>typeof()</code> e <code>class</code> retornam <em>list</em> e a função <code>length</code> retorna o número de <em>atomic vectors</em> utilizados na criação da lista. Funções como <code>dim()</code>, <code>nrow()</code> e <code>ncol()</code> retornarão <em>NULL</em>.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="estrutura-de-dados.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(minha_lista)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="estrutura-de-dados.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(minha_lista)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="estrutura-de-dados.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(minha_lista)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="estrutura-de-dados.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(minha_lista)</span></code></pre></div>
 <pre><code>## [1] &quot;list&quot;</code></pre>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="estrutura-de-dados.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(minha_lista)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="estrutura-de-dados.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(minha_lista)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>Para conseguirmos o número de elementos em cada objeto dentro da lista, poderemos utlizar a função <code>lapply()</code> junto com a função <code>length()</code>.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="estrutura-de-dados.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(minha_lista,length)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="estrutura-de-dados.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(minha_lista,length)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 4
 ## 
@@ -527,7 +527,7 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## [[3]]
 ## [1] 3</code></pre>
 <p>A função <code>lapply</code> pode ser utilizada juntamente com <code>typeof</code> e/ou <code>class</code>.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="estrutura-de-dados.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(minha_lista,typeof)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="estrutura-de-dados.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(minha_lista,typeof)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;character&quot;
 ## 
@@ -639,11 +639,11 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 </tbody>
 </table>
 <p>Vamos criar esse data.frame, primeiramente, criaremos os distintos vetores, numérico e fator.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="estrutura-de-dados.html#cb186-1" aria-hidden="true" tabindex="-1"></a>Resposta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.1</span>,<span class="fl">5.9</span>,<span class="fl">5.8</span>,<span class="fl">5.4</span>,<span class="fl">6.3</span>,<span class="fl">6.2</span>,<span class="fl">5.8</span>,<span class="fl">6.3</span>,<span class="fl">7.1</span>,<span class="fl">8.2</span>,<span class="fl">7.3</span>,<span class="fl">6.9</span>)</span>
-<span id="cb186-2"><a href="estrutura-de-dados.html#cb186-2" aria-hidden="true" tabindex="-1"></a>Tratamento <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;controle&quot;</span>,<span class="st">&quot;pré-aquecido&quot;</span>,<span class="st">&quot;pré-resfriado&quot;</span>) )</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="estrutura-de-dados.html#cb187-1" aria-hidden="true" tabindex="-1"></a>Resposta <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">6.1</span>,<span class="fl">5.9</span>,<span class="fl">5.8</span>,<span class="fl">5.4</span>,<span class="fl">6.3</span>,<span class="fl">6.2</span>,<span class="fl">5.8</span>,<span class="fl">6.3</span>,<span class="fl">7.1</span>,<span class="fl">8.2</span>,<span class="fl">7.3</span>,<span class="fl">6.9</span>)</span>
+<span id="cb187-2"><a href="estrutura-de-dados.html#cb187-2" aria-hidden="true" tabindex="-1"></a>Tratamento <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;controle&quot;</span>,<span class="st">&quot;pré-aquecido&quot;</span>,<span class="st">&quot;pré-resfriado&quot;</span>) )</span></code></pre></div>
 <p>Agrora vamos agrupar esses vetores em um data.frame.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="estrutura-de-dados.html#cb187-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Resposta, Tratamento)</span>
-<span id="cb187-2"><a href="estrutura-de-dados.html#cb187-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="estrutura-de-dados.html#cb188-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Resposta, Tratamento)</span>
+<span id="cb188-2"><a href="estrutura-de-dados.html#cb188-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
 <pre><code>##    Resposta    Tratamento
 ## 1       6.1      controle
 ## 2       5.9      controle
@@ -659,32 +659,32 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 12      6.9 pré-resfriado</code></pre>
 <p>Agora, vamos extrair as informações a respeito desse data.frame:</p>
 <p>Utilize a função <code>length()</code> para retornar o número de vetores (colunas) utilizados para criação do data.frame.</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="estrutura-de-dados.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="estrutura-de-dados.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(dados)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>A função <code>dim()</code> retornará o número de linhas e o número de colunas do objeto, em analogia, poder-se-ia utilizar as funções <code>nrow()</code> e <code>ncol()</code>.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="estrutura-de-dados.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="estrutura-de-dados.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(dados)</span></code></pre></div>
 <pre><code>## [1] 12  2</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="estrutura-de-dados.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="estrutura-de-dados.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(dados)</span></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="estrutura-de-dados.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="estrutura-de-dados.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(dados)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>As funções <code>str()</code> e <code>glimpse()</code> dos pacotes <code>base</code> e <code>dplyr</code>, respectivamente, fornecem um resumo rápido do data.frame:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="estrutura-de-dados.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    12 obs. of  2 variables:
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="estrutura-de-dados.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	12 obs. of  2 variables:
 ##  $ Resposta  : num  6.1 5.9 5.8 5.4 6.3 6.2 5.8 6.3 7.1 8.2 ...
 ##  $ Tratamento: Factor w/ 3 levels &quot;controle&quot;,&quot;pré-aquecido&quot;,..: 1 1 1 1 2 2 2 2 3 3 ...</code></pre>
 <p>Observe que vamos chamar a função <code>glimpse</code> utilizado o <code>::</code> definindo anteriormente o nome do pacote <code>dplyr</code> na qual ela se encontra, sem a necessidade prévia de carregarmos esse pacote no ambiente de trabalho do R.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="estrutura-de-dados.html#cb199-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="estrutura-de-dados.html#cb200-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(dados)</span></code></pre></div>
 <pre><code>## Rows: 12
 ## Columns: 2
 ## $ Resposta   &lt;dbl&gt; 6.1, 5.9, 5.8, 5.4, 6.3, 6.2, 5.8, 6.3, 7.1, 8.2, 7.3, 6.9
 ## $ Tratamento &lt;fct&gt; controle, controle, controle, controle, pré-aquecido, pr...</code></pre>
 <p>A função <code>names()</code> retorna o nome das colunas (vetores) de um data.frame.</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="estrutura-de-dados.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="estrutura-de-dados.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados)</span></code></pre></div>
 <pre><code>## [1] &quot;Resposta&quot;   &quot;Tratamento&quot;</code></pre>
 <p>A função <code>names()</code> também pode ser utilizada para atribuir/modificar os nomes das colunas do data.frame.</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="estrutura-de-dados.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Altura_cm&quot;</span>, <span class="st">&quot;Método&quot;</span>)</span>
-<span id="cb203-2"><a href="estrutura-de-dados.html#cb203-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="estrutura-de-dados.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Altura_cm&quot;</span>, <span class="st">&quot;Método&quot;</span>)</span>
+<span id="cb204-2"><a href="estrutura-de-dados.html#cb204-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
 <pre><code>##    Altura_cm        Método
 ## 1        6.1      controle
 ## 2        5.9      controle
@@ -700,27 +700,27 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 12       6.9 pré-resfriado</code></pre>
 <p>O ponto principal sobre como trabalhar efetivamente com data.frames é entendermos o uso de subscritos (ou indexação). No R, os subscritos aparecem entre colchetes <code>[ , ]</code>.</p>
 <p>Lembre-se que um dataframe é um objeto bidimensional, compreendendo linhas e colunas. As linhas são referenciadas pelo primeiro subscrito (à esquerda da vírgula) , as colunas pelo segundo subscrito (à direita da vírgula). Portanto, para extrairmos a segunda observação da variável resposta <code>Altura_cm</code> usamos. Observe que o retorno é um <em>atomic vector</em> (vetor).</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="estrutura-de-dados.html#cb205-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">2</span>,<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="estrutura-de-dados.html#cb206-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">2</span>,<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 5.9</code></pre>
 <p>Para extrairmos um subconjuto desse data.frame, composto somente pelos valores de altura referentes ao tratamento (método) pré-aquecido (linhas 5 a 8), vamos utilizar os <code>:</code>, deixando o índice das colunas em branco na indexação. Observe que o retorno é um data.frame.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="estrutura-de-dados.html#cb207-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>,]</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="estrutura-de-dados.html#cb208-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>,]</span></code></pre></div>
 <pre><code>##   Altura_cm       Método
 ## 5       6.3 pré-aquecido
 ## 6       6.2 pré-aquecido
 ## 7       5.8 pré-aquecido
 ## 8       6.3 pré-aquecido</code></pre>
 <p>Se o objetivo for apenas os valores, temos.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="estrutura-de-dados.html#cb209-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>,<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="estrutura-de-dados.html#cb210-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>,<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 6.3 6.2 5.8 6.3</code></pre>
 <p>Observe que o retorno é um vetor.</p>
 <p>Poderíamos extrair todos os valores a partir do operador de acesso <code>$</code>, chamando primeiramente o objeto e em seguida o nome da coluna. O retorno é um vetor.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="estrutura-de-dados.html#cb211-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Altura_cm</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="estrutura-de-dados.html#cb212-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Altura_cm</span></code></pre></div>
 <pre><code>##  [1] 6.1 5.9 5.8 5.4 6.3 6.2 5.8 6.3 7.1 8.2 7.3 6.9</code></pre>
 <p>Observe a diferença no retorno das diferentes formas de acesso a uma coluna. No caso abaixo, vamos acessar a coluna <code>Altura_cm</code>, cujo retorno será um vetor, semelhante ao exemplo anterior.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="estrutura-de-dados.html#cb213-1" aria-hidden="true" tabindex="-1"></a>dados[,<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="estrutura-de-dados.html#cb214-1" aria-hidden="true" tabindex="-1"></a>dados[,<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##  [1] 6.1 5.9 5.8 5.4 6.3 6.2 5.8 6.3 7.1 8.2 7.3 6.9</code></pre>
 <p>Compare com extração abaixo, nesse caso, temos como retorno um data.frame.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="estrutura-de-dados.html#cb215-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="estrutura-de-dados.html#cb216-1" aria-hidden="true" tabindex="-1"></a>dados[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>##    Altura_cm
 ## 1        6.1
 ## 2        5.9
@@ -735,8 +735,8 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 11       7.3
 ## 12       6.9</code></pre>
 <p>Transformações nos dados podem ser realizadas utilizando esse operador, por exemplo, vamos criar uma nova variável (coluna) denominada <code>Altura_m</code> a partir da <code>Altura_cm</code>, dividindo cada valor por 100.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="estrutura-de-dados.html#cb217-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Altura_m <span class="ot">&lt;-</span> dados<span class="sc">$</span>Altura_cm <span class="sc">/</span> <span class="dv">100</span> </span>
-<span id="cb217-2"><a href="estrutura-de-dados.html#cb217-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="estrutura-de-dados.html#cb218-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Altura_m <span class="ot">&lt;-</span> dados<span class="sc">$</span>Altura_cm <span class="sc">/</span> <span class="dv">100</span> </span>
+<span id="cb218-2"><a href="estrutura-de-dados.html#cb218-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
 <pre><code>##    Altura_cm        Método Altura_m
 ## 1        6.1      controle    0.061
 ## 2        5.9      controle    0.059
@@ -751,8 +751,8 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 11       7.3 pré-resfriado    0.073
 ## 12       6.9 pré-resfriado    0.069</code></pre>
 <p>Vamos criar a coluna <code>Bloco</code> (variável) para identificação dos blocos do experimento.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="estrutura-de-dados.html#cb219-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Bloco <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">12</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>,<span class="st">&quot;II&quot;</span>,<span class="st">&quot;III&quot;</span>,<span class="st">&quot;IV&quot;</span>))</span>
-<span id="cb219-2"><a href="estrutura-de-dados.html#cb219-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="estrutura-de-dados.html#cb220-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Bloco <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">12</span>,<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;I&quot;</span>,<span class="st">&quot;II&quot;</span>,<span class="st">&quot;III&quot;</span>,<span class="st">&quot;IV&quot;</span>))</span>
+<span id="cb220-2"><a href="estrutura-de-dados.html#cb220-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
 <pre><code>##    Altura_cm        Método Altura_m Bloco
 ## 1        6.1      controle    0.061     I
 ## 2        5.9      controle    0.059    II
@@ -767,8 +767,8 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 11       7.3 pré-resfriado    0.073   III
 ## 12       6.9 pré-resfriado    0.069    IV</code></pre>
 <p>Agora podemos modificar a posição das colunas. Observe que vamos “reciclar” o objeto <code>dados</code>, ou seja, vamos guardar esse novo data.frame no mesmo identificador.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="estrutura-de-dados.html#cb221-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>)]</span>
-<span id="cb221-2"><a href="estrutura-de-dados.html#cb221-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="estrutura-de-dados.html#cb222-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados[,<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">3</span>)]</span>
+<span id="cb222-2"><a href="estrutura-de-dados.html#cb222-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
 <pre><code>##           Método Bloco Altura_cm Altura_m
 ## 1       controle     I       6.1    0.061
 ## 2       controle    II       5.9    0.059
@@ -783,8 +783,8 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 11 pré-resfriado   III       7.3    0.073
 ## 12 pré-resfriado    IV       6.9    0.069</code></pre>
 <p>Vamor criar o vetor identificação (<span class="math inline">\(ID\)</span>) para cada observação.</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="estrutura-de-dados.html#cb223-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;obs&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados), <span class="at">sep=</span><span class="st">&quot;_&quot;</span> )</span>
-<span id="cb223-2"><a href="estrutura-de-dados.html#cb223-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="estrutura-de-dados.html#cb224-1" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>ID <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;obs&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados), <span class="at">sep=</span><span class="st">&quot;_&quot;</span> )</span>
+<span id="cb224-2"><a href="estrutura-de-dados.html#cb224-2" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
 <pre><code>##           Método Bloco Altura_cm Altura_m     ID
 ## 1       controle     I       6.1    0.061  obs_1
 ## 2       controle    II       5.9    0.059  obs_2
@@ -799,8 +799,8 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 11 pré-resfriado   III       7.3    0.073 obs_11
 ## 12 pré-resfriado    IV       6.9    0.069 obs_12</code></pre>
 <p>Agora vamos reordenar o data.frame por <code>Altura_cm</code> da menor para a maior (utilize a função <code>order()</code>), em seguida, da maior para a menor nota (argumento <code>decreasing = T</code>).</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="estrutura-de-dados.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação do menor para o maior</span></span>
-<span id="cb225-2"><a href="estrutura-de-dados.html#cb225-2" aria-hidden="true" tabindex="-1"></a>dados[<span class="fu">order</span>(dados<span class="sc">$</span>Altura_cm),]</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="estrutura-de-dados.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação do menor para o maior</span></span>
+<span id="cb226-2"><a href="estrutura-de-dados.html#cb226-2" aria-hidden="true" tabindex="-1"></a>dados[<span class="fu">order</span>(dados<span class="sc">$</span>Altura_cm),]</span></code></pre></div>
 <pre><code>##           Método Bloco Altura_cm Altura_m     ID
 ## 4       controle    IV       5.4    0.054  obs_4
 ## 3       controle   III       5.8    0.058  obs_3
@@ -814,8 +814,8 @@ Figure 7.5: As estruturas heterogêneas constituem um recurso importante para a 
 ## 9  pré-resfriado     I       7.1    0.071  obs_9
 ## 11 pré-resfriado   III       7.3    0.073 obs_11
 ## 10 pré-resfriado    II       8.2    0.082 obs_10</code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="estrutura-de-dados.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação do maior para o menor</span></span>
-<span id="cb227-2"><a href="estrutura-de-dados.html#cb227-2" aria-hidden="true" tabindex="-1"></a>dados[<span class="fu">order</span>(dados<span class="sc">$</span>Altura_cm,<span class="at">decreasing=</span><span class="cn">TRUE</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="estrutura-de-dados.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classificação do maior para o menor</span></span>
+<span id="cb228-2"><a href="estrutura-de-dados.html#cb228-2" aria-hidden="true" tabindex="-1"></a>dados[<span class="fu">order</span>(dados<span class="sc">$</span>Altura_cm,<span class="at">decreasing=</span><span class="cn">TRUE</span>),]</span></code></pre></div>
 <pre><code>##           Método Bloco Altura_cm Altura_m     ID
 ## 10 pré-resfriado    II       8.2    0.082 obs_10
 ## 11 pré-resfriado   III       7.3    0.073 obs_11

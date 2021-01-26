@@ -23,7 +23,7 @@ Na criação de algoritmos, utilizamos os conceitos de bloco lógico, entrada e 
 
 Para que esse conjunto de ações se torne viável, deve existir uma perfeita relação lógica intrínseca ao modo pelo qual essas ações são executadas, ao modo pelo qual é regido o fluxo de execução do algoritmo.
 
-Por meio das estrutura básicas de controle do fluxo de execução – sequencial, seleção, repetição e da combinação delas – poderemos criar algoritmos para solucionar nossos problemas.
+Por meio das estrutura básicas de controle do fluxo de execução – sequencial, seleção, repetição e da combinação delas – poderemos criar algoritmos para solucionar vários problemas.
 
 
 **Estruturas básicas de um algoritmo**: 
@@ -34,7 +34,7 @@ Representa o **Início/Fim**, e define uma estrutura onde as instruções serão
 
 Corresponde ao fato de que o conjunto de ações primitivas será executado em uma sequência linear de cima para baixo da esquerda para a direita. Para exemplificarmos, vamos resolver o seguinte exercício.  
 
-**Exemplo**: Construa um algoritmo que calcule a média aritmética entre quatro notas bimestrais quaisquer fornecidas:
+**Exemplo**: Vamos construir um algoritmo que calcule a média aritmética entre quatro notas bimestrais fornecidas:
 
 ```{r}
 # Entrada 
@@ -55,7 +55,7 @@ media
 ### Seleção
 
 **a) Se-Então/Senão**
-Define uma estrutura condicional que, dada a sua avaliação (V ou F), determina qual "caminho" do algoritmo será executado.
+Define uma estrutura condicional que, dada a sua avaliação (Verdadeira ou Falsa), determina qual "caminho" do algoritmo será executado.
 
 
 Permite a escolha de um grupo de ações (bloco) a ser executado quando determinadas condições, representadas por expressões lógicas e/ou relacionais, são satisfeitas ou não. Os tipo de seleção apresentados serão: Simples, Composta e Encadeada.
@@ -75,6 +75,13 @@ if(X > 0)
 **OBS**: Quando houver somente uma ação primitiva, a estrutura pode ser: 
 ```{r}
 X <- 7
+if(X > 0)  print("Valor maior que zero")
+```
+
+Contudo, se atribuírmos um valor negativo a `X`, esse algoritimo não apresentará retorno.
+
+```{r}
+X <- -5
 if(X > 0)  print("Valor maior que zero")
 ```
 
@@ -109,22 +116,23 @@ if(X > 0){
 }
 ```
 
-Observe que as etruturas acima apresentadas são funcionais para classificação de um único valor. Contudo para a classificação de vários valores em um vetor, recomenda-e o uso da função `if_else` do pacote `dplyr` disponível no `tidyverse`.
+Observe que as etruturas acima apresentadas são funcionais para classificação de um único valor. Contudo para a classificação de vários valores em um vetor, recomenda-se o uso da função `if_else` do pacote `dplyr` disponível no `tidyverse` ou a função `ifelse` do pacote `base` do R.
 
 ```{r}
 library(tidyverse)
 numeros <- c(-0.8, 1, 5, 0, -4)
 if_else(numeros<0,"Negativo",if_else(numeros==0,"Nulo","Positivo"))
+ifelse(numeros<0,"Negativo",if_else(numeros==0,"Nulo","Positivo"))
 ```
 
 **b) Selecione caso**
 
-Muitas vezes nos deparamos com situações onde são necessários necessário duas ou mais operações condicionais para classificação. Nessa situações poderemos utilizar a estrutura **Selecione caso**, que no R pode ser acessada com a função `case_when` (do pacote `dplyr`).
+Muitas vezes nos deparamos com situações onde são necessários duas ou mais operações condicionais para classificação. Nessa situações poderemos utilizar a estrutura **Selecione caso**, que no R pode ser acessada com a função `case_when` (do pacote `dplyr`).
 
-Essa função é útil para vetorizar instruções condicionais. Isso é semelhante a `if_else` mas pode gerar qualquer número de valores, em vez de apenas TRUE ou FALSE. Aqui está um exemplo que retorna o dia da semana em função do número de 1 a 7, onde qualquer valor fora desse intervalo é classificado como `número inválido`. 
+Essa função é útil para vetorizar instruções condicionais. Isso é semelhante a `if_else` mas pode gerar qualquer número de valores, em vez de apenas `TRUE` ou `FALSE`. Aqui está um exemplo que retorna o dia da semana em função do número de 1 a 7, onde qualquer valor fora desse intervalo seja classificado como `número inválido`. 
 
 ```{r}
-dia <- c(1,2,3,4,5,6,7,0,8)
+dia <- c(0,1,2,3,4,5,6,7,8)
 case_when(
   dia == 1 ~ "Domingo",
   dia == 2 ~ "Segunda-feira",
@@ -141,15 +149,16 @@ case_when(
 ### Repetição 
 
 **Enquanto, Faça-Enquanto ou Para**
+
 Define uma estrutura de iteração condicional (V ou F) ou contada (pré-definida) de instruções.
 
 
-É uma estrutura da controle do fluxo de execução que permite repetir diversas vezes um mesmo trecho do algoritmo, porém, sempre verificando ANTES de cada execução se é 'permitido' executar o mesmo trecho. 
+É uma estrutura da controle do fluxo de execução que permite repetir diversas vezes um mesmo trecho do algoritmo, porém, sempre verificando **ANTES** de cada execução se é 'permitido' executar o mesmo trecho. 
 
 
 **a) Repetição com teste no Início**
 
-O Enquanto (`while`) permite que um determinado comando (ou bloco) seja repetido enquanto uma determinada <condição> for *VERDADEIRA*.
+O **Enquanto** (`while`) permite que um determinado comando (ou bloco) seja repetido **enquanto** uma determinada <condição> for *VERDADEIRA*.
 
 Muitas vezes precisamos estabelecer um modo de contagem (contador), ou seja, uma variável ($i$ por exemplo) com um dado valor inicial que é incrementado a cada repetição. 
 
@@ -168,13 +177,14 @@ while(i<=10){
 
 **b) Repetição com teste no Final**
 
-Uma das estruturas com teste no final é a Repita...Se (`repeat...if`), que permite que um comando, ou bloco de comandos sejam executados enquanto uma determinada <condição> seja *FALSA*.
+Uma das estruturas com teste no final é a **Repita** (`repeat`), que permite que um comando, ou bloco de comandos sejam executados enquanto uma determinada <condição> seja *FALSA*.
 
 Verificamos que, devido a sua sintaxe os comandos dentro do bloco **São Executados Pelo Menos Uma Vez**, independentemente da validade da condição. Isso ocorre pois a inspeção da <condição> ocorre no **FINAL** da estrutura.
 
 Quando o resultado da <condição> for *VERDADEIRO* o comando de repetição é abandonado. Entretanto, os comandos **SÃO EXECUTADOS PELO MENOS UMA VEZ**.
 
-**Exemplo**: Imprima os números menores ou iguais a 10.
+**Exemplo**: Imprima os números menores ou iguais a 10. Observe que utilizamos o comando `break` juntamente com o a estrutura `if`, ou seja, se a <condição> for verdadeira o `break` interromperá a iteração o controle flui para fora do laço.
+
 ```{r}
 i=1
 repeat{
@@ -186,9 +196,9 @@ repeat{
 
 **c) Repetição com Variável de Controle**
 
-As estruturas `while` e `repeat...if` ocorrem em casos de difícil determinação do número de vezes que um comando, ou bloco, será executado. 
+As estruturas `while` e `repeat` ocorrem em casos de difícil determinação do número de vezes que um comando, ou bloco, será executado. 
 
-A Estrutura Para (`for`) é diferente, já que sempre repete a execução do bloco um número pré-determinado de vezes, pois ela **não prevê uma condição** e possui **limites fixos**. 
+A Estrutura **Para** (`for`) é diferente, já que sempre repete a execução do bloco um número pré-determinado de vezes, pois ela **não prevê uma condição** e possui **limites fixos**. 
 
 **Exemplo**: Imprima os números menores ou iguais a 10.
 ```{r}

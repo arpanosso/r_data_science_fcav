@@ -2,7 +2,7 @@
 
 ## Instalando o R
 
-Baixe o R do site oficial The R Project for Statistical Computing <https://www.r-project.org/>
+Faça o download do R do site oficial The R Project for Statistical Computing <https://www.r-project.org/>
 
 Acesso rápido: [Download](<https://cran-r.c3sl.ufpr.br/bin/windows/base/R-4.0.3-win.exe>)
 

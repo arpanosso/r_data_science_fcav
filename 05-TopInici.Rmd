@@ -29,24 +29,23 @@ E_algumasPoucas.Pessoas_RENUNCIAMconvenções
 
 ## Tipos de dados
 
-
-
 As fases de Entrada, Processamento e Saída podem manipular vários tipos primitivos de dados, a saber: 
 
 ```{r echo=FALSE, fig.cap="Tipos primitivos de dados",fig.align='center',out.width = "600px"}
 knitr::include_graphics("img/tipo_dados.png")
 ```
 
-Um Caractere SEMPRE deve estar entre **"   "**. Por exemplo: "A", "Fone 3333-33333", "1", "3.1415", etc. 
+Um Caractere **SEMPRE** deve estar entre aspas duplas **\"   \"** ou simples **'    '**. Por exemplo: `"A"`, `"Fone 3333-33333"`, `"1"`, `'3.1415'`, `'a mais bonita'`,etc. 
 
 ```{r}
 " Olá, eu sou um texto."
-"1" # não pode ser feito cálculos
+'1' # não pode ser feito cálculos
 3.14 # DOUBLE: valor real, de ponto flutuante.
-1 # valor numérico inteiro, sufixo L temos números inteiros em vez de double
-pi # constante com o valor de pi
-TRUE # valor lógico
-FALSE # valor lógico
+1  # valor numérico inteiro, 
+4L #sufixo L temos números inteiros em vez de double
+pi # constante pré definida com o valor de pi
+TRUE # valor lógico verdadeiro
+FALSE # valor lógico falso
 ```
 
 ## Atribuição
@@ -55,7 +54,7 @@ Serve para atribuir um valor a uma variável/objeto no R.
 
 A expressão do lado direito do operador é avaliada e seu resultado é armazenado na variável à esquerda. 
 
-O operador de atribuição pode ser o `<-` ou o `=`, preferencialmente utilizaremos o `<-` para a criação dos **objetos** e deixaremos o `=` para a definição de valores em **argumentos** dentro da funções.
+O operador de atribuição pode ser o `<-` ou o `=`, preferencialmente utilizaremos o `<-` para a criação dos **objetos** e deixaremos o `=` para a definição de valores em **argumentos** dentro da funções. O atalho para o símbolo de atribuição é **ALT**+**$-$**.
 
 
 ```{r}
@@ -65,13 +64,15 @@ c<-1 # valor numérico inteiro
 PI<-3.14 # valor real, de ponto flutuante
 logico_1<-TRUE # valor lógico
 logico_2<-FALSE # valor lógico
+
 ```
+
 
 ## Operadores
 
 **Aritméticos**: são as operações aritméticas básicas.
 
-|Operador|Tipo|Operação|Prioridade|
+|**Operador**|**Tipo**|**Operação**|**Prioridade**|
 |:---|:---:|:---:|:---:|
 |`-`|Unário|Inversão do Sinal|1|
 |`+`|Unário|Manutenção do Sinal|1|
@@ -83,9 +84,9 @@ logico_2<-FALSE # valor lógico
 |`-`|Binário|Subtração|4|
 |`+`|Binário|Adição|4|
 
-**Relacionais**: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos V (TRUE) ou F(FALSE).
+**Relacionais**: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos Verdadeiro (**TRUE**) ou Falso (**FALSE**).
 
-|Operador|Comparação|
+|**Operador**|**Comparação**|
 |:---|:---:|
 |>|maior que|
 |<|menor que|
@@ -98,9 +99,9 @@ Estes somente são usados para efetuar comparações, as quais só podem ser fei
 
 O resultado de uma comparação é sempre um valor lógico V (TRUE) ou F(FALSE). 
 
-**Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos V (TRUE) ou F(FALSE).
+**Lógicos** ou **Booleanos**: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos Verdadeiro (**TRUE**) ou Falso (**FALSE**).
 
-|Operador|Tipo|Operação|Prioridade|
+|**Operador**|**Tipo**|**Operação**|**Prioridade**|
 |:---|:---:|:---:|:---:|
 |NÃO (`!`)|Unário|Negação|1|
 |E (`&`)|Binário|Conjunção|2|
@@ -201,7 +202,7 @@ $$
 
 **Algumas funções do R**
 
-Função|Significado/ação
+**Função**|**Significado/ação**
 :---|:---:
 `q()`|Sair do programa.
 `save.image()`|Salva o trabalho realizado.

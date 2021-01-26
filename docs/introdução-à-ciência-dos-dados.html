@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Introdução à Ciência dos Dados | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Introdução à Ciência dos Dados | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
@@ -50,7 +50,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
 <li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+<li class="chapter" data-level="6.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
 <ul>
@@ -265,19 +265,20 @@ Figure 4.1: Modelo base de um projeto de Ciência dos Dados.
 </div>
 <div id="importação" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Importação</h2>
-<p>Primeiro devemos <em>importar</em> os dados no R. Ou seja, pegar os dados armazenados em um arquivo, base de dados ou na Web e carregá-los em uma estrutuda de dados no R. Sem eles no R, não conseguiremos fazer Data Science.</p>
+<p>Primeiro devemos <em>importar</em> os dados no R. Ou seja, pegar os dados armazenados em um arquivo, base de dados ou na Web e carregá-los em uma estrutuda de dados no R.</p>
+<p>Sem eles no R, não conseguiremos fazer Data Science.</p>
 <p>Para essa prática, vamos utilizar um banco de dados oriundo de um estudo geomorfológico.</p>
-<p><strong>Importação via web</strong><br />
-Acesse o banco de dados na web: Clique no link para o arquivo em txt <a href="https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt">geomorfologia.txt</a>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introdução-à-ciência-dos-dados.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir o caminho</span></span>
-<span id="cb11-2"><a href="introdução-à-ciência-dos-dados.html#cb11-2" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt&quot;</span></span>
-<span id="cb11-3"><a href="introdução-à-ciência-dos-dados.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-4"><a href="introdução-à-ciência-dos-dados.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Importação</span></span>
-<span id="cb11-5"><a href="introdução-à-ciência-dos-dados.html#cb11-5" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(URL,</span>
-<span id="cb11-6"><a href="introdução-à-ciência-dos-dados.html#cb11-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="co"># Argumento para cabeçalho na primeira linha</span></span>
-<span id="cb11-7"><a href="introdução-à-ciência-dos-dados.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="introdução-à-ciência-dos-dados.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspeção do banco de dados</span></span>
-<span id="cb11-9"><a href="introdução-à-ciência-dos-dados.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados) <span class="co"># mostra o 6 primeiros registros</span></span></code></pre></div>
+<p><strong>Importação via web</strong></p>
+<p>Acesse o banco de dados na web: Clique no link para o arquivo <a href="https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt">geomorfologia.txt</a>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="introdução-à-ciência-dos-dados.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir o caminho</span></span>
+<span id="cb10-2"><a href="introdução-à-ciência-dos-dados.html#cb10-2" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt&quot;</span></span>
+<span id="cb10-3"><a href="introdução-à-ciência-dos-dados.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-4"><a href="introdução-à-ciência-dos-dados.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Importação</span></span>
+<span id="cb10-5"><a href="introdução-à-ciência-dos-dados.html#cb10-5" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(URL,</span>
+<span id="cb10-6"><a href="introdução-à-ciência-dos-dados.html#cb10-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">header =</span> <span class="cn">TRUE</span>) <span class="co"># Argumento para cabeçalho na primeira linha</span></span>
+<span id="cb10-7"><a href="introdução-à-ciência-dos-dados.html#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="introdução-à-ciência-dos-dados.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Inspeção do banco de dados</span></span>
+<span id="cb10-9"><a href="introdução-à-ciência-dos-dados.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados) <span class="co"># mostra o 6 primeiros registros</span></span></code></pre></div>
 <pre><code>##   SUP Solo Amostra   X AMG   AG   AM   AF  AMF SILTE ARGILA  S_A AF_AG  P  pH
 ## 1   I   LV       1   0 0.2 3.72 20.4 22.9 30.0   1.2   21.5 0.05  6.16 42 4.2
 ## 2   I   LV       2  25 0.1 4.27 22.6 23.6 28.4   1.2   20.4 0.05  5.53 22 3.8
@@ -292,8 +293,8 @@ Acesse o banco de dados na web: Clique no link para o arquivo em txt <a href="ht
 ## 4 0.13 0.7 0.1  5.2 0.93 6.13 15
 ## 5 0.11 1.4 0.3  4.2 1.81 6.01 30
 ## 6 0.14 0.6 0.1  5.2 0.84 6.04 14</code></pre>
-<p><strong>Importação via Excel</strong><br />
-Acesse o banco de dados para essa prática, denominado <a href="https://github.com/arpanosso/r_data_science_fcav/raw/master/dados/geomorfologia.xlsx">geomorfologia.xlsx</a>, salve o arquivo em uma pasta de seu computador.</p>
+<p><strong>Importação via Excel</strong></p>
+<p>Acesse o banco de dados para essa prática, denominado <a href="https://github.com/arpanosso/r_data_science_fcav/raw/master/dados/geomorfologia.xlsx">geomorfologia.xlsx</a>, salve o arquivo em uma pasta de seu computador.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-17"></span>
 <img src="img/import_1.png" alt="Na aba **Environment** selecione a opção **Import Dataser** e escolha **From Excel...**" width="500px" />
 <p class="caption">
@@ -313,9 +314,9 @@ Figure 4.4: Pré-visualização dos dados, observe que o código de importação
 </p>
 </div>
 <p>Cole as linhas de código no script do R e as execute, para ter a importação dos dados.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introdução-à-ciência-dos-dados.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb13-2"><a href="introdução-à-ciência-dos-dados.html#cb13-2" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;C:/Users/Panosso/Desktop/geomorfologia.xlsx&quot;</span>)</span>
-<span id="cb13-3"><a href="introdução-à-ciência-dos-dados.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(geomorfologia)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="introdução-à-ciência-dos-dados.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb12-2"><a href="introdução-à-ciência-dos-dados.html#cb12-2" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;C:/GitHub/r_data_science_fcav/dados/geomorfologia.xlsx&quot;</span>)</span>
+<span id="cb12-3"><a href="introdução-à-ciência-dos-dados.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(geomorfologia)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
 <img src="img/import_4.png" alt="Após executar o código, os dados devem ser apresentados dessa forma." width="500px" />
 <p class="caption">
@@ -337,7 +338,7 @@ Figure 4.6: Exemplo de dados organizados em planilha eletrônica, onde cada colu
 <p>Observação: O R, como a maioria dos softwares estatísticos, utiliza o <strong>ponto</strong> como <strong>separador decimal</strong>, ou seja, como o símbolo usado para separar a parte inteira da parte complementar não inteira da representação decimal do numeral de um real (ponto flutuante).</p>
 </blockquote>
 <blockquote>
-<p>Portanto, aconselhamos você a padronizar o separador decimar do seu computador. Para isso sigua os passos abaixo:</p>
+<p>Portanto, aconselhamos você a padronizar o separador decimal do seu computador. Para isso sigua os passos abaixo:</p>
 </blockquote>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-23"></span>
 <img src="img/meuGif_2.gif" alt="Acesse o PAINEL DE CONTROLE, na opção REGIÃO clique em  CONFIGURAÇÕES ADICIONAIS... e modifique o SÍBOLO DECIMAL para PONTO e o SÍMBOLO DE AGRUPAMENTO DE DÍGITO para VÍRGULA." width="600px" />
@@ -346,8 +347,8 @@ Figure 4.7: Acesse o PAINEL DE CONTROLE, na opção REGIÃO clique em CONFIGURA�
 </p>
 </div>
 <p>Vamos conhecer a estrutura do nosso banco de dados, a partir da função <code>str</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="introdução-à-ciência-dos-dados.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    106 obs. of  22 variables:
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introdução-à-ciência-dos-dados.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dados)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	106 obs. of  22 variables:
 ##  $ SUP    : chr  &quot;I&quot; &quot;I&quot; &quot;I&quot; &quot;I&quot; ...
 ##  $ Solo   : chr  &quot;LV&quot; &quot;LV&quot; &quot;LV&quot; &quot;LV&quot; ...
 ##  $ Amostra: int  1 2 3 4 5 6 7 8 9 10 ...
@@ -370,21 +371,21 @@ Figure 4.7: Acesse o PAINEL DE CONTROLE, na opção REGIÃO clique em CONFIGURA�
 ##  $ SB     : num  1.97 0.61 3.14 0.93 1.81 0.84 2.53 4.88 2.29 4.74 ...
 ##  $ T      : num  7.17 6.41 7.34 6.13 6.01 6.04 5.93 7.38 7.49 7.84 ...
 ##  $ V      : num  27 10 43 15 30 14 43 66 31 60 ...</code></pre>
-<p>Podemos identificar que nosso banco de dados é composto por 106 linhas e 22 colunas. As duas primeiras colunas são do tipo texto (<strong>chr</strong> - <em>character</em>) e as demais colunas são numéricas (<strong>num</strong> - <em>numeric</em>).</p>
+<p>Podemos identificar que os dados são compostos por 106 linhas e 22 colunas. As duas primeiras colunas são do tipo texto (<strong>chr</strong> - <em>character</em>) e as demais colunas são numéricas (<strong>num</strong> - <em>numeric</em>).</p>
 </div>
 <div id="transformação-dos-dados" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Transformação dos dados</h2>
-<p>Literalmente, recortar o banco de dados, assim podemos focar nas observações de interesse. Criar novas variáveis em função das existentes e calcular, por exemplo, um resumo estatístico desse conjunto de interesse.</p>
+<p>O termo transformação significa literalmente recortar o banco de dados, assim podemos focar nas observações de interesse. Criar novas variáveis em função das existentes e calcular, por exemplo, um resumo estatístico desse conjunto de interesse.</p>
 <p>Por exemplo, vamos selecionar somente os solos do tipo <strong>LV</strong>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="introdução-à-ciência-dos-dados.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar um filtro </span></span>
-<span id="cb16-2"><a href="introdução-à-ciência-dos-dados.html#cb16-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> dados<span class="sc">$</span>Solo <span class="sc">==</span> <span class="st">&quot;LV&quot;</span></span>
-<span id="cb16-3"><a href="introdução-à-ciência-dos-dados.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="introdução-à-ciência-dos-dados.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar um banco de dados auxiliar da</span></span>
-<span id="cb16-5"><a href="introdução-à-ciência-dos-dados.html#cb16-5" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> dados[f,]</span>
-<span id="cb16-6"><a href="introdução-à-ciência-dos-dados.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="introdução-à-ciência-dos-dados.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos ver a estrutura desse banco auxiliar</span></span>
-<span id="cb16-8"><a href="introdução-à-ciência-dos-dados.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(da)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    16 obs. of  22 variables:
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introdução-à-ciência-dos-dados.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar um filtro </span></span>
+<span id="cb15-2"><a href="introdução-à-ciência-dos-dados.html#cb15-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> dados<span class="sc">$</span>Solo <span class="sc">==</span> <span class="st">&quot;LV&quot;</span></span>
+<span id="cb15-3"><a href="introdução-à-ciência-dos-dados.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="introdução-à-ciência-dos-dados.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar um banco de dados auxiliar da</span></span>
+<span id="cb15-5"><a href="introdução-à-ciência-dos-dados.html#cb15-5" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> dados[f,]</span>
+<span id="cb15-6"><a href="introdução-à-ciência-dos-dados.html#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="introdução-à-ciência-dos-dados.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Vamos ver a estrutura desse banco auxiliar</span></span>
+<span id="cb15-8"><a href="introdução-à-ciência-dos-dados.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(da)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	16 obs. of  22 variables:
 ##  $ SUP    : chr  &quot;I&quot; &quot;I&quot; &quot;I&quot; &quot;I&quot; ...
 ##  $ Solo   : chr  &quot;LV&quot; &quot;LV&quot; &quot;LV&quot; &quot;LV&quot; ...
 ##  $ Amostra: int  1 2 3 4 5 6 7 8 9 10 ...
@@ -408,47 +409,47 @@ Figure 4.7: Acesse o PAINEL DE CONTROLE, na opção REGIÃO clique em CONFIGURA�
 ##  $ T      : num  7.17 6.41 7.34 6.13 6.01 6.04 5.93 7.38 7.49 7.84 ...
 ##  $ V      : num  27 10 43 15 30 14 43 66 31 60 ...</code></pre>
 <p>Vamos continuar o processo de filtragem e selecionar somente as colunas <strong>SUP</strong>, <strong>ARGILA</strong>, <strong>SILTE</strong> e <strong>T</strong>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introdução-à-ciência-dos-dados.html#cb18-1" aria-hidden="true" tabindex="-1"></a>da<span class="ot">&lt;-</span>da[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">11</span>,<span class="dv">10</span>,<span class="dv">21</span>)]</span>
-<span id="cb18-2"><a href="introdução-à-ciência-dos-dados.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(da)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    16 obs. of  4 variables:
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introdução-à-ciência-dos-dados.html#cb17-1" aria-hidden="true" tabindex="-1"></a>da<span class="ot">&lt;-</span>da[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">11</span>,<span class="dv">10</span>,<span class="dv">21</span>)]</span>
+<span id="cb17-2"><a href="introdução-à-ciência-dos-dados.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(da)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	16 obs. of  4 variables:
 ##  $ SUP   : chr  &quot;I&quot; &quot;I&quot; &quot;I&quot; &quot;I&quot; ...
 ##  $ ARGILA: num  21.5 20.4 21.4 20.5 20.7 23.5 23.1 22.7 22 18.5 ...
 ##  $ SILTE : num  1.2 1.2 1.2 0.6 2.1 2.2 0.7 0.2 2.5 0.2 ...
 ##  $ T     : num  7.17 6.41 7.34 6.13 6.01 6.04 5.93 7.38 7.49 7.84 ...</code></pre>
-<p>Vamos criar uma nova variável, <strong>ARG_SILT</strong> a partir da soma dos valores de <strong>ARGILA</strong> + <strong>SILTE</strong>, para isso vamos utilizar o símbolo de colunas cifrão (<strong>$</strong>). Em seguida, vamos aplicar a transformação logarítmica aos dados de <strong>T</strong>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introdução-à-ciência-dos-dados.html#cb20-1" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>ARG_SILT <span class="ot">&lt;-</span> da<span class="sc">$</span>ARGILA <span class="sc">+</span> da<span class="sc">$</span>SILTE</span>
-<span id="cb20-2"><a href="introdução-à-ciência-dos-dados.html#cb20-2" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>Log_T <span class="ot">&lt;-</span> <span class="fu">log10</span>(da<span class="sc">$</span>T)</span>
-<span id="cb20-3"><a href="introdução-à-ciência-dos-dados.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(da)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    16 obs. of  6 variables:
+<p>Vamos criar uma nova variável, <strong>ARG_SILT</strong> a partir da soma dos valores de <strong>ARGILA</strong> + <strong>SILTE</strong>, para isso vamos utilizar o símbolo de acesso de colunas, o cifrão (<strong>$</strong>). Em seguida, aplicaremos a transformação logarítmica aos dados de <strong>T</strong>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="introdução-à-ciência-dos-dados.html#cb19-1" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>ARG_SILT <span class="ot">&lt;-</span> da<span class="sc">$</span>ARGILA <span class="sc">+</span> da<span class="sc">$</span>SILTE</span>
+<span id="cb19-2"><a href="introdução-à-ciência-dos-dados.html#cb19-2" aria-hidden="true" tabindex="-1"></a>da<span class="sc">$</span>Log_T <span class="ot">&lt;-</span> <span class="fu">log10</span>(da<span class="sc">$</span>T)</span>
+<span id="cb19-3"><a href="introdução-à-ciência-dos-dados.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(da)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:	16 obs. of  6 variables:
 ##  $ SUP     : chr  &quot;I&quot; &quot;I&quot; &quot;I&quot; &quot;I&quot; ...
 ##  $ ARGILA  : num  21.5 20.4 21.4 20.5 20.7 23.5 23.1 22.7 22 18.5 ...
 ##  $ SILTE   : num  1.2 1.2 1.2 0.6 2.1 2.2 0.7 0.2 2.5 0.2 ...
 ##  $ T       : num  7.17 6.41 7.34 6.13 6.01 6.04 5.93 7.38 7.49 7.84 ...
 ##  $ ARG_SILT: num  22.7 21.6 22.6 21.1 22.8 25.7 23.8 22.9 24.5 18.7 ...
 ##  $ Log_T   : num  0.856 0.807 0.866 0.787 0.779 ...</code></pre>
-<p>Agora vamos gerar um resumo estatístico para esses dados. A primeira coluna é do tipo texto, então, deve ser retirada do banco de dados antes de realizarmos os cálculos. Para isso, utilizamos o índice <span class="math inline">\(-1\)</span> na dimensão das colunas do objeto <code>da</code>, ou seja, estamos retirando a coluna 1 <strong>SUP</strong> de <code>da</code>.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introdução-à-ciência-dos-dados.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de observações</span></span>
-<span id="cb22-2"><a href="introdução-à-ciência-dos-dados.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,length)</span></code></pre></div>
+<p>Agora vamos gerar um resumo estatístico para esses dados. A primeira coluna é do tipo texto, então, deve ser retirada do banco de dados auxiliar <code>da</code> antes de realizarmos os cálculos. Para isso, utilizamos o índice <span class="math inline">\(-1\)</span> na dimensão das colunas do objeto <code>da</code>, ou seja, estamos retirando a coluna 1 <strong>SUP</strong> de <code>da</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="introdução-à-ciência-dos-dados.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de observações</span></span>
+<span id="cb21-2"><a href="introdução-à-ciência-dos-dados.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,length)</span></code></pre></div>
 <pre><code>##   ARGILA    SILTE        T ARG_SILT    Log_T 
 ##       16       16       16       16       16</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introdução-à-ciência-dos-dados.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Média</span></span>
-<span id="cb24-2"><a href="introdução-à-ciência-dos-dados.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,mean)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="introdução-à-ciência-dos-dados.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Média</span></span>
+<span id="cb23-2"><a href="introdução-à-ciência-dos-dados.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,mean)</span></code></pre></div>
 <pre><code>##     ARGILA      SILTE          T   ARG_SILT      Log_T 
 ## 21.1937500  1.2125000  6.2618750 22.4062500  0.7920605</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introdução-à-ciência-dos-dados.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana</span></span>
-<span id="cb26-2"><a href="introdução-à-ciência-dos-dados.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,median)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="introdução-à-ciência-dos-dados.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mediana</span></span>
+<span id="cb25-2"><a href="introdução-à-ciência-dos-dados.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,median)</span></code></pre></div>
 <pre><code>##     ARGILA      SILTE          T   ARG_SILT      Log_T 
 ## 20.8500000  1.1000000  6.0850000 22.6500000  0.7842487</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introdução-à-ciência-dos-dados.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância</span></span>
-<span id="cb28-2"><a href="introdução-à-ciência-dos-dados.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,var)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="introdução-à-ciência-dos-dados.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variância</span></span>
+<span id="cb27-2"><a href="introdução-à-ciência-dos-dados.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,var)</span></code></pre></div>
 <pre><code>##      ARGILA       SILTE           T    ARG_SILT       Log_T 
 ## 2.101958333 0.782500000 0.890589583 3.015291667 0.004318016</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introdução-à-ciência-dos-dados.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Desvio Padrão</span></span>
-<span id="cb30-2"><a href="introdução-à-ciência-dos-dados.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,sd)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="introdução-à-ciência-dos-dados.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Desvio Padrão</span></span>
+<span id="cb29-2"><a href="introdução-à-ciência-dos-dados.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(da[,<span class="sc">-</span><span class="dv">1</span>],<span class="dv">2</span>,sd)</span></code></pre></div>
 <pre><code>##     ARGILA      SILTE          T   ARG_SILT      Log_T 
 ## 1.44981321 0.88459030 0.94371054 1.73645952 0.06571161</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introdução-à-ciência-dos-dados.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos utilizar a função summary.</span></span>
-<span id="cb32-2"><a href="introdução-à-ciência-dos-dados.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(da[,<span class="sc">-</span><span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="introdução-à-ciência-dos-dados.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Podemos utilizar a função summary.</span></span>
+<span id="cb31-2"><a href="introdução-à-ciência-dos-dados.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(da[,<span class="sc">-</span><span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##      ARGILA          SILTE             T            ARG_SILT    
 ##  Min.   :18.50   Min.   :0.200   Min.   :4.840   Min.   :18.70  
 ##  1st Qu.:20.48   1st Qu.:0.475   1st Qu.:5.760   1st Qu.:21.32  
@@ -464,7 +465,7 @@ Figure 4.7: Acesse o PAINEL DE CONTROLE, na opção REGIÃO clique em CONFIGURA�
 ##  3rd Qu.:0.8581  
 ##  Max.   :0.8943</code></pre>
 <p>Agora podemos gerar o conhecimento, por meio da <strong>Visualização</strong> e <strong>Modelagem</strong>.</p>
-<p>Essas tem suas vantegens e desvantagens as quais são complementares, portanto, quaisquer análises reais farão muitos vezes iteraçoes entre elas.</p>
+<p>Essas tem suas vantegens e desvantagens as quais são complementares, portanto, quaisquer análises reais farão muitas vezes iteraçoes entre elas.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-29"></span>
 <img src="img/learnMath.jpeg" alt="Visualização e modelagem são dois processos iterativos, onde a matemática é uma ferramenta essencial para a extração de padrões, declaração e testes de hipóteses." width="400px" />
 <p class="caption">
@@ -475,15 +476,15 @@ Figure 4.8: Visualização e modelagem são dois processos iterativos, onde a ma
 <div id="visualização" class="section level2" number="4.4">
 <h2><span class="header-section-number">4.4</span> Visualização</h2>
 <p>Atividade fundamentalmente humana, uma boa visualização lhe mostrará coisas que não esperava, ou levantará novas questões sobre os dados. Além disso, pode mostrar também que você esta fazendo a pergunta errada, ou que precisa coletar dados diferentes. Visualizações podem surpreender o analista de dados, mas não escalam particularmente bem, por que requerem um humano para interpretá-las.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introdução-à-ciência-dos-dados.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(da<span class="sc">$</span>ARGILA,da<span class="sc">$</span>T)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="introdução-à-ciência-dos-dados.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(da<span class="sc">$</span>ARGILA,da<span class="sc">$</span>T)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 <div id="modelação" class="section level2" number="4.5">
 <h2><span class="header-section-number">4.5</span> Modelação</h2>
-<p><em>Modelo</em> são ferramentas complementares da visualização. Uma vez que você tenha feito perguntas suficientemente precisas, poderá usar um modelo para respondê-las. Modelos são fundamentalmente matemáticos ou computacionais, então geralmente escala bem. Porém, cada modelo faz suposições e, por sua própria natureza, não podem questionar suas própria hipóteses, ou seja, um modelo não pode nos surpreender.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introdução-à-ciência-dos-dados.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(da<span class="sc">$</span>ARGILA,da<span class="sc">$</span>T)</span>
-<span id="cb35-2"><a href="introdução-à-ciência-dos-dados.html#cb35-2" aria-hidden="true" tabindex="-1"></a>mod<span class="ot">&lt;-</span><span class="fu">lm</span>(da<span class="sc">$</span>T<span class="sc">~</span>da<span class="sc">$</span>ARGILA)</span>
-<span id="cb35-3"><a href="introdução-à-ciência-dos-dados.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(mod)</span></code></pre></div>
+<p><em>Modelo</em> são ferramentas complementares da visualização. Uma vez que você tenha feito perguntas suficientemente precisas, poderá usar um modelo para respondê-las. Modelos são fundamentalmente matemáticos ou computacionais, então, geralmente escalam muito bem. Porém, cada modelo faz suposições e, por sua própria natureza, não podem questionar suas própria hipóteses, ou seja, um modelo não pode nos surpreender.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introdução-à-ciência-dos-dados.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(da<span class="sc">$</span>ARGILA,da<span class="sc">$</span>T)</span>
+<span id="cb34-2"><a href="introdução-à-ciência-dos-dados.html#cb34-2" aria-hidden="true" tabindex="-1"></a>mod<span class="ot">&lt;-</span><span class="fu">lm</span>(da<span class="sc">$</span>T<span class="sc">~</span>da<span class="sc">$</span>ARGILA)</span>
+<span id="cb34-3"><a href="introdução-à-ciência-dos-dados.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(mod)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = da$T ~ da$ARGILA)
@@ -500,14 +501,14 @@ Figure 4.8: Visualização e modelagem são dois processos iterativos, onde a ma
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.9764 on 14 degrees of freedom
-## Multiple R-squared:  0.000857,   Adjusted R-squared:  -0.07051 
+## Multiple R-squared:  0.000857,	Adjusted R-squared:  -0.07051 
 ## F-statistic: 0.01201 on 1 and 14 DF,  p-value: 0.9143</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introdução-à-ciência-dos-dados.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="introdução-à-ciência-dos-dados.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
 </div>
 <div id="comunicação" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Comunicação</h2>
-<p>É a última etapa do data science, a mais importante. Não importa quão bem bem seus modelos e visualizações o levaram a entender os dados, a menos que você também consiga comunicar seus resultados para outras pessoas.</p>
+<p>É a última etapa do Data Science, a mais importante. Não importa quão bem seus modelos e visualizações o levaram a entender os dados, a menos que você também consiga comunicar seus resultados para outras pessoas.</p>
 <p>Uma dica importante, é estudar <strong>RMarkdown</strong>! Ótima linguagem de marcação de texto, utilizada para gerar relatórios em HTML, .doc e pdf. Inclusive, esse material que estamos utilizando no curso.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-32"></span>
 <img src="img/coverRMD.png" alt="https://bookdown.org/yihui/rmarkdown-cookbook/" width="200px" />
@@ -519,7 +520,7 @@ Figure 4.9: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/" class="uri"
 <div id="programação" class="section level2" number="4.7">
 <h2><span class="header-section-number">4.7</span> Programação</h2>
 <p>Permeia todas as etapas da Ciência dos Dados.</p>
-<p>Uma questão recursiva…</p>
+<p>Ao nosso ver é uma questão recursiva…</p>
 <p>O computador é a ferramenta do cientista de dados.</p>
 <p>R é um ambiente e linguagem de programação de código aberto para computação estatística, bioinformática e gráficos.</p>
 <ul>

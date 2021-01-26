@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Lógica de Programação | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Lógica de Programação | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
@@ -50,7 +50,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
 <li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+<li class="chapter" data-level="6.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
 <ul>
@@ -265,8 +265,8 @@ Encadeamento/ordem de ideias. Arte de bem pensar.</p>
 </div>
 <div id="conceitos-básicos" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Conceitos básicos</h2>
-<p>Em Lógica um conceito importante é o de <strong>“Proposição”</strong>.</p>
-<p><strong>Proposição:</strong> é um enunciado verbal, ao qual deve ser atribuído, sem ambiguidade, um valor lógico verdadeiro (V) ou falso (F).</p>
+<p>Em <em>Lógica</em> um conceito importante é o de <strong>“Proposição”</strong>.</p>
+<p><strong>Proposição:</strong> é um enunciado verbal, ao qual deve ser atribuído, sem ambiguidade, um valor lógico verdadeiro (<span class="math inline">\(V\)</span> ou <span class="math inline">\(TRUE\)</span>) ou falso (<span class="math inline">\(F\)</span> ou <span class="math inline">\(FALSE\)</span>).</p>
 <p><strong>Abstração:</strong> Operação mental que observa a realidade e captura apenas os aspectos relevantes para um contexto.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
 <img src="img/abstra.png" alt="Passe alguns segundos olhando para a figura abaixo e diga o que você consegue abstrair dela." width="200px" />
@@ -274,9 +274,7 @@ Encadeamento/ordem de ideias. Arte de bem pensar.</p>
 Figure 3.1: Passe alguns segundos olhando para a figura abaixo e diga o que você consegue abstrair dela.
 </p>
 </div>
-<p>Perceba que a realidade é a mesma, isto é, uma figura em preto e branco.
-Mas, dependendo da observação da realidade, você pode ter abstrações diferentes.
-Por isso, a abstração depende mais do observador do que da realidade observada.</p>
+<p>Perceba que a realidade é a mesma, isto é, uma figura em preto e branco, mas, dependendo da observação da realidade, você pode ter abstrações diferentes. Por isso, a abstração depende mais do observador do que da realidade observada.</p>
 <blockquote>
 <p>A tarefa de programar sistemas computacionais envolve o exercício constante da abstração da realidade e sua codificação em uma linguagem de programação.</p>
 </blockquote>
@@ -287,17 +285,17 @@ Por isso, a abstração depende mais do observador do que da realidade observada
 Figure 3.2: Exemplo de programação de um sistema para exibir a média de dois números
 </p>
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="lógica-de-programação.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entrada</span></span>
-<span id="cb9-2"><a href="lógica-de-programação.html#cb9-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="dv">6</span></span>
-<span id="cb9-3"><a href="lógica-de-programação.html#cb9-3" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="dv">8</span></span>
-<span id="cb9-4"><a href="lógica-de-programação.html#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="lógica-de-programação.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Processamento</span></span>
-<span id="cb9-6"><a href="lógica-de-programação.html#cb9-6" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> (a<span class="sc">+</span>b)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb9-7"><a href="lógica-de-programação.html#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="lógica-de-programação.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Saída</span></span>
-<span id="cb9-9"><a href="lógica-de-programação.html#cb9-9" aria-hidden="true" tabindex="-1"></a>resultado</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="lógica-de-programação.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Entrada</span></span>
+<span id="cb8-2"><a href="lógica-de-programação.html#cb8-2" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="dv">6</span></span>
+<span id="cb8-3"><a href="lógica-de-programação.html#cb8-3" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span><span class="dv">8</span></span>
+<span id="cb8-4"><a href="lógica-de-programação.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="lógica-de-programação.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Processamento</span></span>
+<span id="cb8-6"><a href="lógica-de-programação.html#cb8-6" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> (a<span class="sc">+</span>b)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb8-7"><a href="lógica-de-programação.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="lógica-de-programação.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Saída</span></span>
+<span id="cb8-9"><a href="lógica-de-programação.html#cb8-9" aria-hidden="true" tabindex="-1"></a>resultado</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<p><strong>Linguagem de programação:</strong> conjunto de palavras e regras que permitem comunicar ao computador o que este deve executar.</p>
+<p><strong>Linguagem de Programação:</strong> conjunto de palavras e regras que permitem comunicar ao computador o que este deve executar.</p>
 <p>Em computação, uma linguagem de programação é a ferramenta de comunicação entre o programador que visa resolver um problema e o computador que irá ajudá-lo a resolver.</p>
 <p><strong>Tipos de linguagens de programação:</strong></p>
 <ul>

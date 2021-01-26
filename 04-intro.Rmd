@@ -7,15 +7,18 @@ O modelo base das ferramentas necessárias em um projeto típico de ciência dos
 ```{r echo=FALSE, fig.cap="Modelo base de um projeto de Ciência dos Dados.", fig.align='center', out.width = "500px"}
 knitr::include_graphics("img/data-science.png")
 ```
+
 ## Importação
 
-Primeiro devemos *importar* os dados no R. Ou seja, pegar os dados armazenados em um arquivo, base de dados ou na Web e carregá-los em uma estrutuda de dados no R. Sem eles no R, não conseguiremos fazer Data Science.
+Primeiro devemos *importar* os dados no R. Ou seja, pegar os dados armazenados em um arquivo, base de dados ou na Web e carregá-los em uma estrutuda de dados no R. 
 
+Sem eles no R, não conseguiremos fazer Data Science.
 
 Para essa prática, vamos utilizar um banco de dados oriundo de um estudo geomorfológico.
 
 **Importação via web**   
-Acesse o banco de dados na web: Clique no link para o arquivo em txt [geomorfologia.txt](https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt).
+
+Acesse o banco de dados na web: Clique no link para o arquivo  [geomorfologia.txt](https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt).
 
 ```{r}
 # definir o caminho
@@ -30,6 +33,7 @@ head(dados) # mostra o 6 primeiros registros
 ```
 
 **Importação via Excel**   
+
 Acesse o banco de dados para essa prática, denominado [geomorfologia.xlsx](https://github.com/arpanosso/r_data_science_fcav/raw/master/dados/geomorfologia.xlsx), salve o arquivo em uma pasta de seu computador.
 
 
@@ -49,7 +53,7 @@ Cole as linhas de código no script do R e as execute, para ter a importação d
 
 ```{r,eval=FALSE}
 library(readxl)
-geomorfologia <- read_excel("C:/Users/Panosso/Desktop/geomorfologia.xlsx")
+geomorfologia <- read_excel("C:/GitHub/r_data_science_fcav/dados/geomorfologia.xlsx")
 View(geomorfologia)
 ```
 
@@ -69,7 +73,7 @@ knitr::include_graphics("img/dados.png")
 
  > Observação: O R, como a maioria dos softwares estatísticos, utiliza o **ponto** como **separador decimal**, ou seja, como o símbolo usado para separar a parte inteira da parte complementar não inteira da representação decimal do numeral de um real (ponto flutuante).
  
- > Portanto, aconselhamos você a padronizar o separador decimar do seu computador. Para isso sigua os passos abaixo:
+ > Portanto, aconselhamos você a padronizar o separador decimal do seu computador. Para isso sigua os passos abaixo:
 
 
 ```{r echo=FALSE, fig.cap="Acesse o PAINEL DE CONTROLE, na opção REGIÃO clique em  CONFIGURAÇÕES ADICIONAIS... e modifique o SÍBOLO DECIMAL para PONTO e o SÍMBOLO DE AGRUPAMENTO DE DÍGITO para VÍRGULA.",fig.align='center',out.width = "600px"}
@@ -81,11 +85,11 @@ Vamos conhecer a estrutura do nosso banco de dados, a partir da função `str`.
 str(dados)
 ```
 
-Podemos identificar que nosso banco de dados é composto por 106 linhas e 22 colunas. As duas primeiras colunas são do tipo texto (**chr** - *character*) e as demais colunas são numéricas (**num** - *numeric*).
+Podemos identificar que os dados são compostos por 106 linhas e 22 colunas. As duas primeiras colunas são do tipo texto (**chr** - *character*) e as demais colunas são numéricas (**num** - *numeric*).
 
 ## Transformação dos dados
 
-Literalmente, recortar o banco de dados, assim podemos focar nas observações de interesse. Criar novas variáveis em função das existentes e calcular, por exemplo, um resumo estatístico desse conjunto de interesse. 
+O termo transformação significa literalmente recortar o banco de dados, assim podemos focar nas observações de interesse. Criar novas variáveis em função das existentes e calcular, por exemplo, um resumo estatístico desse conjunto de interesse. 
 
 Por exemplo, vamos selecionar somente os solos do tipo **LV**.
 
@@ -107,7 +111,7 @@ da<-da[,c(1,11,10,21)]
 str(da)
 ```
 
-Vamos criar uma nova variável, **ARG_SILT** a partir da soma dos valores de **ARGILA** + **SILTE**, para isso vamos utilizar o símbolo de colunas cifrão (**$**). Em seguida, vamos aplicar a transformação logarítmica aos dados de **T**.   
+Vamos criar uma nova variável, **ARG_SILT** a partir da soma dos valores de **ARGILA** + **SILTE**, para isso vamos utilizar o símbolo de acesso de colunas, o cifrão (**$**). Em seguida, aplicaremos a transformação logarítmica aos dados de **T**.   
 
 ```{r}
 da$ARG_SILT <- da$ARGILA + da$SILTE
@@ -115,7 +119,7 @@ da$Log_T <- log10(da$T)
 str(da)
 ```
 
-Agora vamos gerar um resumo estatístico para esses dados. A primeira coluna é do tipo texto, então, deve ser retirada do banco de dados antes de realizarmos os cálculos. Para isso, utilizamos o índice $-1$ na dimensão das colunas do objeto `da`, ou seja, estamos retirando a coluna 1 **SUP** de `da`.
+Agora vamos gerar um resumo estatístico para esses dados. A primeira coluna é do tipo texto, então, deve ser retirada do banco de dados auxiliar `da` antes de realizarmos os cálculos. Para isso, utilizamos o índice $-1$ na dimensão das colunas do objeto `da`, ou seja, estamos retirando a coluna 1 **SUP** de `da`.
 
 ```{r}
 # Número de observações
@@ -139,7 +143,7 @@ summary(da[,-1])
 
 Agora podemos gerar o conhecimento, por meio da **Visualização** e **Modelagem**.
 
-Essas tem suas vantegens e desvantagens as quais são complementares, portanto, quaisquer análises reais farão muitos vezes iteraçoes entre elas.
+Essas tem suas vantegens e desvantagens as quais são complementares, portanto, quaisquer análises reais farão muitas vezes iteraçoes entre elas.
 
 ```{r echo=FALSE, fig.cap="Visualização e modelagem são dois processos iterativos, onde a matemática é uma ferramenta essencial para a extração de padrões, declaração e testes de hipóteses.", fig.align='center', out.width = "400px"}
 knitr::include_graphics("img/learnMath.jpeg")
@@ -156,7 +160,7 @@ plot(da$ARGILA,da$T)
 
 ## Modelação
 
-*Modelo* são ferramentas complementares da visualização. Uma vez que você tenha feito perguntas suficientemente precisas, poderá usar um modelo para respondê-las. Modelos são fundamentalmente matemáticos ou computacionais, então geralmente escala bem. Porém, cada modelo faz suposições e, por sua própria natureza, não podem questionar suas própria hipóteses, ou seja, um modelo não pode nos surpreender.
+*Modelo* são ferramentas complementares da visualização. Uma vez que você tenha feito perguntas suficientemente precisas, poderá usar um modelo para respondê-las. Modelos são fundamentalmente matemáticos ou computacionais, então, geralmente escalam muito bem. Porém, cada modelo faz suposições e, por sua própria natureza, não podem questionar suas própria hipóteses, ou seja, um modelo não pode nos surpreender.
 
 ```{r}
 plot(da$ARGILA,da$T)
@@ -167,7 +171,7 @@ abline(mod)
 
 ## Comunicação
 
-É a última etapa do data science, a mais importante. Não importa quão bem bem seus modelos e visualizações o levaram a entender os dados, a menos que você também consiga comunicar seus resultados para outras pessoas.
+É a última etapa do Data Science, a mais importante. Não importa quão bem seus modelos e visualizações o levaram a entender os dados, a menos que você também consiga comunicar seus resultados para outras pessoas.
 
 Uma dica importante, é estudar **RMarkdown**! Ótima linguagem de marcação de texto, utilizada para gerar relatórios em HTML, .doc e pdf. Inclusive, esse material que estamos utilizando no curso.
 
@@ -179,7 +183,7 @@ knitr::include_graphics("img/coverRMD.png")
 
 Permeia todas as etapas da Ciência dos Dados.
 
-Uma questão recursiva...
+Ao nosso ver é uma questão recursiva...
 
 O computador é a ferramenta do cientista de dados.
 

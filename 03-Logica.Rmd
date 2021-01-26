@@ -9,9 +9,9 @@ Encadeamento/ordem de ideias. Arte de bem pensar.
 
 ## Conceitos básicos
 
-Em Lógica um conceito importante é o de **"Proposição"**.
+Em *Lógica* um conceito importante é o de **"Proposição"**.
 
-**Proposição:** é um enunciado verbal, ao qual deve ser atribuído, sem ambiguidade, um valor lógico verdadeiro (V) ou falso (F). 
+**Proposição:** é um enunciado verbal, ao qual deve ser atribuído, sem ambiguidade, um valor lógico verdadeiro ($V$ ou $TRUE$) ou falso ($F$ ou $FALSE$). 
 
 **Abstração:** Operação mental que observa a realidade e captura apenas os aspectos relevantes para um contexto.
 
@@ -20,9 +20,7 @@ Em Lógica um conceito importante é o de **"Proposição"**.
 knitr::include_graphics("img/abstra.png")
 ```
 
-Perceba que a realidade é a mesma, isto é, uma figura em preto e branco. 
-Mas, dependendo da observação da realidade, você pode ter abstrações diferentes. 
-Por isso, a abstração depende mais do observador do que da realidade observada.
+Perceba que a realidade é a mesma, isto é, uma figura em preto e branco, mas, dependendo da observação da realidade, você pode ter abstrações diferentes. Por isso, a abstração depende mais do observador do que da realidade observada.
 
 > A tarefa de programar sistemas computacionais envolve o exercício constante da abstração da realidade e sua codificação em uma linguagem de programação.
 
@@ -46,7 +44,7 @@ resultado
 
 
 
-**Linguagem de programação:** conjunto de palavras e regras que permitem comunicar ao computador o que este deve executar.
+**Linguagem de Programação:** conjunto de palavras e regras que permitem comunicar ao computador o que este deve executar.
 
 Em computação, uma linguagem de programação é a ferramenta de comunicação entre o programador que visa resolver um problema e o computador que irá ajudá-lo a resolver.
 

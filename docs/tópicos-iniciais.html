@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Tópicos iniciais | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Tópicos iniciais | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
@@ -50,7 +50,7 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
 <li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+<li class="chapter" data-level="6.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
 <ul>
@@ -272,10 +272,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 *5) Devem ser significativos.</p>
 <p>Geralmente, desejamos que os nomes dos objetos sejam descritivos, então precisaremos de uma convenção para várias palavras.</p>
 <p>Recomendamos <em>snake_case</em>, onde você separa palavras minúsculas com _ .</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tópicos-iniciais.html#cb38-1" aria-hidden="true" tabindex="-1"></a>eu_uso_snake_case</span>
-<span id="cb38-2"><a href="tópicos-iniciais.html#cb38-2" aria-hidden="true" tabindex="-1"></a>outrasPessoasUsamCamelCase</span>
-<span id="cb38-3"><a href="tópicos-iniciais.html#cb38-3" aria-hidden="true" tabindex="-1"></a>algumas.pessoas.usam.pontos</span>
-<span id="cb38-4"><a href="tópicos-iniciais.html#cb38-4" aria-hidden="true" tabindex="-1"></a>E_algumasPoucas.Pessoas_RENUNCIAMconvenções</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="tópicos-iniciais.html#cb37-1" aria-hidden="true" tabindex="-1"></a>eu_uso_snake_case</span>
+<span id="cb37-2"><a href="tópicos-iniciais.html#cb37-2" aria-hidden="true" tabindex="-1"></a>outrasPessoasUsamCamelCase</span>
+<span id="cb37-3"><a href="tópicos-iniciais.html#cb37-3" aria-hidden="true" tabindex="-1"></a>algumas.pessoas.usam.pontos</span>
+<span id="cb37-4"><a href="tópicos-iniciais.html#cb37-4" aria-hidden="true" tabindex="-1"></a>E_algumasPoucas.Pessoas_RENUNCIAMconvenções</span></code></pre></div>
 </div>
 <div id="tipos-de-dados" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Tipos de dados</h2>
@@ -286,33 +286,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 5.1: Tipos primitivos de dados
 </p>
 </div>
-<p>Um Caractere SEMPRE deve estar entre <strong>" "</strong>. Por exemplo: “A,” “Fone 3333-33333,” “1,” “3.1415,” etc.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="tópicos-iniciais.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; Olá, eu sou um texto.&quot;</span></span></code></pre></div>
+<p>Um Caractere <strong>SEMPRE</strong> deve estar entre aspas duplas <strong>" "</strong> ou simples <strong>’ ’</strong>. Por exemplo: <code>"A"</code>, <code>"Fone 3333-33333"</code>, <code>"1"</code>, <code>'3.1415'</code>, <code>'a mais bonita'</code>,etc.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="tópicos-iniciais.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot; Olá, eu sou um texto.&quot;</span></span></code></pre></div>
 <pre><code>## [1] &quot; Olá, eu sou um texto.&quot;</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="tópicos-iniciais.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;1&quot;</span> <span class="co"># não pode ser feito cálculos</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="tópicos-iniciais.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;1&quot;</span> <span class="co"># não pode ser feito cálculos</span></span></code></pre></div>
 <pre><code>## [1] &quot;1&quot;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="tópicos-iniciais.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.14</span> <span class="co"># DOUBLE: valor real, de ponto flutuante.</span></span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="tópicos-iniciais.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3.14</span> <span class="co"># DOUBLE: valor real, de ponto flutuante.</span></span></code></pre></div>
 <pre><code>## [1] 3.14</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tópicos-iniciais.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="co"># valor numérico inteiro, sufixo L temos números inteiros em vez de double</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="tópicos-iniciais.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>  <span class="co"># valor numérico inteiro, </span></span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="tópicos-iniciais.html#cb47-1" aria-hidden="true" tabindex="-1"></a>pi <span class="co"># constante com o valor de pi</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tópicos-iniciais.html#cb46-1" aria-hidden="true" tabindex="-1"></a>4L <span class="co">#sufixo L temos números inteiros em vez de double</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="tópicos-iniciais.html#cb48-1" aria-hidden="true" tabindex="-1"></a>pi <span class="co"># constante pré definida com o valor de pi</span></span></code></pre></div>
 <pre><code>## [1] 3.141593</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="tópicos-iniciais.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="co"># valor lógico</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="tópicos-iniciais.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="co"># valor lógico verdadeiro</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="tópicos-iniciais.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="co"># valor lógico</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="tópicos-iniciais.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="co"># valor lógico falso</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="atribuição" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Atribuição</h2>
 <p>Serve para atribuir um valor a uma variável/objeto no R.</p>
 <p>A expressão do lado direito do operador é avaliada e seu resultado é armazenado na variável à esquerda.</p>
-<p>O operador de atribuição pode ser o <code>&lt;-</code> ou o <code>=</code>, preferencialmente utilizaremos o <code>&lt;-</code> para a criação dos <strong>objetos</strong> e deixaremos o <code>=</code> para a definição de valores em <strong>argumentos</strong> dentro da funções.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="tópicos-iniciais.html#cb53-1" aria-hidden="true" tabindex="-1"></a>texto<span class="ot">&lt;-</span><span class="st">&quot; Olá, eu sou um texto.&quot;</span></span>
-<span id="cb53-2"><a href="tópicos-iniciais.html#cb53-2" aria-hidden="true" tabindex="-1"></a>x_chr<span class="ot">&lt;-</span><span class="st">&quot;1&quot;</span> <span class="co"># não pode ser feito cálculo</span></span>
-<span id="cb53-3"><a href="tópicos-iniciais.html#cb53-3" aria-hidden="true" tabindex="-1"></a>c<span class="ot">&lt;-</span><span class="dv">1</span> <span class="co"># valor numérico inteiro</span></span>
-<span id="cb53-4"><a href="tópicos-iniciais.html#cb53-4" aria-hidden="true" tabindex="-1"></a>PI<span class="ot">&lt;-</span><span class="fl">3.14</span> <span class="co"># valor real, de ponto flutuante</span></span>
-<span id="cb53-5"><a href="tópicos-iniciais.html#cb53-5" aria-hidden="true" tabindex="-1"></a>logico_1<span class="ot">&lt;-</span><span class="cn">TRUE</span> <span class="co"># valor lógico</span></span>
-<span id="cb53-6"><a href="tópicos-iniciais.html#cb53-6" aria-hidden="true" tabindex="-1"></a>logico_2<span class="ot">&lt;-</span><span class="cn">FALSE</span> <span class="co"># valor lógico</span></span></code></pre></div>
+<p>O operador de atribuição pode ser o <code>&lt;-</code> ou o <code>=</code>, preferencialmente utilizaremos o <code>&lt;-</code> para a criação dos <strong>objetos</strong> e deixaremos o <code>=</code> para a definição de valores em <strong>argumentos</strong> dentro da funções. O atalho para o símbolo de atribuição é <strong>ALT</strong>+<strong><span class="math inline">\(-\)</span></strong>.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tópicos-iniciais.html#cb54-1" aria-hidden="true" tabindex="-1"></a>texto<span class="ot">&lt;-</span><span class="st">&quot; Olá, eu sou um texto.&quot;</span></span>
+<span id="cb54-2"><a href="tópicos-iniciais.html#cb54-2" aria-hidden="true" tabindex="-1"></a>x_chr<span class="ot">&lt;-</span><span class="st">&quot;1&quot;</span> <span class="co"># não pode ser feito cálculo</span></span>
+<span id="cb54-3"><a href="tópicos-iniciais.html#cb54-3" aria-hidden="true" tabindex="-1"></a>c<span class="ot">&lt;-</span><span class="dv">1</span> <span class="co"># valor numérico inteiro</span></span>
+<span id="cb54-4"><a href="tópicos-iniciais.html#cb54-4" aria-hidden="true" tabindex="-1"></a>PI<span class="ot">&lt;-</span><span class="fl">3.14</span> <span class="co"># valor real, de ponto flutuante</span></span>
+<span id="cb54-5"><a href="tópicos-iniciais.html#cb54-5" aria-hidden="true" tabindex="-1"></a>logico_1<span class="ot">&lt;-</span><span class="cn">TRUE</span> <span class="co"># valor lógico</span></span>
+<span id="cb54-6"><a href="tópicos-iniciais.html#cb54-6" aria-hidden="true" tabindex="-1"></a>logico_2<span class="ot">&lt;-</span><span class="cn">FALSE</span> <span class="co"># valor lógico</span></span></code></pre></div>
 </div>
 <div id="operadores" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Operadores</h2>
@@ -320,10 +322,10 @@ Figure 5.1: Tipos primitivos de dados
 <table>
 <thead>
 <tr class="header">
-<th align="left">Operador</th>
-<th align="center">Tipo</th>
-<th align="center">Operação</th>
-<th align="center">Prioridade</th>
+<th align="left"><strong>Operador</strong></th>
+<th align="center"><strong>Tipo</strong></th>
+<th align="center"><strong>Operação</strong></th>
+<th align="center"><strong>Prioridade</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -383,12 +385,12 @@ Figure 5.1: Tipos primitivos de dados
 </tr>
 </tbody>
 </table>
-<p><strong>Relacionais</strong>: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos V (TRUE) ou F(FALSE).</p>
+<p><strong>Relacionais</strong>: são operadores binários (de mesma prioridade) que somente retornam os valores lógicos Verdadeiro (<strong>TRUE</strong>) ou Falso (<strong>FALSE</strong>).</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Operador</th>
-<th align="center">Comparação</th>
+<th align="left"><strong>Operador</strong></th>
+<th align="center"><strong>Comparação</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -420,14 +422,14 @@ Figure 5.1: Tipos primitivos de dados
 </table>
 <p>Estes somente são usados para efetuar comparações, as quais só podem ser feitas entre dados do mesmo tipo.</p>
 <p>O resultado de uma comparação é sempre um valor lógico V (TRUE) ou F(FALSE).</p>
-<p><strong>Lógicos</strong> ou <strong>Booleanos</strong>: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos V (TRUE) ou F(FALSE).</p>
+<p><strong>Lógicos</strong> ou <strong>Booleanos</strong>: são usados para combinar expressões relacionais e lógicas. Também retornam como resultado valores lógicos Verdadeiro (<strong>TRUE</strong>) ou Falso (<strong>FALSE</strong>).</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Operador</th>
-<th align="center">Tipo</th>
-<th align="center">Operação</th>
-<th align="center">Prioridade</th>
+<th align="left"><strong>Operador</strong></th>
+<th align="center"><strong>Tipo</strong></th>
+<th align="center"><strong>Operação</strong></th>
+<th align="center"><strong>Prioridade</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -462,10 +464,10 @@ Figure 5.1: Tipos primitivos de dados
 &amp; d) \frac{10}{3} = 3,33333
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="tópicos-iniciais.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">7</span> </span>
-<span id="cb54-2"><a href="tópicos-iniciais.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">10</span> </span>
-<span id="cb54-3"><a href="tópicos-iniciais.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">**</span> <span class="dv">10</span> </span>
-<span id="cb54-4"><a href="tópicos-iniciais.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">/</span><span class="dv">3</span> </span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="tópicos-iniciais.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">7</span> </span>
+<span id="cb55-2"><a href="tópicos-iniciais.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">10</span> </span>
+<span id="cb55-3"><a href="tópicos-iniciais.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">**</span> <span class="dv">10</span> </span>
+<span id="cb55-4"><a href="tópicos-iniciais.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">/</span><span class="dv">3</span> </span></code></pre></div>
 </div>
 <div id="funções-matemáticas-e-trigonométricas" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> Funções matemáticas e trigonométricas</h2>
@@ -478,11 +480,11 @@ Figure 5.1: Tipos primitivos de dados
 &amp; e=2,718282
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="tópicos-iniciais.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">9</span>) </span>
-<span id="cb55-2"><a href="tópicos-iniciais.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi) </span>
-<span id="cb55-3"><a href="tópicos-iniciais.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">5</span>)</span>
-<span id="cb55-4"><a href="tópicos-iniciais.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">5</span>)</span>
-<span id="cb55-5"><a href="tópicos-iniciais.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tópicos-iniciais.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">9</span>) </span>
+<span id="cb56-2"><a href="tópicos-iniciais.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(pi) </span>
+<span id="cb56-3"><a href="tópicos-iniciais.html#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">5</span>)</span>
+<span id="cb56-4"><a href="tópicos-iniciais.html#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">5</span>)</span>
+<span id="cb56-5"><a href="tópicos-iniciais.html#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div>
 </div>
 <div id="operações-relacionais" class="section level2" number="5.9">
 <h2><span class="header-section-number">5.9</span> Operações Relacionais</h2>
@@ -494,13 +496,13 @@ Figure 5.1: Tipos primitivos de dados
 &amp; d)\; 4\neq 8 \text{ retorna &#39;verdadeiro&#39;}
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="tópicos-iniciais.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;</span> <span class="dv">5</span> ; <span class="dv">4</span> <span class="sc">!=</span> <span class="dv">8</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="tópicos-iniciais.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;</span> <span class="dv">5</span> ; <span class="dv">4</span> <span class="sc">!=</span> <span class="dv">8</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="tópicos-iniciais.html#cb59-1" aria-hidden="true" tabindex="-1"></a>nome <span class="ot">&lt;-</span> <span class="st">&#39;Alan&#39;</span></span>
-<span id="cb59-2"><a href="tópicos-iniciais.html#cb59-2" aria-hidden="true" tabindex="-1"></a>nome <span class="sc">==</span> <span class="st">&#39;Rodrigo&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="tópicos-iniciais.html#cb60-1" aria-hidden="true" tabindex="-1"></a>nome <span class="ot">&lt;-</span> <span class="st">&#39;Alan&#39;</span></span>
+<span id="cb60-2"><a href="tópicos-iniciais.html#cb60-2" aria-hidden="true" tabindex="-1"></a>nome <span class="sc">==</span> <span class="st">&#39;Rodrigo&#39;</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="tópicos-iniciais.html#cb61-1" aria-hidden="true" tabindex="-1"></a>nome <span class="sc">==</span> <span class="st">&quot;Alan&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="tópicos-iniciais.html#cb62-1" aria-hidden="true" tabindex="-1"></a>nome <span class="sc">==</span> <span class="st">&quot;Alan&quot;</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="operações-lógicas" class="section level2" number="5.10">
@@ -513,14 +515,14 @@ Figure 5.1: Tipos primitivos de dados
 &amp; d) \text{ Não} \; \text{FALSE} \; \text{retorna &#39;verdadeiro&#39;}
 \end{aligned}
 \]</span></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="tópicos-iniciais.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> <span class="dv">8</span> <span class="sc">&lt;=</span> <span class="dv">4</span> </span>
-<span id="cb63-2"><a href="tópicos-iniciais.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">25</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">&amp;</span> <span class="dv">4</span> <span class="sc">&gt;</span> <span class="dv">8</span></span>
-<span id="cb63-3"><a href="tópicos-iniciais.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">TRUE</span></span>
-<span id="cb63-4"><a href="tópicos-iniciais.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">FALSE</span></span>
-<span id="cb63-5"><a href="tópicos-iniciais.html#cb63-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb63-6"><a href="tópicos-iniciais.html#cb63-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">8</span>)</span>
-<span id="cb63-7"><a href="tópicos-iniciais.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
-<span id="cb63-8"><a href="tópicos-iniciais.html#cb63-8" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="tópicos-iniciais.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">|</span> <span class="dv">8</span> <span class="sc">&lt;=</span> <span class="dv">4</span> </span>
+<span id="cb64-2"><a href="tópicos-iniciais.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">==</span> <span class="dv">25</span><span class="sc">/</span><span class="dv">5</span> <span class="sc">&amp;</span> <span class="dv">4</span> <span class="sc">&gt;</span> <span class="dv">8</span></span>
+<span id="cb64-3"><a href="tópicos-iniciais.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">TRUE</span></span>
+<span id="cb64-4"><a href="tópicos-iniciais.html#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="cn">FALSE</span></span>
+<span id="cb64-5"><a href="tópicos-iniciais.html#cb64-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-6"><a href="tópicos-iniciais.html#cb64-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">8</span>)</span>
+<span id="cb64-7"><a href="tópicos-iniciais.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span>
+<span id="cb64-8"><a href="tópicos-iniciais.html#cb64-8" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x)]</span></code></pre></div>
 </div>
 <div id="exercícios" class="section level2" number="5.11">
 <h2><span class="header-section-number">5.11</span> Exercícios</h2>
@@ -543,8 +545,8 @@ Figure 5.1: Tipos primitivos de dados
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Função</th>
-<th align="center">Significado/ação</th>
+<th align="left"><strong>Função</strong></th>
+<th align="center"><strong>Significado/ação</strong></th>
 </tr>
 </thead>
 <tbody>

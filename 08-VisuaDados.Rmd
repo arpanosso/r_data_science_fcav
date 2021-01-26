@@ -1,6 +1,6 @@
 # Visualização de dados com o ggplot2
 
-O R possui vários sistemas para fazer gráficos, mas o pacote `ggplot2` é um dos mais elegantes e versáteis para realizar essa tarefa. o **`ggplot2`** implementa a *gramática dos gráficos*, um sistema coerente para descrever e construir gráficos.
+O R possui vários sistemas para fazer gráficos, mas o pacote `ggplot2` é um dos mais elegantes e versáteis para realizar essa tarefa. O **`ggplot2`** implementa a *gramática dos gráficos*, um sistema coerente para descrever e construir gráficos.
 
 Vamos carregar o **`tidyverse`**, que tem o pacote **`ggplot2`** como um de seus elementos centrais.
 
@@ -25,27 +25,30 @@ Vamos criar um gráfico do teor de argila do solo ao longo do transecto estudado
 
 Para isso utilizaremos dois operadores:
 
-  **1)** `%>%` -  chamado PIPE do pacote `dplyr` o qual pode ser construído com o atalho **Ctrl + Shift + M**.
+  **1)** `%>%` -  chamado **PIPE** do pacote `dplyr` o qual pode ser construído com o atalho **Ctrl + Shift + M**.
   
-  **2)** `+` -  adição, para o controle das camadas gráficas e parâmetros específicos.
+  **2)** `+` -  adição, para o controle das camadas gráficas e parâmetros específicos após aplicar a função `ggplot()`.
 
-**REGRA**: o PIPE sempre opera **DATA.FRAMES** e tem como retorno **DATA.FRAMES**. Para o `ggplot`, o primeiro argumento **SEMPRE** será um data.frame.
+**REGRA**: o PIPE sempre opera um **DATA FRAME** e tem como retorno um novo **DATA FRAME** e para a `ggplot()`, o primeiro argumento **SEMPRE** será um data frame.
 
-A forma mais simples para iniciarmos a confecção de nosso gráfico é construírmos cada etapa individual do gráfico, estudando os códigos por etapas. No código abaixo, construiremos somente a tela de plotagem do gráfico.
+A forma mais simples para iniciarmos a confecção do gráfico é construírmos cada etapa individual deste, estudando os códigos etapa por etapa. Portanto, mãos a obra.
+
+
+No código abaixo, construiremos somente a tela de plotagem do gráfico.
 
 ```{r}
 geomorfologia %>% 
   ggplot()
 ```
 
-Se a nossa inteção é visualizar as alterações dos teores de argila ao longo do transecto nas diferentes superfícies geomórficas, vamos utilizar a função de estética `aes()`, dentro da função `ggplot()`, para definir quais as colunas do objeto `geomorfologia` serão utilizadas para criação do gráfico. Observe que os eixos, agora são desenhados.
+Se a nossa inteção é visualizar as alterações dos teores de argila ao longo do transecto nas diferentes superfícies geomórficas, precisamos construir uma gráfico de dispersão (`scatter`) entre a posição X e o teor de argila do solo. Para isso vamos utilizar a função de estética `aes()`, dentro da função `ggplot()`, para definir quais as colunas do objeto `geomorfologia` serão utilizadas para criação do gráfico. Observe que os eixos agora são desenhados.
   
 ```{r}
 geomorfologia %>% 
   ggplot(aes(x=X, y =ARGILA))
 ```
 
-Agora a geometria de pontos deve ser indicada, ou seja, qual o tipo de gráfico vamos contruir. Nesse caso, vamos utilizar o operador de adição `+` para adicioar uma camada de pontos a esse gráfico. 
+A geometria de pontos agora deve ser indicada, ou seja, vamos adicionar uma nova camada a esse gráfico. Sempre utilizaremos o operador de adição `+` para adicioar uma camada de pontos a esse gráfico `geom_point()`. 
 
 ```{r}
 geomorfologia %>% 
@@ -54,7 +57,7 @@ geomorfologia %>%
 ```
 ## Controlando geometrias
 
-Outras geometrias poderiam ser utlizadas, ao invés de pontos, poderíamos pedir uma geometria de linha: 
+Outras geometrias poderiam ser utlizadas, ao invés de pontos, poderíamos pedir uma geometria de linha por exemplo: 
 
 ```{r}
 geomorfologia %>% 
@@ -71,45 +74,67 @@ geomorfologia %>%
   geom_point()
 ```
 
-Agora, finalmente, podemos controlar alguma propriedades dentro de cada geometria.
+Agora, finalmente, podemos controlar algumas propriedades dentro de cada geometria.
 
 ```{r}
 geomorfologia %>% 
   ggplot( aes(x=X, y =ARGILA) ) +
-  geom_line(col="blue", # cor da linha
+  geom_line(color="blue", # cor da linha
             lwd= 0.7, # espessura da linha
-            lty=2)+ # tipo de linha
+            linetype=2)+ # tipo de linha
   geom_point(shape=21, # tipo do marcador 0-14 são ocas de 15-18 sólidas e de 21-24 possuem borda e preenchimento
              fill="green", # cor do preenchimento do marcador
-             col="red", # cor da borda do marcador 
+             color="red", # cor da borda do marcador 
              size=3) # tamanho do marcador
 ```
 
-**OBS**: A forma de um ponto (marcador) é atribuido ao argumento `shape`. Há algumas duplicadas aparentes por exemplo, 0, 15 e 22 são quadrados. A diferença vem da interação das estéticas `color` e `fill`. As formas ocas são de 0 a 14 e sua borda é determinada por `color`, as formas sólidas são de 15 a 18 e são preenchidas por `color`, já as formas de 21 a 24 têm uma borda definida por `color` e e são preenchidas por `fill`.
+**OBS**: A forma de um ponto (marcador) é controlada pelo argumento `shape`. Há algumas duplicadas aparentes nesse argumento, que recomendamos qua sejam testadas por exemplo, 0, 15 e 22 são quadrados. A diferença vem da interação das estéticas `color` e `fill`. As formas ocas são de 0 a 14 e a cor de sua borda é determinada por `color`, as formas sólidas são de 15 a 18 e a sua cor de preenchimento é definida por `color`, já as formas de 21 a 24 têm a cor de sua  borda definida por `color` e a cor de seu preenchimento definida por `fill`. Veja os exemplos:
 
-Podemos agora controlar os títulos dos eixos, a partir da função `labs()`.
+```{r}
+geomorfologia %>% 
+  ggplot( aes(x=X, y =ARGILA) ) +
+  geom_line(color="red", lwd= 0.7, linetype=1) +
+  geom_point(shape=0, size=5, color = "blue") 
+```
+
+```{r}
+geomorfologia %>% 
+  ggplot( aes(x=X, y =ARGILA) ) +
+  geom_line(color="red", lwd= 0.7, linetype=1) +
+  geom_point(shape=15, size=5, color = "blue") 
+```
+
+```{r}
+geomorfologia %>% 
+  ggplot( aes(x=X, y =ARGILA) ) +
+  geom_line(color="red", lwd= 0.7, linetype=1) +
+  geom_point(shape=22, size=5, color = "blue", fill="green") 
+```
+
+Nosso próximo passo será controlar os títulos dos eixos a partir da função `labs()`.
 
 ```{r}
 geomorfologia %>% 
   ggplot( aes(x=X, y =ARGILA) ) +
   geom_line(col="blue", lwd= 0.7, lty=1)+ 
   geom_point(shape=21, fill="green", col="red", size=3) +
-  labs(x="Eixo x (m)",y="Teor de argila do solo (%)",title = "Gráfico de Linha + Pontos")
+  labs(x="Eixo x (m)",y="Teor de argila do solo (%)", title = "Gráfico de Linha + Pontos")
 ```
 
 ## Definindo temas
 
-Podemos utilizar diferentes temas, para isso, vamos, inicialmente, guardar o nosso gráfico em um objeto denominado `meu_plot`.
+Podemos utilizar diferentes temas, para isso vamos guardar o gráfico anterior em um objeto denominado `meu_plot`.
 
 ```{r}
-meu_plot<- geomorfologia %>% 
+meu_plot <- geomorfologia %>% 
               ggplot( aes(x=X, y =ARGILA) ) +
               geom_line(col="blue", lwd= 0.7, lty=1)+ 
               geom_point(shape=21, fill="green", col="red", size=3) +
-              labs(x="Eixo x (m)",y="Teor de argila do solo (%)",title = "Gráfico de Linha + Pontos")
+              labs(x="Eixo x (m)",y="Teor de argila do solo (%)", title = "Gráfico de Linha + Pontos")
+meu_plot
 ```
 
-Agora podemos aplicar um tema pré-definido a esse objeto gráfico a partir da família de função `theme_`. Compare os diferentes temas diponíveis.
+Agora podemos aplicar um tema pré-definido ao gráfico a partir da família de função `theme_`. Compare os diferentes temas diponíveis.
 
 ```{r}
 meu_plot + theme_minimal()
@@ -118,11 +143,11 @@ meu_plot + theme_dark()
 # ...
 ```
 
-## Controle de elementos do tema
+## Controlando elementos do tema
 
-Vários elementos do tema podem ser controlados a partir de funções específicas associadas à função `theme`. 
+Vários elementos do tema podem ser controlados a partir de funções específicas associadas à função `theme()`. 
 
-As funções `element_` especificam a exibição de como os componentes sem dados do gráfico são desenhados.
+A família de funções `element_` especificam a exibição de como os componentes sem dados do gráfico são desenhados.
 
   *`element_blank`: não desenha nada e não atribui espaço;
 
@@ -132,9 +157,9 @@ As funções `element_` especificam a exibição de como os componentes sem dado
 
   *`element_text`: texto;
   
-  *`rel ()` é usado para especificar os tamanhos relativos ao objeto original; 
+  *`rel()` é usado para especificar os tamanhos relativos ao objeto original; 
   
-  *`margin ()` é usado para especificar as margens dos elementos.
+  *`margin()` é usado para especificar as margens dos elementos.
 
 Por exemplo, vamos duplicar  o tamanho de fonte (`rel(2)`) do título do gráfico já criado `meu_plot`.
 
@@ -145,35 +170,32 @@ meu_plot + theme(plot.title = element_text(size=rel(2)))
 Vamos modificar o alinhamento do e a cor do título do gráfico já criado `meu_plot`.
 
 ```{r}
-meu_plot <- meu_plot + theme(plot.title = element_text(hjust = 0.5, color = "red"))
-meu_plot
+meu_plot + theme(plot.title = element_text(hjust = 0.5, color = "red"))
 ```
 
 Alterando a área de plotagem.
 
 ```{r}
-meu_plot <- meu_plot + theme(panel.background = element_rect(fill="lightblue", color = "red", linetype = "dashed"))
-meu_plot
+meu_plot + theme(panel.background = element_rect(fill="lightblue", color = "red", linetype = "dashed"))
 ```
 
 
-Agora vamos fazer várias modificações, adicionando linhas de plotagem principais e secundárias, mudar as cores do texto dos eixos para vermelho, e as cores dos títulos dos eixos para verde escuro e alterando a cor do retângulo de plotagem exterior para cinza.
+Agora vamos fazer várias modificações, adicionando linhas de grade na área de plotagem, mudar as cores do texto dos eixos para vermelho, as cores dos títulos dos eixos para verde escuro e alterar a cor do retângulo de plotagem exterior para cinza.
 
 ```{r}
-meu_plot <- meu_plot + theme(panel.grid.major = element_line(color="gray", linetype = "dashed"),
-                             panel.grid.minor = element_line(color="gray", linetype = "dashed"),
-                             axis.text = element_text(colour = "red"),
-                             axis.title = element_text(colour = "darkgreen",size=rel(1.2)),
-                             plot.background = element_rect(fill="gray"))
-meu_plot
+meu_plot + theme(panel.grid.major = element_line(color="gray", linetype = "dashed"),
+                 panel.grid.minor = element_line(color="gray", linetype = "dashed"),
+                 axis.text = element_text(colour = "red"),
+                 axis.title = element_text(colour = "darkgreen",size=rel(1.2)),
+                 plot.background = element_rect(fill="gray"))
 ```
 
 Maiores informações a respeito dos parâmetros de controle dos elementos dos gráficos podem ser encontrados em  <https://ggplot2.tidyverse.org/reference/theme.html>.
 
 
-## Mapeando estéticos
+## Mapeamento estéticos
 
-Vamos voltar ao gráfico de dispersão (*scatter*) do teor de argila do solo ao longo do transecto estudado.
+Vamos voltar ao gráfico de dispersão do teor de argila do solo ao longo do transecto estudado.
 
 ```{r}
 geomorfologia %>% 
@@ -181,11 +203,11 @@ geomorfologia %>%
   geom_point()
 ```
 
-Podemos agora adicionar uma terceira variável a esse gráfico, como tipo de solo ou a superfície geomórfica, e mapeá-la a partir de um *estético (aesthetic)*. Esse estético é uma propriedade visual dos objetos no gráfico. Estéticos incluem coisas como tamanho, forma ou cor dos pontos. 
+Podemos agora adicionar uma terceira variável a esse gráfico, como tipo de solo (`Solo`) ou a superfície geomórfica (`SUP`), e mapeá-la a partir de um **estético** *(aesthetic)*. Esse estético é uma propriedade visual dos objetos no gráfico. Estéticos incluem coisas como tamanho, forma ou cor dos pontos. 
 
-Vamos mapear as cores dos pontos para cada superfície geomórfica (`SUP`). 
+Em nosso exemplo inicial Vamos mapear as cores dos pontos para cada superfície geomórfica (`SUP`). 
 
-Para mapear a estética *cor* à variável `SUP`, devemos associar o nome da estética ao nome da variável dentro de `aes()`. O `ggplot2` atribuirá automaticamente uma cor singular para cada valor singular da variável, um processo conhecido como *escalar* (*scaling*). Automaticamente será adicionado uma legenda que explica quais níveis correspondem a quais valores.
+Para mapear a estética *cor* à variável `SUP`, devemos associar o nome da estética ao nome da variável dentro de `aes()`. O `ggplot2` atribuirá automaticamente uma cor singular para cada valor singular da variável, um processo conhecido como **escalar** (*scaling*). Automaticamente será adicionado uma legenda que explica quais níveis correspondem a quais valores.
 
 ```{r}
 geomorfologia %>% 
@@ -193,7 +215,9 @@ geomorfologia %>%
   geom_point()
 ```
 
-No exemplo anterior mapeamos `SUP` à estética *cor*, mas poderíamos ter mapeado `SUP` à estética de *tamanho* (`size`) da mesma maneira. Neste caso, o tamanho exato de cada ponto revela a sua superfície. Não é recomendado mapearmos a uma variável por meio do tamanho.
+No exemplo anterior mapeamos `SUP` à estética *cor*, mas poderíamos ter mapeado `SUP` à estética de *tamanho* (`size`) da mesma maneira. 
+
+Neste caso, o tamanho exato de cada ponto revela a sua superfície. Entretanto, não recomendamos o mapeamento de uma variável por meio do tamanho.
 
 ```{r}
 geomorfologia %>% 
@@ -203,9 +227,9 @@ geomorfologia %>%
 
 Poderíamos ter mapeado `SUP` à estética `alpha`, que controla a transparência e à forma dos pontos controlada pelas estética `shape`.
 
-```{r, message=FALSE}
+```{r, message=FALSE, warning=FALSE}
 geomorfologia %>% 
-  ggplot( aes(x=X, y =ARGILA, alpha = SUP, shape=SUP, col=SUP) ) +
+  ggplot( aes(x=X, y =ARGILA, alpha = SUP, shape=SUP) ) +
   geom_point()
 ```
 
@@ -232,7 +256,7 @@ geomorfologia %>%
   facet_wrap(~SUP, nrow=3)
 ```
 
-Outra importante e útil ferramenta é a função `facet_grid` que permite a incorporação de mais de uma variável na representação,  no nosso exemplo, vamos adicionar o tipo de solo `Solo`. A fórmula conterá dois nomes de variáveis categóricas sepradas pelo `~` 
+Outra importante e útil ferramenta é a função `facet_grid` que permite a incorporação de mais de uma variável na representação, no nosso exemplo, vamos adicionar o tipo de solo `Solo`. A fórmula conterá dois nomes de variáveis categóricas sepradas pelo `~` 
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -263,7 +287,7 @@ geomorfologia %>%
 
 ### Gráfico de Colunas
 
-Um `geom_` é o objeto geométrico que um gráfico usa para representar os dados. Gráficos de colunas, por exemplo, usam o `geom_col()`. O preenchimento e as cores das bordas das colunas são controlados peloas argumentos `fill` e `color` dentro da função `geom_col()`. Gráfico de coluas, linhas e pontos, plotam os valores brutos.
+Um `geom_` é o objeto geométrico que um gráfico usa para representar os dados. Gráficos de colunas, por exemplo, usam o `geom_col()`. O preenchimento e as cores das bordas das colunas são controlados pelos argumentos `fill` e `color`. Gráfico de coluas, linhas e pontos, plotam os valores brutos.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -271,18 +295,18 @@ geomorfologia %>%
   geom_col(color="black",fill="aquamarine4")
 ```
 
-Gráfico de **colunas** pode ser é representado pela rotação dos eixos do gráfico anterior a partir de `coord_flip()`.
+O gráfico de **colunas** também pode ser apresentadorotacionado em 90º a partir do uso da função`coord_flip()`.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
-  ggplot( aes(x=X, y =ARGILA) ) +
+  ggplot( aes(x=X, y=ARGILA) ) +
   geom_col(color="black",fill="aquamarine4") +
   coord_flip()
 ```
 
 ### Gráfico de Barras
 
-Diferente do grafico de colunas, o gráfico de **barras** possibilita a representação de dados categóricos, vamos supor que devemos contar o número de observações em cada superfície geomórfica. A função `geom_bar()` conta os pontos em cada categoria de `SUP`automaticamente.
+Diferente do gráfico de colunas, o gráfico de **barras** possibilita a representação de dados categóricos, vamos supor que devemos contar o número de observações em cada superfície geomórfica. A função `geom_bar()` conta os pontos em cada categoria de `SUP` automaticamente.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -290,7 +314,7 @@ geomorfologia %>%
   geom_bar(color="black", fill="lightblue")
 ```
 
-POdemos colorir um gráfico de barras utilizando a estética `fill`: 
+Podemos mapear a superfície geomófica associando `SUP` à estética `fill`: 
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -301,22 +325,19 @@ Se adicionarmos uma segunda variáveis categórica, como o tipo de solo `Solo`, 
 
 ```{r, message=FALSE}
 geomorfologia %>% 
-  ggplot( aes(x=SUP,fill=Solo)) +
+  ggplot( aes(x=SUP, fill=Solo)) +
   geom_bar(color="black")
 ```
 
-O empilhamento é realizado automaticamente, caso não queiramos o gráfico empilhado, utilizamos um dos três valores `identity`, `dodge` ou `fill` associados ao argumento `position` dentro de `geom_bar()`.
+O empilhamento é realizado automaticamente, caso não queiramos o gráfico empilhado, utilizamos um dos três valores `identity`, `dodge` ou `fill` associados ao argumento `position`.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
   ggplot( aes(x=SUP, fill=Solo)) +
   geom_bar(position = "fill", color="black")
 ```
-```{r, message=FALSE}
-geomorfologia %>% 
-  ggplot( aes(x=SUP, fill=Solo)) +
-  geom_bar(position = "identity", color="black")
-```
+
+
 ```{r, message=FALSE}
 geomorfologia %>% 
   ggplot( aes(x=SUP, fill=Solo)) +
@@ -325,7 +346,7 @@ geomorfologia %>%
 
 ### Smoothers
 
-Vamos ajustar uma linha suave ao dados de teor de argila ao longo do transecto X estudado a partir de `geom_smooth()`.
+Vamos ajustar uma linha suave aos dados de teor de argila ao longo do transecto X a partir da função `geom_smooth()`.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -341,10 +362,11 @@ Dentro de  `geom_smooth()` podemos controlar o tipo da linha e a cor da linha a 
 geomorfologia %>% 
   ggplot( aes(x=X, y =ARGILA) ) +
   geom_point() + 
-  geom_smooth(linetype=2, color="red")
+  geom_smooth(linetype=2, color="blue")
 ```
 
-Agora vamos aplicar uma linha suave para cada uma das superfície geomórfica.
+Agora vamos aplicar uma linha suave para cada uma das superfícies geomórficas.
+
 ```{r, message=FALSE}
 geomorfologia %>% 
   ggplot( aes(x=X, y =ARGILA, color=SUP) ) +
@@ -352,7 +374,8 @@ geomorfologia %>%
   geom_smooth()
 ```
 
-Agora vamos aplicar uma linha suave para cada uma das superfície geomórfica, apresentadas em diferentes facetas.
+Agora em diferentes facetas.
+
 ```{r, message=FALSE}
 geomorfologia %>% 
   ggplot( aes(x=X, y =ARGILA, color=SUP) ) +
@@ -362,6 +385,7 @@ geomorfologia %>%
 ```
 
 Para apresentarmos as facetas em diferentes escalas (diferentes valores de X e Y em cada faceta), utilize o argumento `scales = "free"` em `facet_wrap()`.
+
 ```{r, message=FALSE}
 geomorfologia %>% 
   ggplot( aes(x=X, y =ARGILA, color=SUP) ) +
@@ -380,28 +404,35 @@ geomorfologia %>%
   geom_boxplot()
 ```
 
-  * O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a amplitude interquartil (IIQ). No meo da caixa há uma linha que exibe a mediana, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
+  * O boxplot é uma caixa que vai do 25º percentil ao 75º percentil da distribuição, uma distância conhecida como a amplitude interquartil (IIQ). No meio da caixa há uma linha que exibe a mediana, isto é, 50º percentil, da distribuição. Essas três linhas lhe dão um sentido da dispersão da distribuição e se ela é ou não simétrica sobre a mediana ou enviesada para um lado.
   
   * Pontos visuais que exibem observações  que caem mais do que 1,5 vez o IIQ de cada limite da caixa. Esses pontos foram da curva são incomuns, entãosão plotados individuaalmente.
   
   * Uma linha (ou bigode de gato, dai o nome *Box and Whiskers*) que se estende de cada lado da caixa e vai até o ponto mais distante da distribuição que não seja um outlier.
 
-Suas coordenadas podem ser transposta por `coord_flip()`
+Podemos modificar a orientação do boxplot por meio de `aes(y=ARGILA)`.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
-  ggplot( aes(x=ARGILA) ) +
-  geom_boxplot() +
-  coord_flip()
+  ggplot( aes(y=ARGILA) ) +
+  geom_boxplot() 
 ```
 
-Outra alternativa para exibir a distribuição de uma variável contínua, podemos desmembrar por uma variável categórica aqui no boxplot.
+Outra possibilida é diminuir o tamanho da caixa com `coord_cartesian()`.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
-  ggplot( aes(x=ARGILA, fill=SUP) ) +
+  ggplot( aes(y=ARGILA) ) +
   geom_boxplot() +
-  coord_flip()
+  coord_cartesian(xlim=c(-1,1))
+```
+
+Outra alternativa para exibir a distribuição de uma variável contínua é desmembrá-la por uma variável categórica no boxplot.
+
+```{r, message=FALSE}
+geomorfologia %>% 
+  ggplot( aes(y=ARGILA, fill=Solo) ) +
+  geom_boxplot()
 ```
 
 ### Histograma
@@ -422,12 +453,12 @@ geomorfologia %>%
   geom_histogram()
 ```
 
-Podemos estabelecer a amplitude dos intervalos em um histograma com o argumento `bidwidth`, que pe medido nas unidades da variável x.
+Podemos estabelecer a amplitude dos intervalos em um histograma com o argumento `bidwidth`, que é medido nas unidades da variável x.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
   ggplot(aes(x=ARGILA, y=..density..)) +
-  geom_histogram(binwidth = 2)
+  geom_histogram(binwidth = 1)
 ```
 
 Ou você pode especificar o número de classes a partir do argumento `bins`, que por default é igual a `30`.
@@ -438,7 +469,7 @@ geomorfologia %>%
   geom_histogram(bins =  15)
 ```
 
-Vamos alterar as cores das bordas e preeenchimento das colunas.
+Vamos alterar as cores das bordas e do preeenchimento das colunas do histograma.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -446,7 +477,7 @@ geomorfologia %>%
   geom_histogram(bins =  15, color="black",fill="white")
 ```
 
-Podemos associar a curva suave de densidade no hitograma, a partir da função `geom_density()` e controlarmos a trnasparência e seu preenchimento a partir dos argumentos `alpha` e `fill`.
+Podemos associar a curva suave de densidade no hitograma, a partir da função `geom_density()` e controlar a transparência e seu preenchimento a partir dos argumentos `alpha` e `fill`, respectivamente.
 
 ```{r, message=FALSE}
 geomorfologia %>% 
@@ -464,5 +495,5 @@ geomorfologia %>%
   geom_density(alpha=.2)+
   facet_wrap(~SUP, scales="free")+
   labs(x="Teor de argila do solo (%)", y = "Densidade", fill="Superfície", color="Superfície") +
-  theme_dark()
+  theme_minimal()
 ```
