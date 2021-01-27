@@ -609,7 +609,7 @@ Desvantagem:
   
 ## Exercícios
   
-**1)** O conjunto de dados denominado de "BroomBarnFarm.txt" foi coletado em uma área de 80 ha no leste da Inglaterra. O solo foi amostrado em intervalos de 40 m. As amostras de solo na profundidade de 0,20 m foram analisadas em laboratório e como resultado temos: 435 valores para cada variável (K, pH e P). (WEBSTER & OLIVER. Geostatistics for Environmental Scientists, Appendix B).
+**1)** O conjunto de dados denominado de [BroomBarnFarm.txt](https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/BroomBarnFarm.txt) foi coletado em uma área de 80 ha no leste da Inglaterra. O solo foi amostrado em intervalos de 40 m. As amostras de solo na profundidade de 0,20 m foram analisadas em laboratório e como resultado temos: 435 valores para cada variável (K, pH e P). (WEBSTER & OLIVER. Geostatistics for Environmental Scientists, Appendix B).
 
 Responda as seguintes questões:
 
