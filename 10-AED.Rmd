@@ -509,6 +509,18 @@ shapiro.test(silte)
   
   *Se $p \le 0,01$, o teste é significativo, portanto rejeitamos $H_0$, tomamos $H_1$ como verdadeira e concluímos que os dados não suportam a suposição de normalidade.
 
+
+
+Outros testes de normalidade disponíveis no R com o Pacote `nortest`
+
+```{r}
+library(nortest)
+lillie.test(silte)	#Kolmogorov-Smirnov
+cvm.test(silte)		#Cramer von Mises
+ad.test(silte)		#Anderson-Darling
+
+```
+
 Um gráfico quantil-quantil (ou QQPlot, `stat_qq()`) é usado para verificar se uma dada variável segue a distribuição normal. Os dados são considerados normalmente distribuídos quando os pontos seguem aproximadamente a linha de referência de 45º (1:1, `stat_qq_line()`). 
 
 ```{r}
