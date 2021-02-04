@@ -215,7 +215,7 @@ $$
 `log(x,n)`|logaritmo de x na base n.
 `log(x)`|logaritmo neperiano de x.
 `log10(x)`|logaritmo decimal de x.
-`exp(x)|`antilogaritmo - ex. 
+`exp(x)`|antilogaritmo - ex. 
 `sin(x)`|seno de x (em radianos).
 `asin(x)`|arco-seno de x.
 `abs(x)`|modulo(x).

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 Manipulação de dados com o dplyr | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 Manipulação de dados com o dplyr | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,6 @@
   
 <link rel="prev" href="visualização-de-dados-com-o-ggplot2.html"/>
 <link rel="next" href="análise-exploratória-de-dados-aed.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,23 +49,25 @@
 
 
 
-<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -86,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -136,23 +137,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-vindos!!</a></li>
-<li class="chapter" data-level="1" data-path="ambientação.html"><a href="ambientação.html"><i class="fa fa-check"></i><b>1</b> Ambientação</a>
-<ul>
+<li class="chapter" data-level="1" data-path="ambientação.html"><a href="ambientação.html"><i class="fa fa-check"></i><b>1</b> Ambientação</a><ul>
 <li class="chapter" data-level="1.1" data-path="ambientação.html"><a href="ambientação.html#instalando-o-r"><i class="fa fa-check"></i><b>1.1</b> Instalando o R</a></li>
 <li class="chapter" data-level="1.2" data-path="ambientação.html"><a href="ambientação.html#instalando-o-rstudio"><i class="fa fa-check"></i><b>1.2</b> Instalando o RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html"><i class="fa fa-check"></i><b>2</b> Pacotes no R</a>
-<ul>
+<li class="chapter" data-level="2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html"><i class="fa fa-check"></i><b>2</b> Pacotes no R</a><ul>
 <li class="chapter" data-level="2.1" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#pacotes-básicos"><i class="fa fa-check"></i><b>2.1</b> Pacotes básicos</a></li>
 <li class="chapter" data-level="2.2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#instalando-pacotes"><i class="fa fa-check"></i><b>2.2</b> Instalando pacotes</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html"><i class="fa fa-check"></i><b>3</b> Lógica de Programação</a>
-<ul>
+<li class="chapter" data-level="3" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html"><i class="fa fa-check"></i><b>3</b> Lógica de Programação</a><ul>
 <li class="chapter" data-level="3.1" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#introdução"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
 <li class="chapter" data-level="3.2" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#conceitos-básicos"><i class="fa fa-check"></i><b>3.2</b> Conceitos básicos</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Introdução à Ciência dos Dados</a>
-<ul>
+<li class="chapter" data-level="4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Introdução à Ciência dos Dados</a><ul>
 <li class="chapter" data-level="4.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#importação"><i class="fa fa-check"></i><b>4.1</b> Importação</a></li>
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
@@ -161,8 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html"><i class="fa fa-check"></i><b>5</b> Tópicos iniciais</a>
-<ul>
+<li class="chapter" data-level="5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html"><i class="fa fa-check"></i><b>5</b> Tópicos iniciais</a><ul>
 <li class="chapter" data-level="5.1" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#identificadores"><i class="fa fa-check"></i><b>5.1</b> Identificadores</a></li>
 <li class="chapter" data-level="5.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#palavras-reservadas"><i class="fa fa-check"></i><b>5.2</b> Palavras Reservadas</a></li>
 <li class="chapter" data-level="5.3" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#regras-para-os-nomes-de-identificadores"><i class="fa fa-check"></i><b>5.3</b> Regras para os nomes de Identificadores</a></li>
@@ -175,33 +171,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.10" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-lógicas"><i class="fa fa-check"></i><b>5.10</b> Operações Lógicas</a></li>
 <li class="chapter" data-level="5.11" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>5.11</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="algoritmos.html"><a href="algoritmos.html"><i class="fa fa-check"></i><b>6</b> Algoritmos</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="algoritmos.html"><a href="algoritmos.html#estruturas-de-controle"><i class="fa fa-check"></i><b>6.1</b> Estruturas de Controle</a>
-<ul>
+<li class="chapter" data-level="6" data-path="algoritmos.html"><a href="algoritmos.html"><i class="fa fa-check"></i><b>6</b> Algoritmos</a><ul>
+<li class="chapter" data-level="6.1" data-path="algoritmos.html"><a href="algoritmos.html#estruturas-de-controle"><i class="fa fa-check"></i><b>6.1</b> Estruturas de Controle</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="algoritmos.html"><a href="algoritmos.html#sequêncial"><i class="fa fa-check"></i><b>6.1.1</b> Sequêncial</a></li>
 <li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
 <li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
-<ul>
+<li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a><ul>
 <li class="chapter" data-level="7.1" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#atomic-vector"><i class="fa fa-check"></i><b>7.1</b> Atomic vector</a></li>
 <li class="chapter" data-level="7.2" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#factor"><i class="fa fa-check"></i><b>7.2</b> Factor</a></li>
 <li class="chapter" data-level="7.3" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#matrizes-e-arrays"><i class="fa fa-check"></i><b>7.3</b> Matrizes e Arrays</a></li>
 <li class="chapter" data-level="7.4" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#listas"><i class="fa fa-check"></i><b>7.4</b> Listas</a></li>
 <li class="chapter" data-level="7.5" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#data-frames"><i class="fa fa-check"></i><b>7.5</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html"><i class="fa fa-check"></i><b>8</b> Visualização de dados com o ggplot2</a>
-<ul>
+<li class="chapter" data-level="8" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html"><i class="fa fa-check"></i><b>8</b> Visualização de dados com o ggplot2</a><ul>
 <li class="chapter" data-level="8.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#criando-um-gráfico"><i class="fa fa-check"></i><b>8.1</b> Criando um gráfico</a></li>
 <li class="chapter" data-level="8.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#definindo-temas"><i class="fa fa-check"></i><b>8.2</b> Definindo temas</a></li>
 <li class="chapter" data-level="8.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#controlando-elementos-do-tema"><i class="fa fa-check"></i><b>8.3</b> Controlando elementos do tema</a></li>
 <li class="chapter" data-level="8.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#mapeamento-estéticos"><i class="fa fa-check"></i><b>8.4</b> Mapeamento estéticos</a></li>
 <li class="chapter" data-level="8.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#facetas"><i class="fa fa-check"></i><b>8.5</b> Facetas</a></li>
-<li class="chapter" data-level="8.6" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#objetos-geométricos"><i class="fa fa-check"></i><b>8.6</b> Objetos geométricos</a>
-<ul>
+<li class="chapter" data-level="8.6" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#objetos-geométricos"><i class="fa fa-check"></i><b>8.6</b> Objetos geométricos</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-colunas"><i class="fa fa-check"></i><b>8.6.1</b> Gráfico de Colunas</a></li>
 <li class="chapter" data-level="8.6.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>8.6.2</b> Gráfico de Barras</a></li>
 <li class="chapter" data-level="8.6.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#smoothers"><i class="fa fa-check"></i><b>8.6.3</b> Smoothers</a></li>
@@ -209,36 +200,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#histograma"><i class="fa fa-check"></i><b>8.6.5</b> Histograma</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html"><i class="fa fa-check"></i><b>9</b> Manipulação de dados com o dplyr</a>
-<ul>
+<li class="chapter" data-level="9" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html"><i class="fa fa-check"></i><b>9</b> Manipulação de dados com o dplyr</a><ul>
 <li class="chapter" data-level="9.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#principais-funções-verbos-do-dplyr."><i class="fa fa-check"></i><b>9.1</b> Principais funções (verbos) do <code>dplyr</code>.</a></li>
 <li class="chapter" data-level="9.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#regras-para-manipulação"><i class="fa fa-check"></i><b>9.2</b> Regras para manipulação:</a></li>
-<li class="chapter" data-level="9.3" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#filter"><i class="fa fa-check"></i><b>9.3</b> filter()</a>
-<ul>
+<li class="chapter" data-level="9.3" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#filter"><i class="fa fa-check"></i><b>9.3</b> filter()</a><ul>
 <li class="chapter" data-level="9.3.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#valores-faltantes"><i class="fa fa-check"></i><b>9.3.1</b> Valores Faltantes</a></li>
 <li class="chapter" data-level="9.3.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#strings-e-regex"><i class="fa fa-check"></i><b>9.3.2</b> Strings e Regex</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#arrange"><i class="fa fa-check"></i><b>9.4</b> arrange()</a></li>
 <li class="chapter" data-level="9.5" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#select"><i class="fa fa-check"></i><b>9.5</b> select()</a></li>
 <li class="chapter" data-level="9.6" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#mutate"><i class="fa fa-check"></i><b>9.6</b> mutate()</a></li>
-<li class="chapter" data-level="9.7" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#resumos-agrupados-com-summarize"><i class="fa fa-check"></i><b>9.7</b> Resumos Agrupados com summarize()</a>
-<ul>
+<li class="chapter" data-level="9.7" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#resumos-agrupados-com-summarize"><i class="fa fa-check"></i><b>9.7</b> Resumos Agrupados com summarize()</a><ul>
 <li class="chapter" data-level="9.7.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#valores-faltantes-1"><i class="fa fa-check"></i><b>9.7.1</b> Valores faltantes</a></li>
 <li class="chapter" data-level="9.7.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#counts"><i class="fa fa-check"></i><b>9.7.2</b> Counts</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html"><i class="fa fa-check"></i><b>10</b> Análise Exploratória de Dados (AED)</a>
-<ul>
+<li class="chapter" data-level="10" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html"><i class="fa fa-check"></i><b>10</b> Análise Exploratória de Dados (AED)</a><ul>
 <li class="chapter" data-level="10.1" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#algumas-funções-de-resumo"><i class="fa fa-check"></i><b>10.1</b> Algumas funções de resumo</a></li>
 <li class="chapter" data-level="10.2" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#descrição-gráfica"><i class="fa fa-check"></i><b>10.2</b> Descrição gráfica</a></li>
 <li class="chapter" data-level="10.3" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#aplicação-de-modelos"><i class="fa fa-check"></i><b>10.3</b> Aplicação de modelos</a></li>
-<li class="chapter" data-level="10.4" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>10.4</b> Exercícios</a></li>
+<li class="chapter" data-level="10.4" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#exercícios-2"><i class="fa fa-check"></i><b>10.4</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>11</b> Distribuição De Probabilidade</a>
-<ul>
+<li class="chapter" data-level="11" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>11</b> Distribuição De Probabilidade</a><ul>
 <li class="chapter" data-level="11.1" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#distribuição-normal"><i class="fa fa-check"></i><b>11.1</b> Distribuição Normal</a></li>
 <li class="chapter" data-level="11.2" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#distribuição-normal-padronizada"><i class="fa fa-check"></i><b>11.2</b> Distribuição Normal Padronizada</a></li>
-<li class="chapter" data-level="11.3" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>11.3</b> Exercícios</a></li>
+<li class="chapter" data-level="11.3" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#exercícios-3"><i class="fa fa-check"></i><b>11.3</b> Exercícios</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
 <li class="divider"></li>
@@ -261,12 +247,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="manipulação-de-dados-com-o-dplyr" class="section level1" number="9">
+<div id="manipulação-de-dados-com-o-dplyr" class="section level1">
 <h1><span class="header-section-number">9</span> Manipulação de dados com o dplyr</h1>
 <p>A visualização de dados é uma ferramenta importante para a geração de <em>insights</em>, mas é raro que tenhamos os dados exatamente na forma necessário para essa tarefa. Muitas vezes precisamos realizar recortes no banco de dados, selecionar certas observações, criar novas variáveis, transformá-la, renomeá-las, reordenar observações entre outras manipulações.</p>
 <p>Para a manipulação dos nossos dados, vamos utilizar o pacote <code>dplyr</code> que, unido ao pacote <code>ggplot2</code>, é um poderoso recurso para exploração, transformação e visualização de dados.</p>
 <p>Ambos os pacotes fazem parte do <code>tidyverse</code>, que, como já dito, é um pacote de pacotes.</p>
-<div id="principais-funções-verbos-do-dplyr." class="section level2" number="9.1">
+<div id="principais-funções-verbos-do-dplyr." class="section level2">
 <h2><span class="header-section-number">9.1</span> Principais funções (verbos) do <code>dplyr</code>.</h2>
 <ul>
 <li><code>filter()</code>: seleciona/filtra por linhas (observações) a base de dados.<br />
@@ -280,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>summarise()</code>: resume/agrega, variáveis (colunas) de uma base de dados.</li>
 </ul>
 </div>
-<div id="regras-para-manipulação" class="section level2" number="9.2">
+<div id="regras-para-manipulação" class="section level2">
 <h2><span class="header-section-number">9.2</span> Regras para manipulação:</h2>
 <p>1- O primeiro argumento sempre será um <code>data frame</code>.<br />
 2- Demais argumentos, descrevem como deve ser a manipulação.<br />
@@ -288,10 +274,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 4- Manipulação é realizada com o operador “PIPE” (<code>%&gt;%</code>) - <code>CTRL + SHIFT + M</code>.</p>
 <p><strong>Importação dos dados</strong></p>
 <p>Vamos realizar a importação, via web, do banco de dados <a href="https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt">geomorfologia.txt</a>.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb286-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-2" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt&quot;</span></span>
-<span id="cb286-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-3" aria-hidden="true" tabindex="-1"></a>geomorfologia<span class="ot">&lt;-</span><span class="fu">read.table</span>(URL,<span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb286-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(geomorfologia)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb286-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-2"></a>URL &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/arpanosso/r_data_science_fcav/master/dados/geomorfologia.txt&quot;</span></span>
+<span id="cb286-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-3"></a>geomorfologia&lt;-<span class="kw">read.table</span>(URL,<span class="dt">header =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb286-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb286-4"></a><span class="kw">glimpse</span>(geomorfologia)</span></code></pre></div>
 <pre><code>## Rows: 106
 ## Columns: 22
 ## $ SUP     &lt;chr&gt; &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;, &quot;I&quot;,...
@@ -318,16 +304,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ V       &lt;dbl&gt; 27, 10, 43, 15, 30, 14, 43, 66, 31, 60, 32, 50, 22, 35, 36,...</code></pre>
 <p>As práticas abaixo serão realizadas sem o armazenamento dos resultados em novos objetos, assim ao final de cada operação será utilizado a função <code>View()</code> para gerar a visualização do data frame resultante (<code>.</code>) em uma nova aba do RStudio.</p>
 </div>
-<div id="filter" class="section level2" number="9.3">
+<div id="filter" class="section level2">
 <h2><span class="header-section-number">9.3</span> filter()</h2>
 <p>O <code>filter()</code> permite que você crie um subconjuto de observações com base em seus valores. Por exemplo, vamos selecionar somente as observações <strong>linhas</strong> para superfície geomórfica <code>II</code>. Para isso, dentro da função <code>filter()</code> faremos uma operação relacional, perguntando quais valores de <code>SUP</code> são iguais a <code>II</code>.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb288-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb288-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SUP <span class="sc">==</span> <span class="st">&quot;II&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb288-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb288-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb288-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb288-2"></a><span class="st">  </span><span class="kw">filter</span>(SUP <span class="op">==</span><span class="st"> &quot;II&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb288-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb288-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Quando executamos essa linha de código o <code>dplyr</code> realiza a operação de filtragem e retorna um novo data frame. As entradas não são modificadas, então, para salvar o resultado em um novo objeto, será necessário a operação de atribuição (<code>&lt;-</code>) a um novo objeto, por exemplo <code>dado_auxiliar</code>:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb289-1" aria-hidden="true" tabindex="-1"></a>dado_auxiliar <span class="ot">&lt;-</span> geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb289-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb289-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(SUP <span class="sc">==</span> <span class="st">&quot;II&quot;</span>)</span>
-<span id="cb289-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dado_auxiliar)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb289-1"></a>dado_auxiliar &lt;-<span class="st"> </span>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb289-2"></a><span class="st">                    </span><span class="kw">filter</span>(SUP <span class="op">==</span><span class="st"> &quot;II&quot;</span>)</span>
+<span id="cb289-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb289-3"></a><span class="kw">glimpse</span>(dado_auxiliar)</span></code></pre></div>
 <pre><code>## Rows: 62
 ## Columns: 22
 ## $ SUP     &lt;chr&gt; &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;, &quot;II&quot;,...
@@ -353,69 +339,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ T       &lt;dbl&gt; 6.05, 5.61, 6.34, 6.71, 6.72, 6.71, 6.11, 4.96, 5.54, 5.78,...
 ## $ V       &lt;dbl&gt; 14, 7, 9, 5, 5, 5, 5, 15, 6, 10, 12, 8, 12, 22, 54, 38, 46,...</code></pre>
 <p>Agora vamos selecionar as observações com teor de argila maior do que <span class="math inline">\(10\%\)</span>, provenientes da superfície <code>III</code>. Para realizarmos essa operação, serão necessárias duas operações relacionais, uma com a coluna <code>ARGILA</code> e outra com a coluna <code>SUP</code>, tais operações serão realizadas dentro de <code>filter()</code> separadas por uma vírgula.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb291-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb291-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb291-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(ARGILA <span class="sc">&gt;</span> <span class="dv">10</span>, SUP <span class="sc">==</span> <span class="st">&quot;III&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb291-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb291-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb291-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb291-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb291-2"></a><span class="st">   </span><span class="kw">filter</span>(ARGILA <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>, SUP <span class="op">==</span><span class="st"> &quot;III&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb291-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb291-3"></a><span class="st">   </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Selecione todas as observações que não sejam Regossolo, ou seja, todas os registros cujo tipo de solo seja diferente de <code>R</code>.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb292-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb292-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb292-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Solo <span class="sc">!=</span> <span class="st">&quot;R&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb292-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb292-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb292-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb292-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb292-2"></a><span class="st">  </span><span class="kw">filter</span>(Solo <span class="op">!=</span><span class="st"> &quot;R&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb292-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb292-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>ou</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb293-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb293-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(Solo <span class="sc">==</span> <span class="st">&quot;R&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb293-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb293-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb293-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb293-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb293-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(Solo <span class="op">==</span><span class="st"> &quot;R&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb293-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb293-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Anteriormente utilizamos a geometria <code>geom_bar()</code> para contar o número de pontos amostrais em uma categoria. Para observarmos a tabela com a contagem poderíamos utilizar as função <code>group_by()</code> para agruparmos as categorias da variável <code>SUP</code> e, posteriormente, a função <code>count()</code> para realizar o processo de contagem das observações em cada grupo, gerando uma tabela com as colunas <code>SUP</code> para as categorias de superfície e <code>n</code> para a contagem.</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb294-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SUP) <span class="sc">%&gt;%</span> </span>
-<span id="cb294-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb294-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-2"></a><span class="st">  </span><span class="kw">group_by</span>(SUP) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb294-4"></a><span class="st">  </span><span class="kw">View</span>() </span></code></pre></div>
 <p>Pronto, agora podemos associar o <code>ggplot()</code> a essa filtragem:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb295-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SUP) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb295-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>SUP, <span class="at">y=</span>n)) <span class="sc">+</span></span>
-<span id="cb295-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb295-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-2"></a><span class="st">  </span><span class="kw">group_by</span>(SUP) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb295-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-3"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb295-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>SUP, <span class="dt">y=</span>n)) <span class="op">+</span></span>
+<span id="cb295-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb295-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>,<span class="dt">fill=</span><span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
 <p>Agora vamos selecionar somente os registros referentes aos Latossolos, ou seja, todos aqueles que tenham nomes iguais a <code>LV</code> ou <code>LVp</code>.</p>
 <p>Para essa manipulação, podemos utilizar o operador lógico de disjunção <strong>OU</strong> <code>|</code>.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb296-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb296-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb296-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Solo <span class="sc">==</span> <span class="st">&quot;LV&quot;</span> <span class="sc">|</span> Solo <span class="sc">==</span> <span class="st">&quot;LVp&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb296-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb296-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb296-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb296-2"></a><span class="st">  </span><span class="kw">filter</span>(Solo <span class="op">==</span><span class="st"> &quot;LV&quot;</span> <span class="op">|</span><span class="st"> </span>Solo <span class="op">==</span><span class="st"> &quot;LVp&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb296-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Um atalho útil para a solução desse problema é o operador <code>x %in% y</code>. Isso selecionará toda linha em que <code>x</code> seja um dos valores em <code>y</code>, então, vamos reescrever o código acima de uma manira mais elegante.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb297-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb297-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb297-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Solo <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;LV&quot;</span>,<span class="st">&quot;LVp&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb297-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb297-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
-<div id="valores-faltantes" class="section level3" number="9.3.1">
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb297-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb297-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb297-2"></a><span class="st">  </span><span class="kw">filter</span>(Solo <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;LV&quot;</span>,<span class="st">&quot;LVp&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb297-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb297-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
+<div id="valores-faltantes" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> Valores Faltantes</h3>
 <p>Um recurso importante do R que pode complicar as comparações e, consequentemente as operações de filtragem, são os valores faltantes ou <code>NA</code>s (<em>not availables</em>). <code>NA</code> representa um valor desconhecido, então valores faltantes se propagam nas operações, são <em>contagiosos</em>, ou seja, quase toda operação envolvendo um valor desconhecido terá como resultado um valor desconhecido.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb298-1"></a><span class="ot">NA</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">==</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb300-1"></a><span class="dv">10</span> <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb302-1"></a><span class="ot">NA</span> <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb304-1"></a><span class="ot">NA</span> <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">==</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb306-1"></a><span class="ot">NA</span> <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
 <p>Seja <code>x</code> a idade de Maria. Não sabemos a idade de Maria:</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb308-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb308-1"></a>x &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <p>Seja <code>y</code> a idade de João. Não sabemos a idade de João:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb309-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb309-1"></a>y &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <p>Maria e João têm a mesma idade?</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb310-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> y</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb310-1"></a>x <span class="op">==</span><span class="st"> </span>y</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Não sabemos.</span></span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb312-1"></a><span class="co"># Não sabemos.</span></span></code></pre></div>
 <p>Se quisermos determinar se há um valor faltante, usamos a função <code>is.na()</code>.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb313-1"></a><span class="kw">is.na</span>(x)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb315-1"></a><span class="kw">is.na</span>(y)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>A função <code>filter()</code> somente inclui linhas onde a condição é <code>TRUE</code>, ou seja, ela exclui valores <code>FALSE</code> e <code>NA</code> automaticamente. Vamos criar um exemplo rápido referente a nota de 7 alunos na primeira prova da disciplina de estatística da FCAV do curso de Agronomia.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">nome =</span> <span class="fu">c</span>(<span class="st">&quot;Ana&quot;</span>,<span class="st">&quot;Beatriz&quot;</span>,<span class="st">&quot;Douglas&quot;</span>,<span class="st">&quot;Luis&quot;</span>,<span class="st">&quot;Marcela&quot;</span>,<span class="st">&quot;Paulo&quot;</span>,<span class="st">&quot;Renata&quot;</span>), </span>
-<span id="cb317-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">P1 =</span> <span class="fu">c</span>(<span class="dv">8</span>,<span class="cn">NA</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="cn">NA</span>,<span class="dv">6</span>,<span class="dv">3</span>), </span>
-<span id="cb317-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">P2=</span><span class="fu">c</span>(<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="cn">NA</span>,<span class="cn">NA</span>,<span class="dv">4</span>),</span>
-<span id="cb317-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">Psub=</span><span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="cn">NA</span>,<span class="dv">5</span>,<span class="dv">6</span>))</span>
-<span id="cb317-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-5" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">nome =</span> <span class="kw">c</span>(<span class="st">&quot;Ana&quot;</span>,<span class="st">&quot;Beatriz&quot;</span>,<span class="st">&quot;Douglas&quot;</span>,<span class="st">&quot;Luis&quot;</span>,<span class="st">&quot;Marcela&quot;</span>,<span class="st">&quot;Paulo&quot;</span>,<span class="st">&quot;Renata&quot;</span>), </span>
+<span id="cb317-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-2"></a>             <span class="dt">P1 =</span> <span class="kw">c</span>(<span class="dv">8</span>,<span class="ot">NA</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="dv">6</span>,<span class="dv">3</span>), </span>
+<span id="cb317-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-3"></a>             <span class="dt">P2=</span><span class="kw">c</span>(<span class="dv">9</span>,<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">4</span>),</span>
+<span id="cb317-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-4"></a>             <span class="dt">Psub=</span><span class="kw">c</span>(<span class="ot">NA</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="ot">NA</span>,<span class="dv">5</span>,<span class="dv">6</span>))</span>
+<span id="cb317-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb317-5"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -427,8 +413,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 Paulo       6    NA     5
 ## 7 Renata      3     4     6</code></pre>
 <p>Se quisermos realizar a filtragem para todos os valores de <code>P1</code> maiores que 4:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb319-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb319-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb319-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(P1 <span class="sc">&gt;</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb319-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb319-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb319-2"></a><span class="st">  </span><span class="kw">filter</span>(P1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -436,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Douglas     6     4     7
 ## 3 Paulo       6    NA     5</code></pre>
 <p>Se quisermos preservar o <code>NA</code>, devemos pedir explicitamente, caso contrário eles serão excluídos da filtragem.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb321-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb321-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(P1 <span class="sc">&gt;</span> <span class="dv">4</span> <span class="sc">|</span> <span class="fu">is.na</span>(P1))</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb321-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb321-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb321-2"></a><span class="st">  </span><span class="kw">filter</span>(P1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span> <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(P1))</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -447,8 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Marcela    NA    NA    NA
 ## 5 Paulo       6    NA     5</code></pre>
 <p>Vamos selecionar os alunos que fizeram, pelo menos, uma prova.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb323-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb323-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(P1) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.na</span>(P2) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.na</span>(Psub))</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb323-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb323-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb323-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(P1) <span class="op">|</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(P2) <span class="op">|</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(Psub))</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -459,8 +445,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 Paulo       6    NA     5
 ## 6 Renata      3     4     6</code></pre>
 <p>Agora vamos selecionar os alunos que fizeram as 3 provas.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb325-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb325-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb325-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(P1), <span class="sc">!</span><span class="fu">is.na</span>(P2), <span class="sc">!</span><span class="fu">is.na</span>(Psub))</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb325-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb325-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb325-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(P1), <span class="op">!</span><span class="kw">is.na</span>(P2), <span class="op">!</span><span class="kw">is.na</span>(Psub))</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -468,20 +454,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 Luis        3     2     9
 ## 3 Renata      3     4     6</code></pre>
 </div>
-<div id="strings-e-regex" class="section level3" number="9.3.2">
+<div id="strings-e-regex" class="section level3">
 <h3><span class="header-section-number">9.3.2</span> Strings e Regex</h3>
 <p>A função <code>str_detect()</code> pertence ao pacote <code>stringr</code> e tem a finalidade de detectar a presença ou a ausência de um padrão de caracteres dentro de uma <code>string</code> (cadeia de caracteres).</p>
 <p>O pacote <code>stringr</code> faz parte do pacote <code>tidyverse</code>, cuja sintaxe é o <em>Regex</em> (do inglês <em>Regular Expressions</em>), ou seja, são expressões regulares para descrever os padrões dentro da string.</p>
 <p>Uma breve explicação se faz necessária para aplicações posteriores.</p>
 <p>Vamos criar duas strings:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb327-1" aria-hidden="true" tabindex="-1"></a>string1 <span class="ot">&lt;-</span> <span class="st">&quot;Isso é uma string&quot;</span></span>
-<span id="cb327-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb327-2" aria-hidden="true" tabindex="-1"></a>string2 <span class="ot">&lt;-</span> <span class="st">&#39;Se você quiser adicionar &quot;aspas duplas&quot; dentro da string, utilize aspas simples&#39;</span></span>
-<span id="cb327-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb327-3" aria-hidden="true" tabindex="-1"></a>string1</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb327-1"></a>string1 &lt;-<span class="st"> &quot;Isso é uma string&quot;</span></span>
+<span id="cb327-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb327-2"></a>string2 &lt;-<span class="st"> &#39;Se você quiser adicionar &quot;aspas duplas&quot; dentro da string, utilize aspas simples&#39;</span></span>
+<span id="cb327-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb327-3"></a>string1</span></code></pre></div>
 <pre><code>## [1] &quot;Isso é uma string&quot;</code></pre>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb329-1" aria-hidden="true" tabindex="-1"></a>string2</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb329-1"></a>string2</span></code></pre></div>
 <pre><code>## [1] &quot;Se você quiser adicionar \&quot;aspas duplas\&quot; dentro da string, utilize aspas simples&quot;</code></pre>
 <p>A representação impressa de uma string mostra as barras transversas <code>\</code>, já o conteúdo bruto da string pode ser apresentado por <code>writeLines()</code>.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(string2)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb331-1"></a><span class="kw">writeLines</span>(string2)</span></code></pre></div>
 <pre><code>## Se você quiser adicionar &quot;aspas duplas&quot; dentro da string, utilize aspas simples</code></pre>
 <p>Observe mais esse exemplo.
 * <code>\"</code> aspas duplas<br />
@@ -489,143 +475,143 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 * <code>\n</code> nova linha<br />
 * <code>\t</code> tabulação<br />
 * <code>\u00b5</code> caracteres que não pertencem ao inglês.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb333-1" aria-hidden="true" tabindex="-1"></a>string3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;</span><span class="sc">\&quot;</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>, <span class="st">&quot;A</span><span class="sc">\t</span><span class="st">B&quot;</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="st">&quot;\u00b5&quot;</span>) </span>
-<span id="cb333-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb333-2" aria-hidden="true" tabindex="-1"></a>string3</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb333-1"></a>string3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;</span><span class="ch">\&quot;</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">&quot;</span>, <span class="st">&quot;A</span><span class="ch">\t</span><span class="st">B&quot;</span>, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="st">&quot;\u00b5&quot;</span>) </span>
+<span id="cb333-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb333-2"></a>string3</span></code></pre></div>
 <pre><code>## [1] &quot;\&quot;&quot;  &quot;\n&quot;  &quot;\\&quot;  &quot;A\tB&quot; &quot;\n&quot;  &quot;µ&quot;</code></pre>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(string3)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb335-1"></a><span class="kw">writeLines</span>(string3)</span></code></pre></div>
 <pre><code>## &quot;
 ## 
 ## 
 ## \
-## A	B
+## A    B
 ## 
 ## 
 ## µ</code></pre>
 <p>O pacote básico do R contém muitas funções para trabalhar com strings, mas vamos evitá-las porque podem ser inconsistentes, o que as torna difíceis de lembrar. Já o pacote <code>stringr</code> é de mais simples utilização, pois têm nomes intuitivos, todos começam com <code>str_</code>. Por exemplo, <code>str_length()</code> informa o número de caracteres em uma string:</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb337-1" aria-hidden="true" tabindex="-1"></a>meu_texto <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;R para data science&#39;</span>, <span class="cn">NA</span>, <span class="st">&#39;UNESP-FCAV&#39;</span>)</span>
-<span id="cb337-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(meu_texto)</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb337-1"></a>meu_texto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;R para data science&#39;</span>, <span class="ot">NA</span>, <span class="st">&#39;UNESP-FCAV&#39;</span>)</span>
+<span id="cb337-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb337-2"></a><span class="kw">str_length</span>(meu_texto)</span></code></pre></div>
 <pre><code>## [1]  1 19 NA 10</code></pre>
 <p>A combinação de strings pode ser feita com o <code>str_c()</code>, utilizando o argumento <code>sep</code> para controlar o separador entre as strings.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;objeto&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb339-1"></a><span class="kw">str_c</span>(<span class="st">&quot;objeto&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;objeto_1&quot; &quot;objeto_2&quot; &quot;objeto_3&quot; &quot;objeto_4&quot; &quot;objeto_5&quot;</code></pre>
 <p><strong>OBS</strong> Poderíamos ter o mesmo efeito com a função <code>paste()</code> do pacote <code>base</code>.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;objeto&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb341-1"></a><span class="kw">paste</span>(<span class="st">&quot;objeto&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;objeto_1&quot; &quot;objeto_2&quot; &quot;objeto_3&quot; &quot;objeto_4&quot; &quot;objeto_5&quot;</code></pre>
 <p>Contudo, observe a forma com a qual as funções operam valores faltantes <code>NA</code>.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;objeto&quot;</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="cn">NA</span>,<span class="dv">3</span>), <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb343-1"></a><span class="kw">paste</span>(<span class="st">&quot;objeto&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">3</span>), <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;objeto_1&quot;  &quot;objeto_NA&quot; &quot;objeto_3&quot;</code></pre>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;objeto&quot;</span>, <span class="fu">c</span>(<span class="dv">1</span>,<span class="cn">NA</span>,<span class="dv">3</span>), <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb345-1"></a><span class="kw">str_c</span>(<span class="st">&quot;objeto&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">3</span>), <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;objeto_1&quot; NA         &quot;objeto_3&quot;</code></pre>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;objeto&quot;</span>, <span class="fu">str_replace_na</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="cn">NA</span>,<span class="dv">3</span>)), <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb347-1"></a><span class="kw">str_c</span>(<span class="st">&quot;objeto&quot;</span>, <span class="kw">str_replace_na</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="ot">NA</span>,<span class="dv">3</span>)), <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;objeto_1&quot;  &quot;objeto_NA&quot; &quot;objeto_3&quot;</code></pre>
 <p>Como a maioria das outras funções em R, os valores ausentes se propagam nas operações. Se você quiser que eles sejam impressos como <strong>NA</strong>, use <code>str_replace_na()</code>:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;---&quot;</span>, meu_texto, <span class="st">&quot;---&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb349-1"></a><span class="kw">str_c</span>(<span class="st">&quot;---&quot;</span>, meu_texto, <span class="st">&quot;---&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;---a---&quot;                   &quot;---R para data science---&quot;
 ## [3] NA                          &quot;---UNESP-FCAV---&quot;</code></pre>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;---&quot;</span>, <span class="fu">str_replace_na</span>(meu_texto), <span class="st">&quot;---&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb351-1"></a><span class="kw">str_c</span>(<span class="st">&quot;---&quot;</span>, <span class="kw">str_replace_na</span>(meu_texto), <span class="st">&quot;---&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;---a---&quot;                   &quot;---R para data science---&quot;
 ## [3] &quot;---NA---&quot;                  &quot;---UNESP-FCAV---&quot;</code></pre>
 <p>Para colapsar um vetor de strings em uma única string, use o argumento <code>colappse</code> na função <code>str_c()</code>:</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb353-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;mais&quot;</span>,<span class="st">&quot;bonita&quot;</span>)</span>
-<span id="cb353-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb353-2" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb353-1"></a>y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>,<span class="st">&quot;mais&quot;</span>,<span class="st">&quot;bonita&quot;</span>)</span>
+<span id="cb353-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb353-2"></a>y</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot;      &quot;mais&quot;   &quot;bonita&quot;</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(y, <span class="at">collapse =</span> <span class="st">&quot; &quot;</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb355-1"></a><span class="kw">str_c</span>(y, <span class="dt">collapse =</span> <span class="st">&quot; &quot;</span> )</span></code></pre></div>
 <pre><code>## [1] &quot;A mais bonita&quot;</code></pre>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(meu_texto, <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># propagação do NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb357-1"></a><span class="kw">str_c</span>(meu_texto, <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>) <span class="co"># propagação do NA</span></span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="fu">str_replace_na</span>(meu_texto), <span class="at">collapse =</span> <span class="st">&quot;, &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb359-1"></a><span class="kw">str_c</span>(<span class="kw">str_replace_na</span>(meu_texto), <span class="dt">collapse =</span> <span class="st">&quot;, &quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;a, R para data science, NA, UNESP-FCAV&quot;</code></pre>
 <p>Podemos extrair partes de uma string usando <code>str_sub()</code>, que leva os argumentos inicial e final que fornecem a posição (inclusiva) da substring. No exemplo abaixo, vamos extrair do primeiro ao quarto caracter de cada string do objeto <code>x</code>.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb361-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span> (<span class="st">&quot;testemunha&quot;</span>,<span class="st">&quot;escarificador&quot;</span>,<span class="st">&quot;arado de disco&quot;</span>,<span class="st">&quot;grade aradora&quot;</span>,<span class="st">&quot;subsolador&quot;</span>)</span>
-<span id="cb361-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb361-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;testemunha&quot;</span>,<span class="st">&quot;escarificador&quot;</span>,<span class="st">&quot;arado de disco&quot;</span>,<span class="st">&quot;grade aradora&quot;</span>,<span class="st">&quot;subsolador&quot;</span>)</span>
+<span id="cb361-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb361-2"></a><span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;test&quot; &quot;esca&quot; &quot;arad&quot; &quot;grad&quot; &quot;subs&quot;</code></pre>
 <p>Números negativos contam de trás para frente para a realizar a extração.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x,<span class="sc">-</span><span class="dv">4</span>,<span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb363-1"></a><span class="kw">str_sub</span>(x,<span class="op">-</span><span class="dv">4</span>,<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;unha&quot; &quot;ador&quot; &quot;isco&quot; &quot;dora&quot; &quot;ador&quot;</code></pre>
 <p>Podemos utilizar essa função para alterar uma string, por exemplo, passar as primeira letras para maiúsculas</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="dv">1</span>) <span class="ot">&lt;-</span> <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb365-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb365-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb365-1"></a><span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="dv">1</span>) &lt;-<span class="st"> </span><span class="kw">str_to_upper</span>(<span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb365-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb365-2"></a>x</span></code></pre></div>
 <pre><code>## [1] &quot;Testemunha&quot;     &quot;Escarificador&quot;  &quot;Arado de disco&quot; &quot;Grade aradora&quot; 
 ## [5] &quot;Subsolador&quot;</code></pre>
 <p>Ou podemos passar todas para maiúsculas.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="fu">str_length</span>(x)) <span class="ot">&lt;-</span> <span class="fu">str_to_upper</span>(<span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="fu">str_length</span>(x)))</span>
-<span id="cb367-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb367-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb367-1"></a><span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="kw">str_length</span>(x)) &lt;-<span class="st"> </span><span class="kw">str_to_upper</span>(<span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="kw">str_length</span>(x)))</span>
+<span id="cb367-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb367-2"></a>x</span></code></pre></div>
 <pre><code>## [1] &quot;TESTEMUNHA&quot;     &quot;ESCARIFICADOR&quot;  &quot;ARADO DE DISCO&quot; &quot;GRADE ARADORA&quot; 
 ## [5] &quot;SUBSOLADOR&quot;</code></pre>
 <p>Ou podemos passar todas para minúsculas, novamente…</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="fu">str_length</span>(x)) <span class="ot">&lt;-</span> <span class="fu">str_to_lower</span>(<span class="fu">str_sub</span>(x,<span class="dv">1</span>,<span class="fu">str_length</span>(x)))</span>
-<span id="cb369-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb369-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb369-1"></a><span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="kw">str_length</span>(x)) &lt;-<span class="st"> </span><span class="kw">str_to_lower</span>(<span class="kw">str_sub</span>(x,<span class="dv">1</span>,<span class="kw">str_length</span>(x)))</span>
+<span id="cb369-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb369-2"></a>x</span></code></pre></div>
 <pre><code>## [1] &quot;testemunha&quot;     &quot;escarificador&quot;  &quot;arado de disco&quot; &quot;grade aradora&quot; 
 ## [5] &quot;subsolador&quot;</code></pre>
 <p>Podemos buscar combinações simples, para facilitar a verificação, vamos utilizar <code>str_view()</code>.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;ad&quot;</span>)</span></code></pre></div>
-<p><div id="htmlwidget-dab31cecb3a3ace54158" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-dab31cecb3a3ace54158">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarific<span class='match'>ad<\/span>or<\/li>\n  <li>ar<span class='match'>ad<\/span>o de disco<\/li>\n  <li>gr<span class='match'>ad<\/span>e aradora<\/li>\n  <li>subsol<span class='match'>ad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb371-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;ad&quot;</span>)</span></code></pre></div>
+<p><div id="htmlwidget-9a30943d47fde9b1604a" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9a30943d47fde9b1604a">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarific<span class='match'>ad<\/span>or<\/li>\n  <li>ar<span class='match'>ad<\/span>o de disco<\/li>\n  <li>gr<span class='match'>ad<\/span>e aradora<\/li>\n  <li>subsol<span class='match'>ad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 Podemos utilizar o ponto <code>.</code> para encontrar a combinação com qualquer caractere (exceto no início ou no final da string).</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-a60ffd76c2b9c48db106" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a60ffd76c2b9c48db106">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>es<span class='match'>car<\/span>ificador<\/li>\n  <li>a<span class='match'>rad<\/span>o de disco<\/li>\n  <li>g<span class='match'>rad<\/span>e aradora<\/li>\n  <li>subso<span class='match'>lad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb372-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-186507d0c5b03b98740b" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-186507d0c5b03b98740b">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>es<span class='match'>car<\/span>ificador<\/li>\n  <li>a<span class='match'>rad<\/span>o de disco<\/li>\n  <li>g<span class='match'>rad<\/span>e aradora<\/li>\n  <li>subso<span class='match'>lad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Se estivermos procurando o caractere ponto <code>.</code>, vamos utilizar <code>\\.</code>.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb373-1" aria-hidden="true" tabindex="-1"></a>meu_texto_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a*b&quot;</span>, <span class="st">&quot;a b&quot;</span> ,<span class="st">&quot;a.c&quot;</span>)</span>
-<span id="cb373-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(meu_texto_2, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-7727f82ed0fbf116feb3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7727f82ed0fbf116feb3">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a*b<\/li>\n  <li>a b<\/li>\n  <li>a<span class='match'>.<\/span>c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb373-1"></a>meu_texto_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a*b&quot;</span>, <span class="st">&quot;a b&quot;</span> ,<span class="st">&quot;a.c&quot;</span>)</span>
+<span id="cb373-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb373-2"></a><span class="kw">str_view</span>(meu_texto_<span class="dv">2</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-ade607c4374a3ed3ea45" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ade607c4374a3ed3ea45">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a*b<\/li>\n  <li>a b<\/li>\n  <li>a<span class='match'>.<\/span>c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Por <em>default</em>, as expressões regulares corresponderão a qualquer parte de uma string. Muitas vezes, é útil ancorar a expressão regular de forma que corresponda desde o início ou ao final da string. Assim, podemos utilizar as <em>âncoras</em>:</p>
 <p>*<code>^</code> para combinar com o início da string.</p>
 <p>*<code>$</code> para combinar com o final da string.</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-f44f3486a22d43bf93fd" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f44f3486a22d43bf93fd">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificador<\/li>\n  <li><span class='match'>a<\/span>rado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolador<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;r$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-9e145f38f82ed2fe26ed" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9e145f38f82ed2fe26ed">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificado<span class='match'>r<\/span><\/li>\n  <li>arado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolado<span class='match'>r<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb374-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-b9d71f43f84e226ea233" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b9d71f43f84e226ea233">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificador<\/li>\n  <li><span class='match'>a<\/span>rado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolador<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb375-1"></a><span class="kw">str_view</span>(x, <span class="st">&quot;r$&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-dac6b80de08df90cf183" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dac6b80de08df90cf183">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificado<span class='match'>r<\/span><\/li>\n  <li>arado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolado<span class='match'>r<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Para forçar uma expressão regular a corresponder apenas a uma string completa, ancore-a com <code>^</code> e <code>$</code>:</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb376-1" aria-hidden="true" tabindex="-1"></a>z<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Arado&quot;</span>,<span class="st">&quot;Arado de disco&quot;</span>,<span class="st">&quot;Arado de aiveca&quot;</span>, <span class="st">&quot;Grade aradora&quot;</span>)</span>
-<span id="cb376-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(z,<span class="st">&quot;Arado&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-af91c76c45a3c817f8c3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-af91c76c45a3c817f8c3">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li><span class='match'>Arado<\/span> de disco<\/li>\n  <li><span class='match'>Arado<\/span> de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(z,<span class="st">&quot;^Arado$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-709c37c41b6c196d0251" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-709c37c41b6c196d0251">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li>Arado de disco<\/li>\n  <li>Arado de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb376-1"></a>z&lt;-<span class="kw">c</span>(<span class="st">&quot;Arado&quot;</span>,<span class="st">&quot;Arado de disco&quot;</span>,<span class="st">&quot;Arado de aiveca&quot;</span>, <span class="st">&quot;Grade aradora&quot;</span>)</span>
+<span id="cb376-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb376-2"></a><span class="kw">str_view</span>(z,<span class="st">&quot;Arado&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-e8ffd6bf89f55c0365db" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e8ffd6bf89f55c0365db">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li><span class='match'>Arado<\/span> de disco<\/li>\n  <li><span class='match'>Arado<\/span> de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb377-1"></a><span class="kw">str_view</span>(z,<span class="st">&quot;^Arado$&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-53c1efbea6a9ee4bfcd2" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-53c1efbea6a9ee4bfcd2">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li>Arado de disco<\/li>\n  <li>Arado de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Voltando à manipulação dos dados de <code>geomorfologia</code>, agora podemos filtrar todos os Argissolos utilizando o <em>regex</em>, ou seja, podemos selecionar todos aqueles solos que començam com a letra <strong>P</strong>.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb378-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;^P&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb378-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
-<p>Selecione os registros cujo solo é “PV4.”</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb379-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;PV4&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb379-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb380-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;4$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb380-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb378-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;^P&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb378-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
+<p>Selecione os registros cujo solo é “PV4”.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb379-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;PV4&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb379-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb380-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;4$&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb380-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Podemos criar nossas próprias classes de personagens de busca usando <code>[ ]</code>:</p>
 <p><code>[abc]</code>: corresponde <code>a</code>, <code>b</code> ou <code>c</code>.<br />
 <code>[a-z]</code>: corresponde a todos os caracteres entre <code>a</code> e <code>z</code>.<br />
 <code>[^abc]</code>: corresponde a qualquer coisa, exceto <code>a</code>, <code>b</code> ou <code>c</code>.<br />
 <code>[\^\-]</code>: corresponde a <code>^</code> ou <code>-</code>.</p>
 <p>Por exemplo, retirando, novamente, o Regossolo.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb381-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;[^R]&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb381-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb381-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;[^R]&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb381-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>[:space:]: caracteres de espaço (basicamente equivalente a <code>\s</code>).<br />
 [:blank:]: espaço e tabulação.</p>
 <p>Selecione os registros que terminam com um número.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb382-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;[:digit:]$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb382-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb382-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;[:digit:]$&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb382-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Selecione todos aqueles que não tenham dígitos nos nomes.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb383-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(Solo,<span class="st">&quot;[:digit:]&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb383-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb383-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(Solo,<span class="st">&quot;[:digit:]&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb383-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p><strong>OBS</strong>: Todos eles vão dentro de <code>[ ]</code> para classes de caracteres, ou seja, <code>[[:dígito:]AX]</code> corresponde a todos os dígitos, a letra <code>A</code> e a letra <code>X</code>.</p>
 <p>Selecione todos Regossolos ou Latossolos.</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb384-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;R|LV&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb384-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb384-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;R|LV&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb384-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Selecione todos Regossolos ou Latossolos <code>LV</code>, excluindo o <code>LVp</code>.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb385-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb385-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb385-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;R|^LV$&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb385-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb385-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb385-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb385-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb385-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(Solo,<span class="st">&quot;R|^LV$&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb385-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb385-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-189"></span>
 <img src="img/regex_meme.jpg" alt="Um exemplo patológico devido à complexidade de endereços de e-mail." width="500px" />
 <p class="caption">
@@ -634,24 +620,24 @@ Figure 9.1: Um exemplo patológico devido à complexidade de endereços de e-mai
 </div>
 </div>
 </div>
-<div id="arrange" class="section level2" number="9.4">
+<div id="arrange" class="section level2">
 <h2><span class="header-section-number">9.4</span> arrange()</h2>
 <p>A funçao <code>arrange()</code> funciona de maneira similar a <code>filter()</code>, mas, ao invés de selecionar linhas, ela muda a ordem delas. Ela recebe um data frame e um conjunto de nomes de colunas pelos quais ordenar. Se fornecermos mais de um nome de coluna, cada coluna adicional será usada para desempate nos valores das colunas anteriores.</p>
 <p>Vamos classificar os registros por ordem crescente de teor de argila.</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb386-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb386-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ARGILA) <span class="sc">%&gt;%</span> </span>
-<span id="cb386-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb386-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb386-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb386-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb386-2"></a><span class="st">  </span><span class="kw">arrange</span>(ARGILA) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb386-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb386-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Classifique os registros por ordem decrescente de teor de acidez <span class="math inline">\(H+Al\)</span>. Para isso vamos utilizar a função <code>desc()</code> que reordena a coluna em ordem descendente.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb387-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb387-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(H_Al)) <span class="sc">%&gt;%</span> </span>
-<span id="cb387-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb387-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb387-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb387-2"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(H_Al)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb387-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb387-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Classifique os registros por ordem alfabéticas de solos e utilize como crotério de desempate o teor de fósforo disponível no solo em ordem decrescente.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb388-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb388-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb388-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Solo, <span class="fu">desc</span>(P)) <span class="sc">%&gt;%</span> </span>
-<span id="cb388-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb388-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb388-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb388-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb388-2"></a><span class="st">  </span><span class="kw">arrange</span>(Solo, <span class="kw">desc</span>(P)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb388-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb388-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Valores faltantes são sempre colocados no final, veja o exemplo abaixo utilizando as notas de alunos anterioremente criadas.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb389-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb389-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb389-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Psub))</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb389-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb389-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb389-2"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(Psub))</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -663,7 +649,7 @@ Figure 9.1: Um exemplo patológico devido à complexidade de endereços de e-mai
 ## 6 Ana         8     9    NA
 ## 7 Marcela    NA    NA    NA</code></pre>
 </div>
-<div id="select" class="section level2" number="9.5">
+<div id="select" class="section level2">
 <h2><span class="header-section-number">9.5</span> select()</h2>
 <p>Não é incomum obter conjuntos de dados com centenas ou até milhares de variáveis. Neste caso, o primeiro desafio frequentemente é limitar-se às variávies em que você realmente está interessado. A função <code>select()</code> permite que você foque em um subconjunto útil usando operações baseadas em nomes de variáveis.</p>
 <p>Seleciona colunas de uma tabela e pode ser utilizado com as funções:</p>
@@ -677,22 +663,22 @@ Figure 9.1: Um exemplo patológico devido à complexidade de endereços de e-mai
 
 * num_range(&quot;x&quot;, 1:3): seleciona x1, x2 e x3</code></pre>
 <p>Selecione as colunas <code>SUP</code>, <code>Solo</code> e <code>ARGILA</code>.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb392-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb392-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SUP, Solo, ARGILA) <span class="sc">%&gt;%</span> </span>
-<span id="cb392-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb392-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
-<p>Selecione as colunas que comecem com a letra “A.”</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb393-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb393-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb393-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;A&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb393-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb393-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
-<p>Selecione as colunas que NÃO comecem com a letra “A.”</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb394-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb394-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">starts_with</span>(<span class="st">&quot;A&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb394-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb394-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb392-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb392-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb392-2"></a><span class="st">  </span><span class="kw">select</span>(SUP, Solo, ARGILA) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb392-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb392-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
+<p>Selecione as colunas que comecem com a letra “A”.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb393-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb393-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb393-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;A&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb393-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb393-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
+<p>Selecione as colunas que NÃO comecem com a letra “A”.</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb394-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb394-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb394-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&quot;A&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb394-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb394-3"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 </div>
-<div id="mutate" class="section level2" number="9.6">
+<div id="mutate" class="section level2">
 <h2><span class="header-section-number">9.6</span> mutate()</h2>
 <p>Vamos voltar ao exemplo das notas dos alunos, que estão armazenadas no data frame <code>df</code>.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb395-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb395-1"></a>df</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 4
 ##   nome       P1    P2  Psub
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -708,14 +694,14 @@ Figure 9.1: Um exemplo patológico devido à complexidade de endereços de e-mai
 MF = \frac{P1+P2}{2}
 \]</span>
 Se o aluno fez a prova substitutiva (<code>Psub</code>) ela deve substituir a prova faltante, ou a menor das notas das provas.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
-<span id="cb397-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb397-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">SOMA =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(Psub),P1<span class="sc">+</span>P2,</span>
-<span id="cb397-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">if_else</span>(<span class="fu">is.na</span>(P1),P2<span class="sc">+</span>Psub, </span>
-<span id="cb397-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-5" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">if_else</span>(<span class="fu">is.na</span>(P2),P1<span class="sc">+</span>Psub,</span>
-<span id="cb397-6"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="fu">if_else</span>(P1<span class="sc">&lt;</span>P2,P2<span class="sc">+</span>Psub,P1<span class="sc">+</span>Psub)))),</span>
-<span id="cb397-7"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">MF=</span>SOMA<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb397-8"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb397-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb397-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-3"></a>    <span class="dt">SOMA =</span> <span class="kw">if_else</span>(<span class="kw">is.na</span>(Psub),P1<span class="op">+</span>P2,</span>
+<span id="cb397-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-4"></a>                   <span class="kw">if_else</span>(<span class="kw">is.na</span>(P1),P2<span class="op">+</span>Psub, </span>
+<span id="cb397-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-5"></a>                           <span class="kw">if_else</span>(<span class="kw">is.na</span>(P2),P1<span class="op">+</span>Psub,</span>
+<span id="cb397-6"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-6"></a>                                   <span class="kw">if_else</span>(P1<span class="op">&lt;</span>P2,P2<span class="op">+</span>Psub,P1<span class="op">+</span>Psub)))),</span>
+<span id="cb397-7"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-7"></a>    <span class="dt">MF=</span>SOMA<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb397-8"><a href="manipulação-de-dados-com-o-dplyr.html#cb397-8"></a>)</span></code></pre></div>
 <pre><code>## # A tibble: 7 x 6
 ##   nome       P1    P2  Psub  SOMA    MF
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -727,11 +713,11 @@ Se o aluno fez a prova substitutiva (<code>Psub</code>) ela deve substituir a pr
 ## 6 Paulo       6    NA     5    11   5.5
 ## 7 Renata      3     4     6    10   5</code></pre>
 <p>Vamos criar duas novas variáveis, primeiro vamos calcular a soma dos teores de <code>ARGILA + SILTE</code> e, em seguida, passar o teor de fósforo para a escala logarítmica.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb399-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb399-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ARG_SILT =</span> ARGILA <span class="sc">+</span> SILTE,</span>
-<span id="cb399-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">log_P =</span> <span class="fu">log10</span>(P)) <span class="sc">%&gt;%</span> </span>
-<span id="cb399-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">View</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb399-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-3"></a>    <span class="dt">ARG_SILT =</span> ARGILA <span class="op">+</span><span class="st"> </span>SILTE,</span>
+<span id="cb399-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-4"></a>    <span class="dt">log_P =</span> <span class="kw">log10</span>(P)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb399-5"></a><span class="st">  </span><span class="kw">View</span>()</span></code></pre></div>
 <p>Classifique a Textura do solo.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-200"></span>
 <img src="img/textura.gif" alt="A figura 1 apresenta os intervalos de argila e a respectiva classificação do solo. . FONTE (https://www.pedologiafacil.com.br/textura.php)" width="600px" />
@@ -739,48 +725,48 @@ Se o aluno fez a prova substitutiva (<code>Psub</code>) ela deve substituir a pr
 Figure 9.2: A figura 1 apresenta os intervalos de argila e a respectiva classificação do solo. . FONTE (<a href="https://www.pedologiafacil.com.br/textura.php" class="uri">https://www.pedologiafacil.com.br/textura.php</a>)
 </p>
 </div>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb400-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb400-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">TEXTURA =</span> <span class="fu">case_when</span>(</span>
-<span id="cb400-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-4" aria-hidden="true" tabindex="-1"></a>        ARGILA <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">&quot;Arenosa&quot;</span>,</span>
-<span id="cb400-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-5" aria-hidden="true" tabindex="-1"></a>        ARGILA <span class="sc">&lt;=</span> <span class="dv">35</span> <span class="sc">~</span> <span class="st">&quot;Media&quot;</span>,</span>
-<span id="cb400-6"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-6" aria-hidden="true" tabindex="-1"></a>        ARGILA <span class="sc">&lt;=</span> <span class="dv">60</span> <span class="sc">~</span> <span class="st">&quot;Argilosa&quot;</span>,</span>
-<span id="cb400-7"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-7" aria-hidden="true" tabindex="-1"></a>        ARGILA <span class="sc">&gt;</span> <span class="dv">60</span> <span class="sc">~</span> <span class="st">&quot;Muito argilosa&quot;</span>,</span>
-<span id="cb400-8"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Sem classificação&quot;</span>)</span>
-<span id="cb400-9"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb400-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-2"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb400-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-3"></a>    <span class="dt">TEXTURA =</span> <span class="kw">case_when</span>(</span>
+<span id="cb400-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-4"></a>        ARGILA <span class="op">&lt;</span><span class="st"> </span><span class="dv">15</span> <span class="op">~</span><span class="st"> &quot;Arenosa&quot;</span>,</span>
+<span id="cb400-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-5"></a>        ARGILA <span class="op">&lt;=</span><span class="st"> </span><span class="dv">35</span> <span class="op">~</span><span class="st"> &quot;Media&quot;</span>,</span>
+<span id="cb400-6"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-6"></a>        ARGILA <span class="op">&lt;=</span><span class="st"> </span><span class="dv">60</span> <span class="op">~</span><span class="st"> &quot;Argilosa&quot;</span>,</span>
+<span id="cb400-7"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-7"></a>        ARGILA <span class="op">&gt;</span><span class="st"> </span><span class="dv">60</span> <span class="op">~</span><span class="st"> &quot;Muito argilosa&quot;</span>,</span>
+<span id="cb400-8"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-8"></a>        <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Sem classificação&quot;</span>)</span>
+<span id="cb400-9"><a href="manipulação-de-dados-com-o-dplyr.html#cb400-9"></a>  )</span></code></pre></div>
 </div>
-<div id="resumos-agrupados-com-summarize" class="section level2" number="9.7">
+<div id="resumos-agrupados-com-summarize" class="section level2">
 <h2><span class="header-section-number">9.7</span> Resumos Agrupados com summarize()</h2>
 <p>A função <code>summarize()</code> reduz um data frame a uma única linha:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb401-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb401-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_ARGILA =</span> <span class="fu">mean</span>(ARGILA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb401-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb401-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb401-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">media_ARGILA =</span> <span class="kw">mean</span>(ARGILA, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>##   media_ARGILA
 ## 1     14.60189</code></pre>
-<p>Essa função é extremamente útil quando combinada à função <code>group_by()</code>. Isso muda a unidade da análise de todo o conjunto de dados para os grupos de individuais. Então, ao usarmos os verbos do <strong>dplyr</strong> em um data frame agrupado, eles são automaticamente aplicados “por grupo.”</p>
+<p>Essa função é extremamente útil quando combinada à função <code>group_by()</code>. Isso muda a unidade da análise de todo o conjunto de dados para os grupos de individuais. Então, ao usarmos os verbos do <strong>dplyr</strong> em um data frame agrupado, eles são automaticamente aplicados “por grupo”.</p>
 <p>Por exemplo, vamos aplicar o mesmo código anterior ao data frame agrupado por superfície geomórfica, obteremos:</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb403-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb403-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb403-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SUP) <span class="sc">%&gt;%</span> </span>
-<span id="cb403-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb403-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">media_ARGILA =</span> <span class="fu">mean</span>(ARGILA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb403-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb403-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb403-2"></a><span class="st">  </span><span class="kw">group_by</span>(SUP) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb403-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb403-3"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">media_ARGILA =</span> <span class="kw">mean</span>(ARGILA, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   SUP   media_ARGILA
 ##   &lt;chr&gt;        &lt;dbl&gt;
 ## 1 I             21.1
 ## 2 II            14.8
 ## 3 III           10.1</code></pre>
-<div id="valores-faltantes-1" class="section level3" number="9.7.1">
+<div id="valores-faltantes-1" class="section level3">
 <h3><span class="header-section-number">9.7.1</span> Valores faltantes</h3>
 <p>O argumento <code>na.rm = TRUE</code> é utilizado para remoção dos valores faltantes da variáviel. Isso porque as funções de agregação obedecem à regra usual de <code>NA</code>s, ou seja, qualquer valor faltando na entrada, a saída será um valor faltante. Assim o uso desse argumento é essencial.</p>
 </div>
-<div id="counts" class="section level3" number="9.7.2">
+<div id="counts" class="section level3">
 <h3><span class="header-section-number">9.7.2</span> Counts</h3>
 <p>Sempre que fizer agregação, sugerimos que inclua uma contagem <code>n()</code> ou uma contagem de valores não faltantes (<code>sum(!is.na(x))</code>). Deste modo podemos verificar que não estamos tirando conclusões com base em quantidades muito pequenas de dados.</p>
 <p>Por exemplo, vamos pedir a média da variável <code>AMG</code> (areia muito grossa) para cada tipo de solo identificado no levantamento em função do número de observações (<code>n</code>). Para isso vamos unir as funções <code>group_by()</code>, <code>summarize()</code> e <code>ggplot()</code>.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
-<span id="cb405-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Solo) <span class="sc">%&gt;%</span> </span>
-<span id="cb405-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>( <span class="at">media_AMG =</span> <span class="fu">mean</span>(AMG, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
-<span id="cb405-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb405-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>n, <span class="at">y=</span>media_AMG, <span class="at">fill=</span>Solo)) <span class="sc">+</span></span>
-<span id="cb405-6"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">21</span>, <span class="at">size=</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-1"></a>geomorfologia <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb405-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-2"></a><span class="st">  </span><span class="kw">group_by</span>(Solo) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb405-3"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-3"></a><span class="st">  </span><span class="kw">summarize</span>( <span class="dt">media_AMG =</span> <span class="kw">mean</span>(AMG, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb405-4"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-4"></a>             <span class="dt">n =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb405-5"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>n, <span class="dt">y=</span>media_AMG, <span class="dt">fill=</span>Solo)) <span class="op">+</span></span>
+<span id="cb405-6"><a href="manipulação-de-dados-com-o-dplyr.html#cb405-6"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape=</span><span class="dv">21</span>, <span class="dt">size=</span><span class="dv">3</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 <p>Observe que <code>PV1</code>, <code>PV5</code> e <code>R</code> apresentaram <span class="math inline">\(n &lt; 10\)</span>.</p>
 
