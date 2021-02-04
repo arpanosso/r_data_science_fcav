@@ -87,6 +87,7 @@ mutate
 resumos-agrupados-com-summarize
 valores-faltantes-1
 counts
+exercício
 análise-exploratória-de-dados-aed
 algumas-funções-de-resumo
 descrição-gráfica

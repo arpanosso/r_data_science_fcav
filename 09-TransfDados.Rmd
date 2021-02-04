@@ -590,3 +590,6 @@ geomorfologia %>%
 
 Observe que `PV1`, `PV5` e `R` apresentaram $n < 10$. 
 
+## Exercício
+
+**1)** Explorar graficamente os dados:  [dados](https://github.com/arpanosso/r_data_science_fcav/raw/master/dados/HIST_PAINEL_COVIDBR_03fev2021.rar)
