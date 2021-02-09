@@ -373,18 +373,17 @@ geomorfologia %>%
   View()
 ```
 
-[:punct:]: pontuação.  
-[:alpha:]: letras.  
-[:lower:]: letras minúsculas.  
-[:upper:]: letras maiúsculas.  
-[:digit:]: dígitos.  
-[:xdigit:]: dígitos hexadecimais.  
-[:alnum:]: letras e números.  
-[:cntrl:]:  caracteres de controle.  
-[:graph:]: letras, números e pontuação.  
-[:print:]: letras, números, pontuação e espaços em branco.  
-[:space:]: caracteres de espaço (basicamente equivalente a `\s`).  
-[:blank:]: espaço e tabulação.  
+`[:punct:]`: pontuação.  
+`[:alpha:]`: letras.  
+`[:lower:]`: letras minúsculas.  
+`[:upper:]`: letras maiúsculas.  
+`[:digit:]`: dígitos.  
+`[:xdigit:]`: dígitos hexadecimais.  
+`[:alnum:]`: letras e números.  
+`[:cntrl:]`:  caracteres de controle.  
+`[:graph:]`: letras, números e pontuação.  
+`[:print:]`: letras, números, pontuação e espaços em branco. `[:space:]`: caracteres de espaço (basicamente equivalente a `\s`).  
+`[:blank:]`: espaço e tabulação.  
 
 Selecione os registros que terminam com um número.
 ```{r eval=FALSE}
