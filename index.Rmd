@@ -1,7 +1,7 @@
 --- 
 title: "Análise de Dados de Ciência do Solo no R"
 author: "Alan R. Panosso <alan.panosso@unesp.br> & Gener T. Pereira <gener.t.pereira@unesp.br>"
-date: "01 a 12 de Fevereiro de 2021"
+date: "14 a 25 de Fevereiro de 2022"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

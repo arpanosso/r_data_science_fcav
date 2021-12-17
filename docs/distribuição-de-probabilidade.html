@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,9 @@
   
 <link rel="prev" href="análise-exploratória-de-dados-aed.html"/>
 <link rel="next" href="referências.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,8 +50,9 @@
 
 
 
-
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
 <script src="libs/str_view-binding-1.4.0/str_view.js"></script>
 
@@ -59,6 +61,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -118,6 +121,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -271,12 +275,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}}, -\infty &lt; x &lt; \infty
 \]</span></p>
 <p>A curva é totalmente caracterizada por <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span>. Vamos utilizar a função <code>curve()</code> junto à função <code>dnorm()</code> para a construção da representação gráfica da distribuição normal. A função <code>dnorm()</code> retornará o valor de densidade de frequência, ou seja, <span class="math inline">\(f(x)\)</span> para uma média e desvio-padrão definidos em seus argumentos <code>mean</code> e <code>sd</code>, respectivamente.</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="distribuição-de-probabilidade.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definião dos parâmteros</span></span>
-<span id="cb469-2"><a href="distribuição-de-probabilidade.html#cb469-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb469-3"><a href="distribuição-de-probabilidade.html#cb469-3" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb469-4"><a href="distribuição-de-probabilidade.html#cb469-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb469-5"><a href="distribuição-de-probabilidade.html#cb469-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção da curva</span></span>
-<span id="cb469-6"><a href="distribuição-de-probabilidade.html#cb469-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="distribuição-de-probabilidade.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definião dos parâmteros</span></span>
+<span id="cb473-2"><a href="distribuição-de-probabilidade.html#cb473-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb473-3"><a href="distribuição-de-probabilidade.html#cb473-3" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb473-4"><a href="distribuição-de-probabilidade.html#cb473-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb473-5"><a href="distribuição-de-probabilidade.html#cb473-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção da curva</span></span>
+<span id="cb473-6"><a href="distribuição-de-probabilidade.html#cb473-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <p>A curva normal modela a distribuição de frequência de muitos eventos biológicos. Muitas das estatísticas utilizadas na inferência estatística seguem a distribuição normal. É a mais importante das distribuições contínuas por causa do seu papel na teoria amostral.</p>
 <p>Como visto, a curva é simétrica é relação à média <span class="math inline">\(\mu\)</span> e tem área sob ela igual a <span class="math inline">\(1\)</span>.</p>
@@ -284,45 +288,45 @@ f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}},
 \int_{-\infty}^{\infty} f(x) dx = 1
 \]</span></p>
 <p>Portanto, vamos adicionar uma linha no gráfico anterior, representando <span class="math inline">\(\mu\)</span>.</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="distribuição-de-probabilidade.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb470-2"><a href="distribuição-de-probabilidade.html#cb470-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="distribuição-de-probabilidade.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb474-2"><a href="distribuição-de-probabilidade.html#cb474-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 <p>Assim, a área (probabilidade) até o valor de <span class="math inline">\(\mu\)</span> é metade da área total, ou seja <span class="math inline">\(0,5\)</span>. Vamos buscar esse valor com a função <code>pnorm()</code>, utiizando como argumento o valor do eixo x, aqui denominado <code>quantil</code> (<code>q</code>) desejado e os parâmetros média e desvio padrão. A função sempre retorna a área acumulada de <span class="math inline">\(-\infty\)</span> até o valor de <code>q</code>.</p>
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="distribuição-de-probabilidade.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q=</span>media, <span class="at">mean=</span>media, <span class="at">sd=</span>dp)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="distribuição-de-probabilidade.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q=</span>media, <span class="at">mean=</span>media, <span class="at">sd=</span>dp)</span></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
 <p>Em outras palavras, calculamos <span class="math inline">\(P(X&lt;\mu)\)</span></p>
 <p>Calcular a área entre os pontos de inflexão da curva, ou seja:</p>
 <p><span class="math display">\[
  \int_{\mu - \sigma}^{\mu+\sigma} f(x) dx = 0,6826895
  \]</span></p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="distribuição-de-probabilidade.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb473-2"><a href="distribuição-de-probabilidade.html#cb473-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">-</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb473-3"><a href="distribuição-de-probabilidade.html#cb473-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="distribuição-de-probabilidade.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb477-2"><a href="distribuição-de-probabilidade.html#cb477-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">-</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb477-3"><a href="distribuição-de-probabilidade.html#cb477-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-254-1.png" width="672" />
 Calcular a área entre:</p>
 <p><span class="math display">\[
  \int_{\mu - 2\sigma}^{\mu+2\sigma} f(x) dx = 0,9544997
  \]</span></p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="distribuição-de-probabilidade.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb474-2"><a href="distribuição-de-probabilidade.html#cb474-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb474-3"><a href="distribuição-de-probabilidade.html#cb474-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="distribuição-de-probabilidade.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb478-2"><a href="distribuição-de-probabilidade.html#cb478-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb478-3"><a href="distribuição-de-probabilidade.html#cb478-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 <p>Calcular a área entre:</p>
 <p><span class="math display">\[
  \int_{\mu - 3\sigma}^{\mu+3\sigma} f(x) dx = 0,9973002
  \]</span></p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="distribuição-de-probabilidade.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb475-2"><a href="distribuição-de-probabilidade.html#cb475-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb475-3"><a href="distribuição-de-probabilidade.html#cb475-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="distribuição-de-probabilidade.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb479-2"><a href="distribuição-de-probabilidade.html#cb479-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb479-3"><a href="distribuição-de-probabilidade.html#cb479-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
 <p>Qual o valor de <span class="math inline">\(X\)</span> que supera <span class="math inline">\(65\%\)</span> das observações, ou seja, qual o valor de <span class="math inline">\(X\)</span> cuja área até ele é <span class="math inline">\(0,65\)</span>. Para isso, utilizaremos a função <code>qnorm()</code> que retornará o quantil dado a probabilidade acumulada até ele.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="distribuição-de-probabilidade.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.65</span>, media, dp)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="distribuição-de-probabilidade.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.65</span>, media, dp)</span></code></pre></div>
 <pre><code>## [1] 16.15596</code></pre>
 <p>Vamos tirar a prova:</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="distribuição-de-probabilidade.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">16.15596</span>,media,dp)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="distribuição-de-probabilidade.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">16.15596</span>,media,dp)</span></code></pre></div>
 <pre><code>## [1] 0.6499998</code></pre>
 <p>Dado a distribuição abaixo, calcular <span class="math inline">\(P(X &lt; 99)\)</span></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-259"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-259"></span>
 <img src="img/normal_func.png" alt="Resumo do funcionamento das funções pnorm, qnorm e dnorm." width="600px" />
 <p class="caption">
 Figure 11.1: Resumo do funcionamento das funções pnorm, qnorm e dnorm.
@@ -331,31 +335,31 @@ Figure 11.1: Resumo do funcionamento das funções pnorm, qnorm e dnorm.
 <p><strong>Estudo dos parâmetros</strong></p>
 <p>O efeito da mudança dos parâmetros <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> na distribuição normal:</p>
 <p><strong>a)</strong> Diferentes médias e mesmo desvio padrão.</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="distribuição-de-probabilidade.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">180</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,</span>
-<span id="cb480-2"><a href="distribuição-de-probabilidade.html#cb480-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb480-3"><a href="distribuição-de-probabilidade.html#cb480-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">100</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb480-4"><a href="distribuição-de-probabilidade.html#cb480-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">150</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">3</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb480-5"><a href="distribuição-de-probabilidade.html#cb480-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
-<span id="cb480-6"><a href="distribuição-de-probabilidade.html#cb480-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>)<span class="sc">+</span><span class="dv">15</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(sigma<span class="sc">==</span><span class="dv">7</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
-<span id="cb480-7"><a href="distribuição-de-probabilidade.html#cb480-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>),.<span class="dv">0029</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
-<span id="cb480-8"><a href="distribuição-de-probabilidade.html#cb480-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(mu[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">50</span>),</span>
-<span id="cb480-9"><a href="distribuição-de-probabilidade.html#cb480-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">100</span>),</span>
-<span id="cb480-10"><a href="distribuição-de-probabilidade.html#cb480-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">150</span>))</span>
-<span id="cb480-11"><a href="distribuição-de-probabilidade.html#cb480-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="distribuição-de-probabilidade.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">180</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,</span>
+<span id="cb484-2"><a href="distribuição-de-probabilidade.html#cb484-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb484-3"><a href="distribuição-de-probabilidade.html#cb484-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">100</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb484-4"><a href="distribuição-de-probabilidade.html#cb484-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">150</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">3</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb484-5"><a href="distribuição-de-probabilidade.html#cb484-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
+<span id="cb484-6"><a href="distribuição-de-probabilidade.html#cb484-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>)<span class="sc">+</span><span class="dv">15</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(sigma<span class="sc">==</span><span class="dv">7</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
+<span id="cb484-7"><a href="distribuição-de-probabilidade.html#cb484-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>),.<span class="dv">0029</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
+<span id="cb484-8"><a href="distribuição-de-probabilidade.html#cb484-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(mu[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">50</span>),</span>
+<span id="cb484-9"><a href="distribuição-de-probabilidade.html#cb484-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">100</span>),</span>
+<span id="cb484-10"><a href="distribuição-de-probabilidade.html#cb484-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">150</span>))</span>
+<span id="cb484-11"><a href="distribuição-de-probabilidade.html#cb484-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
 <p><strong>b)</strong> Diferentes desvio padrões e a mesma média.</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="distribuição-de-probabilidade.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">80</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.06</span>),</span>
-<span id="cb481-2"><a href="distribuição-de-probabilidade.html#cb481-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb481-3"><a href="distribuição-de-probabilidade.html#cb481-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">11</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">1</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb481-4"><a href="distribuição-de-probabilidade.html#cb481-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">16</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb481-5"><a href="distribuição-de-probabilidade.html#cb481-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
-<span id="cb481-6"><a href="distribuição-de-probabilidade.html#cb481-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">50</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">dnorm</span>(<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">7</span>)),<span class="at">col=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb481-7"><a href="distribuição-de-probabilidade.html#cb481-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">55</span>,.<span class="dv">002</span>,<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">50</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
-<span id="cb481-8"><a href="distribuição-de-probabilidade.html#cb481-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">56</span>,<span class="dv">63</span>,<span class="dv">75</span>)<span class="sc">+</span><span class="dv">2</span>,<span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">025</span>,<span class="fl">0.01</span>),<span class="at">cex=</span><span class="fl">1.4</span>,</span>
-<span id="cb481-9"><a href="distribuição-de-probabilidade.html#cb481-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(sigma[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">7</span>),</span>
-<span id="cb481-10"><a href="distribuição-de-probabilidade.html#cb481-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">11</span>),</span>
-<span id="cb481-11"><a href="distribuição-de-probabilidade.html#cb481-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">16</span>))</span>
-<span id="cb481-12"><a href="distribuição-de-probabilidade.html#cb481-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="distribuição-de-probabilidade.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">80</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.06</span>),</span>
+<span id="cb485-2"><a href="distribuição-de-probabilidade.html#cb485-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb485-3"><a href="distribuição-de-probabilidade.html#cb485-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">11</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">1</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb485-4"><a href="distribuição-de-probabilidade.html#cb485-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">16</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
+<span id="cb485-5"><a href="distribuição-de-probabilidade.html#cb485-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
+<span id="cb485-6"><a href="distribuição-de-probabilidade.html#cb485-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">50</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">dnorm</span>(<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">7</span>)),<span class="at">col=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb485-7"><a href="distribuição-de-probabilidade.html#cb485-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">55</span>,.<span class="dv">002</span>,<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">50</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
+<span id="cb485-8"><a href="distribuição-de-probabilidade.html#cb485-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">56</span>,<span class="dv">63</span>,<span class="dv">75</span>)<span class="sc">+</span><span class="dv">2</span>,<span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">025</span>,<span class="fl">0.01</span>),<span class="at">cex=</span><span class="fl">1.4</span>,</span>
+<span id="cb485-9"><a href="distribuição-de-probabilidade.html#cb485-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(sigma[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">7</span>),</span>
+<span id="cb485-10"><a href="distribuição-de-probabilidade.html#cb485-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">11</span>),</span>
+<span id="cb485-11"><a href="distribuição-de-probabilidade.html#cb485-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">16</span>))</span>
+<span id="cb485-12"><a href="distribuição-de-probabilidade.html#cb485-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
 </div>
 <div id="distribuição-normal-padronizada" class="section level2" number="11.2">
@@ -376,22 +380,22 @@ com \\
 z_1=\frac{x_1-\mu}{\sigma} \text{. e } z_2 = \frac{x_2-\mu}{\sigma}
 \]</span></p>
 <p>As funções <code>dnorm()</code>, <code>pnorm()</code> e <code>qnorm()</code> tem como valores <em>default</em> <code>mean = 0</code> e <code>sd = 1</code>, assim:</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="distribuição-de-probabilidade.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Z&quot;</span>)</span>
-<span id="cb482-2"><a href="distribuição-de-probabilidade.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="distribuição-de-probabilidade.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Z&quot;</span>)</span>
+<span id="cb486-2"><a href="distribuição-de-probabilidade.html#cb486-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
 <p>Calcular a área entre:</p>
 <p><span class="math display">\[
  \int_{-2}^{2} f(z) dz = 0,9544997
  \]</span></p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="distribuição-de-probabilidade.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb483-2"><a href="distribuição-de-probabilidade.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb483-3"><a href="distribuição-de-probabilidade.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="distribuição-de-probabilidade.html#cb487-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb487-2"><a href="distribuição-de-probabilidade.html#cb487-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb487-3"><a href="distribuição-de-probabilidade.html#cb487-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
 <p>Qual o valor de <span class="math inline">\(Z\)</span> que supera <span class="math inline">\(97,5\%\)</span> das observações, ou seja, qual o valor de <span class="math inline">\(Z\)</span> cuja área até ele é <span class="math inline">\(0,975\)</span>.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="distribuição-de-probabilidade.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="distribuição-de-probabilidade.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
 <pre><code>## [1] 1.959964</code></pre>
 <p>Vamos tirar a prova:</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="distribuição-de-probabilidade.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="distribuição-de-probabilidade.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9750021</code></pre>
 </div>
 <div id="exercícios-3" class="section level2" number="11.3">
@@ -422,7 +426,6 @@ Se <span class="math inline">\(X \sim N(\mu=13,\sigma^2=16)\)</span>, encontre:<
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -441,6 +444,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -461,6 +465,10 @@ gitbook.start({
 "text": null
 },
 "download": ["r_data_science_fcav.pdf", "r_data_science_fcav.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
