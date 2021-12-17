@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal."
+description: "Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal."
 ---
 
 # Bem-vindos!! {-}
