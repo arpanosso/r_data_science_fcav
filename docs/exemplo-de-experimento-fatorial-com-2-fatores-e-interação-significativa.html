@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>13 Comparações de parâmetros de duas populações | Análise de Dados de Ciência do Solo no R</title>
+  <title>19 Exemplo de Experimento fatorial com 2 fatores e interação significativa | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="13 Comparações de parâmetros de duas populações | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:title" content="19 Exemplo de Experimento fatorial com 2 fatores e interação significativa | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="13 Comparações de parâmetros de duas populações | Análise de Dados de Ciência do Solo no R" />
+  <meta name="twitter:title" content="19 Exemplo de Experimento fatorial com 2 fatores e interação significativa | Análise de Dados de Ciência do Solo no R" />
   
   <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="experimentação-agrícola.html"/>
-<link rel="next" href="planejamento-de-experimentos.html"/>
+<link rel="prev" href="experimentos-fatoriais.html"/>
+<link rel="next" href="estudo-do-fatorial-32.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -422,361 +422,1010 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="comparações-de-parâmetros-de-duas-populações" class="section level1" number="13">
-<h1><span class="header-section-number">13</span> Comparações de parâmetros de duas populações</h1>
-<div id="comparação-de-variâncias-de-duas-populações-normais" class="section level2" number="13.1">
-<h2><span class="header-section-number">13.1</span> Comparação de variâncias de duas populações normais</h2>
-<p>Suponha duas amostras aleatórias independentes de tamanhos <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span> ou seja, <span class="math inline">\(X_1,X_2,...,X_{n_1}\)</span> e <span class="math inline">\(Y_1,Y_2,...,Y_{n_2}\)</span>, respectivamente, de uma população com distribuição <span class="math inline">\(N(\mu_1, \sigma_1^2)\)</span> e de uma população com distribuição <span class="math inline">\(N(\mu_2, \sigma_2^2)\)</span>.</p>
-<p><strong>Hipóteses:</strong>
-<span class="math display">\[
-H_0: \sigma_1^2 = \sigma_2^2 \text{   ou   } \left(\frac{\sigma_1^2} {\sigma_2^2} =1\right) \\
-H_1: \sigma_1^2 \neq \sigma_2^2 \text{   ou   } \left(\frac{\sigma_1^2} {\sigma_2^2} \neq 1\right)
-\]</span></p>
-<p><strong>Estatística do Teste</strong></p>
-<p>Sendo <span class="math inline">\(s_1^2\)</span> e <span class="math inline">\(s_2^2\)</span> as variâncias amostrais, respectivamente, das amostras <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span>, o quociente entre as razões</p>
-<p><span class="math display">\[
- \frac{s^2_1/\sigma^2_1}{s^2_2/\sigma^2_2}
-\]</span>
-Segue uma distribuição <strong>F de Snedecor</strong> com parâmetros <span class="math inline">\(n_1-1\)</span> e <span class="math inline">\(n_2-1\)</span> <strong>graus de liberdade</strong> (GL), denotada por <span class="math inline">\(F(n_1-1,n_2-1)\)</span></p>
-<p>Sob a suposição de <span class="math inline">\(H_0\)</span> ser verdadeira, isto é, <span class="math inline">\(\sigma_1^2 = \sigma_2^2\)</span>, tem-se que:</p>
-<p><span class="math display">\[
-F= \frac{s^2_1}{s^2_2} \approx F(n_1-1,n_2-1)
-\]</span></p>
-<p>Para informações mais detalhada a respeito dessa distribuição, recomenda-se: <img src="YT.png" /> <a href="https://www.youtube.com/watch?v=G_RDxAZJ-ug">An Introduction to the F Distribution</a></p>
-<p>A função densidade probabilidade da distribuição <span class="math inline">\(F\)</span> é dada por:</p>
-<p><span class="math display">\[
-f(x) = \frac{\Gamma(\frac{\nu1+\nu2}{2})(\frac{\nu1}{\nu2})^{\frac{\nu1}{2}}x^{\frac{\nu1}{2}-1}}{\Gamma(\frac{\nu1}{2}) \Gamma(\frac{\nu2}{2}) (1+\frac{\nu1}{\nu2}x)^{\frac{\nu1+\nu2}{2}}} \text{   para   } x&gt; 0 
-\]</span>
-Onde: <span class="math inline">\(\nu1\)</span> são os graus de liberdade de <span class="math inline">\(s^2_1\)</span>, <span class="math inline">\(\nu2\)</span> são os graus de liberdade de <span class="math inline">\(s^2_2\)</span> e <span class="math inline">\(\Gamma\)</span> é a função gama, uma extensão da função fatorial para números reais positivos no espaço contínuo.</p>
-<p><strong>Construção da região crítica:</strong></p>
-<p>Fixado <span class="math inline">\(\alpha\)</span> (chance de ocorrer o <strong>erro tipo I</strong>), os pontos críticos serão <em>F1</em> e <em>F2</em> da distribuição <span class="math inline">\(F\)</span>, tais que:</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
-<p>Se <span class="math inline">\(\alpha = 10\%\)</span>, por exemplo, podemos encontrar o valor de <span class="math inline">\(F_{2(5\%)}\)</span>, utilizando a Tabela abaixo:</p>
-<p><img src="tabF.png" /></p>
-<p><a href="https://github.com/arpanosso/ExpAgr_2020/raw/master/TabelaF.pdf">Download da Tabela</a></p>
-<p><strong>Exemplo</strong></p>
-<p>Dado: <span class="math inline">\(n_1-1 = 5\)</span> e <span class="math inline">\(n_2-1 = 7\)</span>, e <span class="math inline">\(\alpha = 5\%\)</span> temos que olhar na coluna <span class="math inline">\(5\)</span> (graus de liberdade do numerador) e na linha <span class="math inline">\(7\)</span> (graus de liberdade do denominador) e teremos o valor <span class="math inline">\(F_2 = 3,97\)</span></p>
-<p>Para encontrarmos <span class="math inline">\(F_{1(5\%)}\)</span>, utilizamos uma propriedade de integração, o que na prática significa:</p>
-<p><span class="math display">\[
-F_{(1-\alpha, n_1-1, n_2-1)} = \frac{1}{F_{(\alpha, n_2-1, n_1-1)}} \\
-\text{ou seja} \\
-F_{(95\%, n_1-1, n_2-1)} = \frac{1}{F_{(5\%, n_2-1, n_1-1)}} \\
-F_{(95\%, 5, 7)} = \frac{1}{F_{(5\%, 7, 5)}} = \frac{1}{4,88} = 0,205
-\]</span></p>
-<p>O valor é o inverso daquele observado na Tabela, obtido pela inversão dos graus de liberdade.</p>
-<p>Portanto, a região crítica do teste será: <span class="math inline">\(RC = \{ F &lt; 0,205 \text{  ou  } F &gt; 3,97 \}\)</span>.</p>
-<p>O mesmo valor pode ser obtido no <span class="math inline">\(R\)</span> a partir da função <code>qf(p,df1,df2)</code>, cujos argumentos são: <code>p</code> o valor da área (probabilidade) acumulada até o valor F desejado, <code>df1</code> é o grau de liberdade do numerador e <code>df2</code> é o grau de liberdade do denominador:</p>
-<p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="comparações-de-parâmetros-de-duas-populações.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>,<span class="dv">5</span>,<span class="dv">7</span>) <span class="co"># F2</span></span></code></pre></div>
-<pre><code>## [1] 3.971523</code></pre>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="comparações-de-parâmetros-de-duas-populações.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.05</span>,<span class="dv">5</span>,<span class="dv">7</span>) <span class="co"># F1</span></span></code></pre></div>
-<pre><code>## [1] 0.2050915</code></pre>
-<p>Na prática o procedimento é mais simples: primeiro calcula-se o <span class="math inline">\(F\)</span> da amostra utilizando <strong>SEMPRE O MAIOR VALOR DE VARIÂNCIA NO NUMERADOR</strong> <span class="math inline">\((s^2_1 &gt; s_2^2)\)</span>, portanto <span class="math inline">\(F &gt; 1\)</span> e consideramos o ponto crítico sempre em <span class="math inline">\(F_{2(\alpha, n_1-1, n_2-1)}\)</span></p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
-<p>Assim, a <strong>região crítica</strong> do teste será <span class="math inline">\(RC = \{F \ge F_c\}\)</span></p>
-<p>Calculamos a <strong>estatística na amostra</strong> como :</p>
-<p><span class="math display">\[
-F_{obs} = \frac{s^2_1}{s^2_2} \text{, com }  s_1^2 &gt; s^2_2
-\]</span>
-As <strong>hipóteses</strong> sempre serão
-<span class="math display">\[
-H_0: \sigma_1^2 = \sigma_2^2 \text{   ou   } (\sigma_1^2 /\sigma_2^2 =1) \\
-H_1: \sigma_1^2 &gt; \sigma_2^2 \text{   ou   } (\sigma_1^2 /\sigma_2^2 &gt; 1)
-\]</span></p>
-<p><strong>Conclusão</strong></p>
-<p>Se <span class="math inline">\(F_{obs} \not\in RC\)</span> então <strong>não rejeitamos</strong> <span class="math inline">\(H_0\)</span> e concluímos que as variâncias são iguais ou seja, as variãncias são <strong>HOMOCEDÁSTICAS</strong>.</p>
-<p>Se <span class="math inline">\(F_{obs} \in RC\)</span> então <strong>rejeitamos</strong> <span class="math inline">\(H_0\)</span> e concluímos que as variâncias são diferentes ou seja, <strong>HETEROCEDÁSTICAS</strong></p>
-<p><strong>EXEMPLO:</strong></p>
-<p>Em um ensaio de competição de <span class="math inline">\(2\)</span> cultivares de milho, onde a cultivar <span class="math inline">\(A\)</span> foi plantada e <span class="math inline">\(6\)</span> parcelas (<span class="math inline">\(n_A=6\)</span> amostras) e a cultivar <span class="math inline">\(B\)</span> em 8 parcelas amostrais (<span class="math inline">\(n_B=8\)</span> amostras), as produções em <span class="math inline">\(kg\;ha^{-1}\)</span> foram obervadas na tabela:</p>
-<p><img src="img/milho.png" />
-Fonte: <a href="https://repositorio.unesp.br/bitstream/handle/11449/106194/cruz_fab_dr_ilha.pdf?sequence=1&amp;isAllowed=y">Cruz (2009)</a></p>
+<div id="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Exemplo de Experimento fatorial com 2 fatores e interação significativa</h1>
+<p>Para obtenção da análise de variância, vamos supor o seguinte ensaio em que foram estudados os efeitos de <span class="math inline">\(4\)</span> inseticidas em <span class="math inline">\(2\)</span> doses diferentes sobre a produção da cultura do milho em <em>kg/parcela</em>. Dados estão disponíveis online em <a href="https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt">inseticidas.txt</a></p>
 <table>
 <thead>
 <tr class="header">
-<th>Cultivar</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th align="center">Tratamento</th>
+<th align="center">Rep.1</th>
+<th align="center">Rep.2</th>
+<th align="center">Rep.3</th>
+<th align="center">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(A\)</span></td>
-<td>1470</td>
-<td>1920</td>
-<td>2340</td>
-<td>2100</td>
-<td>1920</td>
-<td>1480</td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center"><span class="math inline">\(I_1D_1\)</span></td>
+<td align="center">58</td>
+<td align="center">45</td>
+<td align="center">47</td>
+<td align="center"><strong>150</strong></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(B\)</span></td>
-<td>3260</td>
-<td>3990</td>
-<td>4050</td>
-<td>3420</td>
-<td>3510</td>
-<td>3880</td>
-<td>3550</td>
-<td>3660</td>
-<td></td>
+<td align="center"><span class="math inline">\(I_1D_2\)</span></td>
+<td align="center">61</td>
+<td align="center">65</td>
+<td align="center">47</td>
+<td align="center"><strong>173</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(I_2D_1\)</span></td>
+<td align="center">31</td>
+<td align="center">35</td>
+<td align="center">29</td>
+<td align="center"><strong>95</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(I_2D_2\)</span></td>
+<td align="center">43</td>
+<td align="center">51</td>
+<td align="center">49</td>
+<td align="center"><strong>143</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(I_3D_1\)</span></td>
+<td align="center">45</td>
+<td align="center">55</td>
+<td align="center">79</td>
+<td align="center"><strong>179</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(I_3D_2\)</span></td>
+<td align="center">31</td>
+<td align="center">37</td>
+<td align="center">37</td>
+<td align="center"><strong>105</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(I_4D_1\)</span></td>
+<td align="center">78</td>
+<td align="center">83</td>
+<td align="center">62</td>
+<td align="center"><strong>223</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(I_4D_2\)</span></td>
+<td align="center">36</td>
+<td align="center">34</td>
+<td align="center">34</td>
+<td align="center"><strong>104</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>383</strong></td>
+<td align="center"><strong>405</strong></td>
+<td align="center"><strong>384</strong></td>
+<td align="center"><strong>1172</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Comparar ao nível de 5% de significância (<span class="math inline">\(\alpha = 0,05\)</span>) se as variâncias desses cultivares são iguais.</p>
-<p><strong>PASSO 1:</strong> Definir <span class="math inline">\(H_0\)</span> e <span class="math inline">\(H_1\)</span>.
-<span class="math display">\[
-H_0: \sigma_1^2 = \sigma_2^2 \text{   ou   } (\sigma_1^2 /\sigma_2^2 =1) \\
-H_1: \sigma_1^2 &gt; \sigma_2^2 \text{   ou   } (\sigma_1^2 /\sigma_2^2 &gt; 1)
-\]</span></p>
-<p><strong>PASSO 2:</strong> Calcular a estatística do teste.</p>
-<p>Definir os graus de liberdade:</p>
+<p><strong>Dados originais</strong>:<a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_milho_inset_dose.xlsx">DOWNLOAD</a></p>
+<div id="obtenção-da-análise-de-variância-6" class="section level2" number="19.1">
+<h2><span class="header-section-number">19.1</span> Obtenção da análise de variância</h2>
+<p>O ensaio foi montado de acordo com o delineamento inteiramente casualizado, e portanto, a análise de variância preliminar, obtida da maneira usual, foi a seguinte:</p>
 <p><span class="math display">\[
-n_A = 6 \\
-n_B = 8
-\]</span></p>
-<p>Assim:</p>
-<p><span class="math display">\[
-\nu_1 = 6 - 1 = 5 \\
-\nu_2 = 8 - 1 = 7 \\
-\]</span></p>
-<p>Calcular as variâncias amostrais de <span class="math inline">\(A\)</span> e <span class="math inline">\(B\)</span>:</p>
-<p><span class="math display">\[
-s_A^2 = 118176,7 \\
-s_B^2 = 80200,00 
-\]</span></p>
-<p>Como <span class="math inline">\(s^2_A &gt; s^2_B\)</span> vamos calcular o a estatística do teste:</p>
-<p><span class="math display">\[
-F_{obs} = \frac{s^2_A}{s^2_B} = \frac{118076,7}{80200}=1,4735
+\begin{aligned}
+SQ_{Total} &amp;= (58^2+45^2+\cdots +34^2)-\frac{1175^2}{8 \cdot 3} \\
+&amp;=5813,33
+\end{aligned}
 \]</span>
-<strong>PASSO 3:</strong> Construir a Região Crítica.</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
-<p>Olhando na tabela <span class="math inline">\(F_{(0,05; 5; 7)} = 3,97\)</span></p>
-<p>Assim, a <strong>região crítica</strong> do teste será <span class="math inline">\(RC = \{F &gt; 3,97\}\)</span></p>
-<p><strong>PASSO 4:</strong> Comparar <span class="math inline">\(F_{obs}\)</span> com o <span class="math inline">\(F_c\)</span>.</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
-<p><strong>PASSO 5:</strong> Concluir o teste.</p>
-<p>Como <span class="math inline">\(F{obs} \not\in RC\)</span> <strong>não rejeitamos </strong> <span class="math inline">\(H_0\)</span> ao nível de 5% de significância, e concluímos que as variedades de milhos testadas têm variâncias semelhantes, ou seja, são <strong>homocedásticas</strong>.</p>
-<div id="resolvendo-no-r" class="section level3" number="13.1.1">
-<h3><span class="header-section-number">13.1.1</span> Resolvendo no R</h3>
-<p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="comparações-de-parâmetros-de-duas-populações.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir os vetores de dados</span></span>
-<span id="cb518-2"><a href="comparações-de-parâmetros-de-duas-populações.html#cb518-2" aria-hidden="true" tabindex="-1"></a>A<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1470</span>,<span class="dv">1920</span>,<span class="dv">2340</span>,<span class="dv">2100</span>,<span class="dv">1920</span>,<span class="dv">1480</span>)</span>
-<span id="cb518-3"><a href="comparações-de-parâmetros-de-duas-populações.html#cb518-3" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3260</span>,<span class="dv">3990</span>,<span class="dv">4050</span>,<span class="dv">3420</span>,<span class="dv">3510</span>,<span class="dv">3880</span>,<span class="dv">3550</span>,<span class="dv">3660</span>)</span>
-<span id="cb518-4"><a href="comparações-de-parâmetros-de-duas-populações.html#cb518-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb518-5"><a href="comparações-de-parâmetros-de-duas-populações.html#cb518-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar o teste de variâncias</span></span>
-<span id="cb518-6"><a href="comparações-de-parâmetros-de-duas-populações.html#cb518-6" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(A,B,<span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<pre><code>## 
-##  F test to compare two variances
-## 
-## data:  A and B
-## F = 1.4735, num df = 5, denom df = 7, p-value = 0.6176
-## alternative hypothesis: true ratio of variances is not equal to 1
-## 95 percent confidence interval:
-##   0.2788001 10.0981750
-## sample estimates:
-## ratio of variances 
-##           1.473525</code></pre>
-</div>
-<div id="interpretação-no-r" class="section level3" number="13.1.2">
-<h3><span class="header-section-number">13.1.2</span> Interpretação no R</h3>
-<p>Observe que a função retorna a estatística do teste <span class="math inline">\(F = 1.4735\)</span> seguido pelos valores de graus de liberdade (<span class="math inline">\(df\)</span>, do inglês degrees of freedom) para o numerador (<span class="math inline">\(5\)</span>) e para o denominador (<span class="math inline">\(7\)</span>), e o valor-p (<span class="math inline">\(p-value = 0.6176\)</span>).</p>
-<p><strong>Passo 1</strong>: Identificar o p-valor (<span class="math inline">\(p-value\)</span>) do teste:</p>
-<p>O <span class="math inline">\(p-value\)</span> indica a probabilidade (área embaixo da curva) após o valor de <span class="math inline">\(F_{obs}\)</span>, ou seja, a probabilidade associada à estatística <span class="math inline">\(F_{obs}\)</span> foi de <span class="math inline">\(0,6176\)</span>, como apresentado abaixo:</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
-<p><strong>PASSO 2:</strong> Comparar <span class="math inline">\(p-value\)</span> com o <span class="math inline">\(\alpha\)</span>.</p>
-<p>Se <span class="math inline">\(p-value &gt; \alpha\)</span> então <strong>não rejeitamos</strong> <span class="math inline">\(H_0\)</span> e concluímos que as variâncias são iguais ou seja <strong>HOMOCEDÁSTICAS</strong>, caso contrário, <strong>rejeitamos</strong> <span class="math inline">\(H_0\)</span>.</p>
-<p><strong>PASSO 3:</strong> Concluir o teste.</p>
-<p>Para o nosso exemplo, <span class="math inline">\(p-value\)</span> foi maior que o <span class="math inline">\(\alpha\)</span>, ou seja:</p>
-<p>Como <span class="math inline">\(p-value &gt; \alpha\)</span> <strong>não rejeitamos </strong> <span class="math inline">\(H_0\)</span> ao nível de 5% de significância, e concluímos que as variedades de milhos testadas são <strong>homocedásticas</strong>.</p>
-</div>
-</div>
-<div id="comparação-de-duas-médias-de-populações-normais-amostras-independentes" class="section level2" number="13.2">
-<h2><span class="header-section-number">13.2</span> Comparação de duas médias de populações normais: amostras independentes</h2>
-<p>Com o objetivo de se comparar duas populações ou, sinonimamente, dois tratamentos, examinaremos a situação na qual os dados estão na forma de realizações de amostras aleatórias de tamanhos <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span>, selecionadas, respectivamente, das populações <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span>.</p>
-<p>Os dados são as medidas das respostas associadas com o seguinte delineamento experimental. Uma coleção de <span class="math inline">\(n_1 + n_2\)</span> elementos são aleatoriamente divididos em <span class="math inline">\(2\)</span> grupos de tamanhos <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span>, onde cada membro do primeiro grupo recebe o tratamento <span class="math inline">\(1\)</span> e do segundo, o tratamento <span class="math inline">\(2\)</span>.</p>
-<p>Especificamente, estaremos interessados em fazer inferência sobre o parâmetro: <span class="math inline">\(\mu_1 - \mu_2\)</span> (média da população 1) - (média da população 2)</p>
-<p>Formalmente, suponha duas amostras aleatórias independentes de tamanhos <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span> ou seja, <span class="math inline">\(X_1, X_2,...,X_{n_1}\)</span> e <span class="math inline">\(Y_1, Y_2,...,Y_{n_2}\)</span>, respectivamente, de uma população com distribuição <span class="math inline">\(N(\mu_1, \sigma_1^2)\)</span> e de uma população com distribuição <span class="math inline">\(N(\mu_2, \sigma_2^2)\)</span>.</p>
-<p>Para cada uma dessas populações nós temos os seguintes estimadores <span class="math inline">\(\bar{x}\)</span>, <span class="math inline">\(\bar{y}\)</span> médias de população <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span> respectivamente e <span class="math inline">\(s^2_1\)</span>, <span class="math inline">\(s^2_2\)</span> variâncias amostrais para as populações <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span>, respectivamente.</p>
-<p><strong>Hipóteses:</strong>
 <span class="math display">\[
-\begin{cases} H_0:\mu_1=\mu_2, \; ou\;(\mu_1-\mu_2 = 0) \\ 
-H_1: \mu_1\neq\mu_2, \; ou\;(\mu_1-\mu_2 \neq 0),\; bilateral
-\end{cases}
+\begin{aligned}
+SQ_{Trat} &amp;= \frac{1}{3} (150^2+173^2+\cdots +104^2)-\frac{1175^2}{8 \cdot 3} \\
+&amp;=46
+\end{aligned}
 \]</span></p>
-<p>ou</p>
 <p><span class="math display">\[
-H_1: \mu_1 &gt;\mu_2, \; ou\;(\mu_1-\mu_2 &gt; 0),\; unilateral \; direita
+\begin{aligned}
+SQ_{Res} &amp;= SQ_{Total} - SQ_{Trat}
+&amp;=5813,33 - 4605,33
+&amp;=1208,00
+\end{aligned}
 \]</span></p>
-<p>ou</p>
-<p><span class="math display">\[
-H_1: \mu_1 &lt; \mu_2, \; ou\;(\mu_1-\mu_2 &lt; 0),\; unilateral\; esquerda 
-\]</span></p>
-<p><strong>Estatística do Teste:</strong></p>
-<p><span class="math display">\[
-z = \frac{(\bar{x}-\bar{y})-(\mu_1-\mu_2)}{\sqrt{\frac{\sigma^2_1}{n_1}+\frac{\sigma^2_2}{n_2}}} \approx N(0,1)
-\]</span></p>
-<div id="caso-1-variâncias-populacionais-conhecidas" class="section level3" number="13.2.1">
-<h3><span class="header-section-number">13.2.1</span> Caso 1: variâncias populacionais conhecidas</h3>
-<p>Para testar a hipótese <span class="math inline">\(H_0\)</span> usa-se a estatística anterior.<br />
-Ao supormos <span class="math inline">\(H_0\)</span> verdadeira então <span class="math inline">\(\mu_1-\mu_2 = 0\)</span>, portanto a estatística:</p>
-<p><span class="math display">\[
-z = \frac{(\bar{x}-\bar{y})}{\sqrt{\frac{\sigma^2_1}{n_1}+\frac{\sigma^2_2}{n_2}}}
-\]</span></p>
-<p>Tem distribuição <span class="math inline">\(N(0,1)\)</span>, portanto a região crítica do teste é construída a partir da <strong>Tabela Normal Padrão</strong></p>
-<p><img src="tabNPad.png" /></p>
-<p><a href="https://github.com/arpanosso/ExpAgr_2020/raw/master/TabelaNormal.pdf">Download da Tabela</a></p>
-</div>
-<div id="caso-2-variâncias-populacionais-desconhecidas-e-iguais-teste-t" class="section level3" number="13.2.2">
-<h3><span class="header-section-number">13.2.2</span> Caso 2: variâncias populacionais desconhecidas e iguais (Teste t)</h3>
-<p>Preliminarmente, testa-se se as variâncias das duas populações são iguais, homocedásticas, pelo teste <strong>F de Snedecor</strong>.</p>
-<p>Caso a hipótese <span class="math inline">\(H_0\)</span> não seja rejeitada, vamos utilizar a estatística estatística <span class="math inline">\(t\)</span> com <span class="math inline">\(n_1 + n_2 - 2\)</span> graus de liberdade:</p>
-<p><span class="math display">\[
-t = \frac{(\bar{x} - \bar{y})}{S_p \cdot \sqrt{\frac{1}{n_1} +\frac{1}{n_2}} } \approx t(n_1+n_2 - 2)
-\]</span></p>
-<p><span class="math inline">\(Sp\)</span> é o estimador não viciado do desvio padrão das populações, o qual é calculado por uma média ponderada:</p>
-<p><span class="math display">\[
-S_P=\sqrt{\frac{(n_1 - 1)  s^2_1+(n_2-1)s^2_2}{(n_1 - 1)+(n_2-1)}}
-\]</span></p>
-<p>Portanto a região crítica do teste é construída a partir da <strong>Tabela da distribuição t</strong> ao nível <span class="math inline">\(\alpha\)</span> com <span class="math inline">\(n_1 + n_2 - 2\)</span> graus de liberdade.</p>
-<p><img src="img/tabT.png" /></p>
-<p><a href="https://github.com/arpanosso/ExpAgr_2020/raw/master/Tabela_tdeStudent.pdf">Download da Tabela</a></p>
-</div>
-<div id="caso-3-variâncias-populacionais-desconhecidas-e-desiguais-teste-de-smith-satterthwaite" class="section level3" number="13.2.3">
-<h3><span class="header-section-number">13.2.3</span> Caso 3: variâncias populacionais desconhecidas e desiguais (Teste de Smith-Satterthwaite)</h3>
-<p>Quando a hipótese de igualdade de variâncias for rejeitada, a estatística do teste fica:</p>
-<p><span class="math display">\[
-t = \frac{(\bar{x}-\bar{y})}{\sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}:
-\]</span></p>
-<p>Essa estatística aproxima-se de uma dirtribuição <span class="math inline">\(t\)</span> de Student com o número de graus de liberdade dado por, aproximadamente:</p>
-<p><span class="math display">\[
-gl&#39;=\frac{(\frac{s^2_1}{n_1}+\frac{s_2^2}{n_2})^2}{\frac{(\frac{s^2_1}{n_1})^2}{n_1-1}+\frac{(\frac{s^2_2}{n_2})^2}{n_2-1}}
-\]</span></p>
-<p>Como o número de graus de liberdade assim calculado, geralmente, é <strong>não inteiro</strong>, recomenda-se aproximá-lo para o <strong>inteiro imediatamente anterior</strong> a este.</p>
-<p><strong>EXEMPLO:</strong></p>
-<p>Para o exemplo anterior, temos</p>
+<p>Quadro de Análise de Variância Preliminar:</p>
 <table>
 <thead>
 <tr class="header">
-<th>Cultivar</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th>Causas de Variação</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>F</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td>1470</td>
-<td>1920</td>
-<td>2340</td>
-<td>2100</td>
-<td>1920</td>
-<td>1480</td>
-<td></td>
-<td></td>
-<td></td>
+<td>Trat.</td>
+<td>7</td>
+<td>4605,33</td>
+<td>657,90</td>
+<td>8,71*</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td>3260</td>
-<td>3990</td>
-<td>4050</td>
-<td>3420</td>
-<td>3510</td>
-<td>3880</td>
-<td>3550</td>
-<td>3660</td>
+<td>Res</td>
+<td>16</td>
+<td>1208,0</td>
+<td>75.50</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>23</td>
+<td>5813,13</td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>Comparar ao nível de 5% de significância se as <strong>Médias</strong> desses cultivares são iguais.</p>
-<p><strong>PASSO 1:</strong> Definir <span class="math inline">\(H_0\)</span> e <span class="math inline">\(H_1\)</span>.
-<span class="math display">\[
-H_0: \mu_1 = \mu_2 \text{   ou   } (\mu_1 - \mu_2 =0) \\
-H_1: \mu_1 \neq \mu_2 \text{   ou   } (\mu_1 - \mu_2\neq 0)
-\]</span></p>
-<p><strong>PASSO 2:</strong> Calcular a estatística do teste para o <strong>caso 2 variâncias populacionais desconhecidas e iguais (Teste t)</strong>.</p>
-<p>Calcular a média dos cultivares:</p>
-<p><strong>Cultivar A</strong></p>
+<p><strong>Conclusão</strong>: O teste é siginificativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, logo, rejeitamos a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluímos que os efeitos dos tratamento diferem entre sim em relação à característica analisada, com um grau de confiança superior a <span class="math inline">\(99\%\)</span> de probabilidade.</p>
+<p>Devemos agora, desdobrar a soma de quadrado e os graus de liberdade de tratamentos para estudar os efeitos principais e a interação entre os fatores.</p>
+<p>Para facilitar os cálculos, utilizamos um quadro auxiliar como o seguinte:</p>
+<p>Quadro de totais</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">(3)</th>
+<th align="center"><span class="math inline">\(I_1\)</span></th>
+<th align="center"><span class="math inline">\(I_2\)</span></th>
+<th align="center"><span class="math inline">\(I_3\)</span></th>
+<th align="center"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="center">150</td>
+<td align="center">95</td>
+<td align="center">179</td>
+<td align="center">223</td>
+<td align="center">647</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="center">173</td>
+<td align="center">143</td>
+<td align="center">105</td>
+<td align="center">104</td>
+<td align="center">525</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center">323</td>
+<td align="center">238</td>
+<td align="center">284</td>
+<td align="center">327</td>
+<td align="center">1172</td>
+</tr>
+</tbody>
+</table>
+<p>Então, as somas de quadrados são obtidas da seguinte maneira:</p>
+<p><strong>1. Soma de quadrados devido ao efeito de Inseticidas:</strong></p>
 <p><span class="math display">\[
-Média: \bar{x}  = 1871,667\;kg\;ha^{-1}\\
-Variância: s^2_1 = 118176.7\;[kg\;ha^{-1}]^2
+\begin{aligned}
+SQ_{Ef.Inseticida} &amp;= \frac{1}{r_I}[T_{I_1}^2+T_{I_2}^2+T_{I_3}^2+T_{I_4}^2] - \frac{G^2}{I\cdot J} \\
+&amp;= \frac{1}{6}[323^2+238^2+284^2+327^2] - \frac{1172^2}{24} \\
+&amp;= 860,33
+\end{aligned}
 \]</span></p>
-<p><strong>Cultivar B</strong></p>
+<p><strong>2. Soma de quadrados devido ao efeito de Doses:</strong></p>
 <p><span class="math display">\[
-Média: \bar{x}  = 3665\;kg\;ha^{-1}\\
-Variância: s^2_1 = 80200\;[kg\;ha^{-1}]^2
+\begin{aligned}
+SQ_{Ef.Dose} &amp;= \frac{1}{r_D}[T_{D_1}^2+T_{D_2}] - \frac{G^2}{I\cdot J} \\
+&amp;= \frac{1}{12}[647^2+525^2] - \frac{1172^2}{24} \\
+&amp;= 620,16
+\end{aligned}
+\]</span></p>
+<p><strong>3. Soma de quadrados devido ao efeito da Interação Inseticida x Doses:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Interação\;I\times D} &amp;= SQ_{S,F}-SQ_{Ef.Ins.}-SQ_{Ef.Dos.} \\
+SQ_{I,D} &amp;= \frac{1}{r_{SF}}(T_{I_1D_1}^2+T_{I_1D_2}^2+\cdots +T_{I_4D_2}^2) - C \\
+                  &amp;= \frac{1}{3}(150^2+173^2+\cdots + 104^2) - \frac{1172^2}{24} \\
+                  &amp;= 4605.33 \end{aligned}
 \]</span>
-Vamos estimar <span class="math inline">\(Sp\)</span>:</p>
+assim,</p>
 <p><span class="math display">\[
-S_P=\sqrt{\frac{(n_1 - 1) s^2_1+(n_2-1) s^2_2}{(n_1 - 1)+(n_2-1)}} =\sqrt{\frac{(6 - 1) 118176.7+(8-1) 80200}{(6 - 1)+(8-1)}} = 309,8768\;kg\;ha^{-1}
-\]</span>
-<img src="img/R.png" /></p>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="comparações-de-parâmetros-de-duas-populações.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(((<span class="dv">6-1</span>)<span class="sc">*</span><span class="fl">118176.7</span><span class="sc">+</span>(<span class="dv">8-1</span>)<span class="sc">*</span><span class="dv">80200</span>)<span class="sc">/</span>(<span class="dv">6-1</span><span class="sc">+</span><span class="dv">8-1</span>))</span></code></pre></div>
-<pre><code>## [1] 309.8768</code></pre>
-<p>Vamos calcular a estatística:</p>
-<p><span class="math display">\[
-t_{obs} = \frac{(\bar{x} - \bar{y})}{S_p \cdot \sqrt{\frac{1}{n_1} +\frac{1}{n_2}} }=\frac{(1871,667 - 3665)}{309,8768 \cdot \sqrt{\frac{1}{6} +\frac{1}{8}} } = -10,7159
+SQ_{Interação\;I\times D} = SQ_{S,F}-SQ_{Ef.Ins.}-SQ_{Ef.Dos.} \\
+SQ_{Interação\;I\times D}=4605,33-860,33-620,16 \\
+SQ_{Interação\;I\times D}=3124,84
 \]</span></p>
-<p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="comparações-de-parâmetros-de-duas-populações.html#cb522-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1871.667</span><span class="dv">-3665</span>)<span class="sc">/</span>(<span class="fl">309.8768</span><span class="sc">*</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span><span class="sc">+</span><span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>))</span></code></pre></div>
-<pre><code>## [1] -10.7159</code></pre>
-<p><strong>PASSO 3:</strong> Construir a Região Crítica.</p>
-<p>A região crítica do teste será construída a partir da <strong>Tabela da distribuição t</strong> ao nível <span class="math inline">\(5\%\)</span> com $(6 + 8 - 2) = 12 $ graus de liberdade.</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
-<p>Olhando na tabela <span class="math inline">\(t_{(0,05; 12)} = 2,179\)</span></p>
-<p>Assim, a <strong>região crítica</strong> do teste será <span class="math inline">\(RC = \{t &lt; -2,179 \;ou\;t&gt;2,179\}\)</span></p>
-<p><strong>PASSO 4:</strong> Comparar <span class="math inline">\(t_{obs}\)</span> com o <span class="math inline">\(t_c\)</span>.</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
-<p><strong>PASSO 5:</strong> Concluir o teste.</p>
-<p>Como <span class="math inline">\(t_{obs} \in RC\)</span> <strong>rejeitamos </strong> <span class="math inline">\(H_0\)</span> ao nível de <span class="math inline">\(5\%\)</span> de significância, e concluímos que as médias dos cultivares de milhos são diferentes, ou seja, a cultivar <span class="math inline">\(B\)</span> apresenta uma média de produtividade maior que a cultivar <span class="math inline">\(A\)</span>.</p>
-<p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construir os vetores de dados</span></span>
-<span id="cb524-2"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-2" aria-hidden="true" tabindex="-1"></a>A<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1470</span>,<span class="dv">1920</span>,<span class="dv">2340</span>,<span class="dv">2100</span>,<span class="dv">1920</span>,<span class="dv">1480</span>)</span>
-<span id="cb524-3"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-3" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3260</span>,<span class="dv">3990</span>,<span class="dv">4050</span>,<span class="dv">3420</span>,<span class="dv">3510</span>,<span class="dv">3880</span>,<span class="dv">3550</span>,<span class="dv">3660</span>)</span>
-<span id="cb524-4"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb524-5"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar o teste de Médias, pelo teste t</span></span>
-<span id="cb524-6"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(A,B,</span>
-<span id="cb524-7"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;t&quot;</span>, <span class="co"># use t para bilateral, &quot;l&quot; para unilateral a esquerda e &quot;g&quot; para unilateral a direita</span></span>
-<span id="cb524-8"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,  <span class="co"># TRUE se as variância forem iguais, caso contrário, FALSE</span></span>
-<span id="cb524-9"><a href="comparações-de-parâmetros-de-duas-populações.html#cb524-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="co"># Nível de confiança do teste</span></span></code></pre></div>
-<pre><code>## 
-##  Two Sample t-test
+<p>Portanto, temos o seguinte quadro de análise de variância:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Efeito de Inseticida (I)
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+860,33
+</td>
+<td style="text-align:left;">
+286,78
+</td>
+<td style="text-align:left;">
+3,80*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Efeito de Doses (D)
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+8,21*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ef. da Interação (IxD)
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+3124,84
+</td>
+<td style="text-align:left;">
+1041,61
+</td>
+<td style="text-align:left;">
+13,80**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+4605,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1208,00
+</td>
+<td style="text-align:left;">
+75,50
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+5813,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Inseticida (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,24 \\ 1\%=5,29 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Fungicida (<span class="math inline">\(1 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,49 \\ 1\%=8,53 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Interação <span class="math inline">\(S\times F\)</span> (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,24 \\ 1\%=5,29 \end{cases}\)</span></p>
+<p><strong>Conclusões</strong></p>
+<p><strong>Para efeito de Inseticida</strong>: O teste foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que os inseticidas possuem efeitos diferentes sobre a produção da cultura do milho.</p>
+<p><strong>Para efeito de Dose</strong>: O teste foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que as dosagens possuem efeitos diferentes sobre a produção da cultura do milho.</p>
+<p><strong>Para efeito da Interação (I <span class="math inline">\(\times\)</span> D)</strong>: O teste foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidae, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que os inseticidas e dosagens agem conjuntamente sobre a produção da cultura do milho, ou seja, inseticidas e dosagens não agem de maneira independente.</p>
+<p>Devemos portanto, desdobrar o efeito da interação para estudar os efeitos de cada um dos fatores dentro dos níveis do outro fator.</p>
+<div id="desdobrando-a-interação-itimes-d-para-estudar-os-efeitos-do-fator-doses-em-cada-nível-do-fator-inseticida-d-d.-i" class="section level3" number="19.1.1">
+<h3><span class="header-section-number">19.1.1</span> Desdobrando a interação <span class="math inline">\(I\times D\)</span>, para estudar os efeitos do fator <strong>DOSES</strong> em cada nível do fator <strong>INSETICIDA</strong> (D d. I):</h3>
+<p><span class="math display">\[
+SQ_{Dd.I_1} = \frac{1}{3}(150^2+173^2) - \frac{323^2}{6}=88,16 \\
+SQ_{Dd.I_2} = \frac{1}{3}(95^2+143^2) - \frac{238^2}{6}=384,00 \\
+SQ_{Dd.I_3} = \frac{1}{3}(179^2+105^2) - \frac{284^2}{6}=912,66 \\
+SQ_{Dd.I_4} = \frac{1}{3}(223^2+104^2) - \frac{327^2}{6}=2360,17
+\]</span></p>
+<p><strong>Verificação</strong>: <span class="math inline">\(SQ_{Dd.I_1}+SQ_{Dd.I_2}+SQ_{Dd.I_3}+SQ_{Dd.I_4}=SQ_{D}+SQ_{D\times I}\)</span></p>
+<p>Então, o quadro de análise de variância com desdobramento da interação IxD, estudando-se o efeito de doses dentro de cada inseticida será o seguinte:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Efeito de Inseticida (I)
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+860,33
+</td>
+<td style="text-align:left;">
+286,78
+</td>
+<td style="text-align:left;">
+3,80*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+88,16
+</td>
+<td style="text-align:left;">
+88,16
+</td>
+<td style="text-align:left;">
+1,17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+384,00
+</td>
+<td style="text-align:left;">
+384,00
+</td>
+<td style="text-align:left;">
+5,09*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+912,66
+</td>
+<td style="text-align:left;">
+912,66
+</td>
+<td style="text-align:left;">
+12,09**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+2360,17
+</td>
+<td style="text-align:left;">
+2360,17
+</td>
+<td style="text-align:left;">
+31,26**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+4605,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1208,00
+</td>
+<td style="text-align:left;">
+75,50
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Inseticidas (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,24 \\ 1\%=5,29 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Doses d. Inseticidas (<span class="math inline">\(1 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,49 \\ 1\%=8,53 \end{cases}\)</span></p>
+</div>
+<div id="desdobrando-a-interação-i-times-d-para-estudar-os-efeitos-do-fator-inseticidas-dentro-de-cada-nível-do-fator-dose-d-d.-i" class="section level3" number="19.1.2">
+<h3><span class="header-section-number">19.1.2</span> Desdobrando a interação <span class="math inline">\(I \times D\)</span>, para estudar os efeitos do fator <strong>INSETICIDAS</strong> dentro de cada nível do fator <strong>DOSE</strong> (D d. I):</h3>
+<p><span class="math display">\[
+SQ_{Id.D_1} = \frac{1}{3}(150^2+95^2+179^2+223^2) - \frac{647^2}{12}=2880,92 \\
+SQ_{Id.D_2} = \frac{1}{3}(173^2+143^2+105^2+104^2) - \frac{525^2}{12}=1104,25 \\
+\]</span></p>
+<p><strong>Verificação</strong>: <span class="math inline">\(SQ_{Id.D_1}+SQ_{Id.D_2}=SQ_{I}+SQ_{I \times D}\)</span></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Efeito de Inseticida (I)
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+8,21*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inseticida d.D1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2880,92
+</td>
+<td style="text-align:left;">
+960,31
+</td>
+<td style="text-align:left;">
+12,72**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inseticida d.D2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+1104,25
+</td>
+<td style="text-align:left;">
+368,08
+</td>
+<td style="text-align:left;">
+4,88*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+4605,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1208,00
+</td>
+<td style="text-align:left;">
+75,50
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+5813,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Doses (<span class="math inline">\(1 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4.49 \\ 1\%=8.53 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Inseticidas d. Doses (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3.24 \\ 1\%=5.29 \end{cases}\)</span></p>
+<p>Para completar a análise de variância, e obter conclusões mais específicas sobre o efeito dos inseticidas em cada dosagem, podemos aplicar um teste de comparação de médias.</p>
+</div>
+</div>
+<div id="teste-de-tukey-para-a-comparação-de-médias" class="section level2" number="19.2">
+<h2><span class="header-section-number">19.2</span> Teste de Tukey para a comparação de médias</h2>
+<p>Construção do Quadro de Médias a partir do Quadro de totais:</p>
+<p>Quadro auxiliar de totais:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">(3)</th>
+<th align="center"><span class="math inline">\(I_1\)</span></th>
+<th align="center"><span class="math inline">\(I_2\)</span></th>
+<th align="center"><span class="math inline">\(I_3\)</span></th>
+<th align="center"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="center"><span class="math inline">\(150\div 3\)</span></td>
+<td align="center"><span class="math inline">\(95\div 3\)</span></td>
+<td align="center"><span class="math inline">\(179\div 3\)</span></td>
+<td align="center"><span class="math inline">\(223\div 3\)</span></td>
+<td align="center"><span class="math inline">\(647\div 12\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="center"><span class="math inline">\(173\div 3\)</span></td>
+<td align="center"><span class="math inline">\(143\div 3\)</span></td>
+<td align="center"><span class="math inline">\(105\div 3\)</span></td>
+<td align="center"><span class="math inline">\(104\div 3\)</span></td>
+<td align="center"><span class="math inline">\(525\div 12\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center"><span class="math inline">\(323\div 6\)</span></td>
+<td align="center"><span class="math inline">\(238\div 6\)</span></td>
+<td align="center"><span class="math inline">\(284\div 6\)</span></td>
+<td align="center"><span class="math inline">\(327\div 6\)</span></td>
+<td align="center"><span class="math inline">\(1172\div 24\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Quadro de médias:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(I_1\)</span></th>
+<th align="center"><span class="math inline">\(I_2\)</span></th>
+<th align="center"><span class="math inline">\(I_3\)</span></th>
+<th align="center"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Média Doses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="center">50,00</td>
+<td align="center">31,67</td>
+<td align="center">59,67</td>
+<td align="center">74,32</td>
+<td align="center"><strong>53,92</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="center">53,67</td>
+<td align="center">47,67</td>
+<td align="center">35,00</td>
+<td align="center">34,67</td>
+<td align="center"><strong>43,75</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Média Inseticidas</strong></td>
+<td align="center">53,83</td>
+<td align="center">39,67</td>
+<td align="center">47,33</td>
+<td align="center">54,5</td>
+<td align="center"><strong>48,83</strong></td>
+</tr>
+</tbody>
+</table>
+<div id="para-comparar-médias-de-inseticidas-na-dose-1-i-d.-d_1" class="section level3" number="19.2.1">
+<h3><span class="header-section-number">19.2.1</span> 1. Para comparar médias de Inseticidas na Dose 1 (I d. <span class="math inline">\(D_1\)</span>)</h3>
+<p><span class="math display">\[
+DMS=q_{(4 \times 16 GL)} \cdot s(m) = q_{(4 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=4,05\cdot \sqrt{\frac{75,50}{3}}=20,34\;kg/parcela
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Inseticidas d. <span class="math inline">\(D_1\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_4}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_3}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_1}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_2}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_4}}\)</span></td>
+<td align="center"></td>
+<td align="center">14,66</td>
+<td align="center">24,33*</td>
+<td align="center">42,66*</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\hat{m_{I_3}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">9,67</td>
+<td align="center">28,00*</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_1}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">18,37</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="para-comparar-médias-de-inseticidas-na-dose-2-i-d.-d_2" class="section level3" number="19.2.2">
+<h3><span class="header-section-number">19.2.2</span> 2. Para comparar médias de Inseticidas na Dose 2 (I d. <span class="math inline">\(D_2\)</span>)</h3>
+<p><span class="math display">\[
+DMS=q \cdot s(m) = q_{(4 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=4,05\cdot \sqrt{\frac{75,50}{3}}=20,34\;kg/parcela
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Inseticidas d. <span class="math inline">\(D_1\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_1}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_2}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_3}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_4}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_1}}\)</span></td>
+<td align="center"></td>
+<td align="center">10,00</td>
+<td align="center">22,67*</td>
+<td align="center">23,00*</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\hat{m_{I_2}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">12,67</td>
+<td align="center">13,00</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_3}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">0,33</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="resultado-do-teste-de-tukey" class="section level3" number="19.2.3">
+<h3><span class="header-section-number">19.2.3</span> Resultado do teste de Tukey</h3>
+<p>Médias seguidas pela mesma letra, minúsculas nas linhas e maiúsculas nas colunas, não diferem entre si pelo teste de Tukey ao nível de <span class="math inline">\(5\%\)</span> de probabilidade.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="left"><span class="math inline">\(I_1\)</span></th>
+<th align="left"><span class="math inline">\(I_2\)</span></th>
+<th align="left"><span class="math inline">\(I_3\)</span></th>
+<th align="left"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Média Doses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="left">50,00 Abc</td>
+<td align="left">31,67 Bc</td>
+<td align="left">59,67 Aab</td>
+<td align="left">74,32 Aa</td>
+<td align="center">53,92</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="left">53,67 Aa</td>
+<td align="left">47,67 Aab</td>
+<td align="left">35,00 Bb</td>
+<td align="left">34,67 Bb</td>
+<td align="center">43,75</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Média Inseticidas</strong></td>
+<td align="left">53,83</td>
+<td align="left">39,67</td>
+<td align="left">47,33</td>
+<td align="left">54,5</td>
+<td align="center">48,83</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cálculo-do-coeficiente-de-variação-do-experimento-2" class="section level3" number="19.2.4">
+<h3><span class="header-section-number">19.2.4</span> Cálculo do coeficiente de variação do experimento</h3>
+<p><span class="math display">\[
+CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
+\]</span>
+## Aplicação no R</p>
+<p><img src="R.png" /></p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote par análise de variância</span></span>
+<span id="cb614-2"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb614-3"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt&quot;</span></span>
+<span id="cb614-4"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-5"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb614-6"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-7"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-7" aria-hidden="true" tabindex="-1"></a>Inseticidas<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Ins)</span>
+<span id="cb614-8"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-9"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-9" aria-hidden="true" tabindex="-1"></a>Doses<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Dos)</span>
+<span id="cb614-10"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-11"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-11" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>Y</span>
+<span id="cb614-12"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-13"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-13" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Doses,Inseticidas,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-329-1.png" width="672" /></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Inseticidas,Doses,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-329-2.png" width="672" /></p>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dic</span>(Inseticidas,Doses,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Inseticidas&quot;</span>, <span class="st">&quot;Doses&quot;</span>))</span></code></pre></div>
+<pre><code>## ------------------------------------------------------------------------
+## Legenda:
+## FATOR 1:  Inseticidas 
+## FATOR 2:  Doses 
+## ------------------------------------------------------------------------
 ## 
-## data:  A and B
-## t = -10.716, df = 12, p-value = 1.688e-07
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -2157.963 -1428.703
-## sample estimates:
-## mean of x mean of y 
-##  1871.667  3665.000</code></pre>
-<p><strong>Interpretação no R</strong>: Observe que a função retorna a estatística do teste <span class="math inline">\(t = -10.716\)</span> seguido pelos valores de graus de liberdade (<span class="math inline">\(df\)</span>) igual a <span class="math inline">\(12\)</span>, e o <span class="math inline">\(p-value = 1.688e-07\)</span> que significa <span class="math inline">\(0,0000001688\)</span> valor bem próximo a <span class="math inline">\(0\)</span>.</p>
-<p>O <span class="math inline">\(p-value\)</span> indica a probabilidade (área embaixo da curva) antes do valor de <span class="math inline">\(t_{obs}\)</span>, no caso dele ser negativo, a probabilidade associada à estatística <span class="math inline">\(t_{obs}\)</span> foi de <span class="math inline">\(0,0000001688\)</span>, como apresentado abaixo. Se o valor de <span class="math inline">\(t_{obs}\)</span> for positivo, 0 <span class="math inline">\(p-value\)</span> indica a probabilidade (área embaixo da curva) depois do valor de <span class="math inline">\(t_{obs}\)</span></p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-285-1.png" width="672" /></p>
-<p><strong>PASSO 2:</strong> Comparar <span class="math inline">\(p-value\)</span> com o <span class="math inline">\(\alpha\)</span>.</p>
-<p>Se <span class="math inline">\(p-value &gt; \alpha\)</span> então <strong>não rejeitamos</strong> <span class="math inline">\(H_0\)</span> e concluímos que as médias são iguais, caso contrário, <strong>rejeitamos</strong> <span class="math inline">\(H_0\)</span>.</p>
-<p><strong>PASSO 3:</strong> Concluir o teste.</p>
-<p>Para o nosso exemplo, <span class="math inline">\(p-value\)</span> foi menor que o <span class="math inline">\(\alpha\)</span>, ou seja:</p>
-<p>Como <span class="math inline">\(p-value &lt; \alpha\)</span> <strong>rejeitamos </strong> <span class="math inline">\(H_0\)</span> ao nível de 5% de significância, e concluímos que os cultivares de milhos testadas são apresentam médias diferentes.</p>
-
+## 
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##                   GL     SQ      QM      Fc     Pr&gt;Fc
+## Inseticidas        3  860.3  286.78  3.7984 0.0312885
+## Doses              1  620.2  620.17  8.2141 0.0112029
+## Inseticidas*Doses  3 3124.8 1041.61 13.7962 0.0001057
+## Residuo           16 1208.0   75.50                  
+## Total             23 5813.3                          
+## ------------------------------------------------------------------------
+## CV = 17.79 %
+## 
+## ------------------------------------------------------------------------
+## Teste de normalidade dos residuos (Shapiro-Wilk)
+## valor-p:  0.419147 
+## De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+## Interacao significativa: desdobrando a interacao
+## ------------------------------------------------------------------------
+## 
+## Desdobrando  Inseticidas  dentro de cada nivel de  Doses 
+## ------------------------------------------------------------------------
+## ------------------------------------------------------------------------
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##                     GL        SQ       QM      Fc  Pr.Fc
+## Doses                1  620.1667 620.1667  8.2141 0.0112
+## Inseticidas:Doses 1  3 2880.9167 960.3056 12.7193 0.0002
+## Inseticidas:Doses 2  3 1104.2500 368.0833  4.8753 0.0135
+## Residuo             16 1208.0000  75.5000      NA     NA
+## Total               23 5813.3333 252.7536      NA     NA
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+##  Inseticidas  dentro do nivel  1  de  Doses 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     4   74.33333 
+## ab    3   59.66667 
+##  bc   1   50 
+##   c   2   31.66667 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Inseticidas  dentro do nivel  2  de  Doses 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     1   57.66667 
+## ab    2   47.66667 
+##  b    3   35 
+##  b    4   34.66667 
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+## Desdobrando  Doses  dentro de cada nivel de  Inseticidas 
+## ------------------------------------------------------------------------
+## ------------------------------------------------------------------------
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##                     GL         SQ         QM      Fc  Pr.Fc
+## Inseticidas          3  860.33333  286.77778  3.7984 0.0313
+## Doses:Inseticidas 1  1   88.16667   88.16667  1.1678 0.2959
+## Doses:Inseticidas 2  1  384.00000  384.00000  5.0861 0.0385
+## Doses:Inseticidas 3  1  912.66667  912.66667 12.0883 0.0031
+## Doses:Inseticidas 4  1 2360.16667 2360.16667 31.2605 0.0000
+## Residuo             16 1208.00000   75.50000      NA     NA
+## Total               23 5813.33333  252.75362      NA     NA
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+##  Doses  dentro do nivel  1  de  Inseticidas 
+## 
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##     Niveis     Medias
+## 1        1   50.00000
+## 2        2   57.66667
+## ------------------------------------------------------------------------
+## 
+## 
+##  Doses  dentro do nivel  2  de  Inseticidas 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     2   47.66667 
+##  b    1   31.66667 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Doses  dentro do nivel  3  de  Inseticidas 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     1   59.66667 
+##  b    2   35 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Doses  dentro do nivel  4  de  Inseticidas 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     1   74.33333 
+##  b    2   34.66667 
+## ------------------------------------------------------------------------</code></pre>
 </div>
 </div>
 </div>
@@ -785,8 +1434,8 @@ t_{obs} = \frac{(\bar{x} - \bar{y})}{S_p \cdot \sqrt{\frac{1}{n_1} +\frac{1}{n_2
           </div>
         </div>
       </div>
-<a href="experimentação-agrícola.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="planejamento-de-experimentos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="experimentos-fatoriais.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estudo-do-fatorial-32.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

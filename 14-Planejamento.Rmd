@@ -194,9 +194,9 @@ kable(df) %>%
   row_spec(c(5),bold=TRUE)
 ```
 
-# Testes de significância
+## Testes de significância
 
-## Introdução
+### Introdução
 
 Um dos principais objetivos da estatística é a tomada de decisão a respeito da população, com base nas observações de amostra, ou seja, a obtenção de conclusões válidas para toda a população com base em amostra retiradas dessas populações.
 
@@ -231,7 +231,7 @@ Esta confiança que temos de termos tomada uma decisão correta é denominada de
 O teste de significância mais utilizado em estatística experimental é o **Teste F**, que estudaremos a seguir.
 
 
-## Teste F de Snedecor para análise de variância
+### Teste F de Snedecor para análise de variância
 
 A **Análise de Variância** é uma técnica que nos permite fazer a decomposição da variância total em parte atribuídas a causas conhecidas e independentes e uma porção residual de origem desconhecida e de natureza aleatória.
 
@@ -301,7 +301,7 @@ c) **Fcalc > Ftab(1%)** - O teste é significativo ao nível de $1\%$de probabil
 
 
 
-## Exemplo de aplicação do teste F
+### Exemplo de aplicação do teste F
 
 Num experimento de competição de cultivares de cana-de-açúcar foram utilizados $6$ Tratamentos e $4$ repetições. As cultivares testadas foram:
 
@@ -396,7 +396,7 @@ O teste foi significativo ao nível de 1% de probabilidade. Rejeitamos a hipóte
 
 ![](img/R.png)
 
-## Passos para fazer a análise de variância no R
+### Passos para fazer a análise de variância no R
 
 
 #### Carregar o Pacote `{ExpDes.pt}`

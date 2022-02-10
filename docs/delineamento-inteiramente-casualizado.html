@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>16 Delineamento Inteiramente Casualizado | Análise de Dados de Ciência do Solo no R</title>
+  <title>15 Delineamento Inteiramente Casualizado | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="16 Delineamento Inteiramente Casualizado | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:title" content="15 Delineamento Inteiramente Casualizado | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="16 Delineamento Inteiramente Casualizado | Análise de Dados de Ciência do Solo no R" />
+  <meta name="twitter:title" content="15 Delineamento Inteiramente Casualizado | Análise de Dados de Ciência do Solo no R" />
   
   <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="testes-de-significância.html"/>
+<link rel="prev" href="planejamento-de-experimentos.html"/>
 <link rel="next" href="desdobramento-de-graus-de-liberdade-de-tratamento.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -296,42 +296,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.3.3" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#princípio-do-controle-local"><i class="fa fa-check"></i><b>14.3.3</b> PRINCÍPIO DO CONTROLE LOCAL</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#relação-entre-princípios-basicos-e-delineamentos"><i class="fa fa-check"></i><b>14.4</b> Relação entre princípios basicos e delineamentos</a></li>
-</ul></li>
-<li class="chapter" data-level="15" data-path="testes-de-significância.html"><a href="testes-de-significância.html"><i class="fa fa-check"></i><b>15</b> Testes de significância</a>
+<li class="chapter" data-level="14.5" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#testes-de-significância"><i class="fa fa-check"></i><b>14.5</b> Testes de significância</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="testes-de-significância.html"><a href="testes-de-significância.html#introdução-2"><i class="fa fa-check"></i><b>15.1</b> Introdução</a></li>
-<li class="chapter" data-level="15.2" data-path="testes-de-significância.html"><a href="testes-de-significância.html#teste-f-de-snedecor-para-análise-de-variância"><i class="fa fa-check"></i><b>15.2</b> Teste F de Snedecor para análise de variância</a></li>
-<li class="chapter" data-level="15.3" data-path="testes-de-significância.html"><a href="testes-de-significância.html#exemplo-de-aplicação-do-teste-f"><i class="fa fa-check"></i><b>15.3</b> Exemplo de aplicação do teste F</a></li>
-<li class="chapter" data-level="15.4" data-path="testes-de-significância.html"><a href="testes-de-significância.html#passos-para-fazer-a-análise-de-variância-no-r"><i class="fa fa-check"></i><b>15.4</b> Passos para fazer a análise de variância no R</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html"><i class="fa fa-check"></i><b>16</b> Delineamento Inteiramente Casualizado</a>
-<ul>
-<li class="chapter" data-level="16.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#caracterização"><i class="fa fa-check"></i><b>16.1</b> Caracterização</a></li>
-<li class="chapter" data-level="16.2" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#modelo-matemático"><i class="fa fa-check"></i><b>16.2</b> Modelo matemático</a></li>
-<li class="chapter" data-level="16.3" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#hipóteses-básicas-para-análise-de-variância"><i class="fa fa-check"></i><b>16.3</b> Hipóteses básicas para análise de variância</a></li>
-<li class="chapter" data-level="16.4" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#obtenção-da-análise-de-variância"><i class="fa fa-check"></i><b>16.4</b> Obtenção da análise de variância</a></li>
-<li class="chapter" data-level="16.5" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>16.5</b> 5.5 EXEMPLO DE APLICAÇÃO</a></li>
-<li class="chapter" data-level="16.6" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#delinemaneto-inteiramente-casualizado-com-número-diferente-de-repetições-por-tratamento"><i class="fa fa-check"></i><b>16.6</b> Delinemaneto inteiramente casualizado com número diferente de repetições por tratamento</a>
-<ul>
-<li class="chapter" data-level="16.6.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#introdução-3"><i class="fa fa-check"></i><b>16.6.1</b> INTRODUÇÃO</a></li>
-<li class="chapter" data-level="16.6.2" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#obtenção-da-análise-de-variância-1"><i class="fa fa-check"></i><b>16.6.2</b> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA</a></li>
-<li class="chapter" data-level="16.6.3" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#cálculo-das-médias-e-erros-padrões-das-médias"><i class="fa fa-check"></i><b>16.6.3</b> CÁLCULO DAS MÉDIAS E ERROS PADRÕES DAS MÉDIAS:</a></li>
-<li class="chapter" data-level="16.6.4" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#teste-de-tukey-para-comparação-das-médias"><i class="fa fa-check"></i><b>16.6.4</b> TESTE DE TUKEY PARA COMPARAÇÃO DAS MÉDIAS</a></li>
-<li class="chapter" data-level="16.6.5" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#cálculo-do-coeficiente-de-variação-do-experimento"><i class="fa fa-check"></i><b>16.6.5</b> CÁLCULO DO COEFICIENTE DE VARIAÇÃO DO EXPERIMENTO</a></li>
-<li class="chapter" data-level="16.6.6" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#aplicação-do-teste-t-de-student-a-um-contraste"><i class="fa fa-check"></i><b>16.6.6</b> APLICAÇÃO DO TESTE t DE STUDENT A UM CONTRASTE</a></li>
-<li class="chapter" data-level="16.6.7" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#teste-de-duncan-para-a-comparação-das-médias"><i class="fa fa-check"></i><b>16.6.7</b> TESTE DE DUNCAN PARA A COMPARAÇÃO DAS MÉDIAS</a></li>
-<li class="chapter" data-level="16.6.8" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#utilizando-o-r"><i class="fa fa-check"></i><b>16.6.8</b> Utilizando o R</a></li>
+<li class="chapter" data-level="14.5.1" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#introdução-2"><i class="fa fa-check"></i><b>14.5.1</b> Introdução</a></li>
+<li class="chapter" data-level="14.5.2" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#teste-f-de-snedecor-para-análise-de-variância"><i class="fa fa-check"></i><b>14.5.2</b> Teste F de Snedecor para análise de variância</a></li>
+<li class="chapter" data-level="14.5.3" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#exemplo-de-aplicação-do-teste-f"><i class="fa fa-check"></i><b>14.5.3</b> Exemplo de aplicação do teste F</a></li>
+<li class="chapter" data-level="14.5.4" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#passos-para-fazer-a-análise-de-variância-no-r"><i class="fa fa-check"></i><b>14.5.4</b> Passos para fazer a análise de variância no R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html"><i class="fa fa-check"></i><b>17</b> Desdobramento de graus de liberdade de tratamento</a>
+<li class="chapter" data-level="15" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html"><i class="fa fa-check"></i><b>15</b> Delineamento Inteiramente Casualizado</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#introdução-4"><i class="fa fa-check"></i><b>17.1</b> INTRODUÇÃO</a></li>
-<li class="chapter" data-level="17.2" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#obtenção-da-análise-de-variância-com-desdobramento-dos-graus-de-liberdade-de-tratamentos"><i class="fa fa-check"></i><b>17.2</b> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA COM DESDOBRAMENTO DOS GRAUS DE LIBERDADE DE TRATAMENTOS</a>
+<li class="chapter" data-level="15.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#caracterização"><i class="fa fa-check"></i><b>15.1</b> Caracterização</a></li>
+<li class="chapter" data-level="15.2" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#modelo-matemático"><i class="fa fa-check"></i><b>15.2</b> Modelo matemático</a></li>
+<li class="chapter" data-level="15.3" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#hipóteses-básicas-para-análise-de-variância"><i class="fa fa-check"></i><b>15.3</b> Hipóteses básicas para análise de variância</a></li>
+<li class="chapter" data-level="15.4" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#obtenção-da-análise-de-variância"><i class="fa fa-check"></i><b>15.4</b> Obtenção da análise de variância</a>
 <ul>
-<li class="chapter" data-level="17.2.1" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#método-dos-contrastes-de-totais-de-tratamentos"><i class="fa fa-check"></i><b>17.2.1</b> MÉTODO DOS CONTRASTES DE TOTAIS DE TRATAMENTOS</a></li>
-<li class="chapter" data-level="17.2.2" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#método-dos-totais-de-tratamentos-sem-utilizar-contrastes"><i class="fa fa-check"></i><b>17.2.2</b> MÉTODO DOS TOTAIS DE TRATAMENTOS (SEM UTILIZAR CONTRASTES)</a></li>
-<li class="chapter" data-level="17.2.3" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#análise-de-variância-com-desdobramento-dos-graus-de-liberdade-de-tratamentos"><i class="fa fa-check"></i><b>17.2.3</b> ANÁLISE DE VARIÂNCIA COM DESDOBRAMENTO DOS GRAUS DE LIBERDADE DE TRATAMENTOS</a></li>
-<li class="chapter" data-level="17.2.4" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#componentes-com-mais-de-um-grau-de-liberdade"><i class="fa fa-check"></i><b>17.2.4</b> COMPONENTES COM MAIS DE UM GRAU DE LIBERDADE</a></li>
+<li class="chapter" data-level="15.4.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>15.4.1</b> EXEMPLO DE APLICAÇÃO</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#delinemaneto-inteiramente-casualizado-com-número-diferente-de-repetições-por-tratamento"><i class="fa fa-check"></i><b>15.5</b> Delinemaneto inteiramente casualizado com número diferente de repetições por tratamento</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#introdução-3"><i class="fa fa-check"></i><b>15.5.1</b> INTRODUÇÃO</a></li>
+<li class="chapter" data-level="15.5.2" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#obtenção-da-análise-de-variância-1"><i class="fa fa-check"></i><b>15.5.2</b> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA</a></li>
+<li class="chapter" data-level="15.5.3" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#cálculo-das-médias-e-erros-padrões-das-médias"><i class="fa fa-check"></i><b>15.5.3</b> CÁLCULO DAS MÉDIAS E ERROS PADRÕES DAS MÉDIAS:</a></li>
+<li class="chapter" data-level="15.5.4" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#teste-de-tukey-para-comparação-das-médias"><i class="fa fa-check"></i><b>15.5.4</b> TESTE DE TUKEY PARA COMPARAÇÃO DAS MÉDIAS</a></li>
+<li class="chapter" data-level="15.5.5" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#cálculo-do-coeficiente-de-variação-do-experimento"><i class="fa fa-check"></i><b>15.5.5</b> CÁLCULO DO COEFICIENTE DE VARIAÇÃO DO EXPERIMENTO</a></li>
+<li class="chapter" data-level="15.5.6" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#aplicação-do-teste-t-de-student-a-um-contraste"><i class="fa fa-check"></i><b>15.5.6</b> APLICAÇÃO DO TESTE t DE STUDENT A UM CONTRASTE</a></li>
+<li class="chapter" data-level="15.5.7" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#teste-de-duncan-para-a-comparação-das-médias"><i class="fa fa-check"></i><b>15.5.7</b> TESTE DE DUNCAN PARA A COMPARAÇÃO DAS MÉDIAS</a></li>
+<li class="chapter" data-level="15.5.8" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#utilizando-o-r"><i class="fa fa-check"></i><b>15.5.8</b> Utilizando o R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html"><i class="fa fa-check"></i><b>16</b> Desdobramento de graus de liberdade de tratamento</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#introdução-4"><i class="fa fa-check"></i><b>16.1</b> Introdução</a></li>
+<li class="chapter" data-level="16.2" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#obtenção-da-análise-de-variância-2"><i class="fa fa-check"></i><b>16.2</b> Obtenção da análise de variância</a></li>
+<li class="chapter" data-level="16.3" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#método-dos-contrastes-de-totais-de-tratamentos"><i class="fa fa-check"></i><b>16.3</b> Método dos contrastes de totais de tratamentos</a></li>
+<li class="chapter" data-level="16.4" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#método-dos-totais-de-tratamentos-sem-utilizar-contrastes"><i class="fa fa-check"></i><b>16.4</b> Método dos totais de tratamentos (sem utilizar contrastes)</a></li>
+<li class="chapter" data-level="16.5" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#análise-no-r"><i class="fa fa-check"></i><b>16.5</b> Análise no R</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#componentes-com-mais-de-um-grau-de-liberdade"><i class="fa fa-check"></i><b>16.5.1</b> COMPONENTES COM MAIS DE UM GRAU DE LIBERDADE</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html"><i class="fa fa-check"></i><b>17</b> Delineamento em Blocos Casualizados</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#caracterização-1"><i class="fa fa-check"></i><b>17.1</b> Caracterização</a></li>
+<li class="chapter" data-level="17.2" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#modelo-matemático-1"><i class="fa fa-check"></i><b>17.2</b> Modelo matemático</a></li>
+<li class="chapter" data-level="17.3" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#hipóteses-básicas"><i class="fa fa-check"></i><b>17.3</b> Hipóteses básicas</a></li>
+<li class="chapter" data-level="17.4" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#obtenção-da-análise-de-variância-3"><i class="fa fa-check"></i><b>17.4</b> Obtenção da análise de variância</a></li>
+<li class="chapter" data-level="17.5" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#exemplo-de-aplicação-1"><i class="fa fa-check"></i><b>17.5</b> Exemplo de aplicação</a></li>
+<li class="chapter" data-level="17.6" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#delineamento-em-blocos-casualizados-com-uma-parcela-perdida"><i class="fa fa-check"></i><b>17.6</b> Delineamento em blocos casualizados com uma parcela perdida</a>
+<ul>
+<li class="chapter" data-level="17.6.1" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#introdução-5"><i class="fa fa-check"></i><b>17.6.1</b> INTRODUÇÃO</a></li>
+<li class="chapter" data-level="17.6.2" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#estimativa-da-parcela-perdida"><i class="fa fa-check"></i><b>17.6.2</b> ESTIMATIVA DA PARCELA PERDIDA</a></li>
+<li class="chapter" data-level="17.6.3" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#obtenção-da-análise-de-variância-4"><i class="fa fa-check"></i><b>17.6.3</b> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA</a></li>
+<li class="chapter" data-level="17.6.4" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#médias-de-tratamentos"><i class="fa fa-check"></i><b>17.6.4</b> MÉDIAS DE TRATAMENTOS</a></li>
+<li class="chapter" data-level="17.6.5" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#erros-padrões-das-médias-de-tratamentos"><i class="fa fa-check"></i><b>17.6.5</b> ERROS PADRÕES DAS MÉDIAS DE TRATAMENTOS</a></li>
+<li class="chapter" data-level="17.6.6" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#comparação-das-médias-para-o-teste-de-tukey"><i class="fa fa-check"></i><b>17.6.6</b> COMPARAÇÃO DAS MÉDIAS PARA O TESTE DE TUKEY</a></li>
+<li class="chapter" data-level="17.6.7" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#exemplo-de-aplicação-2"><i class="fa fa-check"></i><b>17.6.7</b> EXEMPLO DE APLICAÇÃO</a></li>
+</ul></li>
+<li class="chapter" data-level="17.7" data-path="delineamento-em-blocos-casualizados.html"><a href="delineamento-em-blocos-casualizados.html#aplicação-no-r."><i class="fa fa-check"></i><b>17.7</b> Aplicação no R.</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html"><i class="fa fa-check"></i><b>18</b> Experimentos Fatoriais</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#introdução-6"><i class="fa fa-check"></i><b>18.1</b> Introdução</a></li>
+<li class="chapter" data-level="18.2" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#efeito-simples-de-um-fator"><i class="fa fa-check"></i><b>18.2</b> Efeito simples de um fator</a></li>
+<li class="chapter" data-level="18.3" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#efeito-principal-de-um-fator"><i class="fa fa-check"></i><b>18.3</b> Efeito principal de um fator</a></li>
+<li class="chapter" data-level="18.4" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#efeito-da-interação-entre-fatores"><i class="fa fa-check"></i><b>18.4</b> Efeito da interação entre fatores</a></li>
+<li class="chapter" data-level="18.5" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#vantagens-dos-experimentos-fatoriais"><i class="fa fa-check"></i><b>18.5</b> Vantagens dos experimentos fatoriais</a></li>
+<li class="chapter" data-level="18.6" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#desvantagens-dos-experimentos-fatoriais"><i class="fa fa-check"></i><b>18.6</b> Desvantagens dos experimentos fatoriais</a></li>
+<li class="chapter" data-level="18.7" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#classificação-dos-experimentos-fatoriais"><i class="fa fa-check"></i><b>18.7</b> Classificação dos experimentos fatoriais</a></li>
+<li class="chapter" data-level="18.8" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#casualização-dos-tratamentos"><i class="fa fa-check"></i><b>18.8</b> Casualização dos tratamentos</a></li>
+<li class="chapter" data-level="18.9" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#análise-de-variância-de-um-experimento-fatorial-com-2-fatores-com-interação-não-significativa"><i class="fa fa-check"></i><b>18.9</b> Análise de variância de um experimento fatorial com <span class="math inline">\(2\)</span> fatores com interação não significativa</a></li>
+<li class="chapter" data-level="18.10" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#obtenção-da-análise-de-variância-5"><i class="fa fa-check"></i><b>18.10</b> Obtenção da análise de variância</a></li>
+<li class="chapter" data-level="18.11" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#cálculo-das-médias-de-tratamento-do-solo-e-erros-padrões-das-médias"><i class="fa fa-check"></i><b>18.11</b> Cálculo das médias de Tratamento do Solo e erros padrões das médias</a></li>
+<li class="chapter" data-level="18.12" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#cálculo-das-médias-de-fungicidas-e-erros-padrões-das-médias"><i class="fa fa-check"></i><b>18.12</b> Cálculo das médias de Fungicidas e erros padrões das médias</a></li>
+<li class="chapter" data-level="18.13" data-path="experimentos-fatoriais.html"><a href="experimentos-fatoriais.html#cálculo-do-coeficiente-de-variação-do-experimento-1"><i class="fa fa-check"></i><b>18.13</b> Cálculo do coeficiente de variação do experimento</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><i class="fa fa-check"></i><b>19</b> Exemplo de Experimento fatorial com 2 fatores e interação significativa</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#obtenção-da-análise-de-variância-6"><i class="fa fa-check"></i><b>19.1</b> Obtenção da análise de variância</a>
+<ul>
+<li class="chapter" data-level="19.1.1" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#desdobrando-a-interação-itimes-d-para-estudar-os-efeitos-do-fator-doses-em-cada-nível-do-fator-inseticida-d-d.-i"><i class="fa fa-check"></i><b>19.1.1</b> Desdobrando a interação <span class="math inline">\(I\times D\)</span>, para estudar os efeitos do fator <strong>DOSES</strong> em cada nível do fator <strong>INSETICIDA</strong> (D d. I):</a></li>
+<li class="chapter" data-level="19.1.2" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#desdobrando-a-interação-i-times-d-para-estudar-os-efeitos-do-fator-inseticidas-dentro-de-cada-nível-do-fator-dose-d-d.-i"><i class="fa fa-check"></i><b>19.1.2</b> Desdobrando a interação <span class="math inline">\(I \times D\)</span>, para estudar os efeitos do fator <strong>INSETICIDAS</strong> dentro de cada nível do fator <strong>DOSE</strong> (D d. I):</a></li>
+</ul></li>
+<li class="chapter" data-level="19.2" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#teste-de-tukey-para-a-comparação-de-médias"><i class="fa fa-check"></i><b>19.2</b> Teste de Tukey para a comparação de médias</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#para-comparar-médias-de-inseticidas-na-dose-1-i-d.-d_1"><i class="fa fa-check"></i><b>19.2.1</b> 1. Para comparar médias de Inseticidas na Dose 1 (I d. <span class="math inline">\(D_1\)</span>)</a></li>
+<li class="chapter" data-level="19.2.2" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#para-comparar-médias-de-inseticidas-na-dose-2-i-d.-d_2"><i class="fa fa-check"></i><b>19.2.2</b> 2. Para comparar médias de Inseticidas na Dose 2 (I d. <span class="math inline">\(D_2\)</span>)</a></li>
+<li class="chapter" data-level="19.2.3" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#resultado-do-teste-de-tukey"><i class="fa fa-check"></i><b>19.2.3</b> Resultado do teste de Tukey</a></li>
+<li class="chapter" data-level="19.2.4" data-path="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html"><a href="exemplo-de-experimento-fatorial-com-2-fatores-e-interação-significativa.html#cálculo-do-coeficiente-de-variação-do-experimento-2"><i class="fa fa-check"></i><b>19.2.4</b> Cálculo do coeficiente de variação do experimento</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html"><i class="fa fa-check"></i><b>20</b> Estudo do Fatorial <span class="math inline">\(3^2\)</span></a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#obtenção-da-análise-de-variância-7"><i class="fa fa-check"></i><b>20.1</b> Obtenção da análise de variância</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#desdobrando-a-interação-e-times-d-para-estudar-os-efeitos-do-fator-espaçamento-em-cada-nível-do-fator-densidade-e-d.-d"><i class="fa fa-check"></i><b>20.1.1</b> Desdobrando a interação <span class="math inline">\(E \times D\)</span>, para estudar os efeitos do fator <strong>Espaçamento</strong> em cada nível do fator <strong>Densidade</strong> (E d. D):</a></li>
+<li class="chapter" data-level="20.1.2" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#desdobrando-a-interação-etimes-d-para-estudar-os-efeitos-do-fator-densidade-em-cada-nível-do-fator-espaçamentos-d-d.-e"><i class="fa fa-check"></i><b>20.1.2</b> Desdobrando a interação <span class="math inline">\(E\times D\)</span>, para estudar os efeitos do fator <strong>Densidade</strong> em cada nível do fator <strong>Espaçamentos</strong> (D d. E):</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#teste-de-tukey-para-a-comparação-de-médias-1"><i class="fa fa-check"></i><b>20.2</b> Teste de Tukey para a comparação de médias</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#para-comparar-médias-de-espaçamento-na-densidade-15-e-d.-d_15"><i class="fa fa-check"></i><b>20.2.1</b> 1. Para comparar médias de Espaçamento na Densidade 15 (E d. <span class="math inline">\(D_15\)</span>)</a></li>
+<li class="chapter" data-level="20.2.2" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#para-comparar-médias-de-densidades-no-espaçamento-25-d-d.-e_25"><i class="fa fa-check"></i><b>20.2.2</b> 2. Para comparar médias de densidades no Espaçamento 25 (D d. <span class="math inline">\(E_25\)</span>)</a></li>
+<li class="chapter" data-level="20.2.3" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#resultado-do-teste-de-tukey-1"><i class="fa fa-check"></i><b>20.2.3</b> Resultado do teste de Tukey</a></li>
+<li class="chapter" data-level="20.2.4" data-path="estudo-do-fatorial-32.html"><a href="estudo-do-fatorial-32.html#cálculo-do-coeficiente-de-variação-do-experimento-3"><i class="fa fa-check"></i><b>20.2.4</b> Cálculo do coeficiente de variação do experimento</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
@@ -355,10 +422,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="delineamento-inteiramente-casualizado" class="section level1" number="16">
-<h1><span class="header-section-number">16</span> Delineamento Inteiramente Casualizado</h1>
-<div id="caracterização" class="section level2" number="16.1">
-<h2><span class="header-section-number">16.1</span> Caracterização</h2>
+<div id="delineamento-inteiramente-casualizado" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Delineamento Inteiramente Casualizado</h1>
+<div id="caracterização" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> Caracterização</h2>
 <p>O delineamento inteiramente casualizado é o mais simples de todos os delineamentos experimentais, e os experimentos instalados de acordo com este delineamento são chamados de experimentos interiamente casualizados ou experimentos inteiramente ao acaso.</p>
 <p>Este delineamento apresenta as seguintes características:</p>
 <ol style="list-style-type: decimal">
@@ -417,8 +484,8 @@ E2 &amp; D2 &amp; C2 &amp; A1 &amp; A3
 \end{matrix}
 \]</span></p>
 </div>
-<div id="modelo-matemático" class="section level2" number="16.2">
-<h2><span class="header-section-number">16.2</span> Modelo matemático</h2>
+<div id="modelo-matemático" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Modelo matemático</h2>
 <p>Todo delineamento experimental possui um modelo matemático que o representa, e deve ser levado em conta na análise de variância, <strong>aceitando algumas hipóteses básicas necessárias para a validade da análise.</strong></p>
 <p>No caso do <span class="math inline">\(DIC\)</span>, o modelo matemático é definido como:</p>
 <p><span class="math display">\[
@@ -430,8 +497,8 @@ onde:</p>
 <p><span class="math inline">\(\tau_i\)</span> é o efeito devido ao tratamento <em>i</em> que foi aplicado à parcela;</p>
 <p><span class="math inline">\(\epsilon_{ij}\)</span> é o efeito dos fatores não controlados na parcela que recebeu o tratamento <em>i</em> na repetição <em>j</em>.</p>
 </div>
-<div id="hipóteses-básicas-para-análise-de-variância" class="section level2" number="16.3">
-<h2><span class="header-section-number">16.3</span> Hipóteses básicas para análise de variância</h2>
+<div id="hipóteses-básicas-para-análise-de-variância" class="section level2" number="15.3">
+<h2><span class="header-section-number">15.3</span> Hipóteses básicas para análise de variância</h2>
 <p>As hipóteses básicas que devemos admitir para tornar válida a aplicação da análise de variância são as seguintes:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Aditividade</strong>: Os efeitos dos fatores do modelo são aditivos.</p></li>
@@ -452,8 +519,8 @@ onde:</p>
 <p>Quando é constatada uma certa <strong>proporcionalidade entre as médias e os desvios padrões</strong> dos tratamentos. Exemplo: No caso de contagem de insetos, se a população é numerosa, as contagens serão altas para a testemunha e para os tratamentos que não controlam a praga, enquanto que, para os tratamentos que controlam a praga, a amplitude de variação será baixa.</p>
 <p>Quando houver zeros entre as contagens, utiliza-se <span class="math inline">\(y&#39;=log(y+1)\)</span>.</p>
 </div>
-<div id="obtenção-da-análise-de-variância" class="section level2" number="16.4">
-<h2><span class="header-section-number">16.4</span> Obtenção da análise de variância</h2>
+<div id="obtenção-da-análise-de-variância" class="section level2" number="15.4">
+<h2><span class="header-section-number">15.4</span> Obtenção da análise de variância</h2>
 <p>Para a obtenção da análise de variância, vamos considerar um experimento inteiramente casualizado com <strong>I</strong> tratamentos e <strong>J</strong> repetições.</p>
 <table>
 <thead>
@@ -653,9 +720,8 @@ H_1: \text{pelo menos um valor } \tau_i \neq 0
 \]</span></p>
 <p><strong>CRITÉRIO DO TESTE</strong>: Comparamos o valor <span class="math inline">\(F\)</span> calculado para tratamentos com o valor de <span class="math inline">\(F\)</span> tabelado em função do número de graus de liberdade (GL) de tratamentos e do resíduo, ao nível <span class="math inline">\(\alpha\)</span> de significância.</p>
 <p>Se <span class="math inline">\(F_{Trat} &gt; F_{Tab}\)</span>, concluímos que o teste é significativo, portanto, rejeitamos <span class="math inline">\(H_0\)</span> e devemos concluir que existe diferença significativa entre os efeitos dos tratamentos testados em relação às variáveis (característica) em estudo.</p>
-</div>
-<div id="exemplo-de-aplicação" class="section level2" number="16.5">
-<h2><span class="header-section-number">16.5</span> 5.5 EXEMPLO DE APLICAÇÃO</h2>
+<div id="exemplo-de-aplicação" class="section level3" number="15.4.1">
+<h3><span class="header-section-number">15.4.1</span> EXEMPLO DE APLICAÇÃO</h3>
 <p>Num experimento inteiramente casualizado, de competição de variedades de mandioca, realizado numa área perfeitamente homogênea quanto às condições experimentais, foram utilizadas <span class="math inline">\(5\)</span> repetições das seguintes variedades:</p>
 <p>1 - IAC 5</p>
 <p>2 - IAC 7</p>
@@ -950,10 +1016,11 @@ CV = 100 \cdot \frac{s}{\hat{m}} = 100 \cdot \frac{4,32}{34,2} = 12,63\%
 ##   c   IAC_11      26.02 
 ## ------------------------------------------------------------------------</code></pre>
 </div>
-<div id="delinemaneto-inteiramente-casualizado-com-número-diferente-de-repetições-por-tratamento" class="section level2" number="16.6">
-<h2><span class="header-section-number">16.6</span> Delinemaneto inteiramente casualizado com número diferente de repetições por tratamento</h2>
-<div id="introdução-3" class="section level3" number="16.6.1">
-<h3><span class="header-section-number">16.6.1</span> INTRODUÇÃO</h3>
+</div>
+<div id="delinemaneto-inteiramente-casualizado-com-número-diferente-de-repetições-por-tratamento" class="section level2" number="15.5">
+<h2><span class="header-section-number">15.5</span> Delinemaneto inteiramente casualizado com número diferente de repetições por tratamento</h2>
+<div id="introdução-3" class="section level3" number="15.5.1">
+<h3><span class="header-section-number">15.5.1</span> INTRODUÇÃO</h3>
 <p>Muitas vezes pode acontecer de chegarmos ao final do experimento e não conseguirmos obter os dados de algumas parcelas do experimento.</p>
 <p>Quando isso ocorre, dizemos que temos <strong>parcelas perdidas</strong>.</p>
 <p>Algumas razões para a ocorrência de parcelas perdidas:</p>
@@ -966,8 +1033,8 @@ CV = 100 \cdot \frac{s}{\hat{m}} = 100 \cdot \frac{4,32}{34,2} = 12,63\%
 <li>falha no equipamento (muito comum na utilização de sensores).</li>
 </ul>
 </div>
-<div id="obtenção-da-análise-de-variância-1" class="section level3" number="16.6.2">
-<h3><span class="header-section-number">16.6.2</span> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA</h3>
+<div id="obtenção-da-análise-de-variância-1" class="section level3" number="15.5.2">
+<h3><span class="header-section-number">15.5.2</span> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA</h3>
 <p>Todo o delineamento experimental é estruturado para que haja um perfeito balanceamento, e a perda de parcelas causa um quebra neste balanceamento, acarretando modificações no método de análise estatística.</p>
 <p>Para ilustrar o procedimento de análise de um experimento inteiramente casualizado, não balanceado, vamos utilizar o exemplo seguinte, referente a dados adaptados do trabalho de <strong><em>CARDOSO FILHO (1974)</em></strong> e se referem a produção de matéria seca de cultivares de sorgo, em t/ha.</p>
 <p>Experimento de produção de matéria seca de cultivares de sorgo, em t/ha. Para os cultivares, <em>H</em> = <em>Híbrido</em> e <em>V</em> = <em>Variedade</em>.</p>
@@ -1265,8 +1332,8 @@ Total
 <p><strong>Conclusão</strong>: O teste F foi significativo ao nível de 1% de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que as cultivares de sorgo possuem efeitos diferentes sobre a produção de matéria seca, com um grau de confiança de <span class="math inline">\(99\%\)</span> de probabilidade.</p>
 <p>Para tirar conclusões mais específicas sobre o comportamento das cultivares, devemos utilizar um teste de compração de médias.</p>
 </div>
-<div id="cálculo-das-médias-e-erros-padrões-das-médias" class="section level3" number="16.6.3">
-<h3><span class="header-section-number">16.6.3</span> CÁLCULO DAS MÉDIAS E ERROS PADRÕES DAS MÉDIAS:</h3>
+<div id="cálculo-das-médias-e-erros-padrões-das-médias" class="section level3" number="15.5.3">
+<h3><span class="header-section-number">15.5.3</span> CÁLCULO DAS MÉDIAS E ERROS PADRÕES DAS MÉDIAS:</h3>
 <p>A média do Tratamento <span class="math inline">\(i\)</span> é dada por:</p>
 <p><span class="math display">\[
 \hat{m_i} = \frac{T_i}{r_i},
@@ -1290,8 +1357,8 @@ s(\hat{m_3})=\sqrt{\frac{0,4510}{4}} = 0,34\;t/ha.\\
 s(\hat{m_4})=\sqrt{\frac{0,4510}{5}} = 0,30\;t/ha.
 \]</span></p>
 </div>
-<div id="teste-de-tukey-para-comparação-das-médias" class="section level3" number="16.6.4">
-<h3><span class="header-section-number">16.6.4</span> TESTE DE TUKEY PARA COMPARAÇÃO DAS MÉDIAS</h3>
+<div id="teste-de-tukey-para-comparação-das-médias" class="section level3" number="15.5.4">
+<h3><span class="header-section-number">15.5.4</span> TESTE DE TUKEY PARA COMPARAÇÃO DAS MÉDIAS</h3>
 <p>Como os tratamentos não possuem o mesmo número de repetições, vamos ter diversos casos a considerar:</p>
 <p>Para a aplicação do teste de Tukey, devemos colocar as médias em ordem decresecente, acompanhadas do número de repetições com que foram calculadas, ou seja</p>
 <p><span class="math display">\[
@@ -1504,8 +1571,8 @@ a
 </tbody>
 </table>
 </div>
-<div id="cálculo-do-coeficiente-de-variação-do-experimento" class="section level3" number="16.6.5">
-<h3><span class="header-section-number">16.6.5</span> CÁLCULO DO COEFICIENTE DE VARIAÇÃO DO EXPERIMENTO</h3>
+<div id="cálculo-do-coeficiente-de-variação-do-experimento" class="section level3" number="15.5.5">
+<h3><span class="header-section-number">15.5.5</span> CÁLCULO DO COEFICIENTE DE VARIAÇÃO DO EXPERIMENTO</h3>
 <p><span class="math display">\[
 \hat{m} = \frac{G}{N} = \frac{400,49}{27} = 14,82\;t/ha \\
 s = \sqrt{QM_{Res}}=\sqrt{0,4510}=0,6716\;t/ha\\
@@ -1573,8 +1640,8 @@ CV=100\cdot \frac{s}{\hat{m}} = 100\cdot \frac{0,6716}{14,83}=4,53\%
 ##  b    Pionner988H     9.9675 
 ## ------------------------------------------------------------------------</code></pre>
 </div>
-<div id="aplicação-do-teste-t-de-student-a-um-contraste" class="section level3" number="16.6.6">
-<h3><span class="header-section-number">16.6.6</span> APLICAÇÃO DO TESTE t DE STUDENT A UM CONTRASTE</h3>
+<div id="aplicação-do-teste-t-de-student-a-um-contraste" class="section level3" number="15.5.6">
+<h3><span class="header-section-number">15.5.6</span> APLICAÇÃO DO TESTE t DE STUDENT A UM CONTRASTE</h3>
 <p>Para exemplificar, vamos estudar o seguinte contraste:</p>
 <p><span class="math display">\[
 Y=m_1+m_2+m_3+m_4-4m_5
@@ -1644,8 +1711,8 @@ t_{tab (22 GLres)} \begin{cases}5\%=2,07\\1\%=2,82 \end{cases}
 <span id="cb559-10"><a href="delineamento-inteiramente-casualizado.html#cb559-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tobs,.<span class="dv">05</span>,<span class="st">&quot;tobs&quot;</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
 </div>
-<div id="teste-de-duncan-para-a-comparação-das-médias" class="section level3" number="16.6.7">
-<h3><span class="header-section-number">16.6.7</span> TESTE DE DUNCAN PARA A COMPARAÇÃO DAS MÉDIAS</h3>
+<div id="teste-de-duncan-para-a-comparação-das-médias" class="section level3" number="15.5.7">
+<h3><span class="header-section-number">15.5.7</span> TESTE DE DUNCAN PARA A COMPARAÇÃO DAS MÉDIAS</h3>
 <p>Para a aplicação do teste de Duncan, devemos colocar as médias em ordem decresecente, acompanhadas do número de repetições com que foram calculadas, ou seja</p>
 <p><span class="math display">\[
 \hat{m_4}=21,01 \:\:\:\:\:\: r_4=5\\
@@ -1796,8 +1863,8 @@ Pionner988H
 </tbody>
 </table>
 </div>
-<div id="utilizando-o-r" class="section level3" number="16.6.8">
-<h3><span class="header-section-number">16.6.8</span> Utilizando o R</h3>
+<div id="utilizando-o-r" class="section level3" number="15.5.8">
+<h3><span class="header-section-number">15.5.8</span> Utilizando o R</h3>
 <p><img src="Rlogo.png" /></p>
 <div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb560-1"><a href="delineamento-inteiramente-casualizado.html#cb560-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
 <span id="cb560-2"><a href="delineamento-inteiramente-casualizado.html#cb560-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
@@ -1863,7 +1930,7 @@ Pionner988H
           </div>
         </div>
       </div>
-<a href="testes-de-significância.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="planejamento-de-experimentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="desdobramento-de-graus-de-liberdade-de-tratamento.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

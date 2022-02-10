@@ -1,6 +1,6 @@
 # Desdobramento de graus de liberdade de tratamento
 
-## INTRODUÇÃO
+## Introdução
 
 Quando planejamos um experimento, normalmente, o fazemos de tal forma que o mesmo nos forneça respostas a uma série de perguntas. 
 
@@ -27,7 +27,7 @@ Existem dois métodos que nos permitem calcular as somas de quadrados correspond
 
 O procedimento utilizado para o desdobramento dos graus de liberdade de tratamentos será apresentado por meio de um exemplo numérico.
 
-## OBTENÇÃO DA ANÁLISE DE VARIÂNCIA COM DESDOBRAMENTO DOS GRAUS DE LIBERDADE DE TRATAMENTOS
+## Obtenção da análise de variância 
 
 Vamos considerar os dados do trabalho "Ação de microrganismos do solo sobre o desenvolvimento de mudas de *Eucalyptus grandis* Hill Ex Maiden em tubetes" (Korari, 1990), realizado no delineamento inteiramente casualizado, com 5 tratamentos e 5 repetições. Os tratamentos utilizados foram:
 
@@ -170,7 +170,7 @@ Note que os contrastes são ortogonais entre si, uma vez que são ortogonais doi
 
 Para o cálculo das somas de quadrados correspondentes a cada componente do desdobramento, podemos utilizar um dos dois métodos seguintes
 
-### MÉTODO DOS CONTRASTES DE TOTAIS DE TRATAMENTOS
+## Método dos contrastes de totais de tratamentos
 
 Para aplicação deste método, devemos, inicialmente, estabelecer os contrastes correspondentes a cada um dos componentes do desdobramento, tomando-se o cuidado de trabalhar com contrastes ortogonais entre si. Esses contrastes diferem dos que utilizamos normalmente, por serem funções lineares de totais de tratamentos e não de médias de tratamentos.
 
@@ -309,7 +309,7 @@ $$
 203,3042+1,5459+1,0304+3,6603=209,5808
 $$
 
-### MÉTODO DOS TOTAIS DE TRATAMENTOS (SEM UTILIZAR CONTRASTES)
+## Método dos totais de tratamentos (sem utilizar contrastes)
 
 Embora a técnica do desdobramento seja baseada em contrastes ortogonais, para o cálculo das somas de quadrados dos componentes do desdobramento por este método, necessitamos apenas conhecer os totais de tratamentos e o número de parcelas somadas para obter cada total de tratamento, não nos preocupando em utilizar os contrastes.
 
@@ -396,7 +396,7 @@ $$
 SQ_{PM\;vs.\;T}=\frac{85,88^2}{5}+\frac{91,93^2}{5}-\frac{177,81^2}{10}=3,6603
 $$
 
-### ANÁLISE DE VARIÂNCIA COM DESDOBRAMENTO DOS GRAUS DE LIBERDADE DE TRATAMENTOS
+## Análise no R
 
 Uma vez obtidas as somas de quadrados, para cada componente do desdobramento, por qualquer dos dois métodos apresentados anteriormente, podemos montar o quadro de análise de variância com o desdobramento:
 

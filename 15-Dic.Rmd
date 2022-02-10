@@ -248,7 +248,7 @@ $$
 
 Se $F_{Trat} > F_{Tab}$, concluímos que o teste é significativo, portanto, rejeitamos $H_0$ e devemos concluir que existe diferença significativa entre os efeitos dos tratamentos testados em relação às variáveis (característica) em estudo.
 
-## 5.5 EXEMPLO DE APLICAÇÃO
+### EXEMPLO DE APLICAÇÃO
 
 Num experimento inteiramente casualizado, de competição de variedades de mandioca, realizado numa área perfeitamente homogênea quanto às condições experimentais, foram utilizadas $5$ repetições das seguintes variedades:
 
