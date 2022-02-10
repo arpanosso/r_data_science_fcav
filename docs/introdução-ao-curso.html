@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 INTRODUÇÃO AO CURSO | Análise de Dados de Ciência do Solo no R</title>
+  <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 INTRODUÇÃO AO CURSO | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 INTRODUÇÃO AO CURSO | Análise de Dados de Ciência do Solo no R" />
+  
+  <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  
+
+<meta name="author" content="Alan R. Panosso alan.panosso@unesp.br &amp; Gener T. Pereira gener.t.pereira@unesp.br" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribuição-de-probabilidade.html"/>
+<link rel="next" href="referências.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-vindos!!</a></li>
+<li class="chapter" data-level="1" data-path="ambientação.html"><a href="ambientação.html"><i class="fa fa-check"></i><b>1</b> Ambientação</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ambientação.html"><a href="ambientação.html#instalando-o-r"><i class="fa fa-check"></i><b>1.1</b> Instalando o R</a></li>
+<li class="chapter" data-level="1.2" data-path="ambientação.html"><a href="ambientação.html#instalando-o-rstudio"><i class="fa fa-check"></i><b>1.2</b> Instalando o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html"><i class="fa fa-check"></i><b>2</b> Pacotes no R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#pacotes-básicos"><i class="fa fa-check"></i><b>2.1</b> Pacotes básicos</a></li>
+<li class="chapter" data-level="2.2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#instalando-pacotes"><i class="fa fa-check"></i><b>2.2</b> Instalando pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html"><i class="fa fa-check"></i><b>3</b> Lógica de Programação</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#introdução"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#conceitos-básicos"><i class="fa fa-check"></i><b>3.2</b> Conceitos básicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Introdução à Ciência dos Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#importação"><i class="fa fa-check"></i><b>4.1</b> Importação</a></li>
+<li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
+<li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
+<li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html"><i class="fa fa-check"></i><b>5</b> Tópicos iniciais</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#identificadores"><i class="fa fa-check"></i><b>5.1</b> Identificadores</a></li>
+<li class="chapter" data-level="5.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#palavras-reservadas"><i class="fa fa-check"></i><b>5.2</b> Palavras Reservadas</a></li>
+<li class="chapter" data-level="5.3" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#regras-para-os-nomes-de-identificadores"><i class="fa fa-check"></i><b>5.3</b> Regras para os nomes de Identificadores</a></li>
+<li class="chapter" data-level="5.4" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#tipos-de-dados"><i class="fa fa-check"></i><b>5.4</b> Tipos de dados</a></li>
+<li class="chapter" data-level="5.5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#atribuição"><i class="fa fa-check"></i><b>5.5</b> Atribuição</a></li>
+<li class="chapter" data-level="5.6" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operadores"><i class="fa fa-check"></i><b>5.6</b> Operadores</a></li>
+<li class="chapter" data-level="5.7" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operação-aritmética"><i class="fa fa-check"></i><b>5.7</b> Operação aritmética</a></li>
+<li class="chapter" data-level="5.8" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#funções-matemáticas-e-trigonométricas"><i class="fa fa-check"></i><b>5.8</b> Funções matemáticas e trigonométricas</a></li>
+<li class="chapter" data-level="5.9" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-relacionais"><i class="fa fa-check"></i><b>5.9</b> Operações Relacionais</a></li>
+<li class="chapter" data-level="5.10" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-lógicas"><i class="fa fa-check"></i><b>5.10</b> Operações Lógicas</a></li>
+<li class="chapter" data-level="5.11" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>5.11</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="algoritmos.html"><a href="algoritmos.html"><i class="fa fa-check"></i><b>6</b> Algoritmos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="algoritmos.html"><a href="algoritmos.html#estruturas-de-controle"><i class="fa fa-check"></i><b>6.1</b> Estruturas de Controle</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="algoritmos.html"><a href="algoritmos.html#sequêncial"><i class="fa fa-check"></i><b>6.1.1</b> Sequêncial</a></li>
+<li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
+<li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#atomic-vector"><i class="fa fa-check"></i><b>7.1</b> Atomic vector</a></li>
+<li class="chapter" data-level="7.2" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#factor"><i class="fa fa-check"></i><b>7.2</b> Factor</a></li>
+<li class="chapter" data-level="7.3" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#matrizes-e-arrays"><i class="fa fa-check"></i><b>7.3</b> Matrizes e Arrays</a></li>
+<li class="chapter" data-level="7.4" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#listas"><i class="fa fa-check"></i><b>7.4</b> Listas</a></li>
+<li class="chapter" data-level="7.5" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#data-frames"><i class="fa fa-check"></i><b>7.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html"><i class="fa fa-check"></i><b>8</b> Visualização de dados com o ggplot2</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#criando-um-gráfico"><i class="fa fa-check"></i><b>8.1</b> Criando um gráfico</a></li>
+<li class="chapter" data-level="8.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#definindo-temas"><i class="fa fa-check"></i><b>8.2</b> Definindo temas</a></li>
+<li class="chapter" data-level="8.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#controlando-elementos-do-tema"><i class="fa fa-check"></i><b>8.3</b> Controlando elementos do tema</a></li>
+<li class="chapter" data-level="8.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#mapeamento-estéticos"><i class="fa fa-check"></i><b>8.4</b> Mapeamento estéticos</a></li>
+<li class="chapter" data-level="8.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#facetas"><i class="fa fa-check"></i><b>8.5</b> Facetas</a></li>
+<li class="chapter" data-level="8.6" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#objetos-geométricos"><i class="fa fa-check"></i><b>8.6</b> Objetos geométricos</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-colunas"><i class="fa fa-check"></i><b>8.6.1</b> Gráfico de Colunas</a></li>
+<li class="chapter" data-level="8.6.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>8.6.2</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="8.6.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#smoothers"><i class="fa fa-check"></i><b>8.6.3</b> Smoothers</a></li>
+<li class="chapter" data-level="8.6.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#boxplot"><i class="fa fa-check"></i><b>8.6.4</b> Boxplot</a></li>
+<li class="chapter" data-level="8.6.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#histograma"><i class="fa fa-check"></i><b>8.6.5</b> Histograma</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html"><i class="fa fa-check"></i><b>9</b> Manipulação de dados com o dplyr</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#principais-funções-verbos-do-dplyr."><i class="fa fa-check"></i><b>9.1</b> Principais funções (verbos) do <code>dplyr</code>.</a></li>
+<li class="chapter" data-level="9.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#regras-para-manipulação"><i class="fa fa-check"></i><b>9.2</b> Regras para manipulação:</a></li>
+<li class="chapter" data-level="9.3" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#filter"><i class="fa fa-check"></i><b>9.3</b> filter()</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#valores-faltantes"><i class="fa fa-check"></i><b>9.3.1</b> Valores Faltantes</a></li>
+<li class="chapter" data-level="9.3.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#strings-e-regex"><i class="fa fa-check"></i><b>9.3.2</b> Strings e Regex</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#arrange"><i class="fa fa-check"></i><b>9.4</b> arrange()</a></li>
+<li class="chapter" data-level="9.5" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#select"><i class="fa fa-check"></i><b>9.5</b> select()</a></li>
+<li class="chapter" data-level="9.6" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#mutate"><i class="fa fa-check"></i><b>9.6</b> mutate()</a></li>
+<li class="chapter" data-level="9.7" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#resumos-agrupados-com-summarize"><i class="fa fa-check"></i><b>9.7</b> Resumos Agrupados com summarize()</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#valores-faltantes-1"><i class="fa fa-check"></i><b>9.7.1</b> Valores faltantes</a></li>
+<li class="chapter" data-level="9.7.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#counts"><i class="fa fa-check"></i><b>9.7.2</b> Counts</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#exercício"><i class="fa fa-check"></i><b>9.8</b> Exercício</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html"><i class="fa fa-check"></i><b>10</b> Análise Exploratória de Dados (AED)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#algumas-funções-de-resumo"><i class="fa fa-check"></i><b>10.1</b> Algumas funções de resumo</a></li>
+<li class="chapter" data-level="10.2" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#descrição-gráfica"><i class="fa fa-check"></i><b>10.2</b> Descrição gráfica</a></li>
+<li class="chapter" data-level="10.3" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#aplicação-de-modelos"><i class="fa fa-check"></i><b>10.3</b> Aplicação de modelos</a></li>
+<li class="chapter" data-level="10.4" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#exercícios-2"><i class="fa fa-check"></i><b>10.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>11</b> Distribuição De Probabilidade</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#distribuição-normal"><i class="fa fa-check"></i><b>11.1</b> Distribuição Normal</a></li>
+<li class="chapter" data-level="11.2" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#distribuição-normal-padronizada"><i class="fa fa-check"></i><b>11.2</b> Distribuição Normal Padronizada</a></li>
+<li class="chapter" data-level="11.3" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#exercícios-3"><i class="fa fa-check"></i><b>11.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html"><i class="fa fa-check"></i><b>12</b> INTRODUÇÃO AO CURSO</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#alguns-conceitos-básicos"><i class="fa fa-check"></i><b>12.1</b> ALGUNS CONCEITOS BÁSICOS</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#população"><i class="fa fa-check"></i><b>12.1.1</b> POPULAÇÃO</a></li>
+<li class="chapter" data-level="12.1.2" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#tratamento"><i class="fa fa-check"></i><b>12.1.2</b> TRATAMENTO</a></li>
+<li class="chapter" data-level="12.1.3" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#experimento-ou-ensaio"><i class="fa fa-check"></i><b>12.1.3</b> EXPERIMENTO OU ENSAIO</a></li>
+<li class="chapter" data-level="12.1.4" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#unidade-experimental-ou-parcela"><i class="fa fa-check"></i><b>12.1.4</b> UNIDADE EXPERIMENTAL OU PARCELA</a></li>
+<li class="chapter" data-level="12.1.5" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#delineamento-experimental"><i class="fa fa-check"></i><b>12.1.5</b> DELINEAMENTO EXPERIMENTAL</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#medidas-de-posição-e-de-dispersão"><i class="fa fa-check"></i><b>12.2</b> MEDIDAS DE POSIÇÃO E DE DISPERSÃO</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#medidas-de-posição-ou-de-tendência-central"><i class="fa fa-check"></i><b>12.2.1</b> MEDIDAS DE POSIÇÃO OU DE TENDÊNCIA CENTRAL</a></li>
+<li class="chapter" data-level="12.2.2" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>12.2.2</b> MEDIDAS DE DISPERSÃO</a></li>
+<li class="chapter" data-level="12.2.3" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#variância"><i class="fa fa-check"></i><b>12.2.3</b> VARIÂNCIA</a></li>
+<li class="chapter" data-level="12.2.4" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#desvio-padrão"><i class="fa fa-check"></i><b>12.2.4</b> 1.2.2.2. DESVIO PADRÃO</a></li>
+<li class="chapter" data-level="12.2.5" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#erro-padrão-da-média"><i class="fa fa-check"></i><b>12.2.5</b> ERRO PADRÃO DA MÉDIA</a></li>
+<li class="chapter" data-level="12.2.6" data-path="introdução-ao-curso.html"><a href="introdução-ao-curso.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>12.2.6</b> COEFICIENTE DE VARIAÇÃO</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados de Ciência do Solo no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introdução-ao-curso" class="section level1" number="12">
+<h1><span class="header-section-number">12</span> INTRODUÇÃO AO CURSO</h1>
+<p>A Estatística Experimental tem como objetivo o estudo dos experimentos, isto é, seu planejamento, execução, análise dos dados e interpretação dos resultados obtidos.</p>
+<p>Para que um experimentador conduza e avalie uma pesquisa corretamente, é essencial um certo conhecimento de estatística, principalmente no que se refere às potencialidades e às limitações das técnicas utilizadas.</p>
+<p>Assim sendo, o curso de Experimentação Agrícola visa apresentar aos alunos os métodos estatística mais usado em Agronomia.</p>
+<p>Vejamos então, alguns conceitos básicos necessários para um bom entendimento da Estatística Experimental.</p>
+<div id="alguns-conceitos-básicos" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> ALGUNS CONCEITOS BÁSICOS</h2>
+<div id="população" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> POPULAÇÃO</h3>
+<p>Boa parte do conhecimento humano está baseado em um número relativamente reduzido de informações. Isto é verdadeiro, tanto no que se refere aos problemas do cotidiano, como no que se refere à pesquisa científica.</p>
+<p>Por definição <strong>POPULAÇÃO</strong> é o conjunto de elementos que têm em comum uma determinada característica. Todo o subconjunto não vazio e com menor número de elementos do que o conjunto definido como <strong>população</strong> constitui, por definição, uma <strong>AMOSTRA</strong> desta população.</p>
+<p><img src="img/pop.jpg" /></p>
+<p>Uma população pode ser o número total de indivíduos de uma determinada espécie animal em uma área definida. Por exemplo, o número total de lagartas de <em>Spodoptera frugiperda</em> em uma cultura de milho constitui uma população. Esta população, embora finita, é considerada para fins de amostragem como uma população infinita.</p>
+<p>Uma vez definida a unidade amostral (1 planta, um conjunto de 5 plantas, ou um quadrado no qual será contado o número de lagartas), a população pode ser considerada como um conjunto de unidades amostrais e um subconjunto tomado aleatoriamente deste subconjunto é chamado de <strong>AMOSTRA ALEATÓRIA DE TAMANHO N</strong>.</p>
+<p>Assim sendo, as observações são obtidas através de contagens do número de indivíduos em cada unidade amostral. Estas observações são chamadas de <strong>VARIÁVEL EM ESTUDO</strong>.</p>
+</div>
+<div id="tratamento" class="section level3" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> TRATAMENTO</h3>
+<p>É o método, elemento ou material, cujo efeito se deseja medir ou comparar em um experimento.</p>
+<p>Por exemplo, um tratamento pode ser:</p>
+<ul>
+<li>Uma variedade de cana-de-açúcar;<br />
+</li>
+<li>um híbrido de sorgo;<br />
+</li>
+<li>uma dose de um adubo para a cultura do milho;<br />
+</li>
+<li>um espaçamento para cultura do algodão;<br />
+</li>
+<li>um recipiente para produção de mudas de eucalipto;<br />
+</li>
+<li>um inseticida para controle de pragas, etc.</li>
+</ul>
+</div>
+<div id="experimento-ou-ensaio" class="section level3" number="12.1.3">
+<h3><span class="header-section-number">12.1.3</span> EXPERIMENTO OU ENSAIO</h3>
+<p>Experimento é um trabalho previamente planejado, no qual se faz comparação dos efeitos dos tratamentos.</p>
+<p><img src="img/exp.jpg" /></p>
+<p>Fonte: Arquivo pessoal (2008).</p>
+</div>
+<div id="unidade-experimental-ou-parcela" class="section level3" number="12.1.4">
+<h3><span class="header-section-number">12.1.4</span> UNIDADE EXPERIMENTAL OU PARCELA</h3>
+<p>É a unidade na qual o tratamento é aplicado. É na parcela que obtemos os dados que deverão refletir o efeito de cada tratamento no ensaio. A parcela pode ser constituída por uma planta, uma área com um grupo de plantas, uma placa de petri com um meio de cultura, um animal, um lote de animais, etc.</p>
+<p><img src="img/croqui.jpg" /></p>
+<p><img src="img/parcela.jpg" /></p>
+<p>Fonte: <a href="https://repositorio.unesp.br/bitstream/handle/11449/105201/marcelo_av_dr_jabo.pdf?sequence=1&amp;isAllowed=y">Marcelo (2011)</a>.</p>
+</div>
+<div id="delineamento-experimental" class="section level3" number="12.1.5">
+<h3><span class="header-section-number">12.1.5</span> DELINEAMENTO EXPERIMENTAL</h3>
+<p>É o plano utilizado na experimentação, e implica na forma como os tratamento deverão ser distribuídos nas unidades experimentais e como serão analisados os dados a serem obtidos. Como exemplo, temos o delineamento inteiramente casualizado (DIC), o delineamento em blocos casualizados (DBC) o delineamento em quadrado latino (DQL), entre outros.</p>
+</div>
+</div>
+<div id="medidas-de-posição-e-de-dispersão" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> MEDIDAS DE POSIÇÃO E DE DISPERSÃO</h2>
+<p>As populações são descritas por certas características chamadas de <strong>Parâmetros</strong>. A amostras são descritas pelas mesmas características, que, neste caso, são chamadas de <strong>Estimativas de Parâmetros</strong>, <strong>Estatísticas da amostra</strong>. Alguns destes parâmetros são chamado de <strong>medidas de posição</strong> e outros de <strong>medida de dispersão</strong></p>
+<div id="medidas-de-posição-ou-de-tendência-central" class="section level3" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> MEDIDAS DE POSIÇÃO OU DE TENDÊNCIA CENTRAL</h3>
+<p>Uma característica comum a todas as populações ou amostras é a varaibilidade dos indivíduos que as constituem.</p>
+<p>Geralmente, os dados de uma população ou amostra tendem a ser mais numerosos em torno de um valor central e vão se tornando mais raros à medida que no afatamos desse valor. A medida de posição representa o valor em torno do qual os dados observados tendem a se agrupar.</p>
+<p>Das medidas de posição, a mais utilizada é a Média Aritmética, que pode se definida como: <code>A Soma de todas as observações divididas pelo número delas</code></p>
+<p>Assim, para uma população com <span class="math inline">\(N\)</span> elementos, ditos <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, … , <span class="math inline">\(x_N\)</span>, a média aritmética será:</p>
+<p><span class="math display">\[
+m = \frac{\sum_{i=1}^{N}x_i}{N} = \frac{x_1+x_2+...+x_N}{N}
+\]</span>
+Para uma amostra com <span class="math inline">\(n\)</span> elementos, ditos <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, … , <span class="math inline">\(x_n\)</span>, a média aritmética será:</p>
+<p><span class="math display">\[
+\bar{x}=\hat{m} = \frac{\sum_{i=1}^{n}x_i}{n} = \frac{x_1+x_2+...+x_n}{n}
+\]</span>
+<strong>exemplo</strong></p>
+<p>Considere como exemplo os dados abaixo, referente à altura de plantas daninha (em cm) em uma amostra de 5 plantas em uma área de pastagem.</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_1\)</span></th>
+<th><span class="math inline">\(x_2\)</span></th>
+<th><span class="math inline">\(x_3\)</span></th>
+<th><span class="math inline">\(x_4\)</span></th>
+<th><span class="math inline">\(x_5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>Então, para estes dados, a estimativa da média aritmética será:</p>
+<p><span class="math display">\[
+\hat{m} = \frac{\sum_{i=1}^{n}x_i}{n} = \frac{5+3+2+4+3}{5} = \frac{17}{5} = 3,4\;cm
+\]</span>
+<img src="img/R.png" /></p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="introdução-ao-curso.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defina o vetor de dados</span></span>
+<span id="cb496-2"><a href="introdução-ao-curso.html#cb496-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb496-3"><a href="introdução-ao-curso.html#cb496-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb496-4"><a href="introdução-ao-curso.html#cb496-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a soma dos elementos de X (G)</span></span>
+<span id="cb496-5"><a href="introdução-ao-curso.html#cb496-5" aria-hidden="true" tabindex="-1"></a>G<span class="ot">=</span><span class="fu">sum</span>(X)</span>
+<span id="cb496-6"><a href="introdução-ao-curso.html#cb496-6" aria-hidden="true" tabindex="-1"></a>G</span></code></pre></div>
+<pre><code>## [1] 17</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="introdução-ao-curso.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Encontrando o número total de elementos de X</span></span>
+<span id="cb498-2"><a href="introdução-ao-curso.html#cb498-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">length</span>(X)</span>
+<span id="cb498-3"><a href="introdução-ao-curso.html#cb498-3" aria-hidden="true" tabindex="-1"></a>n</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="introdução-ao-curso.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando diretamente a média aritmética</span></span>
+<span id="cb500-2"><a href="introdução-ao-curso.html#cb500-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X)</span></code></pre></div>
+<pre><code>## [1] 3.4</code></pre>
+<p>A diferença entre um valor observado (<span class="math inline">\(x_i\)</span>) e a média aritmética (<span class="math inline">\(\hat{m}\)</span>) é denominado de desvio (<span class="math inline">\(d_i\)</span>), ou seja:</p>
+<p><span class="math display">\[
+ d_i = x_i - \hat{m}, \text{ para  i =1, 2, ...,n  }
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(d_1 = 5-3.4\)</span></th>
+<th><span class="math inline">\(d_2=3-3.4\)</span></th>
+<th><span class="math inline">\(d_3 = 2-3.4\)</span></th>
+<th><span class="math inline">\(d_4 = 4-3.4\)</span></th>
+<th><span class="math inline">\(d_5 = 3-3.4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,6</td>
+<td>-0,4</td>
+<td>-1,4</td>
+<td>0,6</td>
+<td>-0,4</td>
+</tr>
+</tbody>
+</table>
+<p>Podemos mostrar que a soma dos desvios é igual a zero, para qualquer conjunto de dados.</p>
+<p><span class="math display">\[
+\sum_{i=1}^{N}d_i = 0
+\]</span></p>
+<p><img src="R.png" /></p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="introdução-ao-curso.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando os desvios</span></span>
+<span id="cb502-2"><a href="introdução-ao-curso.html#cb502-2" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span>X<span class="sc">-</span><span class="fu">mean</span>(X)</span>
+<span id="cb502-3"><a href="introdução-ao-curso.html#cb502-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb502-4"><a href="introdução-ao-curso.html#cb502-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentando os valores de desvios</span></span>
+<span id="cb502-5"><a href="introdução-ao-curso.html#cb502-5" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<pre><code>## [1]  1.6 -0.4 -1.4  0.6 -0.4</code></pre>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="introdução-ao-curso.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prova de que o A Soma dos Desvios é igual a Zero</span></span>
+<span id="cb504-2"><a href="introdução-ao-curso.html#cb504-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(d))  <span class="co"># a função rond arredonda a saida da função soma para 0 casas decimais</span></span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+</div>
+<div id="medidas-de-dispersão" class="section level3" number="12.2.2">
+<h3><span class="header-section-number">12.2.2</span> MEDIDAS DE DISPERSÃO</h3>
+<p>As medidas de dispersão são também chamadas de <strong>medidas de variação</strong>, e medem o grau com que os dados tendem a se afastar de um valor central, que geralmente é a média aritmética.</p>
+<p>Como em todas as amostras (ou populações) ocorre variabilidade dos elementos que as constituem, amostra com mesma média pode apresentar distribuições diferentes, e portanto, somente a média não fornece informação clara de como os dados se distribuem. Assim, para representar melhor a maneira pela qual os dados se distribuem, são utilizadas as medidas de dispersão ou de variação.</p>
+<p>Dentre as medidas de dispersão, discutiremos a Variância, o Desvio Padrão, o Erro padrão da Média e o Coeficiente de variação.</p>
+</div>
+<div id="variância" class="section level3" number="12.2.3">
+<h3><span class="header-section-number">12.2.3</span> VARIÂNCIA</h3>
+<p>A variância é uma medida de dispersão que leva em conta todas as observações. É indiscutivelmente, a melhor medida de dispersão.</p>
+<p>A variância de uma população é representada por <span class="math inline">\(\sigma^2\)</span>, lê-se sigma dois, e pode ser definida como “A média dos quadrados dos desvios de todos os dados em relação à média aritmética.”</p>
+<p>Então, para uma população com <span class="math inline">\(N\)</span> temos:</p>
+<p><span class="math display">\[
+\sigma^2 = \frac{SQD}{N} = \frac{d_1+d_2+...+d_N}{N} =\frac{\sum_{i=1}^Nd_i^2}{N} \\
+\sigma^2 =\frac{\sum_{i=1}^N(x_i-m)^2}{N}
+\]</span></p>
+<p>Note que utilizando esta fórmula o cálculo da variancia seria bastante trabalhoso, no caso de N ser um número muito grande.</p>
+<p>Existe porém um método mais prático de se calcular a variância, que pode ser obtido desenvolvendo-se as fórmula da soma de quadrados dos desvios (SQD) . Assim, temos:</p>
+<p><span class="math display">\[
+SQD = \sum_{i=1}^N(x_i-m)^2 = \sum_{i=1}^Nx_i^2-\frac{(\sum_{i=1}^N x_i)^2}{N}
+\]</span></p>
+<p>Então, a fórmula simplificada da variância será:</p>
+<p><span class="math display">\[
+\sigma^2 =\frac{\sum_{i=1}^Nx_i^2-\frac{(\sum_{i=1}^N x_i)^2}{N}}{N}
+\]</span></p>
+<p>A vantagem desta fórmula é que trabalhamos diretamente com os dados originais, não havendo necessidade de calcularmos a média e os desvios em relação a ela.</p>
+<p>O termo <span class="math inline">\(\frac{(\sum_{i=1}^Nx_i)^2}{N}\)</span> é denomidado de Correção devido à média ou simplesmente <strong>Correção</strong>, representado por <span class="math inline">\(C\)</span> e é de grande utilização nas futuras análise de variâncias.</p>
+<p>Normalmente, na prática, trabalhamos com amostras, e a estimativa da variância, representada por <span class="math inline">\(s^2\)</span>, é calculada, para uma <strong>amostra</strong> com <span class="math inline">\(n\)</span> elementos, representados por <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, …,<span class="math inline">\(x_n\)</span>, por:</p>
+<p><span class="math display">\[
+s^2 = \frac{SQD}{n-1} = \frac{d_1+d_2+...+d_n}{n-1} =\frac{\sum_{i=1}^nd_i^2}{n-1} \\
+s^2 =\frac{\sum_{i=1}^n(x_i-\hat{m})^2}{n-1}
+\]</span></p>
+<p>ou ainda,</p>
+<p><span class="math display">\[
+s^2 =\frac{\sum_{i=1}^nx_i^2-\frac{(\sum_{i=1}^n x_i)^2}{n}}{n-1}
+\]</span></p>
+<p><strong>Observações:</strong></p>
+<p>1 - A variância tem sempre valor positivo, e sua unidade é quadrática.</p>
+<p>2 - O denominador utilizado do cálculo da variância é chamado de <strong>grau de liberdade</strong> da estimativa da variância, sempre dado por <span class="math inline">\(n-1\)</span></p>
+<p><strong>exemplo</strong>
+No exemplo anterior de altura de plantas daninhas:</p>
+<p>No caso temos</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(d_1 = 5-3.4\)</span></th>
+<th><span class="math inline">\(d_2=3-3.4\)</span></th>
+<th><span class="math inline">\(d_3 = 2-3.4\)</span></th>
+<th><span class="math inline">\(d_4 = 4-3.4\)</span></th>
+<th><span class="math inline">\(d_5 = 3-3.4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1,6</td>
+<td>-0,4</td>
+<td>-1,4</td>
+<td>0,6</td>
+<td>-0,4</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+s^2 =\frac{(1,6^2+(-0.4)^2+(-1,4)^2+0,6^2+(-0,4)^2)^2}{5-1} = \frac{5.2}{4} = 1,3 \;cm^2
+\]</span></p>
+<p>Pela fórmula que não utiliza os desvios teríamos:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_1\)</span></th>
+<th><span class="math inline">\(x_2\)</span></th>
+<th><span class="math inline">\(x_3\)</span></th>
+<th><span class="math inline">\(x_4\)</span></th>
+<th><span class="math inline">\(x_5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[
+s^2 =\frac{\sum_{i=1}^nx_i^2-\frac{(\sum_{i=1}^n x_i)^2}{n}}{n-1} = \frac{(5^2+3^2+2^2+4^2+3^2)-\frac{(5+3+2+4+3)^2}{5}}{5-1} = \frac{63-\frac{(17)^2}{5}}{5-1} = \frac{63-57,8}{4}=1,3 \;cm^2
+\]</span></p>
+<p><img src="img/R.png" /></p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="introdução-ao-curso.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forma mais simples de calcular a variância amostral</span></span>
+<span id="cb506-2"><a href="introdução-ao-curso.html#cb506-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
+<pre><code>## [1] 1.3</code></pre>
+</div>
+<div id="desvio-padrão" class="section level3" number="12.2.4">
+<h3><span class="header-section-number">12.2.4</span> 1.2.2.2. DESVIO PADRÃO</h3>
+<p>A variância, pela sua natureza, tem a unidade quadrática. A sua raiz quadrada, que ainda é uma medida de dispersão é denominada desvio padrão:</p>
+<p>A vantagem do desvio padrão é ter a mesma unidade dos dados originais e, consequentemente, da média.</p>
+<p>É a mais utilizada das medidas de dispersão, e é representada por <span class="math inline">\(\sigma\)</span> para a população, com estimativa <span class="math inline">\(s\)</span> para a amostra. Então:</p>
+<p><span class="math display">\[
+\sigma = \sqrt{\sigma^2} \text{   e    } s = \sqrt{s^2}
+\]</span></p>
+<p><strong>exemplo</strong>
+<span class="math display">\[
+s = \sqrt{1,3} = 1,140175\;cm
+\]</span>
+<img src="img/R.png" /></p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="introdução-ao-curso.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forma mais simples de calcular o desvio padrão</span></span>
+<span id="cb508-2"><a href="introdução-ao-curso.html#cb508-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(X)</span></code></pre></div>
+<pre><code>## [1] 1.140175</code></pre>
+</div>
+<div id="erro-padrão-da-média" class="section level3" number="12.2.5">
+<h3><span class="header-section-number">12.2.5</span> ERRO PADRÃO DA MÉDIA</h3>
+<p>Se em vez de uma amostra tivéssemos várias, provenientes de uma mesma população, obteríamos diversas estimativas da média, e provavelmente distintas umas das outras.</p>
+<p>A partir dessas diversas estimativas da média, poderíamos estimar uma variância, considerandos-e os desvios de cada média individual, em relação à média de todas elas. Seria então uma estimativa da variância das médias.</p>
+<p>Entretanto, demonstra-se que a partir de uma única amostra, podemos estimar essa variância, através da fórmula:</p>
+<p><span class="math display">\[
+Var(\bar{X}) = \hat{V}(\hat{m}) = \frac{s^2}{n}
+\]</span>
+onde <span class="math inline">\(s^2\)</span> é a estimativa da variância dos <span class="math inline">\(n\)</span> dados, calculada de maneira usual</p>
+<p>A sua raiz quadrada é denominada Erro Padrão da Média, ou seja:</p>
+<p><span class="math display">\[
+s(\hat{m}) = \frac{s}{\sqrt{n}}
+\]</span></p>
+<p>O erro padrão da média fornece uma idéia da precisão da estimativa da média, isto é quanto menor ele for, maior precisão terá a estimativa da média.</p>
+<p>Assim para os dados de altura de plantas daninhas temos:</p>
+<p><strong>exemplo</strong></p>
+<p><span class="math display">\[
+s(\hat{m}) = \frac{s}{\sqrt{n}} = \frac{1,140175}{\sqrt{5}} = 0,5099\;cm
+\]</span></p>
+<p><img src="img/R.png" /></p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="introdução-ao-curso.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erro padrão da média</span></span>
+<span id="cb510-2"><a href="introdução-ao-curso.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
+<pre><code>## [1] 0.509902</code></pre>
+<p>Sempre que apresentarmos uma média, é conveniente apresentar também o seu erro padrão. Assim, no exemplo poderíamos apresentar a média e o seu erro padrão, da seguinte maneira:</p>
+<p><span class="math display">\[
+3,4 \pm 0,5099\;cm
+\]</span></p>
+<p>Quanto menor o valor do erro padrão da média, mais precisa foi a estimativa da média.</p>
+</div>
+<div id="coeficiente-de-variação" class="section level3" number="12.2.6">
+<h3><span class="header-section-number">12.2.6</span> COEFICIENTE DE VARIAÇÃO</h3>
+<p>É uma medida de dispersão que expressa percentualmente o desvio padrão por unidade de média, ou seja:</p>
+<p><span class="math display">\[
+CV = \frac{100 \cdot s}{\hat{m}}
+\]</span></p>
+<p>Como <span class="math inline">\(s\)</span> e <span class="math inline">\(\hat{m}\)</span> são expressos na mesma unidade dos dados, o coeficiente de variação é um número abstrato, isto é, não tem unidade e portanto é expresso em porcentagem da média.</p>
+<p>Nos ensaios agrícolas de campo, esperam-se coeficientes de variação da ordem de 10 a 20%. Porém em ensaios de levantamento de pragas, normalmente os coeficientes de variação são maiores que 30%.</p>
+<p>No exemplo de altura de plantas daninhas, temos:</p>
+<p><strong>exemplo</strong></p>
+<p><span class="math display">\[
+CV = \frac{100 \cdot s}{\hat{m}} = \frac{100 \cdot 1,140175}{3,4} = 33,53\%
+\]</span>
+<img src="img/R.png" /></p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="introdução-ao-curso.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficiente de Variação</span></span>
+<span id="cb512-2"><a href="introdução-ao-curso.html#cb512-2" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">mean</span>(X)</span></code></pre></div>
+<pre><code>## [1] 33.53457</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribuição-de-probabilidade.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_data_science_fcav.pdf", "r_data_science_fcav.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

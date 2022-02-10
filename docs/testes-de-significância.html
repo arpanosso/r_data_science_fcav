@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>15 Testes de significância | Análise de Dados de Ciência do Solo no R</title>
+  <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="15 Testes de significância | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="15 Testes de significância | Análise de Dados de Ciência do Solo no R" />
+  
+  <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  
+
+<meta name="author" content="Alan R. Panosso alan.panosso@unesp.br &amp; Gener T. Pereira gener.t.pereira@unesp.br" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="planejamento-de-experimentos.html"/>
+<link rel="next" href="delineamento-inteiramente-casualizado.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science no R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Bem-vindos!!</a></li>
+<li class="chapter" data-level="1" data-path="ambientação.html"><a href="ambientação.html"><i class="fa fa-check"></i><b>1</b> Ambientação</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ambientação.html"><a href="ambientação.html#instalando-o-r"><i class="fa fa-check"></i><b>1.1</b> Instalando o R</a></li>
+<li class="chapter" data-level="1.2" data-path="ambientação.html"><a href="ambientação.html#instalando-o-rstudio"><i class="fa fa-check"></i><b>1.2</b> Instalando o RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html"><i class="fa fa-check"></i><b>2</b> Pacotes no R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#pacotes-básicos"><i class="fa fa-check"></i><b>2.1</b> Pacotes básicos</a></li>
+<li class="chapter" data-level="2.2" data-path="pacotes-no-r.html"><a href="pacotes-no-r.html#instalando-pacotes"><i class="fa fa-check"></i><b>2.2</b> Instalando pacotes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html"><i class="fa fa-check"></i><b>3</b> Lógica de Programação</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#introdução"><i class="fa fa-check"></i><b>3.1</b> Introdução</a></li>
+<li class="chapter" data-level="3.2" data-path="lógica-de-programação.html"><a href="lógica-de-programação.html#conceitos-básicos"><i class="fa fa-check"></i><b>3.2</b> Conceitos básicos</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html"><i class="fa fa-check"></i><b>4</b> Introdução à Ciência dos Dados</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#importação"><i class="fa fa-check"></i><b>4.1</b> Importação</a></li>
+<li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
+<li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
+<li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
+<li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html"><i class="fa fa-check"></i><b>5</b> Tópicos iniciais</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#identificadores"><i class="fa fa-check"></i><b>5.1</b> Identificadores</a></li>
+<li class="chapter" data-level="5.2" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#palavras-reservadas"><i class="fa fa-check"></i><b>5.2</b> Palavras Reservadas</a></li>
+<li class="chapter" data-level="5.3" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#regras-para-os-nomes-de-identificadores"><i class="fa fa-check"></i><b>5.3</b> Regras para os nomes de Identificadores</a></li>
+<li class="chapter" data-level="5.4" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#tipos-de-dados"><i class="fa fa-check"></i><b>5.4</b> Tipos de dados</a></li>
+<li class="chapter" data-level="5.5" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#atribuição"><i class="fa fa-check"></i><b>5.5</b> Atribuição</a></li>
+<li class="chapter" data-level="5.6" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operadores"><i class="fa fa-check"></i><b>5.6</b> Operadores</a></li>
+<li class="chapter" data-level="5.7" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operação-aritmética"><i class="fa fa-check"></i><b>5.7</b> Operação aritmética</a></li>
+<li class="chapter" data-level="5.8" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#funções-matemáticas-e-trigonométricas"><i class="fa fa-check"></i><b>5.8</b> Funções matemáticas e trigonométricas</a></li>
+<li class="chapter" data-level="5.9" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-relacionais"><i class="fa fa-check"></i><b>5.9</b> Operações Relacionais</a></li>
+<li class="chapter" data-level="5.10" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#operações-lógicas"><i class="fa fa-check"></i><b>5.10</b> Operações Lógicas</a></li>
+<li class="chapter" data-level="5.11" data-path="tópicos-iniciais.html"><a href="tópicos-iniciais.html#exercícios"><i class="fa fa-check"></i><b>5.11</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="algoritmos.html"><a href="algoritmos.html"><i class="fa fa-check"></i><b>6</b> Algoritmos</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="algoritmos.html"><a href="algoritmos.html#estruturas-de-controle"><i class="fa fa-check"></i><b>6.1</b> Estruturas de Controle</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="algoritmos.html"><a href="algoritmos.html#sequêncial"><i class="fa fa-check"></i><b>6.1.1</b> Sequêncial</a></li>
+<li class="chapter" data-level="6.1.2" data-path="algoritmos.html"><a href="algoritmos.html#seleção"><i class="fa fa-check"></i><b>6.1.2</b> Seleção</a></li>
+<li class="chapter" data-level="6.1.3" data-path="algoritmos.html"><a href="algoritmos.html#repetição"><i class="fa fa-check"></i><b>6.1.3</b> Repetição</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="algoritmos.html"><a href="algoritmos.html#exercícios-1"><i class="fa fa-check"></i><b>6.2</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html"><i class="fa fa-check"></i><b>7</b> Estrutura de dados</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#atomic-vector"><i class="fa fa-check"></i><b>7.1</b> Atomic vector</a></li>
+<li class="chapter" data-level="7.2" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#factor"><i class="fa fa-check"></i><b>7.2</b> Factor</a></li>
+<li class="chapter" data-level="7.3" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#matrizes-e-arrays"><i class="fa fa-check"></i><b>7.3</b> Matrizes e Arrays</a></li>
+<li class="chapter" data-level="7.4" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#listas"><i class="fa fa-check"></i><b>7.4</b> Listas</a></li>
+<li class="chapter" data-level="7.5" data-path="estrutura-de-dados.html"><a href="estrutura-de-dados.html#data-frames"><i class="fa fa-check"></i><b>7.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html"><i class="fa fa-check"></i><b>8</b> Visualização de dados com o ggplot2</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#criando-um-gráfico"><i class="fa fa-check"></i><b>8.1</b> Criando um gráfico</a></li>
+<li class="chapter" data-level="8.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#definindo-temas"><i class="fa fa-check"></i><b>8.2</b> Definindo temas</a></li>
+<li class="chapter" data-level="8.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#controlando-elementos-do-tema"><i class="fa fa-check"></i><b>8.3</b> Controlando elementos do tema</a></li>
+<li class="chapter" data-level="8.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#mapeamento-estéticos"><i class="fa fa-check"></i><b>8.4</b> Mapeamento estéticos</a></li>
+<li class="chapter" data-level="8.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#facetas"><i class="fa fa-check"></i><b>8.5</b> Facetas</a></li>
+<li class="chapter" data-level="8.6" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#objetos-geométricos"><i class="fa fa-check"></i><b>8.6</b> Objetos geométricos</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-colunas"><i class="fa fa-check"></i><b>8.6.1</b> Gráfico de Colunas</a></li>
+<li class="chapter" data-level="8.6.2" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>8.6.2</b> Gráfico de Barras</a></li>
+<li class="chapter" data-level="8.6.3" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#smoothers"><i class="fa fa-check"></i><b>8.6.3</b> Smoothers</a></li>
+<li class="chapter" data-level="8.6.4" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#boxplot"><i class="fa fa-check"></i><b>8.6.4</b> Boxplot</a></li>
+<li class="chapter" data-level="8.6.5" data-path="visualização-de-dados-com-o-ggplot2.html"><a href="visualização-de-dados-com-o-ggplot2.html#histograma"><i class="fa fa-check"></i><b>8.6.5</b> Histograma</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html"><i class="fa fa-check"></i><b>9</b> Manipulação de dados com o dplyr</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#principais-funções-verbos-do-dplyr."><i class="fa fa-check"></i><b>9.1</b> Principais funções (verbos) do <code>dplyr</code>.</a></li>
+<li class="chapter" data-level="9.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#regras-para-manipulação"><i class="fa fa-check"></i><b>9.2</b> Regras para manipulação:</a></li>
+<li class="chapter" data-level="9.3" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#filter"><i class="fa fa-check"></i><b>9.3</b> filter()</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#valores-faltantes"><i class="fa fa-check"></i><b>9.3.1</b> Valores Faltantes</a></li>
+<li class="chapter" data-level="9.3.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#strings-e-regex"><i class="fa fa-check"></i><b>9.3.2</b> Strings e Regex</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#arrange"><i class="fa fa-check"></i><b>9.4</b> arrange()</a></li>
+<li class="chapter" data-level="9.5" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#select"><i class="fa fa-check"></i><b>9.5</b> select()</a></li>
+<li class="chapter" data-level="9.6" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#mutate"><i class="fa fa-check"></i><b>9.6</b> mutate()</a></li>
+<li class="chapter" data-level="9.7" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#resumos-agrupados-com-summarize"><i class="fa fa-check"></i><b>9.7</b> Resumos Agrupados com summarize()</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#valores-faltantes-1"><i class="fa fa-check"></i><b>9.7.1</b> Valores faltantes</a></li>
+<li class="chapter" data-level="9.7.2" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#counts"><i class="fa fa-check"></i><b>9.7.2</b> Counts</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="manipulação-de-dados-com-o-dplyr.html"><a href="manipulação-de-dados-com-o-dplyr.html#exercício"><i class="fa fa-check"></i><b>9.8</b> Exercício</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html"><i class="fa fa-check"></i><b>10</b> Análise Exploratória de Dados (AED)</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#algumas-funções-de-resumo"><i class="fa fa-check"></i><b>10.1</b> Algumas funções de resumo</a></li>
+<li class="chapter" data-level="10.2" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#descrição-gráfica"><i class="fa fa-check"></i><b>10.2</b> Descrição gráfica</a></li>
+<li class="chapter" data-level="10.3" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#aplicação-de-modelos"><i class="fa fa-check"></i><b>10.3</b> Aplicação de modelos</a></li>
+<li class="chapter" data-level="10.4" data-path="análise-exploratória-de-dados-aed.html"><a href="análise-exploratória-de-dados-aed.html#exercícios-2"><i class="fa fa-check"></i><b>10.4</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html"><i class="fa fa-check"></i><b>11</b> Distribuição De Probabilidade</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#distribuição-normal"><i class="fa fa-check"></i><b>11.1</b> Distribuição Normal</a></li>
+<li class="chapter" data-level="11.2" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#distribuição-normal-padronizada"><i class="fa fa-check"></i><b>11.2</b> Distribuição Normal Padronizada</a></li>
+<li class="chapter" data-level="11.3" data-path="distribuição-de-probabilidade.html"><a href="distribuição-de-probabilidade.html#exercícios-3"><i class="fa fa-check"></i><b>11.3</b> Exercícios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html"><i class="fa fa-check"></i><b>12</b> Experimentação Agrícola</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#conceitos-básicos-1"><i class="fa fa-check"></i><b>12.1</b> Conceitos básicos</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#população"><i class="fa fa-check"></i><b>12.1.1</b> POPULAÇÃO</a></li>
+<li class="chapter" data-level="12.1.2" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#tratamento"><i class="fa fa-check"></i><b>12.1.2</b> TRATAMENTO</a></li>
+<li class="chapter" data-level="12.1.3" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#experimento-ou-ensaio"><i class="fa fa-check"></i><b>12.1.3</b> EXPERIMENTO OU ENSAIO</a></li>
+<li class="chapter" data-level="12.1.4" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#unidade-experimental-ou-parcela"><i class="fa fa-check"></i><b>12.1.4</b> UNIDADE EXPERIMENTAL OU PARCELA</a></li>
+<li class="chapter" data-level="12.1.5" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#delineamento-experimental"><i class="fa fa-check"></i><b>12.1.5</b> DELINEAMENTO EXPERIMENTAL</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#medidas-de-posição-e-de-dispersão"><i class="fa fa-check"></i><b>12.2</b> Medidas de posição e de dispersão</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#medidas-de-posição-ou-de-tendência-central"><i class="fa fa-check"></i><b>12.2.1</b> MEDIDAS DE POSIÇÃO OU DE TENDÊNCIA CENTRAL</a></li>
+<li class="chapter" data-level="12.2.2" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#medidas-de-dispersão"><i class="fa fa-check"></i><b>12.2.2</b> MEDIDAS DE DISPERSÃO</a></li>
+<li class="chapter" data-level="12.2.3" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#variância"><i class="fa fa-check"></i><b>12.2.3</b> VARIÂNCIA</a></li>
+<li class="chapter" data-level="12.2.4" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#desvio-padrão"><i class="fa fa-check"></i><b>12.2.4</b> DESVIO PADRÃO</a></li>
+<li class="chapter" data-level="12.2.5" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#erro-padrão-da-média"><i class="fa fa-check"></i><b>12.2.5</b> ERRO PADRÃO DA MÉDIA</a></li>
+<li class="chapter" data-level="12.2.6" data-path="experimentação-agrícola.html"><a href="experimentação-agrícola.html#coeficiente-de-variação"><i class="fa fa-check"></i><b>12.2.6</b> COEFICIENTE DE VARIAÇÃO</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html"><i class="fa fa-check"></i><b>13</b> Comparações de parâmetros de duas populações</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#comparação-de-variâncias-de-duas-populações-normais"><i class="fa fa-check"></i><b>13.1</b> Comparação de variâncias de duas populações normais</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#resolvendo-no-r"><i class="fa fa-check"></i><b>13.1.1</b> Resolvendo no R</a></li>
+<li class="chapter" data-level="13.1.2" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#interpretação-no-r"><i class="fa fa-check"></i><b>13.1.2</b> Interpretação no R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#comparação-de-duas-médias-de-populações-normais-amostras-independentes"><i class="fa fa-check"></i><b>13.2</b> Comparação de duas médias de populações normais: amostras independentes</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#caso-1-variâncias-populacionais-conhecidas"><i class="fa fa-check"></i><b>13.2.1</b> Caso 1: variâncias populacionais conhecidas</a></li>
+<li class="chapter" data-level="13.2.2" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#caso-2-variâncias-populacionais-desconhecidas-e-iguais-teste-t"><i class="fa fa-check"></i><b>13.2.2</b> Caso 2: variâncias populacionais desconhecidas e iguais (Teste t)</a></li>
+<li class="chapter" data-level="13.2.3" data-path="comparações-de-parâmetros-de-duas-populações.html"><a href="comparações-de-parâmetros-de-duas-populações.html#caso-3-variâncias-populacionais-desconhecidas-e-desiguais-teste-de-smith-satterthwaite"><i class="fa fa-check"></i><b>13.2.3</b> Caso 3: variâncias populacionais desconhecidas e desiguais (Teste de Smith-Satterthwaite)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html"><i class="fa fa-check"></i><b>14</b> Planejamento de Experimentos</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#introdução-1"><i class="fa fa-check"></i><b>14.1</b> Introdução</a></li>
+<li class="chapter" data-level="14.2" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#unidade-experimental-ou-parcela-1"><i class="fa fa-check"></i><b>14.2</b> Unidade Experimental ou Parcela</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#tamanho-da-parcela"><i class="fa fa-check"></i><b>14.2.1</b> TAMANHO DA PARCELA</a></li>
+<li class="chapter" data-level="14.2.2" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#forma-da-parcela"><i class="fa fa-check"></i><b>14.2.2</b> FORMA DA PARCELA</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#princípios-básicos-da-experimentação"><i class="fa fa-check"></i><b>14.3</b> Princípios básicos da experimentação</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#princípio-da-repetição"><i class="fa fa-check"></i><b>14.3.1</b> PRINCÍPIO DA REPETIÇÃO</a></li>
+<li class="chapter" data-level="14.3.2" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#princípio-da-casualização"><i class="fa fa-check"></i><b>14.3.2</b> PRINCÍPIO DA CASUALIZAÇÃO</a></li>
+<li class="chapter" data-level="14.3.3" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#princípio-do-controle-local"><i class="fa fa-check"></i><b>14.3.3</b> PRINCÍPIO DO CONTROLE LOCAL</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="planejamento-de-experimentos.html"><a href="planejamento-de-experimentos.html#relação-entre-princípios-basicos-e-delineamentos"><i class="fa fa-check"></i><b>14.4</b> Relação entre princípios basicos e delineamentos</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="testes-de-significância.html"><a href="testes-de-significância.html"><i class="fa fa-check"></i><b>15</b> Testes de significância</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="testes-de-significância.html"><a href="testes-de-significância.html#introdução-2"><i class="fa fa-check"></i><b>15.1</b> Introdução</a></li>
+<li class="chapter" data-level="15.2" data-path="testes-de-significância.html"><a href="testes-de-significância.html#teste-f-de-snedecor-para-análise-de-variância"><i class="fa fa-check"></i><b>15.2</b> Teste F de Snedecor para análise de variância</a></li>
+<li class="chapter" data-level="15.3" data-path="testes-de-significância.html"><a href="testes-de-significância.html#exemplo-de-aplicação-do-teste-f"><i class="fa fa-check"></i><b>15.3</b> Exemplo de aplicação do teste F</a></li>
+<li class="chapter" data-level="15.4" data-path="testes-de-significância.html"><a href="testes-de-significância.html#passos-para-fazer-a-análise-de-variância-no-r"><i class="fa fa-check"></i><b>15.4</b> Passos para fazer a análise de variância no R</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html"><i class="fa fa-check"></i><b>16</b> Delineamento Inteiramente Casualizado</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#caracterização"><i class="fa fa-check"></i><b>16.1</b> Caracterização</a></li>
+<li class="chapter" data-level="16.2" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#modelo-matemático"><i class="fa fa-check"></i><b>16.2</b> Modelo matemático</a></li>
+<li class="chapter" data-level="16.3" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#hipóteses-básicas-para-análise-de-variância"><i class="fa fa-check"></i><b>16.3</b> Hipóteses básicas para análise de variância</a></li>
+<li class="chapter" data-level="16.4" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#obtenção-da-análise-de-variância"><i class="fa fa-check"></i><b>16.4</b> Obtenção da análise de variância</a></li>
+<li class="chapter" data-level="16.5" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#exemplo-de-aplicação"><i class="fa fa-check"></i><b>16.5</b> 5.5 EXEMPLO DE APLICAÇÃO</a></li>
+<li class="chapter" data-level="16.6" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#delinemaneto-inteiramente-casualizado-com-número-diferente-de-repetições-por-tratamento"><i class="fa fa-check"></i><b>16.6</b> Delinemaneto inteiramente casualizado com número diferente de repetições por tratamento</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#introdução-3"><i class="fa fa-check"></i><b>16.6.1</b> INTRODUÇÃO</a></li>
+<li class="chapter" data-level="16.6.2" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#obtenção-da-análise-de-variância-1"><i class="fa fa-check"></i><b>16.6.2</b> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA</a></li>
+<li class="chapter" data-level="16.6.3" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#cálculo-das-médias-e-erros-padrões-das-médias"><i class="fa fa-check"></i><b>16.6.3</b> CÁLCULO DAS MÉDIAS E ERROS PADRÕES DAS MÉDIAS:</a></li>
+<li class="chapter" data-level="16.6.4" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#teste-de-tukey-para-comparação-das-médias"><i class="fa fa-check"></i><b>16.6.4</b> TESTE DE TUKEY PARA COMPARAÇÃO DAS MÉDIAS</a></li>
+<li class="chapter" data-level="16.6.5" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#cálculo-do-coeficiente-de-variação-do-experimento"><i class="fa fa-check"></i><b>16.6.5</b> CÁLCULO DO COEFICIENTE DE VARIAÇÃO DO EXPERIMENTO</a></li>
+<li class="chapter" data-level="16.6.6" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#aplicação-do-teste-t-de-student-a-um-contraste"><i class="fa fa-check"></i><b>16.6.6</b> APLICAÇÃO DO TESTE t DE STUDENT A UM CONTRASTE</a></li>
+<li class="chapter" data-level="16.6.7" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#teste-de-duncan-para-a-comparação-das-médias"><i class="fa fa-check"></i><b>16.6.7</b> TESTE DE DUNCAN PARA A COMPARAÇÃO DAS MÉDIAS</a></li>
+<li class="chapter" data-level="16.6.8" data-path="delineamento-inteiramente-casualizado.html"><a href="delineamento-inteiramente-casualizado.html#utilizando-o-r"><i class="fa fa-check"></i><b>16.6.8</b> Utilizando o R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html"><i class="fa fa-check"></i><b>17</b> Desdobramento de graus de liberdade de tratamento</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#introdução-4"><i class="fa fa-check"></i><b>17.1</b> INTRODUÇÃO</a></li>
+<li class="chapter" data-level="17.2" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#obtenção-da-análise-de-variância-com-desdobramento-dos-graus-de-liberdade-de-tratamentos"><i class="fa fa-check"></i><b>17.2</b> OBTENÇÃO DA ANÁLISE DE VARIÂNCIA COM DESDOBRAMENTO DOS GRAUS DE LIBERDADE DE TRATAMENTOS</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#método-dos-contrastes-de-totais-de-tratamentos"><i class="fa fa-check"></i><b>17.2.1</b> MÉTODO DOS CONTRASTES DE TOTAIS DE TRATAMENTOS</a></li>
+<li class="chapter" data-level="17.2.2" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#método-dos-totais-de-tratamentos-sem-utilizar-contrastes"><i class="fa fa-check"></i><b>17.2.2</b> MÉTODO DOS TOTAIS DE TRATAMENTOS (SEM UTILIZAR CONTRASTES)</a></li>
+<li class="chapter" data-level="17.2.3" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#análise-de-variância-com-desdobramento-dos-graus-de-liberdade-de-tratamentos"><i class="fa fa-check"></i><b>17.2.3</b> ANÁLISE DE VARIÂNCIA COM DESDOBRAMENTO DOS GRAUS DE LIBERDADE DE TRATAMENTOS</a></li>
+<li class="chapter" data-level="17.2.4" data-path="desdobramento-de-graus-de-liberdade-de-tratamento.html"><a href="desdobramento-de-graus-de-liberdade-de-tratamento.html#componentes-com-mais-de-um-grau-de-liberdade"><i class="fa fa-check"></i><b>17.2.4</b> COMPONENTES COM MAIS DE UM GRAU DE LIBERDADE</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="referências.html"><a href="referências.html"><i class="fa fa-check"></i>Referências</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados de Ciência do Solo no R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="testes-de-significância" class="section level1" number="15">
+<h1><span class="header-section-number">15</span> Testes de significância</h1>
+<div id="introdução-2" class="section level2" number="15.1">
+<h2><span class="header-section-number">15.1</span> Introdução</h2>
+<p>Um dos principais objetivos da estatística é a tomada de decisão a respeito da população, com base nas observações de amostra, ou seja, a obtenção de conclusões válidas para toda a população com base em amostra retiradas dessas populações.</p>
+<p>Ao tentarmos tomar decisões, é conveniente a formulação de hipóteses ou suposições relativas às populações. Essas suposições, que podem ou não ser verdadeiras são chamadas de <strong>hipóteses estatísticas</strong> e consistem, geralmente, em considerações a respeito das distribuições de probabilidade das populações.</p>
+<p>Em muitos casos formulamos uma hipótese estatística com o objetivo de rejeitá-la ou invalidá-la. Por exemplo, quando realizamos um experimento com o objetivo de verificar qual é a variedade de cana-de-açúcar mais produtiva, formulamos a hipótese de que não existem diferenças entre as variedades em relação à produção (isto é, que quaisquer diferenças observadas são devidas unicamente aos fatores não controlado ou acaso). Essa hipótese inicial que formulamos, é denominada de **hipótese da nulidade* e é representada por <span class="math inline">\(H_0\)</span>*.</p>
+<p>Admitindo-se esta hipótese como verdadeira, se verificarmos que os resultados obtidos ao final do experimento em uma amostra aleatória diferem acentuadamente dos resultados esperados para essa hipótese, com ase na teoria das probabilidades, podemos concluir que as diferenças observadas são significativas, e rejeitar essa hipótese <span class="math inline">\(H_0\)</span>.</p>
+<p>Então, rejeitamos a hipótese da nulidade em favor de uma outra, que é representada por <span class="math inline">\(H_1\)</span> e denominada de <strong>hipótese alternativa</strong>. Por exemplo, no caso da comparação entre variedade, a hipótese alternativa seria: As variedades testadas se comportam de maneira diferente em relação à produção de cana-de-açúcar.</p>
+<p>Os métodos que nos permitem decidir se aceitamos ou rejeitamos uma determinada hipótese, ou se a amostra observada difere significativamente dos valores esperados, são denominados <strong>testes de significância</strong> ou <strong>testes de hipóteses</strong>.</p>
+<p>Porém, ao tomarmos decisões de rejeitar ou aceitar uma determinada hipótese, estamos sujeitos a incorrer em dois tipos de erros:</p>
+<p><strong>ERRO TIPO I</strong>: é o erro que cometemos ao rejeitar uma determinada hipótese verdadeira, que deveria ser aceita.</p>
+<p><strong>ERRO TIPO II</strong>: é o erro que cometemos ao aceitar uma hipótese falsa, que deveria ser rejeitada.</p>
+<p>Esses dois tipos de erros são associados de tal forma que à medida que diminuímos a probabilidade de ocorrência de um deles, automaticamente aumentamos a probabilidade de ocorrência de outro.</p>
+<p>Geralmente, em estatística controla apenas o <strong>erro Tipo I</strong>, por meio do nível de significância do teste.</p>
+<p><strong>O nível de significância do teste</strong>, representado por <span class="math inline">\(\alpha\)</span> é a probabilidade máxima com que nos sujeitamos a correr o risco de cometer o <strong>erro Tipo I</strong>, ao testarmos uma hipótese.</p>
+<p>Na prática é usual fixarmos esse nível de significância em 5% ou em 1%, ou seja <span class="math inline">\(\alpha = 0,05\)</span> ou <span class="math inline">\(\alpha = 0,01\)</span>.</p>
+<p>Então, se por exemplo, escolhermos o nível de significância de 5%<span class="math inline">\((\alpha=0,05)\)</span>, isto indica que temos 5 chances em 100 de rejeitarmos uma hipótese que deveria ser aceita, isto é, há uma confiança de 95% de que tenhamos tomado uma decisão correta.</p>
+<p>Esta confiança que temos de termos tomada uma decisão correta é denominada de <strong>Grau de Confiança do Teste</strong>, e é dada por <span class="math inline">\(100 \cdot (1-\alpha) \%\)</span>.</p>
+<p>O teste de significância mais utilizado em estatística experimental é o <strong>Teste F</strong>, que estudaremos a seguir.</p>
+</div>
+<div id="teste-f-de-snedecor-para-análise-de-variância" class="section level2" number="15.2">
+<h2><span class="header-section-number">15.2</span> Teste F de Snedecor para análise de variância</h2>
+<p>A <strong>Análise de Variância</strong> é uma técnica que nos permite fazer a decomposição da variância total em parte atribuídas a causas conhecidas e independentes e uma porção residual de origem desconhecida e de natureza aleatória.</p>
+<p>O teste F tem por finalidade comparar estimativas de variâncias.</p>
+<p>Na análise de variância, as estimativas de variância são dadas pelos <strong>quadrados médios</strong> (Q.M.) e obtemos um Q.M. para cada causa de variação. Assim, em um experimento inteiramente casualizado, temos duas estimativas de variância: uma devido aos efeitos de tratamentos (dadas pelo <strong>QM Tratamentos</strong>) e outra devida aos efeitos dos fatores não controlados ou acaso (dada pelo <strong>QM Resíduo</strong>).</p>
+<p>Para aplicar o teste F na análise de variância, utilizamos sempre no denominador, o <strong>QM Resíduo</strong>, ou seja, comparamos sempre uma variância devida aos efeitos do fator controlado (Tratamentos, Blocos, Linhas, Colunas, etc.), com a variância devida aos efeitos dos fatores não controlados ou acaso (Resíduos)</p>
+<p>Então:</p>
+<p><span class="math display">\[
+F= \frac{QM_{Tratamentos} }{ QM_{Resíduos}}
+\]</span></p>
+<p>Sob a hipótese da nulidade, isto é, supondo-se que os efeitos dos tratamentos são todos equivalentes, teríamos duas estimativas de variância (<strong>QM Tratamentos</strong> e <strong>QM Resíduo</strong>) que não deveriam diferir, a não ser por flutuações amostrais, pois ambas estimam a variação do acaso.</p>
+<p>Assim,</p>
+<p><span class="math inline">\(QM_{Resíduo}\)</span> - estima a variação do acaso: <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><span class="math inline">\(QM_{Tratamentos}\)</span> - estima a variação do acaso mais a variação devida ao efeito de tratamentos: <span class="math inline">\(\sigma^2 + K \sigma^2_T\)</span></p>
+<p>Portanto,</p>
+<p><span class="math display">\[
+F=\frac{QM_{Tratamentos}}{QM_{Resíduo} } = \frac{\sigma^2+K\sigma^2_t}{\sigma^2}
+\]</span></p>
+<p>A seguir, comparamos o valor de F calculado com os valores da tabela de distribuição F (geralmente aos níveis de 5% e 1%). Os valores críticos são obtidos na tabela da distribuição F, em função do número de graus de liberdade de tratamentos (ou blocos), na horizontal (numerador) e do número de graus de liberdade do resíduo, na vertical (denominador).</p>
+<p><img src="img/f_5p.png" /></p>
+<p><img src="img/f_1p.png" />
+<a href="https://github.com/arpanosso/ExpAgr_2020/raw/master/F_5_e_1.pdf">DOWNLOAD das tabelas</a></p>
+<p>O critério do teste é o seguinte:</p>
+<p>Se <span class="math inline">\(F\;calculado \ge F\;tabelado\)</span> o teste é significativo ao nível testado. Então, devemos rejeitar a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluir que os efeitos dos tratamentos diferem entre si a esse nível de probabilidade, e essas diferenças não devem ser atribuídas ao acaso, mas sim aos efeitos dos tratamentos testatos, com um grau de confiância <span class="math inline">\(100 \cdot(1-\alpha)\%\)</span>.</p>
+<p>Se <span class="math inline">\(F\;calculado \le F\;tabelado\)</span> o teste é não significativo ao nível testado. Então, não devemos rejeitar a hipótese da nulidade (<span class="math inline">\(H_0\)</span>). Neste caso concluímos que os efeitos dos tratamentos não diferem entre si a esse nível de probabilidae. Abaixo segue o esquema da distribuição F.</p>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
+<p>Resumidamente, temos:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><strong>Fcalc &lt; Ftab(5%)</strong> - O teste F é não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade. Aceitamos <span class="math inline">\(H_0\)</span> - Utiliza-se a notação <span class="math inline">\(Fcalc^{NS}\)</span>.</p></li>
+<li><p><strong>Ftab(5%) &lt; Fcalc &lt; Ftab(1%)</strong> - O teste é significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade. Rejeitamos <span class="math inline">\(H_0\)</span> com um grau de confiança superior a <span class="math inline">\(95\%\)</span>. Utiliza-se a notação: <span class="math inline">\(Fcalc^*\)</span>.</p></li>
+<li><p><strong>Fcalc &gt; Ftab(1%)</strong> - O teste é significativo ao nível de <span class="math inline">\(1\%\)</span>de probabilidade. Rejeitamos <span class="math inline">\(H_0\)</span> com um grau de confiança superior a <span class="math inline">\(99\%\)</span>. Utiliza-se a notação: <span class="math inline">\(Fcalc^{**}\)</span>.</p></li>
+</ol>
+</div>
+<div id="exemplo-de-aplicação-do-teste-f" class="section level2" number="15.3">
+<h2><span class="header-section-number">15.3</span> Exemplo de aplicação do teste F</h2>
+<p>Num experimento de competição de cultivares de cana-de-açúcar foram utilizados <span class="math inline">\(6\)</span> Tratamentos e <span class="math inline">\(4\)</span> repetições. As cultivares testadas foram:</p>
+<ol style="list-style-type: decimal">
+<li>Co 413</li>
+<li>Co 419</li>
+<li>CB 40/19</li>
+<li>CB 40/69</li>
+<li>CB 41/70</li>
+<li>CB 41/76</li>
+</ol>
+<p>O delineamento experimental utilizado foi em blocos casualizados, com os blocos controlando diferenças na fertilidade do solo entre terraços.</p>
+<p>Croqui experimental localizada no município de Apareceida do Taboado (MS).</p>
+<p><img src="img/area_satelite.png" /></p>
+<p>Croqui do experimento mostrando a disposição dos blocos na área experimental.</p>
+<p><img src="img/area_croqui.png" /></p>
+<p>Aspectos gerais da uma parcela experimental.</p>
+<p><img src="img/IMG_20140710_085406.jpg" />
+Fonte: Arquivo pessoal.</p>
+<p>Os dados experimentais, de produção da cultura foram tabulados em planilha eletrônica da seguinte forma.</p>
+<p><img src="img/dados_excel.png" /></p>
+<p><a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_cana.xlsx">dados_prod_cana.xlsx</a></p>
+<p>Observe que os dados estão na forma retanrgular, também denominada “frame” de dados. Nessa forma cada coluna representa um <strong>fator</strong> ou característica encontrada no experimento e fornece as informações de cada parcela experimental (linhas da tabela). Note que a primeira linha da tabela é destinada para informar o nome de cada coluna (cabeçalho)</p>
+<p>Os dados poderiam ser apresentados em arquivos tipo “txt” exemplo
+<a href="https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/data/dados_prod_cana.txt">dados_prod_cana.txt</a></p>
+<p><img src="img/dados_txt.png" /></p>
+<p>Para a produção da cultura da cana-de-açúcar, em t/ha foram estimados os seguintes valores de soma de quadrados para a análise de variância.</p>
+<p><span class="math inline">\(SQ{Trat} =10471,21\)</span></p>
+<p><span class="math inline">\(SQ{Bloco} =1424,792\)</span></p>
+<p><span class="math inline">\(SQ{Total} =12097,96\)</span></p>
+<p>As hipóteses que desejamos testar, para <strong>Tratamentos</strong> são:</p>
+<p><span class="math inline">\(H_0\)</span>: As cultivares de cana-de-açúcar testadas não diferem entre si quanto à produção de cana-de-açúcar.</p>
+<p><span class="math inline">\(H_1\)</span>: As cultivares de cana-de-açúcar testadas possuem efeitos diferentes quanto à produção de cana-de-açúcar.</p>
+<p>As hipóteses para <strong>Blocos</strong> são:</p>
+<p><span class="math inline">\(H_0\)</span>: Os blocos instalados em campo não diferem entre si quanto à produção de cana-de-açúcar.</p>
+<p><span class="math inline">\(H_1\)</span>: Os blocos possuem efeitos diferentes quanto à produção de cana-de-açúcar, isso implica em dizer que os blocos foram eficiente no controle local.</p>
+<p>Para testar estas hipóteses, podemos montar o seguinte quadro de análise de variância:</p>
+<p>Para testar estas hipóteses, podemos montar o seguinte quadro de análise de variância:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Tratamentos
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+10471,21
+</td>
+<td style="text-align:left;">
+2094,24
+</td>
+<td style="text-align:left;">
+155,55**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Blocos
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+1424,79
+</td>
+<td style="text-align:left;">
+474,93
+</td>
+<td style="text-align:left;">
+35,27**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduo
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+201,96
+</td>
+<td style="text-align:left;">
+13,46
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+12097,96
+</td>
+<td style="text-align:left;font-weight: bold;">
+</td>
+<td style="text-align:left;font-weight: bold;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de <span class="math inline">\(F\)</span> da Tabela:</p>
+<p>Para Tratamentos <span class="math inline">\((5 \times 15\; gl): \begin{cases} 5\%=2,90 \\ 1\% = 4,56\end{cases}\)</span></p>
+<p>Para Blocos <span class="math inline">\((3 \times 15\; gl): \begin{cases} 5\%=3,29 \\ 1\% = 5,42\end{cases}\)</span></p>
+<p><strong>Conclusão para Tratamento:</strong></p>
+<p>O teste foi significativo ao nível de 1% de probabilidade. Rejeitamos a hipótese <span class="math inline">\(H_{0}\)</span> e concluímos que as cultivares (pelo menos 2) testadas possuem efeitos diferentes quanto à produção de cana-de-açúcar, a esse nível de probabilidade, com um grau de confiança superior a 99% de probabilidade.</p>
+<p><strong>Conclusão para Blocos:</strong></p>
+<p>O teste foi significativo ao nível de 1% de probabilidade. Rejeitamos a hipótese <span class="math inline">\(H_{0}\)</span> e concluímos que os terraços utilizados como blocos (pelo menos 2) diferem entre si em relação à produção de cana-de-açúcar, a esse nível de probabilidade, com um grau de confiança superior a 99% de probabilidade.</p>
+<p><img src="img/R.png" /></p>
+</div>
+<div id="passos-para-fazer-a-análise-de-variância-no-r" class="section level2" number="15.4">
+<h2><span class="header-section-number">15.4</span> Passos para fazer a análise de variância no R</h2>
+<div id="carregar-o-pacote-expdes.pt" class="section level4" number="15.4.0.1">
+<h4><span class="header-section-number">15.4.0.1</span> Carregar o Pacote <code>{ExpDes.pt}</code></h4>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="testes-de-significância.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ExpDes.pt&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:MASS&#39;:
+## 
+##     ginv</code></pre>
+</div>
+<div id="carregar-o-banco-de-dados." class="section level4" number="15.4.0.2">
+<h4><span class="header-section-number">15.4.0.2</span> Carregar o banco de dados.</h4>
+<p>Neste caso, podemos ler diretamente da internete, uma vez que possuimos o endereço do banco de dados.</p>
+<ul>
+<li>definimos o endereço na <code>url</code>;<br />
+</li>
+<li>utilizamos a função <code>read.table()</code> para ler o banco de dados e salvar no objeto <code>dados</code>. Obseve que utilizamos o argumento <code>h=TRUE</code>, indicando que a primeira linha do banco de dados possui o cabeçalho.</li>
+</ul>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="testes-de-significância.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho</span></span>
+<span id="cb529-2"><a href="testes-de-significância.html#cb529-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/data/dados_prod_cana.txt&quot;</span></span>
+<span id="cb529-3"><a href="testes-de-significância.html#cb529-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb529-4"><a href="testes-de-significância.html#cb529-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrando com os dados</span></span>
+<span id="cb529-5"><a href="testes-de-significância.html#cb529-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">h=</span> <span class="cn">TRUE</span>)</span>
+<span id="cb529-6"><a href="testes-de-significância.html#cb529-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb529-7"><a href="testes-de-significância.html#cb529-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Checando o 6 primeiros registros do banco de dados</span></span>
+<span id="cb529-8"><a href="testes-de-significância.html#cb529-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<pre><code>##   Tratamento Bloco Producao
+## 1     Co_413     1       88
+## 2    CB_4069     1       55
+## 3    CB_4019     1       39
+## 4     Co_419     1       81
+## 5    CB_4170     1       33
+## 6    CB_4176     1       56</code></pre>
+</div>
+<div id="vamos-utilizar-o-operador-de-acesso-para-extrair-as-colunas-do-objeto-dados.-observe-que-para-os-fatores-tratamento-e-bloco-utilizamos-a-função-as.factor-que-define-o-tipo-de-dados-como-categórico-necessário-para-a-aplicação-da-análise-de-variância." class="section level4" number="15.4.0.3">
+<h4><span class="header-section-number">15.4.0.3</span> Vamos utilizar o operador de acesso <code>$</code> para extrair as colunas do objeto <code>dados</code>. Observe que para os fatores Tratamento e Bloco, utilizamos a função <code>as.factor()</code> que define o tipo de dados como categórico, necessário para a aplicação da análise de variância.</h4>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="testes-de-significância.html#cb531-1" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Tratamento)</span>
+<span id="cb531-2"><a href="testes-de-significância.html#cb531-2" aria-hidden="true" tabindex="-1"></a>bloco <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Bloco)</span>
+<span id="cb531-3"><a href="testes-de-significância.html#cb531-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> dados<span class="sc">$</span>Producao</span></code></pre></div>
+</div>
+<div id="utilizar-a-função-do-pacote-expdes.pt-respeitando-o-delineamento-experimental-no-caso-delineamento-em-blocos-ao-acaso-dbc" class="section level4" number="15.4.0.4">
+<h4><span class="header-section-number">15.4.0.4</span> Utilizar a função do pacote <code>{ExpDes.pt}</code>, respeitando o delineamento experimental, no caso; Delineamento em Blocos ao Acaso (DBC)</h4>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="testes-de-significância.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(trat, bloco, resp)</span></code></pre></div>
+<pre><code>## ------------------------------------------------------------------------
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##            GL      SQ      QM      Fc      Pr&gt;Fc
+## Tratamento  5 10471.2 2094.24 155.545 0.0000e+00
+## Bloco       3  1424.8  474.93  35.274 4.8993e-07
+## Residuo    15   202.0   13.46                   
+## Total      23 12098.0                           
+## ------------------------------------------------------------------------
+## CV = 6.99 %
+## 
+## ------------------------------------------------------------------------
+## Teste de normalidade dos residuos 
+## valor-p:  0.9217893 
+## De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+## ------------------------------------------------------------------------
+## 
+## ------------------------------------------------------------------------
+## Teste de homogeneidade de variancia 
+## valor-p:  0.7977011 
+## De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
+## ------------------------------------------------------------------------
+## 
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     Co_413      81.5 
+## a     Co_419      77.75 
+##  b    CB_4176     50.5 
+##  b    CB_4069     47 
+##   c   CB_4170     29.5 
+##   c   CB_4019     28.5 
+## ------------------------------------------------------------------------</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="planejamento-de-experimentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="delineamento-inteiramente-casualizado.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["r_data_science_fcav.pdf", "r_data_science_fcav.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
