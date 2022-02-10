@@ -197,20 +197,20 @@ A função `str_detect()` pertence ao pacote `stringr` e tem a finalidade de det
 
 O pacote `stringr` faz parte do pacote `tidyverse`, cuja sintaxe é o *Regex* (do inglês *Regular Expressions*), ou seja, são expressões regulares para descrever os padrões dentro da string.
 
-Uma breve explicação se faz necessária para aplicações posteriores.
+Portanto, para uma boa utilização das facilidades do *Regex*, uma breve explicação se faz necessária.
 
 Vamos criar duas strings:
 
 ```{r}
-string1 <- "Isso é uma string"
-string2 <- 'Se você quiser adicionar "aspas duplas" dentro da string, utilize aspas simples'
-string1
-string2
+string_1 <- "Isso é uma string"
+string_2 <- 'Se você quiser adicionar "aspas duplas" dentro da string, utilize aspas simples'
+string_1
+string_2
 ```
 
 A representação impressa de uma string mostra as barras transversas `\`, já o conteúdo bruto da string pode ser apresentado por `writeLines()`.
 ```{r}
-writeLines(string2)
+writeLines(string_2)
 ```
 Observe mais esse exemplo.
  * `\"` aspas duplas    
@@ -220,12 +220,12 @@ Observe mais esse exemplo.
  * `\u00b5` caracteres que não pertencem ao inglês.
  
 ```{r}
-string3 <- c("\"", "\n", "\\", "A\tB", "\n", "\u00b5") 
-string3
-writeLines(string3)
+string_3 <- c("\"", "\n", "\\", "A\tB", "\n", "\u00b5") 
+string_3
+writeLines(string_3)
 ```
 
-O pacote básico do R contém muitas funções para trabalhar com strings, mas vamos evitá-las porque podem ser inconsistentes, o que as torna difíceis de lembrar. Já o pacote `stringr` é de mais simples utilização, pois têm nomes intuitivos, todos começam com `str_`. Por exemplo, `str_length()` informa o número de caracteres em uma string:
+O pacote básico do R contém muitas funções para trabalhar com strings, mas vamos evitá-las porque podem ser inconsistentes, o que as torna difíceis de lembrar. Já o pacote `stringr` é de mais simples utilização, pois têm nomes intuitivos, pois todos começam com `str_`. Por exemplo, `str_length()` informa o número de caracteres em uma string:
 
 ```{r}
 meu_texto <- c('a','R para data science', NA, 'UNESP-FCAV')
@@ -238,22 +238,23 @@ A combinação de strings pode ser feita com o `str_c()`, utilizando o argumento
 str_c("objeto", 1:5, sep="_")
 ```
 
-**OBS** Poderíamos ter o mesmo efeito com a função `paste()` do pacote `base`.
+**OBS** Poderíamos ter o mesmo efeito com a função `paste()` ou `paste0()` do pacote `base`.
 
 ```{r}
-paste("objeto", 1:5, sep="_")
+paste("objeto", 1:5) # sep = " "
+paste0("objeto",1:5) # sep = ""
 ```
 Contudo, observe a forma com a qual as funções operam valores faltantes `NA`.
 
 ```{r}
 paste("objeto", c(1,NA,3), sep="_")
 str_c("objeto", c(1,NA,3), sep="_")
-str_c("objeto", str_replace_na(c(1,NA,3)), sep="_")
 ```
 
 Como a maioria das outras funções em R, os valores ausentes se propagam nas operações. Se você quiser que eles sejam impressos como **NA**, use `str_replace_na()`:
 
 ```{r}
+str_c("objeto", str_replace_na(c(1,NA,3)), sep="_")
 str_c("---", meu_texto, "---")
 str_c("---", str_replace_na(meu_texto), "---")
 ```
@@ -304,7 +305,7 @@ Podemos buscar combinações simples, para facilitar a verificação, vamos util
 ```{r}
 str_view(x, "ad")
 ```
-Podemos utilizar o ponto `.` para encontrar a combinação com qualquer caractere (exceto no início ou no final da string). 
+Podemos utilizar o ponto `.` para encontrar a combinação com qualquer caractere (exceto no início ou no final da string - nova linha). 
 
 ```{r}
 str_view(x, ".a.")
@@ -337,7 +338,14 @@ str_view(z,"Arado")
 str_view(z,"^Arado$")
 ```
 
-Voltando à manipulação dos dados de `geomorfologia`, agora podemos filtrar todos os Argissolos utilizando o *regex*, ou seja, podemos selecionar todos aqueles solos que començam com a letra **P**.
+Se acaso quiséssemos ignorar se a letra é maiúscula ou minúscula, utilizamos o argumento `ignore_case = TRUE`. Observe que antes de utilizarmos o referido argumento, envolvemos a string "Arado" com a função `regex()` que é o mecanismos padrão no pacote stringr. Assim, utilizamos a função para substituir as opções padrões do mecanismo.
+
+```{r}
+str_view(z,regex("Arado",ignore_case=TRUE))
+```
+
+
+Voltando à manipulação dos dados de `geomorfologia`, agora podemos filtrar todos os Argissolos utilizando o *regex*, ou seja, podemos selecionar todos aqueles solos que começam com a letra **P**.
 
 ```{r eval=FALSE}
 geomorfologia %>% 
@@ -419,10 +427,7 @@ geomorfologia %>%
 ```
 
 
-```{r echo=FALSE, fig.cap="Um exemplo patológico devido à complexidade de endereços de e-mail.",fig.align='center',out.width = "500px"}
-knitr::include_graphics("img/regex_meme.jpg")
-```
- 
+
 ## arrange()
 
 A funçao `arrange()` funciona de maneira similar a `filter()`, mas, ao invés de selecionar linhas, ela muda a ordem delas. Ela recebe um data frame e um conjunto de nomes de colunas pelos quais ordenar. Se fornecermos mais de um nome de coluna, cada coluna adicional será usada para desempate nos valores das colunas anteriores.
