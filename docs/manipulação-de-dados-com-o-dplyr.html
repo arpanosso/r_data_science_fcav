@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9 Manipulação de dados com o dplyr | Análise de Dados de Ciência do Solo no R</title>
-  <meta name="description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9 Manipulação de dados com o dplyr | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  <meta property="og:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="9 Manipulação de dados com o dplyr | Análise de Dados de Ciência do Solo no R" />
   
-  <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2021 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
+  <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
 
 <meta name="author" content="Alan R. Panosso alan.panosso@unesp.br &amp; Gener T. Pereira gener.t.pereira@unesp.br" />
@@ -566,38 +566,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [5] &quot;subsolador&quot;</code></pre>
 <p>Podemos buscar combinações simples, para facilitar a verificação, vamos utilizar <code>str_view()</code>.</p>
 <div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;ad&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-6c1c22895a865a48847f" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6c1c22895a865a48847f">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarific<span class='match'>ad<\/span>or<\/li>\n  <li>ar<span class='match'>ad<\/span>o de disco<\/li>\n  <li>gr<span class='match'>ad<\/span>e aradora<\/li>\n  <li>subsol<span class='match'>ad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-bf72b791058bc57aeedb" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bf72b791058bc57aeedb">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarific<span class='match'>ad<\/span>or<\/li>\n  <li>ar<span class='match'>ad<\/span>o de disco<\/li>\n  <li>gr<span class='match'>ad<\/span>e aradora<\/li>\n  <li>subsol<span class='match'>ad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Podemos utilizar o ponto <code>.</code> para encontrar a combinação com qualquer caractere (exceto no início ou no final da string - nova linha).</p>
 <div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-6c8f4120e25e84cad586" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6c8f4120e25e84cad586">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>es<span class='match'>car<\/span>ificador<\/li>\n  <li>a<span class='match'>rad<\/span>o de disco<\/li>\n  <li>g<span class='match'>rad<\/span>e aradora<\/li>\n  <li>subso<span class='match'>lad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a7fefd24891d02fa747e" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a7fefd24891d02fa747e">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>es<span class='match'>car<\/span>ificador<\/li>\n  <li>a<span class='match'>rad<\/span>o de disco<\/li>\n  <li>g<span class='match'>rad<\/span>e aradora<\/li>\n  <li>subso<span class='match'>lad<\/span>or<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Se estivermos procurando o caractere ponto <code>.</code>, vamos utilizar <code>\\.</code>.</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-1" aria-hidden="true" tabindex="-1"></a>meu_texto_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;abc&quot;</span>, <span class="st">&quot;a*b&quot;</span>, <span class="st">&quot;a b&quot;</span> ,<span class="st">&quot;a.c&quot;</span>)</span>
 <span id="cb378-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(meu_texto_2, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-7f5276273ed3028590f3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7f5276273ed3028590f3">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a*b<\/li>\n  <li>a b<\/li>\n  <li>a<span class='match'>.<\/span>c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7dbb0f5962b5795df812" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7dbb0f5962b5795df812">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a*b<\/li>\n  <li>a b<\/li>\n  <li>a<span class='match'>.<\/span>c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Por <em>default</em>, as expressões regulares corresponderão a qualquer parte de uma string. Muitas vezes, é útil ancorar a expressão regular de forma que corresponda desde o início ou ao final da string. Assim, podemos utilizar as <em>âncoras</em>:</p>
 <p>*<code>^</code> para combinar com o início da string.</p>
 <p>*<code>$</code> para combinar com o final da string.</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-3b9225842364f663831a" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3b9225842364f663831a">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificador<\/li>\n  <li><span class='match'>a<\/span>rado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolador<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4e1336bee9a751523fb4" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4e1336bee9a751523fb4">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificador<\/li>\n  <li><span class='match'>a<\/span>rado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolador<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;r$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-0695af9f31d50bb98889" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0695af9f31d50bb98889">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificado<span class='match'>r<\/span><\/li>\n  <li>arado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolado<span class='match'>r<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6c81a2d7742fda3361d6" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6c81a2d7742fda3361d6">{"x":{"html":"<ul>\n  <li>testemunha<\/li>\n  <li>escarificado<span class='match'>r<\/span><\/li>\n  <li>arado de disco<\/li>\n  <li>grade aradora<\/li>\n  <li>subsolado<span class='match'>r<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Para forçar uma expressão regular a corresponder apenas a uma string completa, ancore-a com <code>^</code> e <code>$</code>:</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-1" aria-hidden="true" tabindex="-1"></a>z<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Arado&quot;</span>,<span class="st">&quot;Arado de disco&quot;</span>,<span class="st">&quot;Arado de aiveca&quot;</span>, <span class="st">&quot;Grade aradora&quot;</span>)</span>
 <span id="cb381-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(z,<span class="st">&quot;Arado&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-3a7ad34b37dfe7c562ab" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3a7ad34b37dfe7c562ab">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li><span class='match'>Arado<\/span> de disco<\/li>\n  <li><span class='match'>Arado<\/span> de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b4a2c585345083e29dbd" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b4a2c585345083e29dbd">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li><span class='match'>Arado<\/span> de disco<\/li>\n  <li><span class='match'>Arado<\/span> de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(z,<span class="st">&quot;^Arado$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-513573f79cfb83b79ced" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-513573f79cfb83b79ced">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li>Arado de disco<\/li>\n  <li>Arado de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3e84ffc6453702579775" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3e84ffc6453702579775">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li>Arado de disco<\/li>\n  <li>Arado de aiveca<\/li>\n  <li>Grade aradora<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Se acaso quiséssemos ignorar se a letra é maiúscula ou minúscula, utilizamos o argumento <code>ignore_case = TRUE</code>. Observe que antes de utilizarmos o referido argumento, envolvemos a string “Arado” com a função <code>regex()</code> que é o mecanismos padrão no pacote stringr. Assim, utilizamos a função para substituir as opções padrões do mecanismo.</p>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(z,<span class="fu">regex</span>(<span class="st">&quot;Arado&quot;</span>,<span class="at">ignore_case=</span><span class="cn">TRUE</span>))</span></code></pre></div>
-<div id="htmlwidget-b5d1cbc50dadf230ad65" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b5d1cbc50dadf230ad65">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li><span class='match'>Arado<\/span> de disco<\/li>\n  <li><span class='match'>Arado<\/span> de aiveca<\/li>\n  <li>Grade <span class='match'>arado<\/span>ra<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-33a37ada26e3dc7717c0" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33a37ada26e3dc7717c0">{"x":{"html":"<ul>\n  <li><span class='match'>Arado<\/span><\/li>\n  <li><span class='match'>Arado<\/span> de disco<\/li>\n  <li><span class='match'>Arado<\/span> de aiveca<\/li>\n  <li>Grade <span class='match'>arado<\/span>ra<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Voltando à manipulação dos dados de <code>geomorfologia</code>, agora podemos filtrar todos os Argissolos utilizando o <em>regex</em>, ou seja, podemos selecionar todos aqueles solos que começam com a letra <strong>P</strong>.</p>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-1" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="sc">%&gt;%</span> </span>
 <span id="cb384-2"><a href="manipulação-de-dados-com-o-dplyr.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(Solo,<span class="st">&quot;^P&quot;</span>)) <span class="sc">%&gt;%</span> </span>
