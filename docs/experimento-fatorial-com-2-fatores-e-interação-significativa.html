@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>20 Estudo do Fatorial \(2^3\) | Análise de Dados de Ciência do Solo no R</title>
+  <title>19 Experimento fatorial com 2 fatores e interação significativa | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="20 Estudo do Fatorial \(2^3\) | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:title" content="19 Experimento fatorial com 2 fatores e interação significativa | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="20 Estudo do Fatorial \(2^3\) | Análise de Dados de Ciência do Solo no R" />
+  <meta name="twitter:title" content="19 Experimento fatorial com 2 fatores e interação significativa | Análise de Dados de Ciência do Solo no R" />
   
   <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="experimento-fatorial-com-2-fatores-e-interação-significativa.html"/>
-<link rel="next" href="experimento-em-parcelas-subdivididas.html"/>
+<link rel="prev" href="experimentos-fatoriais.html"/>
+<link rel="next" href="estudo-do-fatorial-23.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -458,153 +458,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="estudo-do-fatorial-23" class="section level1" number="20">
-<h1><span class="header-section-number">20</span> Estudo do Fatorial <span class="math inline">\(2^3\)</span></h1>
-<p>No fatorial <span class="math inline">\(2^3\)</span>, podemos estudar os efeitos de <span class="math inline">\(3\)</span> fatores, cada um dos quais em <span class="math inline">\(2\)</span> níveis. Assim, por exemplo, num ensaio de adubação NPK, podemos ter:</p>
-<p>Fatores:</p>
-<ul>
-<li><strong>N</strong> - Nitrogênio<br />
-</li>
-<li><strong>P</strong> - Fósforo<br />
-</li>
-<li><strong>K</strong> - Potássio</li>
-</ul>
-<p>Níveis:</p>
-<ul>
-<li><strong>0</strong> - Ausência do nutriente<br />
-</li>
-<li><strong>1</strong> - Presença do nutriente</li>
-</ul>
-<p>Neste caso, teremos os seguintes tratamentos:</p>
-<p><span class="math inline">\(N_0 P_0 K_0\)</span> - 000 - Testemunha<br />
-<span class="math inline">\(N_1 P_0 K_0\)</span> - 100 - N<br />
-<span class="math inline">\(N_0 P_1 K_0\)</span> - 010 - P<br />
-<span class="math inline">\(N_0 P_0 K_1\)</span> - 001 - K<br />
-<span class="math inline">\(N_1 P_1 K_0\)</span> - 110 - NP<br />
-<span class="math inline">\(N_1 P_0 K_1\)</span> - 101 - NK<br />
-<span class="math inline">\(N_0 P_1 K_1\)</span> - 011 - PK<br />
-<span class="math inline">\(N_1 P_1 K_1\)</span> - 111 - NPK</p>
-<p>Estes 8 tratamentos devem ser ditribuídos de acordo com um delineamento experimental qualquer, como por exemplo, DIC, DBC, etc, e após a análise de variância preliminar, realizada de acordo com o delineamento adotado, devemos desdobrar os graus 7 graus de liberdade de tratamentos da seguinte forma:</p>
-<p>Efeito de <span class="math inline">\(N\)</span>……………………………..1 g.l.<br />
-Efeito de <span class="math inline">\(P\)</span>……………………………..1 g.l.<br />
-Efeito de <span class="math inline">\(K\)</span>……………………………..1 g.l.<br />
-Efeito da Interação <span class="math inline">\(N \times P\)</span>…………..1 g.l.<br />
-Efeito da Interação <span class="math inline">\(N \times K\)</span>………….1 g.l.<br />
-Efeito da Interação <span class="math inline">\(P \times K\)</span>…………..1 g.l.<br />
-Efeito da Interação <span class="math inline">\(N \times P \times K\)</span>……1 g.l.<br />
-_____________________________________<br />
-(Tratamentos) ………………………..(7 g.l.)</p>
-<div id="análise-de-variância-de-um-experimento-fatorial-23" class="section level2" number="20.1">
-<h2><span class="header-section-number">20.1</span> Análise de variância de um experimento fatorial <span class="math inline">\(2^3\)</span></h2>
-<p>Para obtenção da análise de variância, vamos supor o seguinte ensaio em que se estudou o efeito da adubação NPK na cultura do cafeeiro. As produções de café coco, em kg por parcela de 105 <span class="math inline">\(m^2\)</span> (12 covas no espaçamento de <span class="math inline">\(3,5 \times 2,5\;m\)</span>) foram: Os dados podem ser encontrados em <a href="https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/cafeeiro3fatores.txt">cafeeito3fatores.txt</a></p>
+<div id="experimento-fatorial-com-2-fatores-e-interação-significativa" class="section level1" number="19">
+<h1><span class="header-section-number">19</span> Experimento fatorial com 2 fatores e interação significativa</h1>
+<p>Para obtenção da análise de variância, vamos supor o seguinte ensaio em que foram estudados os efeitos de <span class="math inline">\(4\)</span> inseticidas em <span class="math inline">\(2\)</span> doses diferentes sobre a produção da cultura do milho em <em>kg/parcela</em>. Dados estão disponíveis online em <a href="https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt">inseticidas.txt</a></p>
 <table>
 <thead>
 <tr class="header">
-<th>Tratamentos</th>
-<th>Bloco 1</th>
-<th>Bloco 2</th>
-<th>Bloco 3</th>
-<th>Bloco 4</th>
-<th>Bloco 5</th>
-<th>Bloco 6</th>
-<th>Total</th>
+<th align="center">Tratamento</th>
+<th align="center">Rep.1</th>
+<th align="center">Rep.2</th>
+<th align="center">Rep.3</th>
+<th align="center">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><span class="math inline">\(N_0P_0K_0\)</span></td>
-<td>31,8</td>
-<td>40,5</td>
-<td>25,7</td>
-<td>25,7</td>
-<td>37,2</td>
-<td>45,3</td>
-<td><strong>206,2</strong></td>
+<td align="center"><span class="math inline">\(I_1D_1\)</span></td>
+<td align="center">58</td>
+<td align="center">45</td>
+<td align="center">47</td>
+<td align="center"><strong>150</strong></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(N_1P_0K_0\)</span></td>
-<td>35,3</td>
-<td>39,0</td>
-<td>36,0</td>
-<td>33,5</td>
-<td>28,2</td>
-<td>42,4</td>
-<td><strong>214,4</strong></td>
+<td align="center"><span class="math inline">\(I_1D_2\)</span></td>
+<td align="center">61</td>
+<td align="center">65</td>
+<td align="center">47</td>
+<td align="center"><strong>173</strong></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(N_0P_1K_0\)</span></td>
-<td>36,2</td>
-<td>37,8</td>
-<td>40,9</td>
-<td>44,8</td>
-<td>32,4</td>
-<td>38,4</td>
-<td><strong>230,5</strong></td>
+<td align="center"><span class="math inline">\(I_2D_1\)</span></td>
+<td align="center">31</td>
+<td align="center">35</td>
+<td align="center">29</td>
+<td align="center"><strong>95</strong></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(N_0P_0K_1\)</span></td>
-<td>25,6</td>
-<td>32,4</td>
-<td>39,6</td>
-<td>48,9</td>
-<td>20,6</td>
-<td>33,7</td>
-<td><strong>200,8</strong></td>
+<td align="center"><span class="math inline">\(I_2D_2\)</span></td>
+<td align="center">43</td>
+<td align="center">51</td>
+<td align="center">49</td>
+<td align="center"><strong>143</strong></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(N_1P_1K_0\)</span></td>
-<td>43,8</td>
-<td>32,7</td>
-<td>43,3</td>
-<td>41,8</td>
-<td>31,9</td>
-<td>37,7</td>
-<td><strong>231,2</strong></td>
+<td align="center"><span class="math inline">\(I_3D_1\)</span></td>
+<td align="center">45</td>
+<td align="center">55</td>
+<td align="center">79</td>
+<td align="center"><strong>179</strong></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(N_1P_0K_1\)</span></td>
-<td>51,5</td>
-<td>66,1</td>
-<td>51,7</td>
-<td>52,0</td>
-<td>56,5</td>
-<td>58,2</td>
-<td><strong>336,0</strong></td>
+<td align="center"><span class="math inline">\(I_3D_2\)</span></td>
+<td align="center">31</td>
+<td align="center">37</td>
+<td align="center">37</td>
+<td align="center"><strong>105</strong></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(N_0P_1K_1\)</span></td>
-<td>37,1</td>
-<td>53,0</td>
-<td>36,4</td>
-<td>43,0</td>
-<td>19,7</td>
-<td>30,4</td>
-<td><strong>219,6</strong></td>
+<td align="center"><span class="math inline">\(I_4D_1\)</span></td>
+<td align="center">78</td>
+<td align="center">83</td>
+<td align="center">62</td>
+<td align="center"><strong>223</strong></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">\(N_1P_1K_1\)</span></td>
-<td>47,0</td>
-<td>49,9</td>
-<td>50,9</td>
-<td>49,1</td>
-<td>71,7</td>
-<td>39,6</td>
-<td><strong>308,2</strong></td>
+<td align="center"><span class="math inline">\(I_4D_2\)</span></td>
+<td align="center">36</td>
+<td align="center">34</td>
+<td align="center">34</td>
+<td align="center"><strong>104</strong></td>
 </tr>
 <tr class="odd">
-<td><strong>Total</strong></td>
-<td><strong>308,3</strong></td>
-<td><strong>351,4</strong></td>
-<td><strong>324,5</strong></td>
-<td><strong>338,8</strong></td>
-<td><strong>298,2</strong></td>
-<td><strong>325,7</strong></td>
-<td><strong>1946,9</strong></td>
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>383</strong></td>
+<td align="center"><strong>405</strong></td>
+<td align="center"><strong>384</strong></td>
+<td align="center"><strong>1172</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Dados originais</strong>:<a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_cafeeiro.xlsx">DOWNLOAD</a></p>
-<p>O ensaio foi montado de acordo com o delineamento em blocos casualizados e, portanto, a análise de variância preliminar, obtida da maneira usual, foi a seguinte:</p>
+<p><strong>Dados originais</strong>:<a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_milho_inset_dose.xlsx">DOWNLOAD</a></p>
+<div id="obtenção-da-análise-de-variância-6" class="section level2" number="19.1">
+<h2><span class="header-section-number">19.1</span> Obtenção da análise de variância</h2>
+<p>O ensaio foi montado de acordo com o delineamento inteiramente casualizado, e portanto, a análise de variância preliminar, obtida da maneira usual, foi a seguinte:</p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Total} &amp;= (58^2+45^2+\cdots +34^2)-\frac{1175^2}{8 \cdot 3} \\
+&amp;=5813,33
+\end{aligned}
+\]</span>
+<span class="math display">\[
+\begin{aligned}
+SQ_{Trat} &amp;= \frac{1}{3} (150^2+173^2+\cdots +104^2)-\frac{1175^2}{8 \cdot 3} \\
+&amp;=46
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Res} &amp;= SQ_{Total} - SQ_{Trat}
+&amp;=5813,33 - 4605,33
+&amp;=1208,00
+\end{aligned}
+\]</span></p>
+<p>Quadro de Análise de Variância Preliminar:</p>
 <table>
 <thead>
 <tr class="header">
@@ -617,482 +573,1137 @@ _____________________________________<br />
 </thead>
 <tbody>
 <tr class="odd">
-<td>Tratamentos</td>
+<td>Trat.</td>
 <td>7</td>
-<td>2949,18</td>
-<td>421,31</td>
-<td>6,38**</td>
+<td>4605,33</td>
+<td>657,90</td>
+<td>8,71*</td>
+</tr>
+<tr class="even">
+<td>Res</td>
+<td>16</td>
+<td>1208,0</td>
+<td>75.50</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>23</td>
+<td>5813,13</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão</strong>: O teste é siginificativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, logo, rejeitamos a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluímos que os efeitos dos tratamento diferem entre sim em relação à característica analisada, com um grau de confiança superior a <span class="math inline">\(99\%\)</span> de probabilidade.</p>
+<p>Devemos agora, desdobrar a soma de quadrado e os graus de liberdade de tratamentos para estudar os efeitos principais e a interação entre os fatores.</p>
+<p>Para facilitar os cálculos, utilizamos um quadro auxiliar como o seguinte:</p>
+<p>Quadro de totais</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">(3)</th>
+<th align="center"><span class="math inline">\(I_1\)</span></th>
+<th align="center"><span class="math inline">\(I_2\)</span></th>
+<th align="center"><span class="math inline">\(I_3\)</span></th>
+<th align="center"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="center">150</td>
+<td align="center">95</td>
+<td align="center">179</td>
+<td align="center">223</td>
+<td align="center">647</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="center">173</td>
+<td align="center">143</td>
+<td align="center">105</td>
+<td align="center">104</td>
+<td align="center">525</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center">323</td>
+<td align="center">238</td>
+<td align="center">284</td>
+<td align="center">327</td>
+<td align="center">1172</td>
+</tr>
+</tbody>
+</table>
+<p>Então, as somas de quadrados são obtidas da seguinte maneira:</p>
+<p><strong>1. Soma de quadrados devido ao efeito de Inseticidas:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Ef.Inseticida} &amp;= \frac{1}{r_I}[T_{I_1}^2+T_{I_2}^2+T_{I_3}^2+T_{I_4}^2] - \frac{G^2}{I\cdot J} \\
+&amp;= \frac{1}{6}[323^2+238^2+284^2+327^2] - \frac{1172^2}{24} \\
+&amp;= 860,33
+\end{aligned}
+\]</span></p>
+<p><strong>2. Soma de quadrados devido ao efeito de Doses:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Ef.Dose} &amp;= \frac{1}{r_D}[T_{D_1}^2+T_{D_2}] - \frac{G^2}{I\cdot J} \\
+&amp;= \frac{1}{12}[647^2+525^2] - \frac{1172^2}{24} \\
+&amp;= 620,16
+\end{aligned}
+\]</span></p>
+<p><strong>3. Soma de quadrados devido ao efeito da Interação Inseticida x Doses:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Interação\;I\times D} &amp;= SQ_{S,F}-SQ_{Ef.Ins.}-SQ_{Ef.Dos.} \\
+SQ_{I,D} &amp;= \frac{1}{r_{SF}}(T_{I_1D_1}^2+T_{I_1D_2}^2+\cdots +T_{I_4D_2}^2) - C \\
+                  &amp;= \frac{1}{3}(150^2+173^2+\cdots + 104^2) - \frac{1172^2}{24} \\
+                  &amp;= 4605.33 \end{aligned}
+\]</span>
+assim,</p>
+<p><span class="math display">\[
+SQ_{Interação\;I\times D} = SQ_{S,F}-SQ_{Ef.Ins.}-SQ_{Ef.Dos.} \\
+SQ_{Interação\;I\times D}=4605,33-860,33-620,16 \\
+SQ_{Interação\;I\times D}=3124,84
+\]</span></p>
+<p>Portanto, temos o seguinte quadro de análise de variância:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Efeito de Inseticida (I)
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+860,33
+</td>
+<td style="text-align:left;">
+286,78
+</td>
+<td style="text-align:left;">
+3,80*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Efeito de Doses (D)
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+8,21*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ef. da Interação (IxD)
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+3124,84
+</td>
+<td style="text-align:left;">
+1041,61
+</td>
+<td style="text-align:left;">
+13,80**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+4605,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1208,00
+</td>
+<td style="text-align:left;">
+75,50
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+5813,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Inseticida (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,24 \\ 1\%=5,29 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Fungicida (<span class="math inline">\(1 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,49 \\ 1\%=8,53 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Interação <span class="math inline">\(S\times F\)</span> (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,24 \\ 1\%=5,29 \end{cases}\)</span></p>
+<p><strong>Conclusões</strong></p>
+<p><strong>Para efeito de Inseticida</strong>: O teste foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que os inseticidas possuem efeitos diferentes sobre a produção da cultura do milho.</p>
+<p><strong>Para efeito de Dose</strong>: O teste foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que as dosagens possuem efeitos diferentes sobre a produção da cultura do milho.</p>
+<p><strong>Para efeito da Interação (I <span class="math inline">\(\times\)</span> D)</strong>: O teste foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidae, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que os inseticidas e dosagens agem conjuntamente sobre a produção da cultura do milho, ou seja, inseticidas e dosagens não agem de maneira independente.</p>
+<p>Devemos portanto, desdobrar o efeito da interação para estudar os efeitos de cada um dos fatores dentro dos níveis do outro fator.</p>
+<div id="desdobrando-a-interação-itimes-d-para-estudar-os-efeitos-do-fator-doses-em-cada-nível-do-fator-inseticida-d-d.-i" class="section level3" number="19.1.1">
+<h3><span class="header-section-number">19.1.1</span> Desdobrando a interação <span class="math inline">\(I\times D\)</span>, para estudar os efeitos do fator <strong>DOSES</strong> em cada nível do fator <strong>INSETICIDA</strong> (D d. I):</h3>
+<p><span class="math display">\[
+SQ_{Dd.I_1} = \frac{1}{3}(150^2+173^2) - \frac{323^2}{6}=88,16 \\
+SQ_{Dd.I_2} = \frac{1}{3}(95^2+143^2) - \frac{238^2}{6}=384,00 \\
+SQ_{Dd.I_3} = \frac{1}{3}(179^2+105^2) - \frac{284^2}{6}=912,66 \\
+SQ_{Dd.I_4} = \frac{1}{3}(223^2+104^2) - \frac{327^2}{6}=2360,17
+\]</span></p>
+<p><strong>Verificação</strong>: <span class="math inline">\(SQ_{Dd.I_1}+SQ_{Dd.I_2}+SQ_{Dd.I_3}+SQ_{Dd.I_4}=SQ_{D}+SQ_{D\times I}\)</span></p>
+<p>Então, o quadro de análise de variância com desdobramento da interação IxD, estudando-se o efeito de doses dentro de cada inseticida será o seguinte:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Efeito de Inseticida (I)
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+860,33
+</td>
+<td style="text-align:left;">
+286,78
+</td>
+<td style="text-align:left;">
+3,80*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+88,16
+</td>
+<td style="text-align:left;">
+88,16
+</td>
+<td style="text-align:left;">
+1,17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+384,00
+</td>
+<td style="text-align:left;">
+384,00
+</td>
+<td style="text-align:left;">
+5,09*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I3
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+912,66
+</td>
+<td style="text-align:left;">
+912,66
+</td>
+<td style="text-align:left;">
+12,09**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Doses d.I4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+2360,17
+</td>
+<td style="text-align:left;">
+2360,17
+</td>
+<td style="text-align:left;">
+31,26**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+4605,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1208,00
+</td>
+<td style="text-align:left;">
+75,50
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Inseticidas (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,24 \\ 1\%=5,29 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Doses d. Inseticidas (<span class="math inline">\(1 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,49 \\ 1\%=8,53 \end{cases}\)</span></p>
+</div>
+<div id="desdobrando-a-interação-i-times-d-para-estudar-os-efeitos-do-fator-inseticidas-dentro-de-cada-nível-do-fator-dose-d-d.-i" class="section level3" number="19.1.2">
+<h3><span class="header-section-number">19.1.2</span> Desdobrando a interação <span class="math inline">\(I \times D\)</span>, para estudar os efeitos do fator <strong>INSETICIDAS</strong> dentro de cada nível do fator <strong>DOSE</strong> (D d. I):</h3>
+<p><span class="math display">\[
+SQ_{Id.D_1} = \frac{1}{3}(150^2+95^2+179^2+223^2) - \frac{647^2}{12}=2880,92 \\
+SQ_{Id.D_2} = \frac{1}{3}(173^2+143^2+105^2+104^2) - \frac{525^2}{12}=1104,25 \\
+\]</span></p>
+<p><strong>Verificação</strong>: <span class="math inline">\(SQ_{Id.D_1}+SQ_{Id.D_2}=SQ_{I}+SQ_{I \times D}\)</span></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Efeito de Inseticida (I)
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+620,16
+</td>
+<td style="text-align:left;">
+8,21*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inseticida d.D1
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+2880,92
+</td>
+<td style="text-align:left;">
+960,31
+</td>
+<td style="text-align:left;">
+12,72**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Inseticida d.D2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+1104,25
+</td>
+<td style="text-align:left;">
+368,08
+</td>
+<td style="text-align:left;">
+4,88*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+7
+</td>
+<td style="text-align:left;font-weight: bold;">
+4605,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1208,00
+</td>
+<td style="text-align:left;">
+75,50
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+23
+</td>
+<td style="text-align:left;font-weight: bold;">
+5813,33
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Doses (<span class="math inline">\(1 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4.49 \\ 1\%=8.53 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Inseticidas d. Doses (<span class="math inline">\(3 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3.24 \\ 1\%=5.29 \end{cases}\)</span></p>
+<p>Para completar a análise de variância, e obter conclusões mais específicas sobre o efeito dos inseticidas em cada dosagem, podemos aplicar um teste de comparação de médias.</p>
+</div>
+</div>
+<div id="teste-de-tukey-para-a-comparação-de-médias" class="section level2" number="19.2">
+<h2><span class="header-section-number">19.2</span> Teste de Tukey para a comparação de médias</h2>
+<p>Construção do Quadro de Médias a partir do Quadro de totais:</p>
+<p>Quadro auxiliar de totais:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">(3)</th>
+<th align="center"><span class="math inline">\(I_1\)</span></th>
+<th align="center"><span class="math inline">\(I_2\)</span></th>
+<th align="center"><span class="math inline">\(I_3\)</span></th>
+<th align="center"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="center"><span class="math inline">\(150\div 3\)</span></td>
+<td align="center"><span class="math inline">\(95\div 3\)</span></td>
+<td align="center"><span class="math inline">\(179\div 3\)</span></td>
+<td align="center"><span class="math inline">\(223\div 3\)</span></td>
+<td align="center"><span class="math inline">\(647\div 12\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="center"><span class="math inline">\(173\div 3\)</span></td>
+<td align="center"><span class="math inline">\(143\div 3\)</span></td>
+<td align="center"><span class="math inline">\(105\div 3\)</span></td>
+<td align="center"><span class="math inline">\(104\div 3\)</span></td>
+<td align="center"><span class="math inline">\(525\div 12\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center"><span class="math inline">\(323\div 6\)</span></td>
+<td align="center"><span class="math inline">\(238\div 6\)</span></td>
+<td align="center"><span class="math inline">\(284\div 6\)</span></td>
+<td align="center"><span class="math inline">\(327\div 6\)</span></td>
+<td align="center"><span class="math inline">\(1172\div 24\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Quadro de médias:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(I_1\)</span></th>
+<th align="center"><span class="math inline">\(I_2\)</span></th>
+<th align="center"><span class="math inline">\(I_3\)</span></th>
+<th align="center"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Média Doses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="center">50,00</td>
+<td align="center">31,67</td>
+<td align="center">59,67</td>
+<td align="center">74,32</td>
+<td align="center"><strong>53,92</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="center">53,67</td>
+<td align="center">47,67</td>
+<td align="center">35,00</td>
+<td align="center">34,67</td>
+<td align="center"><strong>43,75</strong></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Média Inseticidas</strong></td>
+<td align="center">53,83</td>
+<td align="center">39,67</td>
+<td align="center">47,33</td>
+<td align="center">54,5</td>
+<td align="center"><strong>48,83</strong></td>
+</tr>
+</tbody>
+</table>
+<div id="para-comparar-médias-de-inseticidas-na-dose-1-i-d.-d_1" class="section level3" number="19.2.1">
+<h3><span class="header-section-number">19.2.1</span> 1. Para comparar médias de Inseticidas na Dose 1 (I d. <span class="math inline">\(D_1\)</span>)</h3>
+<p><span class="math display">\[
+DMS=q_{(4 \times 16 GL)} \cdot s(m) = q_{(4 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=4,05\cdot \sqrt{\frac{75,50}{3}}=20,34\;kg/parcela
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Inseticidas d. <span class="math inline">\(D_1\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_4}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_3}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_1}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_2}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_4}}\)</span></td>
+<td align="center"></td>
+<td align="center">14,66</td>
+<td align="center">24,33*</td>
+<td align="center">42,66*</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\hat{m_{I_3}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">9,67</td>
+<td align="center">28,00*</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_1}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">18,37</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="para-comparar-médias-de-inseticidas-na-dose-2-i-d.-d_2" class="section level3" number="19.2.2">
+<h3><span class="header-section-number">19.2.2</span> 2. Para comparar médias de Inseticidas na Dose 2 (I d. <span class="math inline">\(D_2\)</span>)</h3>
+<p><span class="math display">\[
+DMS=q \cdot s(m) = q_{(4 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=4,05\cdot \sqrt{\frac{75,50}{3}}=20,34\;kg/parcela
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Inseticidas d. <span class="math inline">\(D_1\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_1}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_2}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_3}}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{m_{I_4}}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_1}}\)</span></td>
+<td align="center"></td>
+<td align="center">10,00</td>
+<td align="center">22,67*</td>
+<td align="center">23,00*</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\hat{m_{I_2}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">12,67</td>
+<td align="center">13,00</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\hat{m_{I_3}}\)</span></td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">–</td>
+<td align="center">0,33</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="resultado-do-teste-de-tukey" class="section level2" number="19.3">
+<h2><span class="header-section-number">19.3</span> Resultado do teste de Tukey</h2>
+<p>Médias seguidas pela mesma letra, minúsculas nas linhas e maiúsculas nas colunas, não diferem entre si pelo teste de Tukey ao nível de <span class="math inline">\(5\%\)</span> de probabilidade.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="left"><span class="math inline">\(I_1\)</span></th>
+<th align="left"><span class="math inline">\(I_2\)</span></th>
+<th align="left"><span class="math inline">\(I_3\)</span></th>
+<th align="left"><span class="math inline">\(I_4\)</span></th>
+<th align="center">Média Doses</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(D_1\)</span></td>
+<td align="left">50,00 Abc</td>
+<td align="left">31,67 Bc</td>
+<td align="left">59,67 Aab</td>
+<td align="left">74,32 Aa</td>
+<td align="center">53,92</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(D_2\)</span></td>
+<td align="left">53,67 Aa</td>
+<td align="left">47,67 Aab</td>
+<td align="left">35,00 Bb</td>
+<td align="left">34,67 Bb</td>
+<td align="center">43,75</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Média Inseticidas</strong></td>
+<td align="left">53,83</td>
+<td align="left">39,67</td>
+<td align="left">47,33</td>
+<td align="left">54,5</td>
+<td align="center">48,83</td>
+</tr>
+</tbody>
+</table>
+<div id="cálculo-do-coeficiente-de-variação-do-experimento-2" class="section level3" number="19.3.1">
+<h3><span class="header-section-number">19.3.1</span> Cálculo do coeficiente de variação do experimento</h3>
+<p><span class="math display">\[
+CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
+\]</span>
+## Aplicação no R</p>
+<p><img src="R.png" /></p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote par análise de variância</span></span>
+<span id="cb614-2"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb614-3"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt&quot;</span></span>
+<span id="cb614-4"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-5"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb614-6"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-7"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-7" aria-hidden="true" tabindex="-1"></a>Inseticidas<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Ins)</span>
+<span id="cb614-8"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-9"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-9" aria-hidden="true" tabindex="-1"></a>Doses<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Dos)</span>
+<span id="cb614-10"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-11"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-11" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>Y</span>
+<span id="cb614-12"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb614-13"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-13" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Doses,Inseticidas,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-329-1.png" width="672" /></p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Inseticidas,Doses,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-329-2.png" width="672" /></p>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dic</span>(Inseticidas,Doses,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Inseticidas&quot;</span>, <span class="st">&quot;Doses&quot;</span>))</span></code></pre></div>
+<pre><code>## ------------------------------------------------------------------------
+## Legenda:
+## FATOR 1:  Inseticidas 
+## FATOR 2:  Doses 
+## ------------------------------------------------------------------------
+## 
+## 
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##                   GL     SQ      QM      Fc     Pr&gt;Fc
+## Inseticidas        3  860.3  286.78  3.7984 0.0312885
+## Doses              1  620.2  620.17  8.2141 0.0112029
+## Inseticidas*Doses  3 3124.8 1041.61 13.7962 0.0001057
+## Residuo           16 1208.0   75.50                  
+## Total             23 5813.3                          
+## ------------------------------------------------------------------------
+## CV = 17.79 %
+## 
+## ------------------------------------------------------------------------
+## Teste de normalidade dos residuos (Shapiro-Wilk)
+## valor-p:  0.419147 
+## De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+## Interacao significativa: desdobrando a interacao
+## ------------------------------------------------------------------------
+## 
+## Desdobrando  Inseticidas  dentro de cada nivel de  Doses 
+## ------------------------------------------------------------------------
+## ------------------------------------------------------------------------
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##                     GL        SQ       QM      Fc  Pr.Fc
+## Doses                1  620.1667 620.1667  8.2141 0.0112
+## Inseticidas:Doses 1  3 2880.9167 960.3056 12.7193 0.0002
+## Inseticidas:Doses 2  3 1104.2500 368.0833  4.8753 0.0135
+## Residuo             16 1208.0000  75.5000      NA     NA
+## Total               23 5813.3333 252.7536      NA     NA
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+##  Inseticidas  dentro do nivel  1  de  Doses 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     4   74.33333 
+## ab    3   59.66667 
+##  bc   1   50 
+##   c   2   31.66667 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Inseticidas  dentro do nivel  2  de  Doses 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     1   57.66667 
+## ab    2   47.66667 
+##  b    3   35 
+##  b    4   34.66667 
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+## Desdobrando  Doses  dentro de cada nivel de  Inseticidas 
+## ------------------------------------------------------------------------
+## ------------------------------------------------------------------------
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##                     GL         SQ         QM      Fc  Pr.Fc
+## Inseticidas          3  860.33333  286.77778  3.7984 0.0313
+## Doses:Inseticidas 1  1   88.16667   88.16667  1.1678 0.2959
+## Doses:Inseticidas 2  1  384.00000  384.00000  5.0861 0.0385
+## Doses:Inseticidas 3  1  912.66667  912.66667 12.0883 0.0031
+## Doses:Inseticidas 4  1 2360.16667 2360.16667 31.2605 0.0000
+## Residuo             16 1208.00000   75.50000      NA     NA
+## Total               23 5813.33333  252.75362      NA     NA
+## ------------------------------------------------------------------------
+## 
+## 
+## 
+##  Doses  dentro do nivel  1  de  Inseticidas 
+## 
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##     Niveis     Medias
+## 1        1   50.00000
+## 2        2   57.66667
+## ------------------------------------------------------------------------
+## 
+## 
+##  Doses  dentro do nivel  2  de  Inseticidas 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     2   47.66667 
+##  b    1   31.66667 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Doses  dentro do nivel  3  de  Inseticidas 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     1   59.66667 
+##  b    2   35 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Doses  dentro do nivel  4  de  Inseticidas 
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     1   74.33333 
+##  b    2   34.66667 
+## ------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<div id="estudo-do-fatorial-32" class="section level2" number="19.4">
+<h2><span class="header-section-number">19.4</span> Estudo do Fatorial <span class="math inline">\(3^2\)</span></h2>
+<p>Nos experimentos fatoriais <span class="math inline">\(3^2\)</span> ou <span class="math inline">\(3 \times 3\)</span>, temos <span class="math inline">\(2\)</span> fatores, cada um dos quais ocorre em <span class="math inline">\(3\)</span> níveis. Os tratamentos são formados pelas combinações dos <span class="math inline">\(3\)</span> níveis dos <span class="math inline">\(2\)</span> fatores, resultando em <span class="math inline">\(9\)</span> tratamentos.</p>
+<p>Como exemplo de um ensaio fatorial <span class="math inline">\(3^2\)</span>, vamos utilizar os dados obtidos do trabalho de graduação intitulado “Efeitos do espaçamento e da densidade de semeadura na produção de massa verde e matéria seca em diferentes épocas e, na produção de sementes da cultura <em>Crotalaria juncea</em> L.” realizado por LAMERS (1981). Neste trabalho, foram utilizado 3 espaçamentos entre linhas (25 cm, 50 cm e 75 cm) e 3 densidade de plantas por metro linear (15, 30 e 45 plantas por metro linear). O delineamento foi instalado em blocos casualizados com 3 repetições, e os dados obtidos para produção de massa verde (t/ha), 139 dias após a semeadura, foram os seguintes: Os dados pode ser acessados no link <a href="https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/crotalaria.txt">crotalária.txt</a>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Espaçamento</th>
+<th align="center">Densidade</th>
+<th align="center">Bloco 1</th>
+<th align="center">Bloco 2</th>
+<th align="center">Bloco 3</th>
+<th align="center">Totais</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">25</td>
+<td align="center">15</td>
+<td align="center">46,82</td>
+<td align="center">30,705</td>
+<td align="center">59,77</td>
+<td align="center"><strong>137,295</strong></td>
+</tr>
+<tr class="even">
+<td align="left">25</td>
+<td align="center">30</td>
+<td align="center">31,04</td>
+<td align="center">28,41</td>
+<td align="center">25,1</td>
+<td align="center"><strong>84,55</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">25</td>
+<td align="center">45</td>
+<td align="center">47,325</td>
+<td align="center">50,445</td>
+<td align="center">29,01</td>
+<td align="center"><strong>126,78</strong></td>
+</tr>
+<tr class="even">
+<td align="left">50</td>
+<td align="center">15</td>
+<td align="center">26,3875</td>
+<td align="center">15,61</td>
+<td align="center">15,12</td>
+<td align="center"><strong>57,1175</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">50</td>
+<td align="center">30</td>
+<td align="center">32,765</td>
+<td align="center">33,615</td>
+<td align="center">32,115</td>
+<td align="center"><strong>98,495</strong></td>
+</tr>
+<tr class="even">
+<td align="left">50</td>
+<td align="center">45</td>
+<td align="center">37,455</td>
+<td align="center">21,4125</td>
+<td align="center">21,21</td>
+<td align="center"><strong>80,0775</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">75</td>
+<td align="center">15</td>
+<td align="center">12,6116</td>
+<td align="center">10,4015</td>
+<td align="center">26,2095</td>
+<td align="center"><strong>49,2226</strong></td>
+</tr>
+<tr class="even">
+<td align="left">75</td>
+<td align="center">30</td>
+<td align="center">23,4776</td>
+<td align="center">24,1842</td>
+<td align="center">18,1548</td>
+<td align="center"><strong>65,8166</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">75</td>
+<td align="center">45</td>
+<td align="center">26,3297</td>
+<td align="center">24,0652</td>
+<td align="center">33,8482</td>
+<td align="center"><strong>84,2431</strong></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="center"><strong>Totais</strong></td>
+<td align="center"><strong>284,2114</strong></td>
+<td align="center"><strong>238,8484</strong></td>
+<td align="center"><strong>260,5375</strong></td>
+<td align="center"><strong>783,5973</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dados originais</strong>:<a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_crotalaria.xlsx">DOWNLOAD</a></p>
+<div id="obtenção-da-análise-de-variância-7" class="section level3" number="19.4.1">
+<h3><span class="header-section-number">19.4.1</span> Obtenção da análise de variância</h3>
+<p>A análise de variância preliminar é feita de acordo com o delineamento em blocos causalizado, com 9 tratamentos e 3 blocos:
+<span class="math display">\[
+\begin{aligned}
+SQ_{Total} &amp;= (46,8200^2+30,7050^2+\cdots +33,8482^2)-\frac{783,5973^2}{9 \cdot 3} \\
+&amp;=3544,9079
+\end{aligned}
+\]</span>
+<span class="math display">\[
+\begin{aligned}
+SQ_{Trat} &amp;= \frac{1}{3} (137,2950^2+84,5500^2+\cdots +84,2431^2)-\frac{783,5973^2}{9 \cdot 3} \\
+&amp;=2358,1623
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Blocos} &amp;= \frac{1}{9} (284,2114^2+238,8484^2+260,5375^2)-\frac{783,5973^2}{9 \cdot 3} \\
+&amp;=114,3953
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+SQ_{Res} &amp;= SQ_{Total} - SQ_{Trat}- SQ_{Blocos}
+&amp;=3544,9079-2358,1623-114,3953=1072,3503
+\end{aligned}
+\]</span></p>
+<p>Então, podemos montar o seguinte quadro de análise de variância:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Causas de Variação</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trat.</td>
+<td>8</td>
+<td>2358,1623</td>
+<td>294,7703</td>
+<td>4,40*</td>
 </tr>
 <tr class="even">
 <td>Blocos</td>
-<td>5</td>
-<td>235,45</td>
-<td>47,09</td>
-<td>0,71</td>
+<td>2</td>
+<td>114,3953</td>
+<td>57,1976</td>
+<td>0,85</td>
 </tr>
 <tr class="odd">
-<td>Resíduo</td>
-<td>35</td>
-<td>2310,92</td>
-<td>66,03</td>
+<td>Res</td>
+<td>16</td>
+<td>1072,3503</td>
+<td>67,0219</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Total</td>
-<td>47</td>
-<td>5495,55</td>
+<td>26</td>
+<td>3544,9079</td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Conclusão</strong>: O teste F para tratmentos foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, logo, rejeitamos a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluímos que os efeitos dos tratamentos diferentes entre si em relação à produção da cultura do cafeeiro, com um grau de confiança superior a <span class="math inline">\(99\%\)</span> de probabilidade.</p>
-<p>Devemos agora, desdobrar a soma de quadrado e os graus de liberdade de tratamentos para estudar os efeitos principais e os efeitos das interações entre os fatores.</p>
-<p>Para estudo do fatorial <span class="math inline">\(2^3\)</span>, podemos utilizar o método dos contrastes de totais de tratamentos ou o método dos totais de tratamentos (sem utilizar contraste) para a obtenção das somas de quadrados.</p>
-</div>
-<div id="cálculo-das-somas-de-quadrados-pelo-método-dos-contrastes-de-totais-de-tratamentos." class="section level2" number="20.2">
-<h2><span class="header-section-number">20.2</span> Cálculo das somas de quadrados pelo método dos contrastes de totais de tratamentos.</h2>
-<p>Para a obtenção dos contrastes, organizamos uma tabela de dupla entrada onde as linhas correspondem aos efeitos e as colunas aos tratamentos. Então, no nosso exemplo, temos:</p>
-<table style="width:100%;">
-<colgroup>
-<col width="6%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-<col width="10%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Efeitos</th>
-<th align="center"><span class="math inline">\(N_0P_0K_0\)</span></th>
-<th align="center"><span class="math inline">\(N_1P_0K_0\)</span></th>
-<th align="center"><span class="math inline">\(N_0P_1K_0\)</span></th>
-<th align="center"><span class="math inline">\(N_0P_0K_1\)</span></th>
-<th align="center"><span class="math inline">\(N_1P_1K_0\)</span></th>
-<th align="center"><span class="math inline">\(N_1P_0K_1\)</span></th>
-<th align="center"><span class="math inline">\(N_0P_1K_1\)</span></th>
-<th align="center"><span class="math inline">\(N_1P_1K_1\)</span></th>
-<th align="center"><span class="math inline">\(\hat{Y}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>N</strong></td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">232,70</td>
-</tr>
-<tr class="even">
-<td><strong>P</strong></td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">32,1</td>
-</tr>
-<tr class="odd">
-<td><strong>K</strong></td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">182,3</td>
-</tr>
-<tr class="even">
-<td><strong>NxP</strong></td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-54,1</td>
-</tr>
-<tr class="odd">
-<td><strong>NxK</strong></td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">214,9</td>
-</tr>
-<tr class="even">
-<td><strong>PxK</strong></td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">-50,1</td>
-</tr>
-<tr class="odd">
-<td><strong>NxPxK</strong></td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">+</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">-</td>
-<td align="center">+</td>
-<td align="center">-39,1</td>
-</tr>
-<tr class="even">
-<td>Totais</td>
-<td align="center">206,2</td>
-<td align="center">214,4</td>
-<td align="center">230,5</td>
-<td align="center">200,8</td>
-<td align="center">231,2</td>
-<td align="center">336</td>
-<td align="center">219,6</td>
-<td align="center">308.2</td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
-<p>Neste quadro, os contrastes são obtidos, tomando-se para cada efeito, os totais dos tratamentos, com os quais os sinais correspondentes, ou seja:</p>
-<p><strong>Contraste para N</strong>:<br />
-<span class="math inline">\(\hat{Y}_{N}= -T_{N_0P_0K_0} +T_{N_1P_0K_0} -T_{N_0P_1K_0} -T_{N_0P_0K_1} +T_{N_1P_1K_0} +T_{N_1P_0K_1} -T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{N}= -206.2 +214.4 -230.5 -200.8 +231.2 +336 -219.6 +308.2 \\ \hat{Y}_{N} = 232.7\)</span></p>
-<p><strong>Contraste para P</strong>:<br />
-<span class="math inline">\(\hat{Y}_{P}= -T_{N_0P_0K_0} -T_{N_1P_0K_0} +T_{N_0P_1K_0} -T_{N_0P_0K_1} +T_{N_1P_1K_0} -T_{N_1P_0K_1} +T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{P}= -206.2 -214.4 +230.5 -200.8 +231.2 -336 +219.6 +308.2 \\ \hat{Y}_{P} = 32.1\)</span></p>
-<p><strong>Contraste para K</strong>:<br />
-<span class="math inline">\(\hat{Y}_{K}= -T_{N_0P_0K_0} -T_{N_1P_0K_0} -T_{N_0P_1K_0} +T_{N_0P_0K_1} -T_{N_1P_1K_0} +T_{N_1P_0K_1} +T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{K}= -206.2 -214.4 -230.5 +200.8 -231.2 +336 +219.6 +308.2 \\ \hat{Y}_{K}= 182.3\)</span></p>
-<p><strong>Contraste para NP</strong>:<br />
-<span class="math inline">\(\hat{Y}_{NP}= +T_{N_0P_0K_0} -T_{N_1P_0K_0} -T_{N_0P_1K_0} +T_{N_0P_0K_1} +T_{N_1P_1K_0} -T_{N_1P_0K_1} -T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{NP}= +206.2 -214.4 -230.5 +200.8 +231.2 -336 -219.6 +308.2 \\ \hat{Y}_{NP}= -54.1\)</span></p>
-<p><strong>Contraste para NK</strong>:<br />
-<span class="math inline">\(\hat{Y}_{NK}= +T_{N_0P_0K_0} -T_{N_1P_0K_0} +T_{N_0P_1K_0} -T_{N_0P_0K_1} -T_{N_1P_1K_0} +T_{N_1P_0K_1} -T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{NK}= +206.2 -214.4 +230.5 -200.8 -231.2 +336 -219.6 +308.2 \\ \hat{Y}_{NK}= 214.9\)</span></p>
-<p><strong>Contraste para PK</strong>:<br />
-<span class="math inline">\(\hat{Y}_{PK}= +T_{N_0P_0K_0} +T_{N_1P_0K_0} -T_{N_0P_1K_0} -T_{N_0P_0K_1} -T_{N_1P_1K_0} -T_{N_1P_0K_1} +T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{PK}= +206.2 +214.4 -230.5 -200.8 -231.2 -336 +219.6 +308.2 \\ \hat{Y}_{PK}= -50.1\)</span></p>
-<p><strong>Contraste para NPK</strong>:<br />
-<span class="math inline">\(\hat{Y}_{NPK}= -T_{N_0P_0K_0} +T_{N_1P_0K_0} +T_{N_0P_1K_0} +T_{N_0P_0K_1} -T_{N_1P_1K_0} -T_{N_1P_0K_1} -T_{N_0P_1K_1} +T_{N_1P_1K_1}\)</span>
-<span class="math inline">\(\hat{Y}_{NPK}= -206.2 +214.4 +230.5 +200.8 -231.2 -336 -219.6 +308.2 \\ \hat{Y}_{NPK}= -39.1\)</span></p>
-<p>E a soma de quadrados correspondente a um dado contraste <span class="math inline">\(Y_i\)</span> é dadi por:</p>
-<p><span class="math display">\[
-SQ_{Y_{i}} = \frac{\hat{Y}_i^2}{r\sum_{i=1}^Ic_i^2}
-\]</span>
-onde,
-<span class="math inline">\(\hat{Y}_i\)</span> é a estimativa do contraste.
-<span class="math inline">\(r\)</span> é o número de repetições com que foram obtidos os totais de tratamentos.
-<span class="math inline">\(\sum_{i=1}^Ic_i^2\)</span> é a soma dos quadrados dos coeficientes dos totais de tratamentos no contraste.</p>
-<p>Então, no nosso exemplo, temos:</p>
-<p><span class="math display">\[
-SQ_{N} = \frac{\hat{Y}_N^2}{8\cdot r}=\frac{(232,70)^2}{8\cdot 6}=1128,11 \\
-SQ_{P} = \frac{\hat{Y}_P^2}{8\cdot r}=\frac{(31,10)^2}{8\cdot 6}=21,47 \\
-SQ_{K} = \frac{\hat{Y}_K^2}{8\cdot r}=\frac{(182,30)^2}{8\cdot 6}=692,36 \\
-SQ_{NP} = \frac{\hat{Y}_{NP}^2}{8\cdot r}=\frac{(-54,10)^2}{8\cdot 6}=60,98 \\
-SQ_{NK} = \frac{\hat{Y}_{NK}^2}{8\cdot r}=\frac{(214,90)^2}{8\cdot 6}=962,13 \\
-SQ_{PK} = \frac{\hat{Y}_{PK}^2}{8\cdot r}=\frac{(-50,10)^2}{8\cdot 6}=52,29 \\
-SQ_{NPK} = \frac{\hat{Y}_{NPK}^2}{8\cdot r}=\frac{(-39,10)^2}{8\cdot 6}=31,85 
-\]</span></p>
-<p>Uma vez obtidas as somas de quadrados, podemos montar o seguine quadro de análise de variância</p>
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-Causas de Variação
-</th>
-<th style="text-align:left;">
-GL
-</th>
-<th style="text-align:left;">
-SQ
-</th>
-<th style="text-align:left;">
-QM
-</th>
-<th style="text-align:left;">
-F
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Efeito de N
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-11238,11
-</td>
-<td style="text-align:left;">
-11238,11
-</td>
-<td style="text-align:left;">
-17,08**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de P
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-21,47
-</td>
-<td style="text-align:left;">
-21,47
-</td>
-<td style="text-align:left;">
-0,33
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de K
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-692,36
-</td>
-<td style="text-align:left;">
-692,36
-</td>
-<td style="text-align:left;">
-10,49**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de NP
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-60,98
-</td>
-<td style="text-align:left;">
-60,98
-</td>
-<td style="text-align:left;">
-0,92
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito NK
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-962,13
-</td>
-<td style="text-align:left;">
-962,13
-</td>
-<td style="text-align:left;">
-14,57**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de PK
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-52,29
-</td>
-<td style="text-align:left;">
-52,29
-</td>
-<td style="text-align:left;">
-0,79
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de NPK
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-31,84
-</td>
-<td style="text-align:left;">
-31,84
-</td>
-<td style="text-align:left;">
-0,48
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-(Tratamentos)
-</td>
-<td style="text-align:left;font-weight: bold;">
-7
-</td>
-<td style="text-align:left;font-weight: bold;">
-2949,18
-</td>
-<td style="text-align:left;font-weight: bold;">
-–
-</td>
-<td style="text-align:left;font-weight: bold;">
-–
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Blocos
-</td>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-235,45
-</td>
-<td style="text-align:left;">
-47,09
-</td>
-<td style="text-align:left;">
-0,71
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Resíduo
-</td>
-<td style="text-align:left;">
-35
-</td>
-<td style="text-align:left;">
-2310,92
-</td>
-<td style="text-align:left;">
-66,03
-</td>
-<td style="text-align:left;">
-–
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;">
-Total
-</td>
-<td style="text-align:left;font-weight: bold;">
-47
-</td>
-<td style="text-align:left;font-weight: bold;">
-5495,55
-</td>
-<td style="text-align:left;font-weight: bold;">
-–
-</td>
-<td style="text-align:left;font-weight: bold;">
-–
-</td>
-</tr>
-</tbody>
-</table>
-<p>Valores de F da tabela (<span class="math inline">\(1 \times 35 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,12 \\ 1\%=7,43 \end{cases}\)</span></p>
-<div id="conclusões" class="section level3" number="20.2.1">
-<h3><span class="header-section-number">20.2.1</span> Conclusões</h3>
-<p><strong>a) Para efeito de N</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os níveis de <span class="math inline">\(N_0\)</span> e <span class="math inline">\(N_1\)</span> possuem efeitos diferentes sobre a produção do cafeeiro.</p>
-<p><strong>b) Para efeito de P</strong>: O teste F foi não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os níveis de <span class="math inline">\(P_0\)</span> e <span class="math inline">\(P_1\)</span> não diferem entre si em relação à produção do cafeeiro.</p>
-<p><strong>c) Para efeito de K</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os níveis de <span class="math inline">\(K_0\)</span> e <span class="math inline">\(K_1\)</span> possuem efeitos diferentes sobres a produção do cafeeiro.</p>
-<p><strong>d) Para efeito da interação NP</strong>: O teste F foi não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os os fatores <span class="math inline">\(N\)</span> e <span class="math inline">\(P\)</span> agem independentemente sobre a produção do cafeeiro.</p>
-<p><strong>e) Para efeito da interação NK</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os os fatores <span class="math inline">\(N\)</span> e <span class="math inline">\(K\)</span> não agem independentemente sobre a produção do cafeeiro.</p>
-<p><strong>f) Para efeito da interação PK</strong>: O teste F foi não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os os fatores <span class="math inline">\(P\)</span> e <span class="math inline">\(K\)</span> agem independentemente sobre a produção do cafeeiro.</p>
-<p><strong>g) Para efeito da interação NPK</strong>: O teste F foi não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que os os fatores <span class="math inline">\(N\)</span>, <span class="math inline">\(P\)</span> e <span class="math inline">\(K\)</span> agem independentemente sobre a produção do cafeeiro.</p>
-<p>Como o teste F para a interação <span class="math inline">\(N \times K\)</span> foi significativa, isto indica que o efeito de N depende de qual o nível de K que está sendo utilizado, e o efeito de K depende de qual nível de N que está sendo utilizado. Assim sendo, devemos desdobrar os graus de liberdade da interação <span class="math inline">\(N \times K\)</span>, para estudar os efeitos de N dentro de cada nível de K, e os efeitos de K dentro de cada nível de N.</p>
-</div>
-</div>
-<div id="desdobramento-da-interação-n-times-k" class="section level2" number="20.3">
-<h2><span class="header-section-number">20.3</span> Desdobramento da Interação <span class="math inline">\(N \times K\)</span></h2>
-<p>Para obter as somas de quadrados para o desdobramento da interação <span class="math inline">\(N \times K\)</span>, vamos utilizar o quadro auxilliar.</p>
+<p><strong>Conclusão</strong>: O teste é siginificativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, logo, rejeitamos a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluímos que os efeitos dos tratamentos diferem entre sim em relação à característica analisada, com um grau de confiança superior a <span class="math inline">\(99\%\)</span> de probabilidade.</p>
+<p>Devemos agora, desdobrar a soma de quadrado e os graus de liberdade de tratamentos para estudar os efeitos principais e a interação entre os fatores.</p>
+<p>Para facilitar os cálculos, utilizamos um quadro auxiliar como o seguinte:</p>
+<p>Quadro de totais</p>
 <table>
 <thead>
 <tr class="header">
-<th align="center">(12)</th>
-<th align="center"><span class="math inline">\(K_0\)</span></th>
-<th align="center"><span class="math inline">\(K_1\)</span></th>
-<th align="center">TOTAL</th>
+<th align="left">(3)</th>
+<th align="center"><span class="math inline">\(D_{15}\)</span></th>
+<th align="center"><span class="math inline">\(D_{30}\)</span></th>
+<th align="center"><span class="math inline">\(D_{45}\)</span></th>
+<th align="center">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><span class="math inline">\(N_0\)</span></td>
-<td align="center">436,70</td>
-<td align="center">420,40</td>
-<td align="center">857,10</td>
+<td align="left"><span class="math inline">\(E_{25}\)</span></td>
+<td align="center">137.2950</td>
+<td align="center">84.5500</td>
+<td align="center">126.7800</td>
+<td align="center">348.6250</td>
 </tr>
 <tr class="even">
-<td align="center"><span class="math inline">\(N_1\)</span></td>
-<td align="center">445,60</td>
-<td align="center">644,20</td>
-<td align="center">1089,80</td>
+<td align="left"><span class="math inline">\(E_{50}\)</span></td>
+<td align="center">57.1175</td>
+<td align="center">98.4950</td>
+<td align="center">80.0775</td>
+<td align="center">235.6900</td>
 </tr>
 <tr class="odd">
-<td align="center">TOTAL</td>
-<td align="center">882,30</td>
-<td align="center">1064,60</td>
-<td align="center">1946,90</td>
+<td align="left"><span class="math inline">\(E_{75}\)</span></td>
+<td align="center">49.2226</td>
+<td align="center">65.8166</td>
+<td align="center">84.2431</td>
+<td align="center">199.2823</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Total</strong></td>
+<td align="center">243.6351</td>
+<td align="center">248.8616</td>
+<td align="center">291.1006</td>
+<td align="center">783.5973</td>
 </tr>
 </tbody>
 </table>
-<div id="desdobramento-da-interação-nk-para-estudar-os-efeitos-de-n-dentro-de-k-n-d.-k." class="section level3" number="20.3.1">
-<h3><span class="header-section-number">20.3.1</span> 1) Desdobramento da Interação NK para estudar os efeitos de N dentro de K (N d. K).</h3>
+<p>Então, as somas de quadrados são obtidas da seguinte maneira:</p>
+<p><strong>1. Soma de quadrados devido ao efeito de Espaçamento:</strong></p>
 <p><span class="math display">\[
-\begin{align}
-SQ_{N\;d.\;K_0}&amp;=\frac{1}{2 \cdot r}(T_{N_0K_0}^2+T_{N_1K_0}^2) - \frac{T_{K_0}^2}{4 \cdot r} \\
-&amp;= \frac{1}{12}(436,70^2+445,60^2) - \frac{882,30^2}{24} \\
-&amp;=3,30
-\end{align}
-\]</span>
-<span class="math display">\[
-\begin{align}
-SQ_{N\;d.\;K_1}&amp;=\frac{1}{2 \cdot r}(T_{N_0K_1}^2+T_{N_1K_1}^2) - \frac{T_{K_1}^2}{4 \cdot r} \\
-&amp;= \frac{1}{12}(420.40^2+644.20^2) - \frac{1064.60^2}{24} \\
-&amp;=2086.93
-\end{align}
+SQ_{Esp.} =  \frac{1}{r_E}[T_{E25}^2+T_{E50}^2+T_{E75}^2] - \frac{G^2}{I\cdot J} \\
+SQ_{Esp.}= \frac{1}{9}[348,6250^2+235,6900^2+199,2823^2] - \frac{783,5973^2}{9 \cdot 3} \\
+SQ_{Esp.}= 1347,5214
 \]</span></p>
-<p>Então, o quadro de análise de variância com o desdobramento da interação NK para estudar os efeitos de N d. K, será o seguinte:</p>
+<p><strong>2. Soma de quadrados devido ao efeito de Densidade:</strong></p>
+<p><span class="math display">\[
+SQ_{Dens.} = \frac{1}{r_D}[T_{D15}^2+T_{D30}^2+T_{D45}^2] - \frac{G^2}{I\cdot J} \\
+SQ_{Dens.}= \frac{1}{9}[243,635^2+248,8616^2+291,1006^2] - \frac{783,5973^2}{27} \\
+SQ_{Dens.}= 150,5342
+\]</span></p>
+<p><strong>3. Soma de quadrados devido ao efeito da Interação Espaçamento <span class="math inline">\(\times\)</span> Densidade:</strong></p>
+<p><span class="math display">\[
+SQ_{Interação\;E\times D} = SQ_{E,D}-SQ_{E}-SQ_{D} \\
+SQ_{I,D} = \frac{1}{r_{ED}}(T_{E25D15}^2+T_{E25D30}^2+\cdots +T_{E75D45}^2) - C \\
+SQ_{I,D}= \frac{1}{3}(137,2950^2+84,5500^2+\cdots + 84,2431^2) - \frac{783,5973^2}{27} \\
+SQ_{I,D} = 2358,1623 \\
+\]</span>
+assim,</p>
+<p><span class="math display">\[
+SQ_{Interação\;E\times D} = SQ_{E,D}-SQ_{E}-SQ_{D} \\
+SQ_{Interação\;E\times D}=2358,1623-1347,5214-150,5342 \\
+SQ_{Interação\;E\times D}=860,1068
+\]</span></p>
+<p>Portanto, temos o seguinte quadro de análise de variância:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1116,121 +1727,53 @@ F
 <tbody>
 <tr>
 <td style="text-align:left;">
-Efeito de N d K0
+Espaçamento (E)
 </td>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-3,30
+1347.5214
 </td>
 <td style="text-align:left;">
-3,30
+673.7607
 </td>
 <td style="text-align:left;">
-0,05
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de N d K1
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-2086,93
-</td>
-<td style="text-align:left;">
-2086,93
-</td>
-<td style="text-align:left;">
-31,61
+10.05**
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Efeito de P
+Densidade (D)
 </td>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-21,47
+150.5342
 </td>
 <td style="text-align:left;">
-21,47
+75.2671
 </td>
 <td style="text-align:left;">
-0,33
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de K
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-692,36
-</td>
-<td style="text-align:left;">
-692,36
-</td>
-<td style="text-align:left;">
-10,49**
+1.12
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Efeito de NP
+Interação (ExD)
 </td>
 <td style="text-align:left;">
-1
+4
 </td>
 <td style="text-align:left;">
-60,98
+860.1068
 </td>
 <td style="text-align:left;">
-60,98
+215.0267
 </td>
 <td style="text-align:left;">
-0,92
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de PK
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-52,29
-</td>
-<td style="text-align:left;">
-52,29
-</td>
-<td style="text-align:left;">
-0,79
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de NPK
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-31,84
-</td>
-<td style="text-align:left;">
-31,84
-</td>
-<td style="text-align:left;">
-0,48
+3.21*
 </td>
 </tr>
 <tr>
@@ -1238,10 +1781,10 @@ Efeito de NPK
 (Tratamentos)
 </td>
 <td style="text-align:left;font-weight: bold;">
-7
+8
 </td>
 <td style="text-align:left;font-weight: bold;">
-2949,18
+2358.1623
 </td>
 <td style="text-align:left;font-weight: bold;">
 –
@@ -1252,33 +1795,33 @@ Efeito de NPK
 </tr>
 <tr>
 <td style="text-align:left;">
-Blocos
+Bloco
 </td>
 <td style="text-align:left;">
-5
+2
 </td>
 <td style="text-align:left;">
-235,45
+114.3953
 </td>
 <td style="text-align:left;">
-47,09
+57.1976
 </td>
 <td style="text-align:left;">
-0,71
+0.85
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Resíduo
+Resíduos
 </td>
 <td style="text-align:left;">
-35
+16
 </td>
 <td style="text-align:left;">
-2310,92
+1072.3503
 </td>
 <td style="text-align:left;">
-66,03
+67.0219
 </td>
 <td style="text-align:left;">
 –
@@ -1289,10 +1832,10 @@ Resíduo
 Total
 </td>
 <td style="text-align:left;font-weight: bold;">
-47
+26
 </td>
 <td style="text-align:left;font-weight: bold;">
-5495,55
+3544.9079
 </td>
 <td style="text-align:left;font-weight: bold;">
 –
@@ -1303,30 +1846,23 @@ Total
 </tr>
 </tbody>
 </table>
-<p>Valores de F da tabela (<span class="math inline">\(1 \times 35 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,12 \\ 1\%=7,43 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Espaçamento e Densidade (<span class="math inline">\(2 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,63 \\ 1\%=6,23 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Interação (<span class="math inline">\(4 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,01 \\ 1\%=4,77 \end{cases}\)</span></p>
+<p><strong>Conclusões</strong></p>
+<p><strong>Para efeito de Espaçamento</strong>: O teste foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que existe diferença entre os espaçamentos em relação à produção de massa verde de <em>Crotalaria juncea</em>, com um grau de confiança superior a <span class="math inline">\(99\%\)</span> de probabilidade.</p>
+<p><strong>Para efeito de Densidade</strong>: O teste não foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que as densidades de semeadura não possuem efeitos diferentes sobre a produção de massa verde de <em>Crotalaria juncea</em>.</p>
+<p><strong>Para efeito da Interação (E <span class="math inline">\(\times\)</span> D)</strong>: O teste foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span> e concluir que os fatores espaçamento e densidade de semeadura agem conjuntamente sobre a produção de massa verde de <em>Crotalaria juncea</em>.</p>
+<p>Como a interação <span class="math inline">\(E \times D\)</span> foi significativa, devemos portanto, desdobrar os graus de liberdade da interação para estudar os efeitos de cada um dos fatores dentro dos níveis do outro fator.</p>
 </div>
-<div id="conclusões-1" class="section level3" number="20.3.2">
-<h3><span class="header-section-number">20.3.2</span> Conclusões</h3>
-<p><strong>Para Efeito de N d. K0</strong>: O teste F foi não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que o nível de <span class="math inline">\(N_0\)</span> e <span class="math inline">\(N_1\)</span> não diferem entre si, na ausência de K, em relação à produção do cafeeiro.</p>
-<p><strong>Para Efeito de N d. K1</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que o nível de <span class="math inline">\(N_0\)</span> e <span class="math inline">\(N_1\)</span> diferem entre si, na presença de K, em relação à produção do cafeeiro.</p>
-</div>
-<div id="desdobramento-da-interação-nk-para-estudar-os-efeitos-de-k-dentro-de-n-k-d.-n." class="section level3" number="20.3.3">
-<h3><span class="header-section-number">20.3.3</span> 2) Desdobramento da Interação NK para estudar os efeitos de K dentro de N (K d. N).</h3>
+<div id="desdobrando-a-interação-e-times-d-para-estudar-os-efeitos-do-fator-espaçamento-em-cada-nível-do-fator-densidade-e-d.-d" class="section level3" number="19.4.2">
+<h3><span class="header-section-number">19.4.2</span> Desdobrando a interação <span class="math inline">\(E \times D\)</span>, para estudar os efeitos do fator <strong>Espaçamento</strong> em cada nível do fator <strong>Densidade</strong> (E d. D):</h3>
 <p><span class="math display">\[
-\begin{align}
-SQ_{K\;d.\;N_0}&amp;=\frac{1}{2 \cdot r}(T_{N_0K_0}^2+T_{N_0K_1}^2) - \frac{T_{N_0}^2}{4 \cdot r} \\
-&amp;= \frac{1}{12}(436,70^2+420,40^2) - \frac{857,10^2}{24} \\
-&amp;=11,07
-\end{align}
-\]</span>
-<span class="math display">\[
-\begin{align}
-SQ_{K\;d.\;N_1}&amp;=\frac{1}{2 \cdot r}(T_{N_1K_0}^2+T_{N_1K_1}^2) - \frac{T_{N_1}^2}{4 \cdot r} \\
-&amp;= \frac{1}{12}(445,60^2+644,20^2) - \frac{1089,80^2}{24} \\
-&amp;=1643,41
-\end{align}
+SQ_{Ed.D15} = \frac{1}{3}(137,2950^2+57,1175^2+49,2226^2) - \frac{243,6351^2}{9}=1583,0565 \\
+SQ_{Ed.D30} = \frac{1}{3}(84,5500^2+98,4950^2+65,8166^2) - \frac{248,8616^2}{9}=179,2535 \\
+SQ_{Ed.D45} = \frac{1}{3}(126,7800^2+80,0775^2+84,2431^2) - \frac{291,1006^2}{9}=455,3182 
 \]</span></p>
-<p>Então, o quadro de análise de variância com o desdobramento da interação NK para estudar os efeitos de K d. N, será o seguinte:</p>
+<p><strong>Verificação</strong>: <span class="math inline">\(SQ_{Ed.D15}+SQ_{Ed.D30}+SQ_{Ed.D45}=SQ_{E}+SQ_{E\times D}\)</span></p>
+<p>Então, o quadro de análise de variância com desdobramento da interação ExD, estudando-se o efeito de Espaçamento dentro de cada Densidade será o seguinte:</p>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1350,121 +1886,70 @@ F
 <tbody>
 <tr>
 <td style="text-align:left;">
-Efeito de N
+Espaçamento d. D15
 </td>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-1128,11
+1583.0565
 </td>
 <td style="text-align:left;">
-1128,11
+791.5283
 </td>
 <td style="text-align:left;">
-17,08**
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de P
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-21,47
-</td>
-<td style="text-align:left;">
-21,47
-</td>
-<td style="text-align:left;">
-0,33
+11.81*
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Efeito de K d N0
+Espaçamento d. D30
 </td>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-11,07
+179.2535
 </td>
 <td style="text-align:left;">
-11,07
+89.6267
 </td>
 <td style="text-align:left;">
-0,17
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de K d N1
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-1643,41
-</td>
-<td style="text-align:left;">
-1643,41
-</td>
-<td style="text-align:left;">
-24,89**
+1.34
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Efeito de NP
+Espaçamento d. D45
 </td>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-60,98
+445.3182
 </td>
 <td style="text-align:left;">
-60,98
+222.6591
 </td>
 <td style="text-align:left;">
-0,92
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Efeito de PK
-</td>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-52,29
-</td>
-<td style="text-align:left;">
-52,29
-</td>
-<td style="text-align:left;">
-0,79
+3.32
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Efeito de NPK
+Densidades (D)
 </td>
 <td style="text-align:left;">
-1
+2
 </td>
 <td style="text-align:left;">
-31,84
+150.5342
 </td>
 <td style="text-align:left;">
-31,84
+75.2671
 </td>
 <td style="text-align:left;">
-0,48
+1.12
 </td>
 </tr>
 <tr>
@@ -1472,10 +1957,10 @@ Efeito de NPK
 (Tratamentos)
 </td>
 <td style="text-align:left;font-weight: bold;">
-7
+8
 </td>
 <td style="text-align:left;font-weight: bold;">
-2949,18
+2358.1623
 </td>
 <td style="text-align:left;font-weight: bold;">
 –
@@ -1486,33 +1971,33 @@ Efeito de NPK
 </tr>
 <tr>
 <td style="text-align:left;">
-Blocos
+Bloco
 </td>
 <td style="text-align:left;">
-5
+2
 </td>
 <td style="text-align:left;">
-235,45
+114.3953
 </td>
 <td style="text-align:left;">
-47,09
+57.1976
 </td>
 <td style="text-align:left;">
-0,71
+0.85
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Resíduo
+Resíduos
 </td>
 <td style="text-align:left;">
-35
+16
 </td>
 <td style="text-align:left;">
-2310,92
+1072.3503
 </td>
 <td style="text-align:left;">
-66,03
+67.0219
 </td>
 <td style="text-align:left;">
 –
@@ -1523,10 +2008,10 @@ Resíduo
 Total
 </td>
 <td style="text-align:left;font-weight: bold;">
-47
+26
 </td>
 <td style="text-align:left;font-weight: bold;">
-5495,55
+3544.9079
 </td>
 <td style="text-align:left;font-weight: bold;">
 –
@@ -1537,202 +2022,483 @@ Total
 </tr>
 </tbody>
 </table>
-<p>Valores de F da tabela (<span class="math inline">\(1 \times 35 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=4,12 \\ 1\%=7,43 \end{cases}\)</span></p>
+<p>F da tabela (<span class="math inline">\(2 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,63 \\ 1\%=6,23 \end{cases}\)</span></p>
+<p><strong>Conclusões</strong></p>
+<p><strong>Para Espaçamento dentro de Densidade 15</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que existe diferença entre os espaçamentos em relação à produção de massa verde de <em>Crotalaria juncea</em>, com um grau de confiança superior a <span class="math inline">\(99\%\)</span> de probabilidade.</p>
+<p><strong>Para Espaçamento dentro de Densidade 30 e 45</strong>: Os valores do teste F foram não significativos, indicando que os espaçamentos não diferem entre si em relação à produção de massa verde de <em>Crotalaria juncea</em>.</p>
 </div>
-<div id="conclusões-2" class="section level3" number="20.3.4">
-<h3><span class="header-section-number">20.3.4</span> Conclusões</h3>
-<p><strong>Para Efeito de K d. N0</strong>: O teste F foi não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que não devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que o nível de <span class="math inline">\(K_0\)</span> e <span class="math inline">\(K_1\)</span> não diferem entre si, na ausência de N, em relação à produção do cafeeiro.</p>
-<p><strong>Para Efeito de K d. N1</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar <span class="math inline">\(H_0\)</span>, e concluir que o nível de <span class="math inline">\(K_0\)</span> e <span class="math inline">\(K_1\)</span> diferem entre si, na presença de N, em relação à produção do cafeeiro.</p>
+<div id="desdobrando-a-interação-etimes-d-para-estudar-os-efeitos-do-fator-densidade-em-cada-nível-do-fator-espaçamentos-d-d.-e" class="section level3" number="19.4.3">
+<h3><span class="header-section-number">19.4.3</span> Desdobrando a interação <span class="math inline">\(E\times D\)</span>, para estudar os efeitos do fator <strong>Densidade</strong> em cada nível do fator <strong>Espaçamentos</strong> (D d. E):</h3>
+<p><span class="math display">\[
+SQ_{Dd.E25} = \frac{1}{3}(137.2950^2+84.55^2+126.78^2) - \frac{348.6250^2}{9}=519.5526 \\
+SQ_{Dd.E50} = \frac{1}{3}(57.1175^2+98.4950^2+80.0775^2) - \frac{235.6900^2}{9}=286.4959 \\
+SQ_{Dd.E75} = \frac{1}{3}(49.2226^2+65.8166^2+84.2431^2) - \frac{199.2823^2}{9}=204.5925 
+\]</span></p>
+<p><strong>Verificação</strong>: <span class="math inline">\(SQ_{Dd.E25}+SQ_{Dd.D50}+SQ_{Dd.D75}=SQ_{D}+SQ_{E\times D}\)</span></p>
+<p>Então, o quadro de análise de variância com desdobramento da interação ExD, estudando-se o efeito de Densidade dentro de cada Espaçamento será o seguinte:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Densidade d. E25
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+519.5526
+</td>
+<td style="text-align:left;">
+259.5526
+</td>
+<td style="text-align:left;">
+3.88*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Densidade d. E50
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+286.4959
+</td>
+<td style="text-align:left;">
+143.2480
+</td>
+<td style="text-align:left;">
+2.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Densidade d. E75
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+204.5925
+</td>
+<td style="text-align:left;">
+102.2962
+</td>
+<td style="text-align:left;">
+1.53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Espaçamento (E)
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+1347.5214
+</td>
+<td style="text-align:left;">
+673.7607
+</td>
+<td style="text-align:left;">
+10.05**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+8
+</td>
+<td style="text-align:left;font-weight: bold;">
+2358.1623
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bloco
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+114.3953
+</td>
+<td style="text-align:left;">
+57.1976
+</td>
+<td style="text-align:left;">
+0.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduos
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1072.3503
+</td>
+<td style="text-align:left;">
+67.0219
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+26
+</td>
+<td style="text-align:left;font-weight: bold;">
+3544.9079
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>F da tabela (<span class="math inline">\(2 \times 16 GL\)</span>): <span class="math inline">\(\begin{cases}5\%=3,63 \\ 1\%=6,23 \end{cases}\)</span></p>
+<p><strong>Conclusões</strong></p>
+<p><strong>Para Densidade dentro de Espaçamento 25</strong>: O teste F foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que existe diferença entre densidades, dentro do espaçamento de 25 cm entre linhas, em realação à produção de massa verde de <em>Crotalaria juncea</em>, com um grau de confiança superior a <span class="math inline">\(95\%\)</span> de probabilidade.</p>
+<p><strong>Para Densidade dentro de Espaçamento 50 e 75</strong>: Os valores do teste F foram não significativos, indicando que as densidades não diferem entre si, dentro destes espaçamentos, em relação à produção de massa verde de <em>Crotalaria juncea</em>.</p>
+<p>Para completar a análise de variância, e obter conclusões mais específicas sobre o efeito dos espaçamentos em cada densidade, podemos aplicar um teste de comparação de médias.</p>
 </div>
-<div id="cálculo-das-médias-e-erros-padrões-das-médias-1" class="section level3" number="20.3.5">
-<h3><span class="header-section-number">20.3.5</span> Cálculo das médias e erros padrões das médias</h3>
-<p><strong>As médias dos efeitos principais de N, P e K serão obtidas por</strong>:</p>
+<div id="teste-de-tukey-para-a-comparação-de-médias-1" class="section level3" number="19.4.4">
+<h3><span class="header-section-number">19.4.4</span> Teste de Tukey para a comparação de médias</h3>
+<p>Construção do Quadro de Médias a partir do Quadro de totais:</p>
+<p>Quadro auxiliar de totais:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(3)</th>
+<th align="center"><span class="math inline">\(D_{15}\)</span></th>
+<th align="center"><span class="math inline">\(D_{30}\)</span></th>
+<th align="center"><span class="math inline">\(D_{45}\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_{25}\)</span></td>
+<td align="center">137,2950/3</td>
+<td align="center">84,5500/3</td>
+<td align="center">126,7800/3</td>
+<td align="center">348,6250/9</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_{50}\)</span></td>
+<td align="center">57,1175/3</td>
+<td align="center">98,4950/3</td>
+<td align="center">80,0775/3</td>
+<td align="center">235,6900/9</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_{75}\)</span></td>
+<td align="center">49,2226/3</td>
+<td align="center">65,8166/3</td>
+<td align="center">84,2431/3</td>
+<td align="center">199,2823/9</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Total</strong></td>
+<td align="center">243,6351/9</td>
+<td align="center">248,8616/9</td>
+<td align="center">291,100/9</td>
+<td align="center">783,5973/27</td>
+</tr>
+</tbody>
+</table>
+<p>Quadro de médias:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center"><span class="math inline">\(D_{15}\)</span></th>
+<th align="center"><span class="math inline">\(D_{30}\)</span></th>
+<th align="center"><span class="math inline">\(D_{45}\)</span></th>
+<th align="center">Média Espaçamento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_{25}\)</span></td>
+<td align="center">45,7650</td>
+<td align="center">28,1833</td>
+<td align="center">42,2600</td>
+<td align="center">38,7361</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_{50}\)</span></td>
+<td align="center">19,0392</td>
+<td align="center">32,8317</td>
+<td align="center">26,6925</td>
+<td align="center">26,1878</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_{75}\)</span></td>
+<td align="center">16,4075</td>
+<td align="center">21,9389</td>
+<td align="center">28,0810</td>
+<td align="center">22,1425</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Média Densidade</strong></td>
+<td align="center">27,0706</td>
+<td align="center">27,6513</td>
+<td align="center">32,3445</td>
+<td align="center">29,0221</td>
+</tr>
+</tbody>
+</table>
+<div id="para-comparar-médias-de-espaçamento-na-densidade-15-e-d.-d_15" class="section level4" number="19.4.4.1">
+<h4><span class="header-section-number">19.4.4.1</span> 1. Para comparar médias de Espaçamento na Densidade 15 (E d. <span class="math inline">\(D_15\)</span>)</h4>
 <p><span class="math display">\[
-\hat{m}_{N_0} = \frac{T_{N_0}}{4\cdot r} = \frac{857,10}{4\cdot 6} = 35,71\;kg\;parcela^{-1}  \\
-\hat{m}_{N_1} = \frac{T_{N_1}}{4\cdot r} = \frac{1089,80}{4\cdot 6} = 45,41\;kg\;parcela^{-1}  \\
-\hat{m}_{P_0} = \frac{T_{P_0}}{4\cdot r} = \frac{957,4}{4\cdot 6} = 39,89\;kg\;parcela^{-1}  \\
-\hat{m}_{P_1} = \frac{T_{P_1}}{4\cdot r} = \frac{989,50}{4\cdot 6} = 41,23\;kg\;parcela^{-1}  \\
-\hat{m}_{K_0} = \frac{T_{K_0}}{4\cdot r} = \frac{882,30}{4\cdot 6} = 36,76\;kg\;parcela^{-1}  \\
-\hat{m}_{K_1} = \frac{T_{K_1}}{4\cdot r} = \frac{1064,60}{4\cdot 6} = 44,36\;kg\;parcela^{-1}
-\]</span></p>
-<p>Erro padrão das médias</p>
-<p><span class="math display">\[
-s(\hat{m})=\frac{s}{\sqrt{4\cdot r}} = \sqrt{\frac{QM_{Res}}{4\cdot6}}=\sqrt{\frac{66,03}{24}}=1,66\;kg\;parcela^{-1} 
-\]</span></p>
-<p><strong>Como a interação NK foi significativa, é interessante obter também, as médias dos níveis de N d. K ou dos níveis de K d. N, ou seja</strong>:</p>
-<p><span class="math display">\[
-\hat{m}_{N_0\;d.\;K_0} = \frac{T_{N_0K_0}}{2\cdot r} = \frac{436,70}{2\cdot 6} = 36,39\;kg\;parcela^{-1} \\
-\hat{m}_{N_1\;d.\;K_0} = \frac{T_{N_1K_0}}{2\cdot r} = \frac{445,60}{2\cdot 6} = 37,13\;kg\;parcela^{-1} \\
-\hat{m}_{N_0\;d.\;K_1} = \frac{T_{N_0K_1}}{2\cdot r} = \frac{420,40}{2\cdot 6} = 35,03\;kg\;parcela^{-1} \\
-\hat{m}_{N_1\;d.\;K_1} = \frac{T_{N_1K_1}}{2\cdot r} = \frac{644,20}{2\cdot 6} = 53,68\;kg\;parcela^{-1} 
-\]</span></p>
-<p><strong>Erro padrão das médias</strong></p>
-<p><span class="math display">\[
-s(\hat{m})=\frac{s}{\sqrt{2\cdot r}} = \sqrt{\frac{QM_{Res}}{2\cdot6}}=\sqrt{\frac{66,03}{12}}=2,35\;kg\;parcela^{-1} 
+DMS=q \cdot s(m) = q_{(3 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=3,65\cdot \sqrt{\frac{67,0219}{3}}=17,2520\;t/ha
 \]</span></p>
 </div>
-<div id="cálculo-do-coeficiente-de-variação" class="section level3" number="20.3.6">
-<h3><span class="header-section-number">20.3.6</span> Cálculo do coeficiente de variação</h3>
+<div id="para-comparar-médias-de-densidades-no-espaçamento-25-d-d.-e_25" class="section level4" number="19.4.4.2">
+<h4><span class="header-section-number">19.4.4.2</span> 2. Para comparar médias de densidades no Espaçamento 25 (D d. <span class="math inline">\(E_25\)</span>)</h4>
 <p><span class="math display">\[
-\hat{m} = \frac{G}{IJ} = \frac{1946,90}{8\cdot6} = 40,56\;kg\;parcela^{-1} \\
-s=\sqrt{QM_{Res}}=\sqrt{66,03}=8,13\;kg\;parcela^{-1} \\
-CV=100\cdot \frac{8,13}{40,56}=20,04\%
+DMS=q \cdot s(m) = q_{(3 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=3,65\cdot \sqrt{\frac{67,0219}{3}}=17,2520\;t/ha
 \]</span></p>
-<p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="estudo-do-fatorial-23.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise prelinimar</span></span>
-<span id="cb622-2"><a href="estudo-do-fatorial-23.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
-<span id="cb622-3"><a href="estudo-do-fatorial-23.html#cb622-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/cafeeiro3fatores.txt&quot;</span></span>
-<span id="cb622-4"><a href="estudo-do-fatorial-23.html#cb622-4" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb622-5"><a href="estudo-do-fatorial-23.html#cb622-5" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Trat<span class="ot">&lt;-</span><span class="fu">paste</span>(dados<span class="sc">$</span>N,dados<span class="sc">$</span>P,dados<span class="sc">$</span>K,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb622-6"><a href="estudo-do-fatorial-23.html#cb622-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(dados<span class="sc">$</span>Trat,dados<span class="sc">$</span>Bloco,dados<span class="sc">$</span>Y)</span></code></pre></div>
-<pre><code>## ------------------------------------------------------------------------
-## Quadro da analise de variancia
-## ------------------------------------------------------------------------
-##            GL     SQ     QM     Fc   Pr&gt;Fc
-## Tratamento  7 2949.2 421.31 6.3810 0.00007
-## Bloco       5  235.5  47.09 0.7132 0.61765
-## Residuo    35 2310.9  66.03               
-## Total      47 5495.6                      
-## ------------------------------------------------------------------------
-## CV = 20.03 %
-## 
-## ------------------------------------------------------------------------
-## Teste de normalidade dos residuos 
-## valor-p:  0.1204836 
-## De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
-## ------------------------------------------------------------------------
-## 
-## ------------------------------------------------------------------------
-## Teste de homogeneidade de variancia 
-## valor-p:  0.4223185 
-## De acordo com o teste de oneillmathews a 5% de significancia, as variancias podem ser consideradas homogeneas.
-## ------------------------------------------------------------------------
-## 
-## Teste de Tukey
-## ------------------------------------------------------------------------
-## Grupos Tratamentos Medias
-## a     101     56 
-## ab    111     51.36667 
-##  bc   110     38.53333 
-##  bc   010     38.41667 
-##  bc   011     36.6 
-##   c   100     35.73333 
-##   c   000     34.36667 
-##   c   001     33.46667 
-## ------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="estudo-do-fatorial-23.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise com desdobramento para estudo dos fatores e interações</span></span>
-<span id="cb624-2"><a href="estudo-do-fatorial-23.html#cb624-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fat3.dbc</span>(dados<span class="sc">$</span>N,dados<span class="sc">$</span>P,dados<span class="sc">$</span>K,dados<span class="sc">$</span>Bloco,dados<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;N&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="st">&quot;K&quot;</span>))</span></code></pre></div>
+</div>
+<div id="resultado-do-teste-de-tukey-1" class="section level4" number="19.4.4.3">
+<h4><span class="header-section-number">19.4.4.3</span> Resultado do teste de Tukey</h4>
+<p>Médias seguidas pela mesma letra, minúsculas nas linhas e maiúsculas nas colunas, não diferem entre si pelo teste de Tukey ao nível de <span class="math inline">\(5\%\)</span> de probabilidade.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="center"><span class="math inline">\(D_{15}\)</span></th>
+<th align="center"><span class="math inline">\(D_{30}\)</span></th>
+<th align="center"><span class="math inline">\(D_{45}\)</span></th>
+<th align="center">Média Espaçamento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_{25}\)</span></td>
+<td align="center">45,7650 Aa</td>
+<td align="center">28,1833 Ab</td>
+<td align="center">42,2600 Aab</td>
+<td align="center">38,7361</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_{50}\)</span></td>
+<td align="center">19,0392 Ba</td>
+<td align="center">32,8317 Aa</td>
+<td align="center">26,6925 Aa</td>
+<td align="center">26,1878</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_{75}\)</span></td>
+<td align="center">16,4075 Ba</td>
+<td align="center">21,9389 Aa</td>
+<td align="center">28,0810 Aa</td>
+<td align="center">22,1425</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Média Densidade</strong></td>
+<td align="center">27,0706</td>
+<td align="center">27,6513</td>
+<td align="center">32,3445</td>
+<td align="center">29,0221</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cálculo-do-coeficiente-de-variação-do-experimento-3" class="section level4" number="19.4.4.4">
+<h4><span class="header-section-number">19.4.4.4</span> Cálculo do coeficiente de variação do experimento</h4>
+<p><span class="math display">\[
+CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\%
+\]</span>
+### Aplicação no R</p>
+<p><img src="R.png" /></p>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
+<span id="cb618-2"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb618-3"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/crotalaria.txt&quot;</span></span>
+<span id="cb618-4"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb618-5"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb618-6"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb618-7"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-7" aria-hidden="true" tabindex="-1"></a>esp<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Espaçamento)</span>
+<span id="cb618-8"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-8" aria-hidden="true" tabindex="-1"></a>den<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Densidade)</span>
+<span id="cb618-9"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-9" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Bloco)</span>
+<span id="cb618-10"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-10" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>y</span>
+<span id="cb618-11"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb618-12"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-12" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(esp,den,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-333-1.png" width="672" /></p>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(den,esp,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-333-2.png" width="672" /></p>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dbc</span>(esp,den,bloco,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Espaçamento&quot;</span>, <span class="st">&quot;Densidade&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
-## FATOR 1:  N 
-## FATOR 2:  P 
-## FATOR 3:  K 
+## FATOR 1:  Espaçamento 
+## FATOR 2:  Densidade 
 ## ------------------------------------------------------------------------
 ## 
-## ------------------------------------------------------------------------
+## 
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
-##         GL         SQ         QM      Fc  Pr&gt;Fc
-## Bloco    5  235.45854   47.09171  0.7132 0.6177
-## N        1 1128.11021 1128.11021 17.0858  2e-04
-## P        1   21.46688   21.46688  0.3251 0.5722
-## K        1  692.36021  692.36021 10.4861 0.0026
-## N*P      1   60.97521   60.97521  0.9235 0.3431
-## N*K      1  962.12521  962.12521 14.5719  5e-04
-## P*K      1   52.29188   52.29188   0.792 0.3796
-## N*P*K    1   31.85021   31.85021  0.4824 0.4919
-## Residuo 35 2310.91646   66.02618               
-## Total   42 5495.55479                          
+##                       GL     SQ     QM      Fc   Pr&gt;Fc
+## Bloco                  2  114.4  57.20  0.8535 0.44444
+## Espaçamento            2 1347.5 673.75 10.0527 0.00149
+## Densidade              2  150.5  75.26  1.1230 0.34964
+## Espaçamento*Densidade  4  860.1 215.02  3.2083 0.04101
+## Residuo               16 1072.3  67.02                
+## Total                 26 3544.9                       
 ## ------------------------------------------------------------------------
-## CV = 20.03 %
+## CV = 28.21 %
 ## 
 ## ------------------------------------------------------------------------
 ## Teste de normalidade dos residuos (Shapiro-Wilk)
-## valor-p:  0.1204836 
+## valor-p:  0.541538 
 ## De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
 ## ------------------------------------------------------------------------
 ## 
 ## 
 ## 
-## Interacao N*K  significativa: desdobrando a interacao
+## Interacao significativa: desdobrando a interacao
 ## ------------------------------------------------------------------------
 ## 
-## Desdobrando  N  dentro de cada nivel de  K 
+## Desdobrando  Espaçamento  dentro de cada nivel de  Densidade 
 ## ------------------------------------------------------------------------
 ## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
-##         GL         SQ         QM      Fc  Pr&gt;Fc
-## N:K 0    1    3.30042    3.30042    0.05 0.8244
-## N:K 1    1 2086.93500 2086.93500 31.6077      0
-## Residuo 35 2310.91646   66.02618               
+##                          GL        SQ        QM      Fc  Pr.Fc
+## Bloco                     2  114.4004  57.20020  0.8535 0.4444
+## Densidade                 2  150.5283  75.26417   1.123 0.3496
+## Espaçamento:Densidade 15  2 1583.0186 791.50931 11.8098 0.0007
+## Espaçamento:Densidade 30  2  179.2489  89.62444  1.3372 0.2904
+## Espaçamento:Densidade 45  2  445.3134 222.65669  3.3222 0.0621
+## Residuo                  16 1072.3451  67.02157             NA
+## Total                    26 3544.8547 136.34057             NA
 ## ------------------------------------------------------------------------
 ## 
 ## 
 ## 
-##  N  dentro do nivel  0  de  K 
-## 
-## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
-## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        0   36.39167
-## 2        1   37.13333
-## ------------------------------------------------------------------------
-## 
-## 
-##  N  dentro do nivel  1  de  K 
+##  Espaçamento  dentro do nivel  15  de  Densidade 
 ## ------------------------------------------------------------------------
 ## Teste de Tukey
 ## ------------------------------------------------------------------------
 ## Grupos Tratamentos Medias
-## a     1   53.68333 
-##  b    0   35.03333 
+## a     1   45.765 
+##  b    2   19.03933 
+##  b    3   16.408 
+## ------------------------------------------------------------------------
+## 
+## 
+##  Espaçamento  dentro do nivel  30  de  Densidade 
+## 
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##     Niveis     Medias
+## 1        1   28.18333
+## 2        2   32.83167
+## 3        3   21.93900
+## ------------------------------------------------------------------------
+## 
+## 
+##  Espaçamento  dentro do nivel  45  de  Densidade 
+## 
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##     Niveis     Medias
+## 1        1   42.26000
+## 2        2   26.69267
+## 3        3   28.08100
 ## ------------------------------------------------------------------------
 ## 
 ## 
 ## 
-## Desdobrando  K  dentro de cada nivel de  N 
+## Desdobrando  Densidade  dentro de cada nivel de  Espaçamento 
 ## ------------------------------------------------------------------------
 ## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
-##         GL         SQ         QM      Fc  Pr&gt;Fc
-## K:N 0    1   11.07042   11.07042  0.1677 0.6847
-## K:N 1    1 1643.41500 1643.41500 24.8904      0
-## Residuo 35 2310.91646   66.02618               
+##                          GL        SQ        QM      Fc  Pr.Fc
+## Bloco                     2  114.4004  57.20020  0.8535 0.4444
+## Espaçamento               2 1347.4923 673.74615 10.0527 0.0015
+## Densidade:Espaçamento 25  2  519.5526 259.77629   3.876 0.0424
+## Densidade:Espaçamento 50  2  286.4893 143.24465  2.1373 0.1504
+## Densidade:Espaçamento 75  2  204.5751 102.28753  1.5262 0.2474
+## Residuo                  16 1072.3451  67.02157             NA
+## Total                    26 3544.8547 136.34057             NA
 ## ------------------------------------------------------------------------
 ## 
 ## 
 ## 
-##  K  dentro do nivel  0  de  N 
-## 
-## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
-## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        0   36.39167
-## 2        1   35.03333
-## ------------------------------------------------------------------------
-## 
-## 
-##  K  dentro do nivel  1  de  N 
+##  Densidade  dentro do nivel  25  de  Espaçamento 
 ## ------------------------------------------------------------------------
 ## Teste de Tukey
 ## ------------------------------------------------------------------------
 ## Grupos Tratamentos Medias
-## a     1   53.68333 
-##  b    0   37.13333 
+## a     1   45.765 
+## ab    3   42.26 
+##  b    2   28.18333 
 ## ------------------------------------------------------------------------
 ## 
-## Analisando os efeitos simples do fator  P 
-## ------------------------------------------------------------------------
-## P
+## 
+##  Densidade  dentro do nivel  50  de  Espaçamento 
+## 
 ## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
 ## ------------------------------------------------------------------------
-##   Niveis   Medias
-## 1      0 39.89167
-## 2      1 41.22917
+##     Niveis     Medias
+## 1        1   19.03933
+## 2        2   32.83167
+## 3        3   26.69267
+## ------------------------------------------------------------------------
+## 
+## 
+##  Densidade  dentro do nivel  75  de  Espaçamento 
+## 
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##     Niveis     Medias
+## 1        1     16.408
+## 2        2     21.939
+## 3        3     28.081
 ## ------------------------------------------------------------------------</code></pre>
 
+</div>
 </div>
 </div>
 </div>
@@ -1741,8 +2507,8 @@ CV=100\cdot \frac{8,13}{40,56}=20,04\%
           </div>
         </div>
       </div>
-<a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="experimento-em-parcelas-subdivididas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="experimentos-fatoriais.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estudo-do-fatorial-23.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

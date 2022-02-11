@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R</title>
+  <title>23 Análise de Regressão por Polinômios Ortogonais | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:title" content="23 Análise de Regressão por Polinômios Ortogonais | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R" />
+  <meta name="twitter:title" content="23 Análise de Regressão por Polinômios Ortogonais | Análise de Dados de Ciência do Solo no R" />
   
   <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="análise-exploratória-de-dados-aed.html"/>
-<link rel="next" href="experimentação-agrícola.html"/>
+<link rel="prev" href="obtenção-da-análise-de-variância-8.html"/>
+<link rel="next" href="referências.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -458,153 +458,687 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="distribuição-de-probabilidade" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Distribuição De Probabilidade</h1>
-<div id="distribuição-normal" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Distribuição Normal</h2>
-<p>A exata curva de densidade para uma particular distribuição normal é descrita pela sua média <span class="math inline">\(\mu\)</span> e pelo seu desvio padrão <span class="math inline">\(\sigma\)</span>, cuja função de densidade de probabilidade é dada por:</p>
+<div id="análise-de-regressão-por-polinômios-ortogonais" class="section level1" number="23">
+<h1><span class="header-section-number">23</span> Análise de Regressão por Polinômios Ortogonais</h1>
+<p>Nos experimentos em que os tratamentos são quantitativos, como por exemplo, níveis crescentes de um adubo, doses crescentes de um inseticida, etc, muitas vezes existe uma correspondência funcional, denominada equação de regressão, que relaciona os valores dos tratamentos (X) com os dados analisados (Y).</p>
+<p>Por exemplo, essa dependência pode ser notada no caso seguinte,onde X representa oas doses de um adubo (<span class="math inline">\(kg/ha\)</span>) e y a produção de milho (<span class="math inline">\(kg/ha\)</span>).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">X</th>
+<th align="center">0</th>
+<th align="center">25</th>
+<th align="center">50</th>
+<th align="center">75</th>
+<th align="center">100</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Y</td>
+<td align="center">2100</td>
+<td align="center">2600</td>
+<td align="center">3000</td>
+<td align="center">3550</td>
+<td align="center">4150</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos criar um gráfico para essa visualização no R.</p>
+<p><img src="img/R.png" /></p>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">25</span>)</span>
+<span id="cb628-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-2" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">2100</span>,<span class="dv">2600</span>,<span class="dv">3000</span>,<span class="dv">3550</span>,<span class="dv">4150</span>)</span>
+<span id="cb628-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y,<span class="at">pch=</span><span class="dv">21</span>,<span class="at">bg=</span><span class="st">&quot;gray&quot;</span>,<span class="at">cex=</span><span class="fl">1.5</span>,<span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb628-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span> <span class="st">&quot;Dose (kg/ha)&quot;</span>,</span>
+<span id="cb628-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span> <span class="st">&quot;Produção do Milho (kg/ha)&quot;</span>, <span class="at">cex.lab=</span><span class="fl">1.2</span></span>
+<span id="cb628-6"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-6" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-344-1.png" width="672" /></p>
+<p>Verificamos, portanto, que há uma tendência de aumento na produção à medida que aumentamos a quantidade de adubo aplicada.</p>
+<p>Vejamos então, como fazer a análise de variância para o estudo da regressão. O método utilizado é denominado de método dos polinômios ortogonais, e é de fácil aplicação quanto os níveis de X <strong>são equidistantes</strong>, pois permitem a utilização de coeficientes obtidos em tabelas.</p>
+<div id="obtenção-da-análise-de-variância-estudando-se-os-efeitos-da-regressão" class="section level2" number="23.1">
+<h2><span class="header-section-number">23.1</span> Obtenção da análise de variância, estudando-se os efeitos da regressão</h2>
+<p>Para estudo da regressão, vamos utilizar os dados do trabalho: “Efeito de doses de gesso na cultura do feijoeiro (<em>Phaseolu vulgaris</em> L.),” realizado por RAGAZZI (1979). Neste trabalho foram utilizadas 7 doses de gesso 0, 50, 100, 150, 200, 250, e 300 <span class="math inline">\(kg/ha\)</span>. Os resultados obtidos para peso de 1000 sementes, em gramas, são apresentados a seguir:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Tratamentos</th>
+<th align="center">Rep. 1</th>
+<th align="center">Rep. 2</th>
+<th align="center">Rep. 3</th>
+<th align="center">Rep. 4</th>
+<th align="center"><strong>Total</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td align="center">134,8</td>
+<td align="center">139,7</td>
+<td align="center">147,6</td>
+<td align="center">132,3</td>
+<td align="center">554,4</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td align="center">161,7</td>
+<td align="center">157,7</td>
+<td align="center">150,3</td>
+<td align="center">144,7</td>
+<td align="center">614,4</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td align="center">160,7</td>
+<td align="center">172,7</td>
+<td align="center">163,4</td>
+<td align="center">161,3</td>
+<td align="center">658,1</td>
+</tr>
+<tr class="even">
+<td>150</td>
+<td align="center">169,8</td>
+<td align="center">168,2</td>
+<td align="center">160,7</td>
+<td align="center">161,0</td>
+<td align="center">659,7</td>
+</tr>
+<tr class="odd">
+<td>200</td>
+<td align="center">165,7</td>
+<td align="center">160,0</td>
+<td align="center">158,2</td>
+<td align="center">151,0</td>
+<td align="center">634,9</td>
+</tr>
+<tr class="even">
+<td>250</td>
+<td align="center">171,8</td>
+<td align="center">157,3</td>
+<td align="center">150,4</td>
+<td align="center">160,4</td>
+<td align="center">639,9</td>
+</tr>
+<tr class="odd">
+<td>300</td>
+<td align="center">154,5</td>
+<td align="center">160,4</td>
+<td align="center">148,8</td>
+<td align="center">154,0</td>
+<td align="center">617,7</td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"><strong>4379,1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dados originais</strong>:<a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_feijoeiro.xlsx">DOWNLOAD</a></p>
+<p>A análise de variância preliminar será realizada de acordo com o delineamento experimental utilizado. O Ensaio foi montado de acordo com o delineamento inteiramente casualizado e, portanto, a análise de variância preliminar, obtido de maneira usual, foi a seguinte:</p>
 <p><span class="math display">\[
-f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}}, -\infty &lt; x &lt; \infty
+SQ_{Total} = (134,8^2+139,7^2+\cdots+154,0^2)-\frac{4379,1^2}{7\cdot4}=2828,17 \\
+\\
+SQ_{Trat}=\frac{1}{4}[554,4^2+614,4^2+\cdots+617,7^2]-\frac{4379,1^2}{7\cdot4} = 1941,83 \\
+\\
+SQ_{Res} = SQ_{Total}-SQ_{Trat}=2828,17-1941,83=886,34
 \]</span></p>
-<p>A curva é totalmente caracterizada por <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span>. Vamos utilizar a função <code>curve()</code> junto à função <code>dnorm()</code> para a construção da representação gráfica da distribuição normal. A função <code>dnorm()</code> retornará o valor de densidade de frequência, ou seja, <span class="math inline">\(f(x)\)</span> para uma média e desvio-padrão definidos em seus argumentos <code>mean</code> e <code>sd</code>, respectivamente.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="distribuição-de-probabilidade.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definião dos parâmteros</span></span>
-<span id="cb477-2"><a href="distribuição-de-probabilidade.html#cb477-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb477-3"><a href="distribuição-de-probabilidade.html#cb477-3" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb477-4"><a href="distribuição-de-probabilidade.html#cb477-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb477-5"><a href="distribuição-de-probabilidade.html#cb477-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção da curva</span></span>
-<span id="cb477-6"><a href="distribuição-de-probabilidade.html#cb477-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
-<p>A curva normal modela a distribuição de frequência de muitos eventos biológicos. Muitas das estatísticas utilizadas na inferência estatística seguem a distribuição normal. É a mais importante das distribuições contínuas por causa do seu papel na teoria amostral.</p>
-<p>Como visto, a curva é simétrica é relação à média <span class="math inline">\(\mu\)</span> e tem área sob ela igual a <span class="math inline">\(1\)</span>.</p>
-<p><span class="math display">\[
-\int_{-\infty}^{\infty} f(x) dx = 1
-\]</span></p>
-<p>Portanto, vamos adicionar uma linha no gráfico anterior, representando <span class="math inline">\(\mu\)</span>.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="distribuição-de-probabilidade.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb478-2"><a href="distribuição-de-probabilidade.html#cb478-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
-<p>Assim, a área (probabilidade) até o valor de <span class="math inline">\(\mu\)</span> é metade da área total, ou seja <span class="math inline">\(0,5\)</span>. Vamos buscar esse valor com a função <code>pnorm()</code>, utiizando como argumento o valor do eixo x, aqui denominado <code>quantil</code> (<code>q</code>) desejado e os parâmetros média e desvio padrão. A função sempre retorna a área acumulada de <span class="math inline">\(-\infty\)</span> até o valor de <code>q</code>.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="distribuição-de-probabilidade.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q=</span>media, <span class="at">mean=</span>media, <span class="at">sd=</span>dp)</span></code></pre></div>
-<pre><code>## [1] 0.5</code></pre>
-<p>Em outras palavras, calculamos <span class="math inline">\(P(X&lt;\mu)\)</span></p>
-<p>Calcular a área entre os pontos de inflexão da curva, ou seja:</p>
-<p><span class="math display">\[
- \int_{\mu - \sigma}^{\mu+\sigma} f(x) dx = 0,6826895
- \]</span></p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="distribuição-de-probabilidade.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb481-2"><a href="distribuição-de-probabilidade.html#cb481-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">-</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb481-3"><a href="distribuição-de-probabilidade.html#cb481-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-254-1.png" width="672" />
-Calcular a área entre:</p>
-<p><span class="math display">\[
- \int_{\mu - 2\sigma}^{\mu+2\sigma} f(x) dx = 0,9544997
- \]</span></p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="distribuição-de-probabilidade.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb482-2"><a href="distribuição-de-probabilidade.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb482-3"><a href="distribuição-de-probabilidade.html#cb482-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
-<p>Calcular a área entre:</p>
-<p><span class="math display">\[
- \int_{\mu - 3\sigma}^{\mu+3\sigma} f(x) dx = 0,9973002
- \]</span></p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="distribuição-de-probabilidade.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb483-2"><a href="distribuição-de-probabilidade.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb483-3"><a href="distribuição-de-probabilidade.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
-<p>Qual o valor de <span class="math inline">\(X\)</span> que supera <span class="math inline">\(65\%\)</span> das observações, ou seja, qual o valor de <span class="math inline">\(X\)</span> cuja área até ele é <span class="math inline">\(0,65\)</span>. Para isso, utilizaremos a função <code>qnorm()</code> que retornará o quantil dado a probabilidade acumulada até ele.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="distribuição-de-probabilidade.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.65</span>, media, dp)</span></code></pre></div>
-<pre><code>## [1] 16.15596</code></pre>
-<p>Vamos tirar a prova:</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="distribuição-de-probabilidade.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">16.15596</span>,media,dp)</span></code></pre></div>
-<pre><code>## [1] 0.6499998</code></pre>
-<p>Dado a distribuição abaixo, calcular <span class="math inline">\(P(X &lt; 99)\)</span></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-259"></span>
-<img src="img/normal_func.png" alt="Resumo do funcionamento das funções pnorm, qnorm e dnorm." width="600px" />
-<p class="caption">
-Figure 11.1: Resumo do funcionamento das funções pnorm, qnorm e dnorm.
-</p>
+<p>Quadro de análise de variância preliminar:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Causas de Variação</th>
+<th align="center">GL</th>
+<th align="center">SQ</th>
+<th align="center">QM</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Tratamentos</td>
+<td align="center">6</td>
+<td align="center">1941,83</td>
+<td align="center">323,64</td>
+<td align="center">7,67**</td>
+</tr>
+<tr class="even">
+<td align="center">Resíduo</td>
+<td align="center">21</td>
+<td align="center">886,34</td>
+<td align="center">42,21</td>
+<td align="center">–</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>27</strong></td>
+<td align="center"><strong>2828,17</strong></td>
+<td align="center"><strong>–</strong></td>
+<td align="center"><strong>–</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão</strong>: O teste F foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, logo, rejeitamos a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluímos que as doses de gesso aplicadas possuem efeitos diferentes sobre o peso de 1000 sementes.</p>
+<p>No entanto, um caso como este, em que os tratamentos são quantitativos, e em mais de 2 níveis, uma análise mais detalhada deve levar em conta a regressão, desdobrando-se os 6 graus de liberdade de tratamentos em:</p>
+<p>Regressão Linear……..1 GL<br />
+Regressão Quadrática…1 GL<br />
+Regressão Cúbica……..1 GL<br />
+Regressão de 4º grau…1 GL<br />
+Regressão de 5º grau…1 GL<br />
+Regressão de 6º grau…1 GL<br />
+—————————————<br />
+(Tratamentos)…………(6) GL</p>
+<p>Porém, as regressões de grau maior que 3º não tem interesse prático, de modo que, na análise de variância, podemos considerar as regressões de graus maior que o 3º como uma única causa de variação, que denominamos de <strong>Desvios da Regressão</strong>. Assim, no nosso exemplo, temos:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Causas de Variação</th>
+<th align="right">GL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Regressão Linear</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Regressão Quadrática</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Regressão Cúbica</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">Desvios da Regressão</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">(Tratamentos)</td>
+<td align="right">(6)</td>
+</tr>
+<tr class="even">
+<td align="left">Resíduo</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">27</td>
+</tr>
+</tbody>
+</table>
+<p>Esta decomposição pode ser feita pelo método dos polinômios ortogonais, e é de fácil aplicação quando as quantidades que determinam os tratamentos são igualmente espaçadas (equidistantes), o que ocorre no caso em estudo (0, 50, 100, 150, 20, 250, 300). Neste caso, os coeficientes dos polinômios ortogonais são obtidos em tabelas, como a seguintes:</p>
 </div>
-<p><strong>Estudo dos parâmetros</strong></p>
-<p>O efeito da mudança dos parâmetros <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> na distribuição normal:</p>
-<p><strong>a)</strong> Diferentes médias e mesmo desvio padrão.</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="distribuição-de-probabilidade.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">180</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,</span>
-<span id="cb488-2"><a href="distribuição-de-probabilidade.html#cb488-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb488-3"><a href="distribuição-de-probabilidade.html#cb488-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">100</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb488-4"><a href="distribuição-de-probabilidade.html#cb488-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">150</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">3</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb488-5"><a href="distribuição-de-probabilidade.html#cb488-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
-<span id="cb488-6"><a href="distribuição-de-probabilidade.html#cb488-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>)<span class="sc">+</span><span class="dv">15</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(sigma<span class="sc">==</span><span class="dv">7</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
-<span id="cb488-7"><a href="distribuição-de-probabilidade.html#cb488-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>),.<span class="dv">0029</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
-<span id="cb488-8"><a href="distribuição-de-probabilidade.html#cb488-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(mu[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">50</span>),</span>
-<span id="cb488-9"><a href="distribuição-de-probabilidade.html#cb488-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">100</span>),</span>
-<span id="cb488-10"><a href="distribuição-de-probabilidade.html#cb488-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">150</span>))</span>
-<span id="cb488-11"><a href="distribuição-de-probabilidade.html#cb488-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
-<p><strong>b)</strong> Diferentes desvio padrões e a mesma média.</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="distribuição-de-probabilidade.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">80</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.06</span>),</span>
-<span id="cb489-2"><a href="distribuição-de-probabilidade.html#cb489-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb489-3"><a href="distribuição-de-probabilidade.html#cb489-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">11</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">1</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb489-4"><a href="distribuição-de-probabilidade.html#cb489-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">16</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb489-5"><a href="distribuição-de-probabilidade.html#cb489-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
-<span id="cb489-6"><a href="distribuição-de-probabilidade.html#cb489-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">50</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">dnorm</span>(<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">7</span>)),<span class="at">col=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb489-7"><a href="distribuição-de-probabilidade.html#cb489-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">55</span>,.<span class="dv">002</span>,<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">50</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
-<span id="cb489-8"><a href="distribuição-de-probabilidade.html#cb489-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">56</span>,<span class="dv">63</span>,<span class="dv">75</span>)<span class="sc">+</span><span class="dv">2</span>,<span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">025</span>,<span class="fl">0.01</span>),<span class="at">cex=</span><span class="fl">1.4</span>,</span>
-<span id="cb489-9"><a href="distribuição-de-probabilidade.html#cb489-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(sigma[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">7</span>),</span>
-<span id="cb489-10"><a href="distribuição-de-probabilidade.html#cb489-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">11</span>),</span>
-<span id="cb489-11"><a href="distribuição-de-probabilidade.html#cb489-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">16</span>))</span>
-<span id="cb489-12"><a href="distribuição-de-probabilidade.html#cb489-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
-</div>
-<div id="distribuição-normal-padronizada" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Distribuição Normal Padronizada</h2>
-<p>É um caso particular da distribuição normal, quando a média é <span class="math inline">\(0\)</span> e o desvio padrão é <span class="math inline">\(1\)</span>.</p>
-<p>A transformação de qualquer variável pode ser realizada por meio de:</p>
+<div id="coeficientes-de-interpolação-de-polinômios-ortogonais" class="section level2" number="23.2">
+<h2><span class="header-section-number">23.2</span> Coeficientes de interpolação de polinômios ortogonais</h2>
+<p><img src="img/Tpoli01.png" /></p>
+<p><img src="img/Tpoli02.png" /></p>
 <p><span class="math display">\[
-Z =\frac{X-\mu}{\sigma}
+\begin{align}
+&amp; P_1 = x\;\;\;\;\;\;\;\;\;\;\;P_2=x^2-\frac{n^2-1}{12}\;\;\;\;\;\;\;\;\;\;\;P_3=x^3-\frac{3n^2-7}{20}x \\
+\\
+&amp; onde, \\ \\
+&amp; x=\frac{X-\bar{X}}{q}
+\end{align}
 \]</span></p>
-<p>assim,</p>
+<p>Para facilitar os cálculos, montamos o quadro seguinte, onde aparecem os totais de tratamentos (<span class="math inline">\(T_i\)</span>) e os coeficientes dos polinômios ortogonais (<span class="math inline">\(C_{ji}\)</span>) para cada componente:</p>
+<p>No nosso exemplo, utilizaremos os coeficientes para <span class="math inline">\(n=7\)</span> níveis:</p>
+<p><img src="img/Tpoli03.png" /></p>
+<p>Com estes coeficientes (<span class="math inline">\(C_{ji}\)</span>) e Totais (<span class="math inline">\(T_i\)</span>), estabelecemos contrastes ortogonais, sendo um contraste para o efeito da Regressão Linear (1º grau), outro para a Regressão Quadrática (2º grau) e outro para a Regressão Cúbica (3º grau).</p>
+<p>As tabelas de coeficientes dos polinômios ortogonais nos fornecem ainda, a soma dos quadrados dos coeficientes (<strong>K</strong>), e uma constante (<strong>M</strong>) que deverá ser utilizada na determinação da equação de regressão.</p>
+<p>Então, o contraste correspondente à regressão de grau <span class="math inline">\(j\)</span> será:</p>
 <p><span class="math display">\[
-f(z) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}(z)^2}
+\hat{Y}_{Grau\;j} = \sum_{i=1}^IC_{ji}T_{i}
+\]</span></p>
+<p>E a soma de quadrados correspondente, será:</p>
+<p><span class="math display">\[
+SQ_{Reg.Grau\;j} = \frac{\hat{Y}_{Grau\;j}^2}{r\cdot K_j}
+\]</span></p>
+<p>onde,</p>
+<p><span class="math inline">\(\hat{Y}_{Grau\;j}\)</span> = Estimativa do contraste para a regressão de grau <span class="math inline">\(j\)</span>.</p>
+<p><span class="math inline">\(r=\)</span>número de repetições com que foram calculados os totais <span class="math inline">\(T_i\)</span>.</p>
+<p><span class="math inline">\(K_j=\sum_{i=1}^IC_{ji}^2\)</span> = soma dos quadrado dos coeficientes do contraste para a regressão de grau <span class="math inline">\(j\)</span>.</p>
+<p>Portanto, no nosso exemplo, temos:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Regressão Linear ou de Grau 1:</li>
+</ol>
+<p><span class="math display">\[
+\begin{align}
+&amp; Y_{\text{Reg. Linear}} = \sum_{i=1}^IC_{1i}T_i=-3T_1-2T_2-1T_3+0T_4+1T_5+2T_6+3T_7 \\
+&amp; \hat{Y}_{\text{Reg.Linear}} = -3(554,4)-2(614,4)-1(658,1)+0(659,7)+1(634,9)+2(639,9)+3(617,7) \\
+&amp; \hat{Y}_{\text{Reg.Linear}} = 217,7\;g \\
+&amp; SQ_{Reg.Linear}=\frac{\hat{Y}_{\text{Reg.Linear}}^2}{r\cdot K_1}=\frac{217,7^2}{4\cdot28}=423,15
+\end{align}
+\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Regressão Quadrádica ou de Grau 2:</li>
+</ol>
+<p><span class="math display">\[
+\begin{align}
+&amp; Y_{\text{Reg.Quadrática}} = \sum_{i=1}^IC_{2i}T_i=5T_1+0T_2-3T_3-4T_4-3T_5+0T_6+5T_7 \\
+&amp; \hat{Y}_{\text{Reg.Quadrática}} = 5(554,4)+0(614,4)-3(658,1)-4(659,7)-3(634,9)+0(639,9)+5(617,7) \\
+&amp; \hat{Y}_{\text{Reg.Quadrática}} = -657,3\;g \\
+&amp; SQ_{Reg.Quadrática}=\frac{\hat{Y}_{\text{Grau.2}}^2}{r\cdot K_2}=\frac{(-657,3)^2}{4\cdot84}=1285,84
+\end{align}
+\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Regressão Cúbica ou de Grau 3:</li>
+</ol>
+<p><span class="math display">\[
+\begin{align}
+&amp; Y_{\text{Reg.Cúbica}} = \sum_{i=1}^IC_{3i}T_i=-1T_1+1T_2+1T_3+0T_4-1T_5-1T_6+1T_7 \\
+&amp; \hat{Y}_{\text{Reg.Cúbica}} = -1(554,4)+1(614,4)+1(658,1)+0(659,7)-1(634,9)-1(639,9)+1(617,7) \\
+&amp; \hat{Y}_{\text{Reg.Cúbica}} = 61,0\;g \\
+&amp; SQ_{Reg.Cúbica}=\frac{\hat{Y}_{\text{Grau.3}}^2}{r\cdot K_3}=\frac{155,04^2}{4\cdot6}=155,04
+\end{align}
 \]</span>
-Por meio da transformação, podemos calcular probabilidade.</p>
+d) Desvios da Regressão:</p>
 <p><span class="math display">\[
-P(x_1 &lt; X &lt; x_2) = P(z_1 &lt; Z &lt; z_2) \\
-com \\
-z_1=\frac{x_1-\mu}{\sigma} \text{. e } z_2 = \frac{x_2-\mu}{\sigma}
+SQ_{Desvios\;da\;Regressão}= SQ_{Trat.}-SQ_{Reg.Linear}-SQ_{Reg.Quadrática}-SQ_{Reg.Cúbica} \\
+SQ_{Desvios\;da\;Regressão}= 1941,83-423,15-1285,84-155,04 \\
+SQ_{Desvios\;da\;Regressão}= 77,80
 \]</span></p>
-<p>As funções <code>dnorm()</code>, <code>pnorm()</code> e <code>qnorm()</code> tem como valores <em>default</em> <code>mean = 0</code> e <code>sd = 1</code>, assim:</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="distribuição-de-probabilidade.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Z&quot;</span>)</span>
-<span id="cb490-2"><a href="distribuição-de-probabilidade.html#cb490-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
-<p>Calcular a área entre:</p>
-<p><span class="math display">\[
- \int_{-2}^{2} f(z) dz = 0,9544997
- \]</span></p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="distribuição-de-probabilidade.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb491-2"><a href="distribuição-de-probabilidade.html#cb491-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb491-3"><a href="distribuição-de-probabilidade.html#cb491-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
-<p>Qual o valor de <span class="math inline">\(Z\)</span> que supera <span class="math inline">\(97,5\%\)</span> das observações, ou seja, qual o valor de <span class="math inline">\(Z\)</span> cuja área até ele é <span class="math inline">\(0,975\)</span>.</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="distribuição-de-probabilidade.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
-<pre><code>## [1] 1.959964</code></pre>
-<p>Vamos tirar a prova:</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="distribuição-de-probabilidade.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>)</span></code></pre></div>
-<pre><code>## [1] 0.9750021</code></pre>
+<p>Com estas somas de quadrado, podemos montar</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Regressão Linear
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+423,15
+</td>
+<td style="text-align:left;">
+423,15
+</td>
+<td style="text-align:left;">
+10,02**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Regressão Quadrática
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+1285,84
+</td>
+<td style="text-align:left;">
+1285,84
+</td>
+<td style="text-align:left;">
+30,46**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Regressão Cúbica
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+155,04
+</td>
+<td style="text-align:left;">
+155,04
+</td>
+<td style="text-align:left;">
+3,67
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Desvios da Regressão
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+77,80
+</td>
+<td style="text-align:left;">
+25,93
+</td>
+<td style="text-align:left;">
+0,61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Tratamentos)
+</td>
+<td style="text-align:left;font-weight: bold;">
+6
+</td>
+<td style="text-align:left;font-weight: bold;">
+(1941,83)
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduo
+</td>
+<td style="text-align:left;">
+21
+</td>
+<td style="text-align:left;">
+886,34
+</td>
+<td style="text-align:left;">
+42,21
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+27
+</td>
+<td style="text-align:left;font-weight: bold;">
+2828,17
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela (<span class="math inline">\(1\times21GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=4,32 \\ 1\%=8,02 \end{cases}\)</span></p>
+<p>Valores de F da tabela (<span class="math inline">\(3\times21GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=3,07 \\ 1\%=4,87 \end{cases}\)</span></p>
+<p><strong>CONCLUSÃO</strong>:<br />
+Os testes F para a regressão linear e regressão quadrática foram significativos ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que é possível estabelecer uma relação funcional entre a dose de gesso (<span class="math inline">\(X\)</span>) e o peso de 1000 sementes do feijoeiro (<span class="math inline">\(Y\)</span>).</p>
+<p>A equação de regressão que melhor se ajusta aos dados é a correspondente à <strong>REGRESSÃO DE MAIS ALTO GRAU</strong> cujo teste F foi significativo.</p>
+<p>Assim, sendo, no nosso exemplo, a equação que melhor se ajusta é a de 2º grau (Quadrática).</p>
+<p>Quando o teste F para <strong>Desvios da Regressão for significativo</strong>, isto indica que <strong>existe alguma regressão significativa de grau maior que o 3º</strong> e, se tivermos interesse em estudá-la, devemos desdobrar os graus de liberdade de Desvio da Regressão.</p>
 </div>
-<div id="exercícios-3" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Exercícios</h2>
-<p><strong>1)</strong>Resolver no R e representar graficamente:
-Se <span class="math inline">\(X \sim N(\mu=13,\sigma^2=16)\)</span>, encontre:</p>
-<p><strong>a)</strong> <span class="math inline">\(P(X &lt; 20)\)</span></p>
-<p><strong>b)</strong> <span class="math inline">\(P(X &gt;10)\)</span></p>
-<p><strong>c)</strong> <span class="math inline">\(P(10 &lt; X &lt; 20)\)</span></p>
-<p><strong>d)</strong> <span class="math inline">\(1- P(7&lt; X &lt; 19)\)</span></p>
-<p><strong>e)</strong> <span class="math inline">\(1- P(14&lt; X &lt; 16)\)</span></p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-1.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-2.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-3.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-4.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-5.png" width="672" /></p>
-<p><strong>2)</strong> Seja <span class="math inline">\(Z\)</span> uma variável aleatória com distribuição normal padrão <span class="math inline">\([Z \sim N(0,1)]\)</span> determine o valor de <span class="math inline">\(t\)</span> tal que.</p>
-<p><strong>a)</strong> <span class="math inline">\(P(0 &lt; Z &lt; t) = 0,4236\)</span></p>
-<p><strong>b)</strong> <span class="math inline">\(P(t &lt; Z &lt; 2) = 0,1000\)</span></p>
-<p><strong>c)</strong> <span class="math inline">\(P(Z &lt; t) = 0,7967\)</span></p>
-<p><strong>d)</strong> <span class="math inline">\(P(-t &lt; Z &lt; t) = 0,95\)</span></p>
+<div id="obtendo-a-equação-de-regressão" class="section level2" number="23.3">
+<h2><span class="header-section-number">23.3</span> Obtendo a Equação de Regressão</h2>
+<p>A equação de regressão, até um certo grau <span class="math inline">\(p\)</span>, tem a seguinte expressão:</p>
+<p><span class="math display">\[
+\hat{Y}=\bar{Y}+\hat{b}_1M_1P_1+\hat{b}_2M_2P_2+\cdots+\hat{b}_pM_pP_p
+\]</span></p>
+<p>onde:</p>
+<p><span class="math display">\[
+\bar{Y}=\frac{\sum_{i=1}^IT_i}{I\cdot r}=\frac{G}{I \cdot r} \\ 
+\\
+\hat{b}_1=\frac{\sum_{i=1}^IC_{1i}T_i}{r \cdot K_1} = \frac{\hat{Y}_{Reg.Linear}}{r \cdot K_1} \\
+\\
+\hat{b}_2=\frac{\sum_{i=1}^IC_{2i}T_i}{r \cdot K_2} = \frac{\hat{Y}_{Reg.Quadrática}}{r \cdot K_2} \\
+\\
+\cdots
+\\
+\hat{b}_p=\frac{\sum_{i=1}^IC_{pi}T_i}{r \cdot K_p} = \frac{\hat{Y}_{Reg.Grau\;p}}{r \cdot K_p}
+\]</span></p>
+<p>e os <span class="math inline">\(P_j\)</span> são os polinômios ortogonais expressos literalmente em relação à <span class="math inline">\(x\)</span> (obtidos em tabelas):</p>
+<p><span class="math display">\[
+P_1 = x\;\;\;\;\;\;\;\;\;\;\;P_2=x^2-\frac{n^2-1}{12}\;\;\;\;\;\;\;\;\;\;\;P_3=x^3-\frac{3n^2-7}{20}x \\
+\]</span></p>
+<p>No nosso exemplo o teste F indicou que a equação que melhor se ajusta aos dados é a do 2º grau, e portanto, temos:</p>
+<p><span class="math display">\[
+\bar{Y}=\frac{\sum_{i=1}^IT_i}{I\cdot r}=\frac{4379.1}{7 \cdot 4}=156,3964 \\
+\hat{b}_1= \frac{\hat{Y}_{Reg.Linear}}{r \cdot K_1}=\frac{217,7}{4\cdot28}=1,9438 \\
+M_1 = 1 \\
+P_1=x\\
+\hat{b}_2= \frac{\hat{Y}_{Reg.Quadrática}}{r \cdot K_2}=\frac{-657,3}{4\cdot84}=-1,9563 \\
+M_2 = 1 \\
+P_2=x^2-\frac{n^2-1}{12} \text{, onde }n\text{ = nº de níveis de X} \\
+\]</span>
+No exemplo, temos <span class="math inline">\(7\)</span> níveis de X, e portanto, o valor de <span class="math inline">\(P_2\)</span> será:</p>
+<p><span class="math display">\[
+P_2=x^2-\frac{7^2-1}{12}=x^2-4
+\]</span></p>
+<p>Então, a equação de regressão será:</p>
+<p><span class="math display">\[
+\hat{Y}=\bar{Y}+\hat{b}_1M_1P_1+\hat{b}_2M_2P_2 \\
+\hat{Y}=156,3964+1,9438x-1,9563(x^2-4) \\
+\hat{Y}= 164,2216+1,9438x-1,9563x^2
+\]</span></p>
+<p>Esta equação foi obtida utilizando-se, para facilitar os cálculos, uma variável auxiliar:</p>
+<p><span class="math inline">\(x=\frac{X-\bar{X}}{q}\)</span>, onde <span class="math inline">\(\bar{X}\)</span> é a média dos valores de <span class="math inline">\(X\)</span> e <span class="math inline">\(q\)</span> é a diferença entre dois níveis consecutivos de X.</p>
+<p>Assim sendo, devemos expressar a equação de regressão em função de X. No nosso exemplo, temos:</p>
+<p><span class="math display">\[
+\bar{X}=\frac{0+50+100+150+200+250+300}{7}=150 \\
+q=50
+\]</span>
+Então,</p>
+<p><span class="math inline">\(x=\frac{X-150}{50}\)</span></p>
+<p>Substituindo-se a expressão de <span class="math inline">\(x\)</span> na equação de regressão, teremos</p>
+<p><span class="math display">\[
+\hat{Y}= 164,2216+1,9438  \left( \frac{X-150}{50} \right) -1,9563 \left(\frac{X-150}{50}\right)^2 \\
+\hat{Y}= 164,2216+1,9438  \left( \frac{X-150}{50} \right) -1,9563 \left(\frac{X^2-300X+150^2}{50^2}\right) \\
+\hat{Y}= 164,2216+0,0389X-5,8314-0,000783X^2+0,2348X-17,6067 \\
+\hat{Y}= 140,7835+0,2737X-0,000783X^2, \;para\;0 \leq X \leq 300
+\]</span></p>
+<p>onde,
+<span class="math inline">\(\hat{Y}\)</span> é o Peso de 1000 sementes (<span class="math inline">\(g\)</span>).</p>
+<p><span class="math inline">\(X\)</span> é a dose de gesso aplicada (<span class="math inline">\(kg/ha\)</span>).</p>
+</div>
+<div id="cálculo-do-coeficiente-de-determinação-r²" class="section level2" number="23.4">
+<h2><span class="header-section-number">23.4</span> Cálculo do Coeficiente de Determinação (R²)</h2>
+<p>O coeficiente de determinação fornece uma medida do grau de ajuste da equação de regressão estimada. Ele varia entre 0 e 1 e quanto mais próximo de 1 maior o grau de ajuste da equação de regressão estimada. O valor do coeficiente de determinação para uma regressão polinomial de grau <span class="math inline">\(p\)</span>, pode ser obitido por:</p>
+<p><span class="math display">\[
+R^2= \frac{SQ_{Reg.Grau\;1}+SQ_{Reg.Grau\;2}+\cdots+SQ_{reg.Grau\;p}}{SQ_{Trat}}
+\]</span>
+então, como nosso exemplo, a equação ajustada foi do segundo grau, portanto, o coeficiente de determinação será:</p>
+<p><span class="math display">\[
+R^2= \frac{SQ_{Reg.Grau\;1}+SQ_{Reg.Grau\;2}}{SQ_{Trat}}=\frac{423,15+1285,84}{1941,83} =0,8801
+\]</span></p>
+<p>Portanto, <span class="math inline">\(88,01\%\)</span> da variação do peso de 1000 sementes é explicada pela regressão do peso de 1000 sementes em função da dose de gesso aplicada.</p>
+</div>
+<div id="gráfico-da-regressão-ajustada" class="section level2" number="23.5">
+<h2><span class="header-section-number">23.5</span> Gráfico da Regressão Ajustada</h2>
+<p>Podemos fazer uma verificação do ajuste da equação de regressão, calculando os valores esperados de (<span class="math inline">\(\hat{Y}_i\)</span>) por meio da equação de regressão ajustada, e os valores observados (<span class="math inline">\(\bar{Y}_{i\;Obs}\)</span>) por meio das médias dos tratamentos.</p>
+<p>Devemos verificar que <span class="math inline">\(\sum_{i=1}^I\bar{Y}_{i~Obs}=\sum_{i=1}^I\hat{Y}_{i}\)</span>. Estes valores podem também ser utilizados para a construção do gráfico de regressão ajustada.</p>
+<p>No nosso exemplo, temos:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Dose de Gesso (X)</th>
+<th align="center"><span class="math inline">\(\bar{Y}_{i~Obs}\)</span></th>
+<th align="center"><span class="math inline">\(\hat{Y}_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="center">138,60</td>
+<td align="center">140,78</td>
+</tr>
+<tr class="even">
+<td align="left">50</td>
+<td align="center">153,60</td>
+<td align="center">152,51</td>
+</tr>
+<tr class="odd">
+<td align="left">100</td>
+<td align="center">164,53</td>
+<td align="center">160,32</td>
+</tr>
+<tr class="even">
+<td align="left">150</td>
+<td align="center">164,93</td>
+<td align="center">164,22</td>
+</tr>
+<tr class="odd">
+<td align="left">200</td>
+<td align="center">158,73</td>
+<td align="center">164,20</td>
+</tr>
+<tr class="even">
+<td align="left">250</td>
+<td align="center">159,98</td>
+<td align="center">160,27</td>
+</tr>
+<tr class="odd">
+<td align="left">300</td>
+<td align="center">154,43</td>
+<td align="center">152,42</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Total</strong></td>
+<td align="center"><strong>1094,80</strong></td>
+<td align="center"><strong>1094,72</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-346-1.png" width="672" /></p>
+<p>Gráfico 1. Relação entre o Peso de <span class="math inline">\(1000\)</span> sementes e as doses de gesso aplicadas.</p>
+<p><img src="img/R.png" /></p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
+<span id="cb629-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/feijaoREG.txt&quot;</span></span>
+<span id="cb629-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
+<span id="cb629-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de Variância</span></span>
+<span id="cb629-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(d<span class="sc">$</span>trat,d<span class="sc">$</span>y,<span class="at">quali =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## ------------------------------------------------------------------------
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
+##            GL      SQ     QM    Fc      Pr&gt;Fc
+## Tratamento  6 1941.83 323.64 7.668 0.00018763
+## Residuo    21  886.34  42.21                 
+## Total      27 2828.17                        
+## ------------------------------------------------------------------------
+## CV = 4.15 %
+## 
+## ------------------------------------------------------------------------
+## Teste de normalidade dos residuos ( Shapiro-Wilk ) 
+## Valor-p:  0.5471519 
+## De acordo com o teste de Shapiro-Wilk a 5% de significancia, os residuos podem ser considerados normais.
+## ------------------------------------------------------------------------
+## 
+## ------------------------------------------------------------------------
+## Teste de homogeneidade de variancia 
+## valor-p:  0.3337639 
+## De acordo com o teste de bartlett a 5% de significancia, as variancias podem ser consideradas homogeneas.
+## ------------------------------------------------------------------------
+## 
+## Ajuste de modelos polinomiais de regressao
+## ------------------------------------------------------------------------
+## 
+## Modelo Linear
+## =========================================
+##    Estimativa Erro.padrao   tc    valor.p
+## -----------------------------------------
+## b0  150.5652    2.2134    68.0255    0   
+## b1   0.0389     0.0123    3.1664  0.0046 
+## -----------------------------------------
+## 
+## R2 do modelo linear
+## --------
+## 0.217915
+## --------
+## 
+## Analise de variancia do modelo linear
+## =========================================================
+##                      GL     SQ        QM     Fc   valor.p
+## ---------------------------------------------------------
+## Efeito linear        1   423.1544  423.1544 10.03 0.00465
+## Desvios de Regressao 5  1,518.6780 303.7356  7.2  0.00046
+## Residuos             21  886.3375  42.2066               
+## ---------------------------------------------------------
+## ------------------------------------------------------------------------
+## 
+## Modelo quadratico
+## =========================================
+##    Estimativa Erro.padrao   tc    valor.p
+## -----------------------------------------
+## b0  140.7839    2.8354    49.6527    0   
+## b1   0.2736     0.0443    6.1812     0   
+## b2  -0.0008     0.0001    -5.5196 0.00002
+## -----------------------------------------
+## 
+## R2 do modelo quadratico
+## --------
+## 0.880095
+## --------
+## 
+## Analise de variancia do modelo quadratico
+## ===========================================================
+##                      GL     SQ         QM      Fc   valor.p
+## -----------------------------------------------------------
+## Efeito linear        1   423.1544   423.1544  10.03 0.00465
+## Efeito quadratico    1  1,285.8430 1,285.8430 30.47  2e-05 
+## Desvios de Regressao 4   232.8346   58.2087   1.38  0.27505
+## Residuos             21  886.3375   42.2066                
+## -----------------------------------------------------------
+## ------------------------------------------------------------------------
+## 
+## Modelo cubico
+## =========================================
+##    Estimativa Erro.padrao   tc    valor.p
+## -----------------------------------------
+## b0  138.2423    3.1302    44.1645    0   
+## b1   0.4431     0.0989    4.4812  0.0002 
+## b2  -0.0023     0.0008    -2.8551 0.0095 
+## b3  0.000003       0      1.9166  0.0690 
+## -----------------------------------------
+## 
+## R2 do modelo cubico
+## --------
+## 0.959938
+## --------
+## 
+## Analise de variancia do modelo cubico
+## ===========================================================
+##                      GL     SQ         QM      Fc   valor.p
+## -----------------------------------------------------------
+## Efeito linear        1   423.1544   423.1544  10.03 0.00465
+## Efeito quadratico    1  1,285.8430 1,285.8430 30.47  2e-05 
+## Efeito cubico        1   155.0417   155.0417  3.67   0.069 
+## Desvios de Regressao 3   77.7930    25.9310   0.61  0.61327
+## Residuos             21  886.3375   42.2066                
+## -----------------------------------------------------------
+## ------------------------------------------------------------------------</code></pre>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção do gráfico</span></span>
+<span id="cb631-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">300</span>,<span class="dv">50</span>)</span>
+<span id="cb631-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-3" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">tapply</span>(d<span class="sc">$</span>y, d<span class="sc">$</span>trat, mean)</span>
+<span id="cb631-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>X,</span>
+<span id="cb631-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb631-6"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">bg=</span><span class="st">&quot;gray&quot;</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
+<span id="cb631-7"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Dose de Gesso (kg/ha)&quot;</span>,</span>
+<span id="cb631-8"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Peso de 1000 sementes (g)&quot;</span></span>
+<span id="cb631-9"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-9" aria-hidden="true" tabindex="-1"></a>);<span class="fu">curve</span>(<span class="fl">140.7836+0.2737</span><span class="sc">*</span>x<span class="fl">-0.000783</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb631-10"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">155</span>,<span class="dv">145</span>,<span class="st">&quot;140,7836+0,2737X-0,000783X²</span><span class="sc">\n</span><span class="st">R²=0,8801&quot;</span>)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-347-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -613,8 +1147,8 @@ Se <span class="math inline">\(X \sim N(\mu=13,\sigma^2=16)\)</span>, encontre:<
           </div>
         </div>
       </div>
-<a href="análise-exploratória-de-dados-aed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="experimentação-agrícola.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="obtenção-da-análise-de-variância-8.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="referências.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

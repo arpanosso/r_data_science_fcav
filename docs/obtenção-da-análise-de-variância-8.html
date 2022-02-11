@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R</title>
+  <title>22 Obtenção da análise de variância | Análise de Dados de Ciência do Solo no R</title>
   <meta name="description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R" />
+  <meta property="og:title" content="22 Obtenção da análise de variância | Análise de Dados de Ciência do Solo no R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="11 Distribuição De Probabilidade | Análise de Dados de Ciência do Solo no R" />
+  <meta name="twitter:title" content="22 Obtenção da análise de variância | Análise de Dados de Ciência do Solo no R" />
   
   <meta name="twitter:description" content="Disciplina ministrada no primeiro semestre de 2022 no curso de Pós-graduação em Agronomia (Ciência do Solo) da Faculdade de Ciências Agrárias e Veterinarias (FCAV) da UNESP de Jaboticabal." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="análise-exploratória-de-dados-aed.html"/>
-<link rel="next" href="experimentação-agrícola.html"/>
+<link rel="prev" href="experimento-em-parcelas-subdivididas.html"/>
+<link rel="next" href="análise-de-regressão-por-polinômios-ortogonais.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -458,153 +458,1293 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="distribuição-de-probabilidade" class="section level1" number="11">
-<h1><span class="header-section-number">11</span> Distribuição De Probabilidade</h1>
-<div id="distribuição-normal" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Distribuição Normal</h2>
-<p>A exata curva de densidade para uma particular distribuição normal é descrita pela sua média <span class="math inline">\(\mu\)</span> e pelo seu desvio padrão <span class="math inline">\(\sigma\)</span>, cuja função de densidade de probabilidade é dada por:</p>
+<div id="obtenção-da-análise-de-variância-8" class="section level1" number="22">
+<h1><span class="header-section-number">22</span> Obtenção da análise de variância</h1>
+<p>Para a obtenção da análise de variância de um experimento em parcelas subdivididas, vamos utilizar os dados obtidos do trabalho intitulado “Efeito de épocas de plantio, sobre várias características agronômicas na cultura da soja (<em>Glycine max</em>. (L.) Merril), variedades Santa Rosa e Viçoja, e Jaboticabal, SP,” realizado por K. YUYAMA (1976). Foram utilizadas <span class="math inline">\(8\)</span> épocas de plantio (20/10/74, 30/10/74, 10/11/74, 20/11/74, 30/11/74, 10/12/47, 20/12/74 e 30/12/74) e duas variedade de soja (<span class="math inline">\(V_1\)</span> = Viçoja e <span class="math inline">\(V_2\)</span> = Santa Rosa). O ensaio foi montado de acordo com o delineamento em parcelas subdivididas, com as épocas de plantio nas parcelas, e as variedades nas subparcelas. Os resultados obtidos para produção de grãos (<span class="math inline">\(t\;ha^{-1}\)</span>), foram os seguintes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tratamentos</th>
+<th align="center">Bloco 1</th>
+<th align="center">Bloco 2</th>
+<th align="center">Bloco 3</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1V_1\)</span></td>
+<td align="center">2,9166</td>
+<td align="center">2,8833</td>
+<td align="center">2,4750</td>
+<td align="center">8,2749</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_1V_2\)</span></td>
+<td align="center">2,6416</td>
+<td align="center">3,6666</td>
+<td align="center">3,6166</td>
+<td align="center">9,9248</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_2V_1\)</span></td>
+<td align="center">3,4889</td>
+<td align="center">3,5833</td>
+<td align="center">3,3333</td>
+<td align="center">10,4055</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2V_2\)</span></td>
+<td align="center">4,0583</td>
+<td align="center">4,3000</td>
+<td align="center">2,9083</td>
+<td align="center">11,2666</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3V_1\)</span></td>
+<td align="center">2,3166</td>
+<td align="center">2,8666</td>
+<td align="center">2,4916</td>
+<td align="center">7,6748</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_3V_2\)</span></td>
+<td align="center">3,4500</td>
+<td align="center">3,7666</td>
+<td align="center">3,5333</td>
+<td align="center">10,7499</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_4V_1\)</span></td>
+<td align="center">2,7916</td>
+<td align="center">2,7583</td>
+<td align="center">3,1916</td>
+<td align="center">8,7415</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4V_2\)</span></td>
+<td align="center">3,4166</td>
+<td align="center">2,7416</td>
+<td align="center">3,5083</td>
+<td align="center">9,6665</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5V_1\)</span></td>
+<td align="center">3,5583</td>
+<td align="center">3,1583</td>
+<td align="center">2,7916</td>
+<td align="center">9,5082</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_5V_2\)</span></td>
+<td align="center">3,5000</td>
+<td align="center">3,1166</td>
+<td align="center">3,0916</td>
+<td align="center">9,7082</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_6V_1\)</span></td>
+<td align="center">2,7833</td>
+<td align="center">2,5166</td>
+<td align="center">2,1250</td>
+<td align="center">7,4249</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6V_2\)</span></td>
+<td align="center">2,5583</td>
+<td align="center">2,5666</td>
+<td align="center">2,0416</td>
+<td align="center">7,1665</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7V_1\)</span></td>
+<td align="center">2,3000</td>
+<td align="center">2,2083</td>
+<td align="center">2,0666</td>
+<td align="center">6,5749</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_7V_2\)</span></td>
+<td align="center">1,4250</td>
+<td align="center">1,9166</td>
+<td align="center">1,8750</td>
+<td align="center">5,2166</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_8V_1\)</span></td>
+<td align="center">1,1666</td>
+<td align="center">1,6916</td>
+<td align="center">1,4666</td>
+<td align="center">4,3248</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8V_2\)</span></td>
+<td align="center">2,0083</td>
+<td align="center">1,7833</td>
+<td align="center">1,7416</td>
+<td align="center">5,5332</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">44,3800</td>
+<td align="center">45,5242</td>
+<td align="center">42,2576</td>
+<td align="center"><strong>132,1618</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dados originais</strong>:<a href="https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_soja.xlsx">DOWNLOAD</a></p>
+<p>Pelo quadro de dados do experimento, podemos obter as somas de quadrados Total e de Blocos, utilizando:</p>
+<ul>
+<li><p><span class="math inline">\(I\)</span> (número de níveis de Tratamentos Principais).</p></li>
+<li><p><span class="math inline">\(J\)</span> (número de Blocos ou repetições).</p></li>
+<li><p><span class="math inline">\(K\)</span> (número de níveis de Tratamentos Secundários).</p></li>
+</ul>
+<p>Assim, temos:</p>
 <p><span class="math display">\[
-f(x) = \frac{1}{\sigma \sqrt{2 \pi}}e^{-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}}, -\infty &lt; x &lt; \infty
+\begin{align}
+SQ_{Total} &amp;= \sum_{i=1}^I \sum_{j=1}^J \sum_{k=1}^K x_{ijk}^2 - \frac{G^2}{IJK} \\
+&amp;=(2,9166^2+2,8833^2+\cdots +1,7416^2)-\frac{132,1618^2}{8\cdot 3\cdot 2}
+\\
+&amp;= 25,6734
+\end{align}
 \]</span></p>
-<p>A curva é totalmente caracterizada por <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span>. Vamos utilizar a função <code>curve()</code> junto à função <code>dnorm()</code> para a construção da representação gráfica da distribuição normal. A função <code>dnorm()</code> retornará o valor de densidade de frequência, ou seja, <span class="math inline">\(f(x)\)</span> para uma média e desvio-padrão definidos em seus argumentos <code>mean</code> e <code>sd</code>, respectivamente.</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="distribuição-de-probabilidade.html#cb477-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definião dos parâmteros</span></span>
-<span id="cb477-2"><a href="distribuição-de-probabilidade.html#cb477-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb477-3"><a href="distribuição-de-probabilidade.html#cb477-3" aria-hidden="true" tabindex="-1"></a>dp <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb477-4"><a href="distribuição-de-probabilidade.html#cb477-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb477-5"><a href="distribuição-de-probabilidade.html#cb477-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção da curva</span></span>
-<span id="cb477-6"><a href="distribuição-de-probabilidade.html#cb477-6" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
-<p>A curva normal modela a distribuição de frequência de muitos eventos biológicos. Muitas das estatísticas utilizadas na inferência estatística seguem a distribuição normal. É a mais importante das distribuições contínuas por causa do seu papel na teoria amostral.</p>
-<p>Como visto, a curva é simétrica é relação à média <span class="math inline">\(\mu\)</span> e tem área sob ela igual a <span class="math inline">\(1\)</span>.</p>
+<p>e,</p>
 <p><span class="math display">\[
-\int_{-\infty}^{\infty} f(x) dx = 1
+\begin{align}
+SQ_{Blocos} &amp;= \frac{1}{IK} \sum_{j = 1}^JB_j^2-C \\
+&amp;=\frac{1}{8\cdot2} (44,3800^2+45,5242^2+42,2576^2) -\frac{132,1618^2}{48} \\
+&amp;=0,3434
+\end{align}
 \]</span></p>
-<p>Portanto, vamos adicionar uma linha no gráfico anterior, representando <span class="math inline">\(\mu\)</span>.</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="distribuição-de-probabilidade.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb478-2"><a href="distribuição-de-probabilidade.html#cb478-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
-<p>Assim, a área (probabilidade) até o valor de <span class="math inline">\(\mu\)</span> é metade da área total, ou seja <span class="math inline">\(0,5\)</span>. Vamos buscar esse valor com a função <code>pnorm()</code>, utiizando como argumento o valor do eixo x, aqui denominado <code>quantil</code> (<code>q</code>) desejado e os parâmetros média e desvio padrão. A função sempre retorna a área acumulada de <span class="math inline">\(-\infty\)</span> até o valor de <code>q</code>.</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="distribuição-de-probabilidade.html#cb479-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="at">q=</span>media, <span class="at">mean=</span>media, <span class="at">sd=</span>dp)</span></code></pre></div>
-<pre><code>## [1] 0.5</code></pre>
-<p>Em outras palavras, calculamos <span class="math inline">\(P(X&lt;\mu)\)</span></p>
-<p>Calcular a área entre os pontos de inflexão da curva, ou seja:</p>
-<p><span class="math display">\[
- \int_{\mu - \sigma}^{\mu+\sigma} f(x) dx = 0,6826895
- \]</span></p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="distribuição-de-probabilidade.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb481-2"><a href="distribuição-de-probabilidade.html#cb481-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">-</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb481-3"><a href="distribuição-de-probabilidade.html#cb481-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-254-1.png" width="672" />
-Calcular a área entre:</p>
-<p><span class="math display">\[
- \int_{\mu - 2\sigma}^{\mu+2\sigma} f(x) dx = 0,9544997
- \]</span></p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="distribuição-de-probabilidade.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb482-2"><a href="distribuição-de-probabilidade.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb482-3"><a href="distribuição-de-probabilidade.html#cb482-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">2</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
-<p>Calcular a área entre:</p>
-<p><span class="math display">\[
- \int_{\mu - 3\sigma}^{\mu+3\sigma} f(x) dx = 0,9973002
- \]</span></p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="distribuição-de-probabilidade.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="at">mean=</span>media,<span class="at">sd=</span>dp),<span class="dv">5</span>,<span class="dv">25</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
-<span id="cb483-2"><a href="distribuição-de-probabilidade.html#cb483-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="dv">-3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb483-3"><a href="distribuição-de-probabilidade.html#cb483-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>media<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>dp,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-256-1.png" width="672" /></p>
-<p>Qual o valor de <span class="math inline">\(X\)</span> que supera <span class="math inline">\(65\%\)</span> das observações, ou seja, qual o valor de <span class="math inline">\(X\)</span> cuja área até ele é <span class="math inline">\(0,65\)</span>. Para isso, utilizaremos a função <code>qnorm()</code> que retornará o quantil dado a probabilidade acumulada até ele.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="distribuição-de-probabilidade.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.65</span>, media, dp)</span></code></pre></div>
-<pre><code>## [1] 16.15596</code></pre>
-<p>Vamos tirar a prova:</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="distribuição-de-probabilidade.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">16.15596</span>,media,dp)</span></code></pre></div>
-<pre><code>## [1] 0.6499998</code></pre>
-<p>Dado a distribuição abaixo, calcular <span class="math inline">\(P(X &lt; 99)\)</span></p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-259"></span>
-<img src="img/normal_func.png" alt="Resumo do funcionamento das funções pnorm, qnorm e dnorm." width="600px" />
-<p class="caption">
-Figure 11.1: Resumo do funcionamento das funções pnorm, qnorm e dnorm.
-</p>
-</div>
-<p><strong>Estudo dos parâmetros</strong></p>
-<p>O efeito da mudança dos parâmetros <span class="math inline">\(\mu\)</span> e <span class="math inline">\(\sigma\)</span> na distribuição normal:</p>
-<p><strong>a)</strong> Diferentes médias e mesmo desvio padrão.</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="distribuição-de-probabilidade.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">180</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,</span>
-<span id="cb488-2"><a href="distribuição-de-probabilidade.html#cb488-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb488-3"><a href="distribuição-de-probabilidade.html#cb488-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">100</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb488-4"><a href="distribuição-de-probabilidade.html#cb488-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">150</span>,<span class="dv">7</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">3</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb488-5"><a href="distribuição-de-probabilidade.html#cb488-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
-<span id="cb488-6"><a href="distribuição-de-probabilidade.html#cb488-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>)<span class="sc">+</span><span class="dv">15</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(sigma<span class="sc">==</span><span class="dv">7</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
-<span id="cb488-7"><a href="distribuição-de-probabilidade.html#cb488-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>),.<span class="dv">0029</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
-<span id="cb488-8"><a href="distribuição-de-probabilidade.html#cb488-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(mu[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">50</span>),</span>
-<span id="cb488-9"><a href="distribuição-de-probabilidade.html#cb488-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">100</span>),</span>
-<span id="cb488-10"><a href="distribuição-de-probabilidade.html#cb488-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(mu[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>,<span class="dv">150</span>))</span>
-<span id="cb488-11"><a href="distribuição-de-probabilidade.html#cb488-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-260-1.png" width="672" /></p>
-<p><strong>b)</strong> Diferentes desvio padrões e a mesma média.</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="distribuição-de-probabilidade.html#cb489-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">7</span>),<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">80</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">2</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.06</span>),</span>
-<span id="cb489-2"><a href="distribuição-de-probabilidade.html#cb489-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Classes&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.3</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb489-3"><a href="distribuição-de-probabilidade.html#cb489-3" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">11</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">1</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb489-4"><a href="distribuição-de-probabilidade.html#cb489-4" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">50</span>,<span class="dv">16</span>),<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">col=</span><span class="dv">4</span>,<span class="at">ylab=</span><span class="st">&quot;Densidade&quot;</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span>
-<span id="cb489-5"><a href="distribuição-de-probabilidade.html#cb489-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>,<span class="at">col=</span><span class="st">&quot;gray&quot;</span>,<span class="at">lwd=</span><span class="fl">1.6</span>)</span>
-<span id="cb489-6"><a href="distribuição-de-probabilidade.html#cb489-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">50</span>),<span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">dnorm</span>(<span class="dv">50</span>,<span class="dv">50</span>,<span class="dv">7</span>)),<span class="at">col=</span><span class="dv">1</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb489-7"><a href="distribuição-de-probabilidade.html#cb489-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">55</span>,.<span class="dv">002</span>,<span class="fu">expression</span>(mu<span class="sc">==</span><span class="dv">50</span>),<span class="at">cex=</span><span class="fl">1.6</span>)</span>
-<span id="cb489-8"><a href="distribuição-de-probabilidade.html#cb489-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">c</span>(<span class="dv">56</span>,<span class="dv">63</span>,<span class="dv">75</span>)<span class="sc">+</span><span class="dv">2</span>,<span class="fu">c</span>(.<span class="dv">05</span>,.<span class="dv">025</span>,<span class="fl">0.01</span>),<span class="at">cex=</span><span class="fl">1.4</span>,</span>
-<span id="cb489-9"><a href="distribuição-de-probabilidade.html#cb489-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expression</span>(<span class="fu">paste</span>(sigma[<span class="dv">1</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">7</span>),</span>
-<span id="cb489-10"><a href="distribuição-de-probabilidade.html#cb489-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">2</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">11</span>),</span>
-<span id="cb489-11"><a href="distribuição-de-probabilidade.html#cb489-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste</span>(sigma[<span class="dv">3</span>],<span class="st">&quot; = &quot;</span>,<span class="dv">16</span>))</span>
-<span id="cb489-12"><a href="distribuição-de-probabilidade.html#cb489-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-261-1.png" width="672" /></p>
-</div>
-<div id="distribuição-normal-padronizada" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Distribuição Normal Padronizada</h2>
-<p>É um caso particular da distribuição normal, quando a média é <span class="math inline">\(0\)</span> e o desvio padrão é <span class="math inline">\(1\)</span>.</p>
-<p>A transformação de qualquer variável pode ser realizada por meio de:</p>
-<p><span class="math display">\[
-Z =\frac{X-\mu}{\sigma}
+<p>Para a obtenção das demais somas de quadrados, é conveniente montar os seguintes quadros auxiliares:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Quadro auxiliar para obtenção dos totais de parcelas</strong>.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(2)</th>
+<th align="center">Bloco 1</th>
+<th align="center">Bloco 2</th>
+<th align="center">Bloco 3</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1\)</span></td>
+<td align="center">5,5582</td>
+<td align="center">6,5499</td>
+<td align="center">6,0916</td>
+<td align="center">18,1997</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2\)</span></td>
+<td align="center">7,5472</td>
+<td align="center">7,8833</td>
+<td align="center">6,2416</td>
+<td align="center">21,6721</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3\)</span></td>
+<td align="center">5,7666</td>
+<td align="center">6,6332</td>
+<td align="center">6,0249</td>
+<td align="center">18,4247</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4\)</span></td>
+<td align="center">6,2082</td>
+<td align="center">5,4999</td>
+<td align="center">6,6999</td>
+<td align="center">18,408</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5\)</span></td>
+<td align="center">7,0583</td>
+<td align="center">6,2749</td>
+<td align="center">5,8832</td>
+<td align="center">19,2164</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6\)</span></td>
+<td align="center">5,3416</td>
+<td align="center">5,0832</td>
+<td align="center">4,1666</td>
+<td align="center">14,5914</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7\)</span></td>
+<td align="center">3,7250</td>
+<td align="center">4,1249</td>
+<td align="center">3,9416</td>
+<td align="center">11,7915</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8\)</span></td>
+<td align="center">3,1749</td>
+<td align="center">3,4749</td>
+<td align="center">3,2082</td>
+<td align="center">9,8580</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">44,38</td>
+<td align="center">45,5242</td>
+<td align="center">42,2576</td>
+<td align="center">132,1618</td>
+</tr>
+</tbody>
+</table>
+<p>Pelo quado de totais de parcelas, obtemos:
+<span class="math display">\[
+\begin{align}
+SQ_{Parcelas} &amp;= \frac{1}{K}[T_{E_1B_1}^2+T_{E_1B_2}^2+\cdots+T_{E_iB_j}^2]-C \\
+&amp;=\frac{1}{2}[5,5582^2+6,5499^2+\cdots+3,2082^2]-363,8904 \\
+&amp;= 21,4149 \\
+\\
+SQ_{Épocas} &amp;= \frac{1}{JK}(T_{E_1}^2+T_{E_2}^2+\cdots +T_{E_I}^2) - C\\
+&amp;= \frac{1}{3\cdot2}(18,1997^2+21,6721^2+\cdots +9,8580^2) - 363,8904\\
+&amp;=19,0482 \\
+\\
+SQ_{Res(a)}&amp; = SQ_{Parcelas} - SQ_{Épocas}- SQ_{Blocos} \\
+&amp; = 21,4149-19,0482-0,3434 \\
+&amp; = 2,0233
+\end{align}
 \]</span></p>
-<p>assim,</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Quadro auxiliar para obtenção dos totais de tratamentos principais x tratamento secundários</strong>.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(3)</th>
+<th align="center"><span class="math inline">\(V_1\)</span></th>
+<th align="center"><span class="math inline">\(V_2\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1\)</span></td>
+<td align="center">8.2749</td>
+<td align="center">9.9248</td>
+<td align="center">18.1997</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2\)</span></td>
+<td align="center">10.4055</td>
+<td align="center">11.2666</td>
+<td align="center">21.6721</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3\)</span></td>
+<td align="center">7.6748</td>
+<td align="center">10.7499</td>
+<td align="center">18.4247</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4\)</span></td>
+<td align="center">8.7415</td>
+<td align="center">9.6665</td>
+<td align="center">18.408</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5\)</span></td>
+<td align="center">9.5082</td>
+<td align="center">9.7082</td>
+<td align="center">19.2164</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6\)</span></td>
+<td align="center">7.4249</td>
+<td align="center">7.1665</td>
+<td align="center">14.5914</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7\)</span></td>
+<td align="center">6.5749</td>
+<td align="center">5.2166</td>
+<td align="center">11.7915</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8\)</span></td>
+<td align="center">4.3248</td>
+<td align="center">5.5332</td>
+<td align="center">9.858</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">62.9295</td>
+<td align="center">69.2323</td>
+<td align="center">132.1618</td>
+</tr>
+</tbody>
+</table>
+<p>Por este quadro, calcularemos a Soma de quadrados devido ao tratamento secundário e devido à interação Primário x Secundário.</p>
 <p><span class="math display">\[
-f(z) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}(z)^2}
+\begin{align}
+SQ_{Variedades} &amp;= \frac{1}{IJ}[T_{V_1}^2+T_{V_2}^2+\cdots+T_{V_K}^2]-C \\
+&amp;=\frac{1}{8\cdot3}[62,9295^2+69,2323^2]-363,8904 \\
+&amp;= 0,8276 \\
+\\
+SQ_{E,V} &amp;= \frac{1}{J}[T_{E_1V_1}^2+T_{E_1V_2}^2+\cdots+T_{E_IV_K}^2]-C \\
+&amp;=\frac{1}{3}[8,2749^2+9,9248^2+\cdots+5,5332^2]-363,8904 \\
+&amp;= 21,9127 \\
+\\
+SQ_{Interação\;E \times V} &amp;= SQ_{E,V}-SQ_{E}
+-SQ_{V}\\
+&amp;=21,9127-19,0482-0,8276\\
+&amp;=2,0370
+\end{align}
 \]</span>
-Por meio da transformação, podemos calcular probabilidade.</p>
-<p><span class="math display">\[
-P(x_1 &lt; X &lt; x_2) = P(z_1 &lt; Z &lt; z_2) \\
-com \\
-z_1=\frac{x_1-\mu}{\sigma} \text{. e } z_2 = \frac{x_2-\mu}{\sigma}
-\]</span></p>
-<p>As funções <code>dnorm()</code>, <code>pnorm()</code> e <code>qnorm()</code> tem como valores <em>default</em> <code>mean = 0</code> e <code>sd = 1</code>, assim:</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="distribuição-de-probabilidade.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Z&quot;</span>)</span>
-<span id="cb490-2"><a href="distribuição-de-probabilidade.html#cb490-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
-<p>Calcular a área entre:</p>
-<p><span class="math display">\[
- \int_{-2}^{2} f(z) dz = 0,9544997
- \]</span></p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="distribuição-de-probabilidade.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x),<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb491-2"><a href="distribuição-de-probabilidade.html#cb491-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="sc">-</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb491-3"><a href="distribuição-de-probabilidade.html#cb491-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
-<p>Qual o valor de <span class="math inline">\(Z\)</span> que supera <span class="math inline">\(97,5\%\)</span> das observações, ou seja, qual o valor de <span class="math inline">\(Z\)</span> cuja área até ele é <span class="math inline">\(0,975\)</span>.</p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="distribuição-de-probabilidade.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div>
-<pre><code>## [1] 1.959964</code></pre>
-<p>Vamos tirar a prova:</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="distribuição-de-probabilidade.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.96</span>)</span></code></pre></div>
-<pre><code>## [1] 0.9750021</code></pre>
+Obtidas as somas de quadrados, podemos montar o seguinte quadro de análise de variância:</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:left;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Blocos
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+0,3434
+</td>
+<td style="text-align:left;">
+0,1717
+</td>
+<td style="text-align:left;">
+1,19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Épocas de Plantio (E)
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+19,0482
+</td>
+<td style="text-align:left;">
+2,7212
+</td>
+<td style="text-align:left;">
+18,83**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduo(a)
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+2,0233
+</td>
+<td style="text-align:left;">
+0,1445
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Parcelas)
+</td>
+<td style="text-align:left;font-weight: bold;">
+( 23 )
+</td>
+<td style="text-align:left;font-weight: bold;">
+( 21,4149 )
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades (V)
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0,8276
+</td>
+<td style="text-align:left;">
+0,8276
+</td>
+<td style="text-align:left;">
+9,50**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Interação (E x V)
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+2,0370
+</td>
+<td style="text-align:left;">
+0,2910
+</td>
+<td style="text-align:left;">
+3,34*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Resíduo(b)
+</td>
+<td style="text-align:left;">
+16
+</td>
+<td style="text-align:left;">
+1,3939
+</td>
+<td style="text-align:left;">
+0,0871
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Total
+</td>
+<td style="text-align:left;font-weight: bold;">
+47
+</td>
+<td style="text-align:left;font-weight: bold;">
+25,6734
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da tabela para Épocas (<span class="math inline">\(7\times14GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=2,76 \\ 1\%=4,28 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Variedades (<span class="math inline">\(1\times16GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=4,49 \\ 1\%=8,53 \end{cases}\)</span></p>
+<p>Valores de F da tabela para Interação E <span class="math inline">\(\times\)</span> V (<span class="math inline">\(7\times16GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=2,66 \\ 1\%=4,03 \end{cases}\)</span></p>
+<div id="conclusões-3" class="section level3" number="22.0.1">
+<h3><span class="header-section-number">22.0.1</span> Conclusões</h3>
+<p><strong>Para efeito de Épocas</strong>: O teste foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar a hipótese da nulidade e concluir que as épocas de plantio diferem entre si em relação à produção da cultura da soja.</p>
+<p><strong>Para efeito de Variedades</strong>: O teste foi significativo ao nível de <span class="math inline">\(1\%\)</span> de probabilidade, indicando que devemos rejeitar a hipótese da nulidade e concluir que as variedades testadas diferem entre si em relação à produção da cultura da soja.</p>
+<p><strong>Para efeito da Interação E <span class="math inline">\(\times\)</span> V</strong>: O teste foi significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade, indicando que devemos rejeitar a hipótese <span class="math inline">\(H_0\)</span> e concluir que os fatores Épocas de plantio e variedades agem conjuntamente sobre a produção da cultura da soja, ou seja, Épocas de plantio e variedades não agem de maneira independente.</p>
+<p>Como a interação E<span class="math inline">\(\times\)</span>V foi significativa, devemos desdobrar os graus de liberdade da interação para estudar os efeitos de um fator em cada um dos níveis do outro fator.</p>
 </div>
-<div id="exercícios-3" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Exercícios</h2>
-<p><strong>1)</strong>Resolver no R e representar graficamente:
-Se <span class="math inline">\(X \sim N(\mu=13,\sigma^2=16)\)</span>, encontre:</p>
-<p><strong>a)</strong> <span class="math inline">\(P(X &lt; 20)\)</span></p>
-<p><strong>b)</strong> <span class="math inline">\(P(X &gt;10)\)</span></p>
-<p><strong>c)</strong> <span class="math inline">\(P(10 &lt; X &lt; 20)\)</span></p>
-<p><strong>d)</strong> <span class="math inline">\(1- P(7&lt; X &lt; 19)\)</span></p>
-<p><strong>e)</strong> <span class="math inline">\(1- P(14&lt; X &lt; 16)\)</span></p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-1.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-2.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-3.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-4.png" width="672" /><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-266-5.png" width="672" /></p>
-<p><strong>2)</strong> Seja <span class="math inline">\(Z\)</span> uma variável aleatória com distribuição normal padrão <span class="math inline">\([Z \sim N(0,1)]\)</span> determine o valor de <span class="math inline">\(t\)</span> tal que.</p>
-<p><strong>a)</strong> <span class="math inline">\(P(0 &lt; Z &lt; t) = 0,4236\)</span></p>
-<p><strong>b)</strong> <span class="math inline">\(P(t &lt; Z &lt; 2) = 0,1000\)</span></p>
-<p><strong>c)</strong> <span class="math inline">\(P(Z &lt; t) = 0,7967\)</span></p>
-<p><strong>d)</strong> <span class="math inline">\(P(-t &lt; Z &lt; t) = 0,95\)</span></p>
+<div id="desdobramento-da-interação-e-times-v-para-estudar-os-efeitos-de-variedades-dentro-de-cada-época-de-plantio-v-d.-e" class="section level2" number="22.1">
+<h2><span class="header-section-number">22.1</span> 1. Desdobramento da interação <span class="math inline">\(E \times V\)</span> para estudar os efeitos de Variedades dentro de cada Época de plantio (V d. E):</h2>
+<p>Para obtenção das somas de quadrados, utilizamos o quadro auxiliar:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(3)</th>
+<th align="center"><span class="math inline">\(V_1\)</span></th>
+<th align="center"><span class="math inline">\(V_2\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1\)</span></td>
+<td align="center">8.2749</td>
+<td align="center">9.9248</td>
+<td align="center">18.1997</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2\)</span></td>
+<td align="center">10.4055</td>
+<td align="center">11.2666</td>
+<td align="center">21.6721</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3\)</span></td>
+<td align="center">7.6748</td>
+<td align="center">10.7499</td>
+<td align="center">18.4247</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4\)</span></td>
+<td align="center">8.7415</td>
+<td align="center">9.6665</td>
+<td align="center">18.408</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5\)</span></td>
+<td align="center">9.5082</td>
+<td align="center">9.7082</td>
+<td align="center">19.2164</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6\)</span></td>
+<td align="center">7.4249</td>
+<td align="center">7.1665</td>
+<td align="center">14.5914</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7\)</span></td>
+<td align="center">6.5749</td>
+<td align="center">5.2166</td>
+<td align="center">11.7915</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8\)</span></td>
+<td align="center">4.3248</td>
+<td align="center">5.5332</td>
+<td align="center">9.858</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">62.9295</td>
+<td align="center">69.2323</td>
+<td align="center">132.1618</td>
+</tr>
+</tbody>
+</table>
+<p>Então, temos:</p>
+<p><span class="math display">\[
+\begin{align}
+SQ_{V\;d.\;E_1} &amp;= \frac{1}{3}[8,2749^2+9,9248^2]-\frac{18,1997^2}{2\cdot3}=0,4537 \\
+SQ_{V\;d.\;E_2} &amp;= \frac{1}{3}[10,4055^2+11,26668^2]-\frac{21,6721^2}{2\cdot3}=0,1236 \\
+SQ_{V\;d.\;E_3} &amp;= \frac{1}{3}[7,6748^2+10,7499^2]-\frac{18,4247^2}{2\cdot3}=1,5760 \\
+SQ_{V\;d.\;E_4} &amp;= \frac{1}{3}[8,7415^2+9,6665^2]-\frac{18,4080^2}{2\cdot3}=0,1426 \\
+SQ_{V\;d.\;E_5} &amp;= \frac{1}{3}[9,5082^2+9,7082^2]-\frac{19,2164^2}{2\cdot3}=0,0067 \\
+SQ_{V\;d.\;E_6} &amp;= \frac{1}{3}[7,4249^2+7,1665^2]-\frac{14,5914^2}{2\cdot3}=0,0111 \\
+SQ_{V\;d.\;E_7} &amp;= \frac{1}{3}[6,5749^2+5,2166^2]-\frac{11,7915^2}{2\cdot3}=0,3075 \\
+SQ_{V\;d.\;E_8} &amp;= \frac{1}{3}[4,3248^2+5,5332^2]-\frac{9,8580^2}{2\cdot3}=0,2434
+\end{align}
+\]</span></p>
+<p><strong>Verificação</strong>:</p>
+<p><span class="math display">\[
+SQ_{Variedade}+SQ_{Interalção\;E \times V} = SQ_{V\;d.E_1}+SQ_{V\;d.E_2}+SQ_{V\;d.E_3}+SQ_{V\;d.E_4}+SQ_{V\;d.E_5}+SQ_{V\;d.E_6}+SQ_{V\;d.E_7}+SQ_{V\;d.E_8}
+\]</span></p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:right;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Variedades d. E1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,4537
+</td>
+<td style="text-align:left;">
+0,4537
+</td>
+<td style="text-align:left;">
+5,21*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,1236
+</td>
+<td style="text-align:left;">
+0,1236
+</td>
+<td style="text-align:left;">
+1,42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+1,5760
+</td>
+<td style="text-align:left;">
+1,5760
+</td>
+<td style="text-align:left;">
+18,09**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,1426
+</td>
+<td style="text-align:left;">
+0,1426
+</td>
+<td style="text-align:left;">
+1,64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,0067
+</td>
+<td style="text-align:left;">
+0,0067
+</td>
+<td style="text-align:left;">
+0,08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,0111
+</td>
+<td style="text-align:left;">
+0,0111
+</td>
+<td style="text-align:left;">
+0,13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,3075
+</td>
+<td style="text-align:left;">
+0,3075
+</td>
+<td style="text-align:left;">
+3,53
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Variedades d. E8
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0,2434
+</td>
+<td style="text-align:left;">
+0,2434
+</td>
+<td style="text-align:left;">
+2,79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Resíduo(b)
+</td>
+<td style="text-align:right;font-weight: bold;">
+16
+</td>
+<td style="text-align:left;font-weight: bold;">
+1,3939
+</td>
+<td style="text-align:left;font-weight: bold;">
+0,0871
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de <span class="math inline">\(F\)</span> da Variedades d. E (<span class="math inline">\(1\times16GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=4,49 \\ 1\%=8,53 \end{cases}\)</span></p>
+<p><strong>Conclusão</strong>: Os valores de F foram significativos para V d. E1 e V d. E3, indicando que existe diferença entre as variedades apenas quando plantadas nestas duas épocas em relação à produção da cultura da soja.</p>
+</div>
+<div id="desdobramento-da-interação-e-times-v-para-estudar-os-efeitos-de-épocas-dentro-de-cada-variedade-e-d.-v" class="section level2" number="22.2">
+<h2><span class="header-section-number">22.2</span> 2. Desdobramento da interação <span class="math inline">\(E \times V\)</span> para estudar os efeitos de épocas dentro de cada Variedade (E d. V):</h2>
+<p><span class="math display">\[
+\begin{align}
+SQ_{E\;d.\;V_1} &amp;= \frac{1}{3}[8,2749^2+10,4055^2+\cdots+4,3248^2]-\frac{62,9295^2}{8\cdot3}=8,1726 \\
+SQ_{E\;d.\;V_2} &amp;= \frac{1}{3}[9,9248^2+11,2666^2+\cdots+5,5332^2]-\frac{69,2323^2}{8\cdot3}=12,9126
+\end{align}
+\]</span></p>
+<p>Como neste caso, estamos comparando tratamento principais dentro de tratamento secundários, estão envolvidos na comparação o Resíduo (a) e o Resíduo (b). Então, para aplicarmos o teste F, devemos obter um residuo médio (variância complexa), dado por:</p>
+<p><span class="math display">\[
+QM_{Res.Médio}=\frac{QM_{Res(a)}+(b-1)QM_{Res(b)}}{b},
+\]</span></p>
+<p>onde <span class="math inline">\(b\)</span> é o número de tratamentos secundários.</p>
+<p>Neste caso, o número de graus de liberdade (<span class="math inline">\(n&#39;\)</span>), associado a este Resíduo Médio, pode ser obtido pla fórmula de <strong>SATTERTHWAITE</strong>:</p>
+<p><span class="math display">\[
+n&#39;=\frac{[QM_{Res(a)}+(b-1)QM_{Res(b)}]^2} {\frac{[QM_{Res(a)}]^2}{GL_{Res(a)}}+\frac{[(b-1)QM_{Res(b)}]^2}{GL_{Res(b)}}}
+\]</span></p>
+<p>Então, no nosso exemplo, temos:</p>
+<p><span class="math display">\[
+QM_{Res.Médio}=\frac{0,1445+(2-1)\cdot0,0871}{2}=0,1158
+\]</span></p>
+<p>e o número de gruas de liberdade associado a este resíduo será:</p>
+<p><span class="math display">\[
+n&#39;=\frac{[0,1445+(2-1) \cdot 0,0871]^2} {\frac{[0,1455]^2}{14}+\frac{[(2-1) \cdot 0,0871]^2}{16}}=27.29
+\]</span>
+Então, podemos montar o seguinte quadro de análise de variância.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Causas de Variação
+</th>
+<th style="text-align:right;">
+GL
+</th>
+<th style="text-align:left;">
+SQ
+</th>
+<th style="text-align:left;">
+QM
+</th>
+<th style="text-align:left;">
+F
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Épocas d. V1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+8,1726
+</td>
+<td style="text-align:left;">
+1,1675
+</td>
+<td style="text-align:left;">
+10,08**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Épocas d. V2
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+12,9126
+</td>
+<td style="text-align:left;">
+1,8447
+</td>
+<td style="text-align:left;">
+15,93**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Resíduo Médio
+</td>
+<td style="text-align:right;font-weight: bold;">
+27
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+<td style="text-align:left;font-weight: bold;">
+0,1158
+</td>
+<td style="text-align:left;font-weight: bold;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>Valores de F da Épocas d. V (<span class="math inline">\(7\times27GL\)</span>): <span class="math inline">\(\begin{cases} 5\%=2,73 \\ 1\%=3,39 \end{cases}\)</span></p>
+<p><strong>Conclusão</strong>: Os valores de F foram significativos para Épocas d. V1 e Épocas d. V2, indicando que existe diferença entre as épocas de plantio para ambas as variedades em relação à produção da cultura da soja.</p>
+<p>Portanto, para verificar qual é a melhor época de plantio para da variedade de soja, devemos aplicar testes de comparações de médias.</p>
+</div>
+<div id="cálculo-das-médias" class="section level2" number="22.3">
+<h2><span class="header-section-number">22.3</span> Cálculo das médias</h2>
+<p>A partir do quadro de totais, vamos construir a tabela de médias</p>
+<p><strong>Quadro de Totais</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(3)</th>
+<th align="center"><span class="math inline">\(V_1\)</span></th>
+<th align="center"><span class="math inline">\(V_2\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1\)</span></td>
+<td align="center"><span class="math inline">\(8,2749\div3\)</span></td>
+<td align="center"><span class="math inline">\(9,9248\div3\)</span></td>
+<td align="center"><span class="math inline">\(18,1997\div6\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2\)</span></td>
+<td align="center"><span class="math inline">\(10,4055\div3\)</span></td>
+<td align="center"><span class="math inline">\(11,2666\div3\)</span></td>
+<td align="center"><span class="math inline">\(21,6721\div6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3\)</span></td>
+<td align="center"><span class="math inline">\(7,6748\div3\)</span></td>
+<td align="center"><span class="math inline">\(10,7499\div3\)</span></td>
+<td align="center"><span class="math inline">\(18,4247\div6\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4\)</span></td>
+<td align="center"><span class="math inline">\(8,7415\div3\)</span></td>
+<td align="center"><span class="math inline">\(9,6665\div3\)</span></td>
+<td align="center"><span class="math inline">\(18,408\div6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5\)</span></td>
+<td align="center"><span class="math inline">\(9,5082\div3\)</span></td>
+<td align="center"><span class="math inline">\(9,7082\div3\)</span></td>
+<td align="center"><span class="math inline">\(19,2164\div6\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6\)</span></td>
+<td align="center"><span class="math inline">\(7,4249\div3\)</span></td>
+<td align="center"><span class="math inline">\(7,1665\div3\)</span></td>
+<td align="center"><span class="math inline">\(14,5914\div6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7\)</span></td>
+<td align="center"><span class="math inline">\(6,5749\div3\)</span></td>
+<td align="center"><span class="math inline">\(5,2166\div3\)</span></td>
+<td align="center"><span class="math inline">\(11,7915\div6\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8\)</span></td>
+<td align="center"><span class="math inline">\(4,3248\div3\)</span></td>
+<td align="center"><span class="math inline">\(5,5332\div3\)</span></td>
+<td align="center"><span class="math inline">\(9,858\div6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center"><span class="math inline">\(62,9295\div24\)</span></td>
+<td align="center"><span class="math inline">\(69,2323\div24\)</span></td>
+<td align="center"><span class="math inline">\(132,1618\div48\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quadro de médias</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">(3)</th>
+<th align="center"><span class="math inline">\(V_1\)</span></th>
+<th align="center"><span class="math inline">\(V_2\)</span></th>
+<th align="center">Médias (E)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1\)</span></td>
+<td align="center">2,7583</td>
+<td align="center">3,3083</td>
+<td align="center">3,0333</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2\)</span></td>
+<td align="center">3,4685</td>
+<td align="center">3,7555</td>
+<td align="center">3,6120</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3\)</span></td>
+<td align="center">2,5583</td>
+<td align="center">3,5833</td>
+<td align="center">3,0708</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4\)</span></td>
+<td align="center">2,9138</td>
+<td align="center">3,2222</td>
+<td align="center">3,0680</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5\)</span></td>
+<td align="center">3,1694</td>
+<td align="center">3,2361</td>
+<td align="center">3,2027</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6\)</span></td>
+<td align="center">2,4750</td>
+<td align="center">2,3888</td>
+<td align="center">2,4319</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7\)</span></td>
+<td align="center">2,1916</td>
+<td align="center">1,7389</td>
+<td align="center">1,9653</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8\)</span></td>
+<td align="center">1,4416</td>
+<td align="center">1,8444</td>
+<td align="center">1,9653</td>
+</tr>
+<tr class="odd">
+<td align="left">Médias (V)</td>
+<td align="center">2,6221</td>
+<td align="center">2,8847</td>
+<td align="center">2,7534</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cálculo-dos-erros-padrões" class="section level2" number="22.4">
+<h2><span class="header-section-number">22.4</span> Cálculo dos erros padrões:</h2>
+<div id="a-tratamentos-principais-épocas" class="section level3" number="22.4.1">
+<h3><span class="header-section-number">22.4.1</span> a) Tratamentos principais (épocas)</h3>
+<p><span class="math display">\[
+s(\hat{m}_E)=\frac{s_a}{\sqrt{r_E}}=\frac{\sqrt{QM_{Res(a)}}}{\sqrt{r_E}}=\sqrt{\frac{0.1445}{6}}= 0,1552\;t\;ha^{-1}
+\]</span></p>
+</div>
+<div id="b-tratamentos-secundários-variedades" class="section level3" number="22.4.2">
+<h3><span class="header-section-number">22.4.2</span> b) Tratamentos secundários (Variedades)</h3>
+<p><span class="math display">\[
+s(\hat{m}_V)=\frac{s_b}{\sqrt{r_V}}=\frac{\sqrt{QM_{Res(b)}}}{\sqrt{r_V}}=\sqrt{\frac{0,087}{24}}= 0,0602\;t\;ha^{-1}
+\]</span></p>
+</div>
+<div id="c-tratamentos-secundários-variedades-dentro-de-tratamentos-principais-épocas" class="section level3" number="22.4.3">
+<h3><span class="header-section-number">22.4.3</span> c) Tratamentos secundários (Variedades) dentro de tratamentos principais (Épocas)</h3>
+<p><span class="math display">\[
+s(\hat{m}_{V\;d.E})=\frac{s_b}{\sqrt{r_{V\;d.E}}}=\frac{\sqrt{QM_{Res(b)}}}{\sqrt{r_{V\;d.E}}}=\sqrt{\frac{0,0871}{3}}= 0,1704\;t\;ha^{-1}
+\]</span></p>
+</div>
+<div id="d-tratamentos-principais-épocas-dentro-de-tratamentos-secundários-variedades" class="section level3" number="22.4.4">
+<h3><span class="header-section-number">22.4.4</span> d) Tratamentos principais (Épocas) dentro de tratamentos secundários (Variedades)</h3>
+<p>Note, apesar de serem as mesmas médias, do item anterior, a comparação é diferente, então no erro padrão delas, devemos utilizar o <span class="math inline">\(QM_{Resíduo\;Médio}\)</span>:</p>
+<p><span class="math display">\[
+s(\hat{m}_{E\;d.V})=\frac{s_{médio}}{\sqrt{r_{E\;d.V}}}=\frac{\sqrt{QM_{Res.Médio}}}{\sqrt{r_{E\;d.V}}}=\sqrt{\frac{0,1158}{3}}= 0,1965\;t\;ha^{-1}
+\]</span></p>
+</div>
+</div>
+<div id="teste-de-tukey-para-comparar-médias-de-tratamentos-principais-épocas-dentro-de-tratamentos-secundérios-variedades" class="section level2" number="22.5">
+<h2><span class="header-section-number">22.5</span> Teste de Tukey para comparar médias de tratamentos principais (épocas) dentro de tratamentos secundérios (variedades)</h2>
+<p>O valor da diferença mínima significativa pelo teste de Tukey (<span class="math inline">\(5\%\)</span>) será:</p>
+<p><span class="math display">\[
+dms=q\cdot\sqrt{\frac{QM_{Res.Médio}}{r_{E\;d.V}}},\\
+\text{considerando:}\;q(8\;Épocas \times 27\;GL\;Res.Médio,5\%)=4,64 \\
+r=3\\
+\text{Então, temos:}\\
+dms=4,64\cdot0,1965=0,9116\;t\;ha^{-1}
+\]</span></p>
+<p>Resumo do teste de Tukey:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"><span class="math inline">\(V_1\)</span></th>
+<th align="left"><span class="math inline">\(V_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_1\)</span></td>
+<td align="left">2,7583 abc</td>
+<td align="left">3,3083 a</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_2\)</span></td>
+<td align="left">3,4685 a</td>
+<td align="left">3,7555 a</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_3\)</span></td>
+<td align="left">2,5583 abc</td>
+<td align="left">3,5833 a</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_4\)</span></td>
+<td align="left">2,9138 abc</td>
+<td align="left">3,2222 ab</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_5\)</span></td>
+<td align="left">3,1694 ab</td>
+<td align="left">3,2361 ab</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_6\)</span></td>
+<td align="left">2,4750 bc</td>
+<td align="left">2,3888 bc</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(E_7\)</span></td>
+<td align="left">2,1916 cd</td>
+<td align="left">1,7389 c</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(E_8\)</span></td>
+<td align="left">1,4416 d</td>
+<td align="left">1,8444 c</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cálculo-dos-coeficientes-de-variação-do-experimento" class="section level2" number="22.6">
+<h2><span class="header-section-number">22.6</span> Cálculo dos coeficientes de variação do experimento</h2>
+<p>Como temos 2 resíduos, teremos também, dois coeficientes de variação:</p>
+<ol style="list-style-type: lower-alpha">
+<li>Coeficiente de variação para parcelas:</li>
+</ol>
+<p><span class="math display">\[
+CV_a = 100\frac{s_a}{\hat{m}}=100\frac{\sqrt{0,1445}}{2,7534} = 13,81\%
+\]</span></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Coeficiente de variação para subparcelas:</li>
+</ol>
+<p><span class="math display">\[
+CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
+\]</span></p>
+<p><img src="img/R.png" /></p>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="obtenção-da-análise-de-variância-8.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
+<span id="cb626-2"><a href="obtenção-da-análise-de-variância-8.html#cb626-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sojapsub.txt&quot;</span></span>
+<span id="cb626-3"><a href="obtenção-da-análise-de-variância-8.html#cb626-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
+<span id="cb626-4"><a href="obtenção-da-análise-de-variância-8.html#cb626-4" aria-hidden="true" tabindex="-1"></a><span class="fu">psub2.dbc</span>(d<span class="sc">$</span>E,d<span class="sc">$</span>V,d<span class="sc">$</span>Bloco,d<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Épocas&quot;</span>,<span class="st">&quot;Variedades&quot;</span>))</span></code></pre></div>
+<pre><code>## ------------------------------------------------------------------------
+## Legenda:
+## FATOR 1 (parcela):  Épocas 
+## FATOR 2 (subparcela):  Variedades 
+## ------------------------------------------------------------------------
+## 
+## ------------------------------------------------------------------------
+## $`Quadro da analise de variancia\n------------------------------------------------------------------------\n`
+##                   GL      SQ      QM      Fc  Pr(&gt;Fc)    
+## Épocas             7 19.0482 2.72117 18.8291    4e-06 ***
+## Bloco              2  0.3434 0.17171  1.1882 0.333718    
+## Erro a            14  2.0233 0.14452                     
+## Variedades         1  0.8276 0.82761  9.4997 0.007142 ** 
+## Épocas*Variedades  7  2.0370 0.29100  3.3402 0.021671 *  
+## Erro b            16  1.3939 0.08712                     
+## Total             47 25.6734                             
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## ------------------------------------------------------------------------
+## CV 1 = 13.80697 %
+## CV 2 = 10.71998 %
+## 
+## 
+## 
+## Interacao significativa: desdobrando a interacao
+## ------------------------------------------------------------------------
+## 
+## Desdobrando  Épocas  dentro de cada nivel de  Variedades 
+## ------------------------------------------------------------------------
+##                              GL        SQ       QM        Fc valor.p
+## Épocas : Variedades 1   7.00000  8.172581 1.167512 10.080441   4e-06
+## Épocas : Variedades 2   7.00000 12.912557 1.844651 15.926946       0
+## Erro combinado         27.28941  3.160659 0.115820                  
+## ------------------------------------------------------------------------
+## 
+## 
+##  Épocas dentro de Variedades 1
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     2   3.4685 
+## ab    5   3.1694 
+## abc   4   2.913833 
+## abc   1   2.7583 
+## abc   3   2.558267 
+##  bc   6   2.474967 
+##   cd      7   2.191633 
+##    d      8   1.4416 
+## ------------------------------------------------------------------------
+## 
+##  Épocas dentro de Variedades 2
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     2   3.755533 
+## a     3   3.5833 
+## a     1   3.308267 
+## ab    5   3.236067 
+## ab    4   3.222167 
+##  bc   6   2.388833 
+##   c   8   1.8444 
+##   c   7   1.738867 
+## ------------------------------------------------------------------------
+## 
+## 
+## Desdobrando  Variedades  dentro de cada nivel de  Épocas 
+## ------------------------------------------------------------------------
+##                        GL       SQ       QM       Fc  valor.p
+## Variedades : Épocas 1   1 0.453695 0.453695 5.207702 0.036511
+## Variedades : Épocas 2   1 0.123582 0.123582 1.418528 0.251016
+## Variedades : Épocas 3   1 1.576040 1.576040 18.09045 0.000607
+## Variedades : Épocas 4   1 0.142604 0.142604 1.636871 0.218998
+## Variedades : Épocas 5   1 0.006667 0.006667 0.076523 0.785608
+## Variedades : Épocas 6   1 0.011128 0.011128 0.127737 0.725461
+## Variedades : Épocas 7   1 0.307496 0.307496 3.529574 0.078628
+## Variedades : Épocas 8   1 0.243372 0.243372 2.793523 0.114086
+## Erro b                 16 1.393919 0.087120                  
+## ------------------------------------------------------------------------
+## 
+## 
+##  Variedades dentro de Épocas 1
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     2   3.308267 
+##  b    1   2.7583 
+## ------------------------------------------------------------------------
+## ------------------------------------------------------------------------
+## 
+## 
+##  Variedades dentro de Épocas 2
+## ------------------------------------------------------------------------
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##   Niveis   Medias
+## 1      1 3.468500
+## 2      2 3.755533
+## ------------------------------------------------------------------------
+## 
+##  Variedades dentro de Épocas 3
+## ------------------------------------------------------------------------
+## Teste de Tukey
+## ------------------------------------------------------------------------
+## Grupos Tratamentos Medias
+## a     2   3.5833 
+##  b    1   2.558267 
+## ------------------------------------------------------------------------
+## ------------------------------------------------------------------------
+## 
+## 
+##  Variedades dentro de Épocas 4
+## ------------------------------------------------------------------------
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##   Niveis   Medias
+## 1      1 2.913833
+## 2      2 3.222167
+## ------------------------------------------------------------------------
+## 
+##  Variedades dentro de Épocas 5
+## ------------------------------------------------------------------------
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##   Niveis   Medias
+## 1      1 3.169400
+## 2      2 3.236067
+## ------------------------------------------------------------------------
+## 
+##  Variedades dentro de Épocas 6
+## ------------------------------------------------------------------------
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##   Niveis   Medias
+## 1      1 2.474967
+## 2      2 2.388833
+## ------------------------------------------------------------------------
+## 
+##  Variedades dentro de Épocas 7
+## ------------------------------------------------------------------------
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##   Niveis   Medias
+## 1      1 2.191633
+## 2      2 1.738867
+## ------------------------------------------------------------------------
+## 
+##  Variedades dentro de Épocas 8
+## ------------------------------------------------------------------------
+## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
+## ------------------------------------------------------------------------
+##   Niveis Medias
+## 1      1 1.4416
+## 2      2 1.8444
+## ------------------------------------------------------------------------</code></pre>
 
 </div>
 </div>
@@ -613,8 +1753,8 @@ Se <span class="math inline">\(X \sim N(\mu=13,\sigma^2=16)\)</span>, encontre:<
           </div>
         </div>
       </div>
-<a href="análise-exploratória-de-dados-aed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="experimentação-agrícola.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="experimento-em-parcelas-subdivididas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análise-de-regressão-por-polinômios-ortogonais.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

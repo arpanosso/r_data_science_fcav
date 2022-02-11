@@ -1,4 +1,4 @@
-# Exemplo de Experimento fatorial com 2 fatores e interação significativa
+# Experimento fatorial com 2 fatores e interação significativa
 
 Para obtenção da análise de variância, vamos supor o seguinte ensaio em que foram estudados os efeitos de $4$ inseticidas em $2$ doses diferentes sobre a produção da cultura do milho em *kg/parcela*. Dados estão disponíveis online em [inseticidas.txt](https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt)
 

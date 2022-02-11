@@ -37,7 +37,7 @@ Efeito da Interação $N \times P \times K$......1 g.l.
 _____________________________________  
 (Tratamentos) .............................(7 g.l.)
 
-# Análise de variância de um experimento fatorial $2^3$
+## Análise de variância de um experimento fatorial $2^3$
 
 Para obtenção da análise de variância, vamos supor o seguinte ensaio em que se estudou o efeito da adubação NPK na cultura do cafeeiro. As produções de café coco, em kg por parcela de 105 $m^2$ (12 covas no espaçamento de $3,5 \times 2,5\;m$) foram: Os dados podem ser encontrados em [cafeeito3fatores.txt](https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/cafeeiro3fatores.txt)
 
@@ -70,7 +70,7 @@ Devemos agora, desdobrar a soma de quadrado e os graus de liberdade de tratament
 
 Para estudo do fatorial $2^3$, podemos utilizar o método dos contrastes de totais de tratamentos ou o método dos totais de tratamentos (sem utilizar contraste) para a obtenção das somas de quadrados.
 
-# Cálculo das somas de quadrados pelo método dos contrastes de totais de tratamentos.
+## Cálculo das somas de quadrados pelo método dos contrastes de totais de tratamentos.
 
 Para a obtenção dos contrastes, organizamos uma tabela de dupla entrada onde as linhas correspondem aos efeitos e as colunas aos tratamentos. Então, no nosso exemplo, temos:
 
@@ -278,7 +278,7 @@ Valores de F da tabela ($1 \times 35 GL$): $\begin{cases}5\%=4,12 \\ 1\%=7,43 \e
 **Para Efeito de K d. N1**: O teste F foi significativo ao nível de $1\%$ de probabilidade, indicando que devemos rejeitar $H_0$, e concluir que o nível de $K_0$ e $K_1$ diferem entre si, na presença de N, em relação à produção do cafeeiro.
 
 
-## Cálculo das médias e erros padrões das médias
+### Cálculo das médias e erros padrões das médias
 
 **As médias dos efeitos principais de N, P e K serão obtidas por**:
 
@@ -313,7 +313,7 @@ $$
 s(\hat{m})=\frac{s}{\sqrt{2\cdot r}} = \sqrt{\frac{QM_{Res}}{2\cdot6}}=\sqrt{\frac{66,03}{12}}=2,35\;kg\;parcela^{-1} 
 $$
 
-## Cálculo do coeficiente de variação
+### Cálculo do coeficiente de variação
 
 $$
 \hat{m} = \frac{G}{IJ} = \frac{1946,90}{8\cdot6} = 40,56\;kg\;parcela^{-1} \\
@@ -321,7 +321,7 @@ s=\sqrt{QM_{Res}}=\sqrt{66,03}=8,13\;kg\;parcela^{-1} \\
 CV=100\cdot \frac{8,13}{40,56}=20,04\%
 $$
 
-![](R.png)
+![](img/R.png)
 
 ```{r}
 # Análise prelinimar
