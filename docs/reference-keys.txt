@@ -206,3 +206,14 @@ para-comparar-médias-de-espaçamento-na-densidade-15-e-d.-d_15
 para-comparar-médias-de-densidades-no-espaçamento-25-d-d.-e_25
 resultado-do-teste-de-tukey-1
 cálculo-do-coeficiente-de-variação-do-experimento-3
+estudo-do-fatorial-23
+análise-de-variância-de-um-experimento-fatorial-23
+cálculo-das-somas-de-quadrados-pelo-método-dos-contrastes-de-totais-de-tratamentos.
+conclusões
+desdobramento-da-interação-n-times-k
+desdobramento-da-interação-nk-para-estudar-os-efeitos-de-n-dentro-de-k-n-d.-k.
+conclusões-1
+desdobramento-da-interação-nk-para-estudar-os-efeitos-de-k-dentro-de-n-k-d.-n.
+conclusões-2
+cálculo-das-médias-e-erros-padrões-das-médias-1
+cálculo-do-coeficiente-de-variação

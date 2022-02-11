@@ -1,4 +1,3 @@
-
 # Exemplo de Experimento fatorial com 2 fatores e interação significativa
 
 Para obtenção da análise de variância, vamos supor o seguinte ensaio em que foram estudados os efeitos de $4$ inseticidas em $2$ doses diferentes sobre a produção da cultura do milho em *kg/parcela*. Dados estão disponíveis online em [inseticidas.txt](https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt)
@@ -243,7 +242,7 @@ $$
 |$\hat{m_{I_3}}$|--|--|--|0,33|
 
 
-### Resultado do teste de Tukey
+## Resultado do teste de Tukey
 
 Médias seguidas pela mesma letra, minúsculas nas linhas e maiúsculas nas colunas, não diferem entre si pelo teste de Tukey ao nível de $5\%$ de probabilidade.
 
@@ -281,7 +280,7 @@ interaction.plot(Inseticidas,Doses,y,mean)
 fat2.dic(Inseticidas,Doses,y,fac.names = c("Inseticidas", "Doses"))
 ```
 
-# Estudo do Fatorial $3^2$
+## Estudo do Fatorial $3^2$
 
 
 Nos experimentos fatoriais $3^2$ ou $3 \times 3$, temos $2$ fatores, cada um dos quais ocorre em $3$ níveis. Os tratamentos são formados pelas combinações dos $3$ níveis dos $2$ fatores, resultando em $9$ tratamentos.
@@ -304,7 +303,7 @@ Espaçamento|	Densidade|	Bloco 1|	Bloco 2|	Bloco 3|	Totais|
 **Dados originais**:[DOWNLOAD](https://github.com/arpanosso/experimentacao-agricola-unesp-fcav/raw/master/data/dados_prod_crotalaria.xlsx)
 
 
-## Obtenção da análise de variância
+### Obtenção da análise de variância
 
 A análise de variância preliminar é feita de acordo com o delineamento em blocos causalizado, com 9 tratamentos e 3 blocos:
 $$
@@ -492,7 +491,7 @@ F da tabela ($2 \times 16 GL$): $\begin{cases}5\%=3,63 \\ 1\%=6,23 \end{cases}$
 
 Para completar a análise de variância, e obter conclusões mais específicas sobre o efeito dos espaçamentos em cada densidade, podemos aplicar um teste de comparação de médias.
 
-## Teste de Tukey para a comparação de médias
+### Teste de Tukey para a comparação de médias
 
 Construção do Quadro de Médias a partir do Quadro de totais:
 
@@ -514,20 +513,20 @@ Quadro de médias:
 |$E_{75}$|16,4075 |21,9389 | 28,0810| 22,1425|
 |**Média Densidade**|27,0706 |27,6513|32,3445|29,0221|
 
-### 1. Para comparar médias de Espaçamento na Densidade 15 (E d. $D_15$)
+#### 1. Para comparar médias de Espaçamento na Densidade 15 (E d. $D_15$)
 
 $$
 DMS=q \cdot s(m) = q_{(3 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=3,65\cdot \sqrt{\frac{67,0219}{3}}=17,2520\;t/ha
 $$
 
-### 2. Para comparar médias de densidades no Espaçamento 25 (D d. $E_25$)
+#### 2. Para comparar médias de densidades no Espaçamento 25 (D d. $E_25$)
 
 $$
 DMS=q \cdot s(m) = q_{(3 \times 16 GL)}\cdot \sqrt{\frac{QM_{Res}}{r}}=3,65\cdot \sqrt{\frac{67,0219}{3}}=17,2520\;t/ha
 $$
 
 
-### Resultado do teste de Tukey
+#### Resultado do teste de Tukey
 
 Médias seguidas pela mesma letra, minúsculas nas linhas e maiúsculas nas colunas, não diferem entre si pelo teste de Tukey ao nível de $5\%$ de probabilidade.
 
@@ -538,12 +537,12 @@ Médias seguidas pela mesma letra, minúsculas nas linhas e maiúsculas nas colu
 |$E_{75}$|16,4075 Ba|21,9389 Aa| 28,0810 Aa| 22,1425|
 |**Média Densidade**|27,0706 |27,6513|32,3445|29,0221|
 
-### Cálculo do coeficiente de variação do experimento
+#### Cálculo do coeficiente de variação do experimento
 
 $$
 CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\%
 $$
-## Aplicação no R
+### Aplicação no R
 
 ![](R.png)
 
