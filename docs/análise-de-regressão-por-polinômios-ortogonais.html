@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -486,13 +489,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>Vamos criar um gráfico para essa visualização no R.</p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">25</span>)</span>
-<span id="cb628-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-2" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">2100</span>,<span class="dv">2600</span>,<span class="dv">3000</span>,<span class="dv">3550</span>,<span class="dv">4150</span>)</span>
-<span id="cb628-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y,<span class="at">pch=</span><span class="dv">21</span>,<span class="at">bg=</span><span class="st">&quot;gray&quot;</span>,<span class="at">cex=</span><span class="fl">1.5</span>,<span class="at">las=</span><span class="dv">1</span>,</span>
-<span id="cb628-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span> <span class="st">&quot;Dose (kg/ha)&quot;</span>,</span>
-<span id="cb628-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span> <span class="st">&quot;Produção do Milho (kg/ha)&quot;</span>, <span class="at">cex.lab=</span><span class="fl">1.2</span></span>
-<span id="cb628-6"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb628-6" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-344-1.png" width="672" /></p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb666-1" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">25</span>)</span>
+<span id="cb666-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb666-2" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">2100</span>,<span class="dv">2600</span>,<span class="dv">3000</span>,<span class="dv">3550</span>,<span class="dv">4150</span>)</span>
+<span id="cb666-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb666-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X,Y,<span class="at">pch=</span><span class="dv">21</span>,<span class="at">bg=</span><span class="st">&quot;gray&quot;</span>,<span class="at">cex=</span><span class="fl">1.5</span>,<span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb666-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb666-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span> <span class="st">&quot;Dose (kg/ha)&quot;</span>,</span>
+<span id="cb666-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb666-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span> <span class="st">&quot;Produção do Milho (kg/ha)&quot;</span>, <span class="at">cex.lab=</span><span class="fl">1.2</span></span>
+<span id="cb666-6"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb666-6" aria-hidden="true" tabindex="-1"></a>     )</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-362-1.png" width="672" /></p>
 <p>Verificamos, portanto, que há uma tendência de aumento na produção à medida que aumentamos a quantidade de adubo aplicada.</p>
 <p>Vejamos então, como fazer a análise de variância para o estudo da regressão. O método utilizado é denominado de método dos polinômios ortogonais, e é de fácil aplicação quanto os níveis de X <strong>são equidistantes</strong>, pois permitem a utilização de coeficientes obtidos em tabelas.</p>
 <div id="obtenção-da-análise-de-variância-estudando-se-os-efeitos-da-regressão" class="section level2" number="23.1">
@@ -1021,14 +1024,14 @@ R^2= \frac{SQ_{Reg.Grau\;1}+SQ_{Reg.Grau\;2}}{SQ_{Trat}}=\frac{423,15+1285,84}{1
 </tr>
 </tbody>
 </table>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-346-1.png" width="672" /></p>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-364-1.png" width="672" /></p>
 <p>Gráfico 1. Relação entre o Peso de <span class="math inline">\(1000\)</span> sementes e as doses de gesso aplicadas.</p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
-<span id="cb629-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/feijaoREG.txt&quot;</span></span>
-<span id="cb629-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
-<span id="cb629-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de Variância</span></span>
-<span id="cb629-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb629-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(d<span class="sc">$</span>trat,d<span class="sc">$</span>y,<span class="at">quali =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
+<span id="cb667-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb667-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/feijaoREG.txt&quot;</span></span>
+<span id="cb667-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb667-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
+<span id="cb667-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb667-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de Variância</span></span>
+<span id="cb667-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb667-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(d<span class="sc">$</span>trat,d<span class="sc">$</span>y,<span class="at">quali =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
@@ -1128,17 +1131,17 @@ R^2= \frac{SQ_{Reg.Grau\;1}+SQ_{Reg.Grau\;2}}{SQ_{Trat}}=\frac{423,15+1285,84}{1
 ## Residuos             21  886.3375   42.2066                
 ## -----------------------------------------------------------
 ## ------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção do gráfico</span></span>
-<span id="cb631-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">300</span>,<span class="dv">50</span>)</span>
-<span id="cb631-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-3" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">tapply</span>(d<span class="sc">$</span>y, d<span class="sc">$</span>trat, mean)</span>
-<span id="cb631-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>X,</span>
-<span id="cb631-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">las=</span><span class="dv">1</span>,</span>
-<span id="cb631-6"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">bg=</span><span class="st">&quot;gray&quot;</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
-<span id="cb631-7"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Dose de Gesso (kg/ha)&quot;</span>,</span>
-<span id="cb631-8"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Peso de 1000 sementes (g)&quot;</span></span>
-<span id="cb631-9"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-9" aria-hidden="true" tabindex="-1"></a>);<span class="fu">curve</span>(<span class="fl">140.7836+0.2737</span><span class="sc">*</span>x<span class="fl">-0.000783</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
-<span id="cb631-10"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb631-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">155</span>,<span class="dv">145</span>,<span class="st">&quot;140,7836+0,2737X-0,000783X²</span><span class="sc">\n</span><span class="st">R²=0,8801&quot;</span>)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-347-1.png" width="672" /></p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção do gráfico</span></span>
+<span id="cb669-2"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-2" aria-hidden="true" tabindex="-1"></a>X<span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">300</span>,<span class="dv">50</span>)</span>
+<span id="cb669-3"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-3" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">&lt;-</span><span class="fu">tapply</span>(d<span class="sc">$</span>y, d<span class="sc">$</span>trat, mean)</span>
+<span id="cb669-4"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Y<span class="sc">~</span>X,</span>
+<span id="cb669-5"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb669-6"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">21</span>,<span class="at">col=</span><span class="st">&quot;black&quot;</span>,<span class="at">bg=</span><span class="st">&quot;gray&quot;</span>,<span class="at">cex=</span><span class="fl">1.3</span>,</span>
+<span id="cb669-7"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Dose de Gesso (kg/ha)&quot;</span>,</span>
+<span id="cb669-8"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Peso de 1000 sementes (g)&quot;</span></span>
+<span id="cb669-9"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-9" aria-hidden="true" tabindex="-1"></a>);<span class="fu">curve</span>(<span class="fl">140.7836+0.2737</span><span class="sc">*</span>x<span class="fl">-0.000783</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb669-10"><a href="análise-de-regressão-por-polinômios-ortogonais.html#cb669-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">155</span>,<span class="dv">145</span>,<span class="st">&quot;140,7836+0,2737X-0,000783X²</span><span class="sc">\n</span><span class="st">R²=0,8801&quot;</span>)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-365-1.png" width="672" /></p>
 
 </div>
 </div>

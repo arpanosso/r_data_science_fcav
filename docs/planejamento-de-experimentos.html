@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -752,7 +755,7 @@ F=\frac{QM_{Tratamentos}}{QM_{Resíduo} } = \frac{\sigma^2+K\sigma^2_t}{\sigma^2
 <p>O critério do teste é o seguinte:</p>
 <p>Se <span class="math inline">\(F\;calculado \ge F\;tabelado\)</span> o teste é significativo ao nível testado. Então, devemos rejeitar a hipótese da nulidade (<span class="math inline">\(H_0\)</span>), e concluir que os efeitos dos tratamentos diferem entre si a esse nível de probabilidade, e essas diferenças não devem ser atribuídas ao acaso, mas sim aos efeitos dos tratamentos testatos, com um grau de confiância <span class="math inline">\(100 \cdot(1-\alpha)\%\)</span>.</p>
 <p>Se <span class="math inline">\(F\;calculado \le F\;tabelado\)</span> o teste é não significativo ao nível testado. Então, não devemos rejeitar a hipótese da nulidade (<span class="math inline">\(H_0\)</span>). Neste caso concluímos que os efeitos dos tratamentos não diferem entre si a esse nível de probabilidae. Abaixo segue o esquema da distribuição F.</p>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-289-1.png" width="672" /></p>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-307-1.png" width="672" /></p>
 <p>Resumidamente, temos:</p>
 <ol style="list-style-type: lower-alpha">
 <li><p><strong>Fcalc &lt; Ftab(5%)</strong> - O teste F é não significativo ao nível de <span class="math inline">\(5\%\)</span> de probabilidade. Aceitamos <span class="math inline">\(H_0\)</span> - Utiliza-se a notação <span class="math inline">\(Fcalc^{NS}\)</span>.</p></li>
@@ -899,7 +902,7 @@ Total
 <h3><span class="header-section-number">14.5.4</span> Passos para fazer a análise de variância no R</h3>
 <div id="carregar-o-pacote-expdes.pt" class="section level4" number="14.5.4.1">
 <h4><span class="header-section-number">14.5.4.1</span> Carregar o Pacote <code>{ExpDes.pt}</code></h4>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="planejamento-de-experimentos.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="planejamento-de-experimentos.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;ExpDes.pt&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:MASS&#39;:
@@ -914,14 +917,14 @@ Total
 </li>
 <li>utilizamos a função <code>read.table()</code> para ler o banco de dados e salvar no objeto <code>dados</code>. Obseve que utilizamos o argumento <code>h=TRUE</code>, indicando que a primeira linha do banco de dados possui o cabeçalho.</li>
 </ul>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="planejamento-de-experimentos.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho</span></span>
-<span id="cb529-2"><a href="planejamento-de-experimentos.html#cb529-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/data/dados_prod_cana.txt&quot;</span></span>
-<span id="cb529-3"><a href="planejamento-de-experimentos.html#cb529-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb529-4"><a href="planejamento-de-experimentos.html#cb529-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrando com os dados</span></span>
-<span id="cb529-5"><a href="planejamento-de-experimentos.html#cb529-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">h=</span> <span class="cn">TRUE</span>)</span>
-<span id="cb529-6"><a href="planejamento-de-experimentos.html#cb529-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb529-7"><a href="planejamento-de-experimentos.html#cb529-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Checando o 6 primeiros registros do banco de dados</span></span>
-<span id="cb529-8"><a href="planejamento-de-experimentos.html#cb529-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="planejamento-de-experimentos.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho</span></span>
+<span id="cb566-2"><a href="planejamento-de-experimentos.html#cb566-2" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/data/dados_prod_cana.txt&quot;</span></span>
+<span id="cb566-3"><a href="planejamento-de-experimentos.html#cb566-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb566-4"><a href="planejamento-de-experimentos.html#cb566-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrando com os dados</span></span>
+<span id="cb566-5"><a href="planejamento-de-experimentos.html#cb566-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read.table</span>(url, <span class="at">h=</span> <span class="cn">TRUE</span>)</span>
+<span id="cb566-6"><a href="planejamento-de-experimentos.html#cb566-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb566-7"><a href="planejamento-de-experimentos.html#cb566-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Checando o 6 primeiros registros do banco de dados</span></span>
+<span id="cb566-8"><a href="planejamento-de-experimentos.html#cb566-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
 <pre><code>##   Tratamento Bloco Producao
 ## 1     Co_413     1       88
 ## 2    CB_4069     1       55
@@ -932,13 +935,13 @@ Total
 </div>
 <div id="vamos-utilizar-o-operador-de-acesso-para-extrair-as-colunas-do-objeto-dados.-observe-que-para-os-fatores-tratamento-e-bloco-utilizamos-a-função-as.factor-que-define-o-tipo-de-dados-como-categórico-necessário-para-a-aplicação-da-análise-de-variância." class="section level4" number="14.5.4.3">
 <h4><span class="header-section-number">14.5.4.3</span> Vamos utilizar o operador de acesso <code>$</code> para extrair as colunas do objeto <code>dados</code>. Observe que para os fatores Tratamento e Bloco, utilizamos a função <code>as.factor()</code> que define o tipo de dados como categórico, necessário para a aplicação da análise de variância.</h4>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="planejamento-de-experimentos.html#cb531-1" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Tratamento)</span>
-<span id="cb531-2"><a href="planejamento-de-experimentos.html#cb531-2" aria-hidden="true" tabindex="-1"></a>bloco <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Bloco)</span>
-<span id="cb531-3"><a href="planejamento-de-experimentos.html#cb531-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> dados<span class="sc">$</span>Producao</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="planejamento-de-experimentos.html#cb568-1" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Tratamento)</span>
+<span id="cb568-2"><a href="planejamento-de-experimentos.html#cb568-2" aria-hidden="true" tabindex="-1"></a>bloco <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Bloco)</span>
+<span id="cb568-3"><a href="planejamento-de-experimentos.html#cb568-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> dados<span class="sc">$</span>Producao</span></code></pre></div>
 </div>
 <div id="utilizar-a-função-do-pacote-expdes.pt-respeitando-o-delineamento-experimental-no-caso-delineamento-em-blocos-ao-acaso-dbc" class="section level4" number="14.5.4.4">
 <h4><span class="header-section-number">14.5.4.4</span> Utilizar a função do pacote <code>{ExpDes.pt}</code>, respeitando o delineamento experimental, no caso; Delineamento em Blocos ao Acaso (DBC)</h4>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="planejamento-de-experimentos.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(trat, bloco, resp)</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="planejamento-de-experimentos.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(trat, bloco, resp)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------

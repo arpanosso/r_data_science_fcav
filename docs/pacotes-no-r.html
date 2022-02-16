@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -476,9 +479,9 @@ Figure 2.1: Pacotes no R são coleções de funções, exemoplos e documentaçõ
 <p>O retorno da função é uma lista de nomes, <code>caracteres</code> (ou <code>strings</code>), na forma de um <em>objeto</em> denominado <strong>vetor</strong>. Observe que cada pacote (elemento) é referenciado dentro do vetor por um índice, um número inteiro <span class="math inline">\([\;i\;]\)</span> apresentado entre colchetes <strong>[i]</strong>, onde <span class="math inline">\(i\)</span> varia de <span class="math inline">\(1\)</span> a <span class="math inline">\(7\)</span>, em nosso exemplo, pois sete é o número total de elementos do <code>vetor</code>.</p>
 <p>Carregue um pacote chamando a função <code>library</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pacotes-no-r.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span></code></pre></div>
-<pre><code>## Warning: package &#39;MASS&#39; was built under R version 4.1.1</code></pre>
 <p>Ou utilize a função <code>require</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="pacotes-no-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(car)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="pacotes-no-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(car)</span></code></pre></div>
+<pre><code>## Warning: package &#39;car&#39; was built under R version 4.1.2</code></pre>
 <p>Agora, liste novamente os pacotes e observe a diferença no retorno da função.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="pacotes-no-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">.packages</span>())</span></code></pre></div>
 <pre><code>##  [1] &quot;car&quot;       &quot;carData&quot;   &quot;MASS&quot;      &quot;stats&quot;     &quot;graphics&quot;  &quot;grDevices&quot;

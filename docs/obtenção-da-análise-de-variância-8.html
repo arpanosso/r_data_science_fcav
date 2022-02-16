@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -1583,10 +1586,10 @@ CV_a = 100\frac{s_a}{\hat{m}}=100\frac{\sqrt{0,1445}}{2,7534} = 13,81\%
 CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
 \]</span></p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="obtenção-da-análise-de-variância-8.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
-<span id="cb626-2"><a href="obtenção-da-análise-de-variância-8.html#cb626-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sojapsub.txt&quot;</span></span>
-<span id="cb626-3"><a href="obtenção-da-análise-de-variância-8.html#cb626-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
-<span id="cb626-4"><a href="obtenção-da-análise-de-variância-8.html#cb626-4" aria-hidden="true" tabindex="-1"></a><span class="fu">psub2.dbc</span>(d<span class="sc">$</span>E,d<span class="sc">$</span>V,d<span class="sc">$</span>Bloco,d<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Épocas&quot;</span>,<span class="st">&quot;Variedades&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="obtenção-da-análise-de-variância-8.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
+<span id="cb664-2"><a href="obtenção-da-análise-de-variância-8.html#cb664-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sojapsub.txt&quot;</span></span>
+<span id="cb664-3"><a href="obtenção-da-análise-de-variância-8.html#cb664-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
+<span id="cb664-4"><a href="obtenção-da-análise-de-variância-8.html#cb664-4" aria-hidden="true" tabindex="-1"></a><span class="fu">psub2.dbc</span>(d<span class="sc">$</span>E,d<span class="sc">$</span>V,d<span class="sc">$</span>Bloco,d<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Épocas&quot;</span>,<span class="st">&quot;Variedades&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
 ## FATOR 1 (parcela):  Épocas 
@@ -1594,7 +1597,8 @@ CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
 ## ------------------------------------------------------------------------
 ## 
 ## ------------------------------------------------------------------------
-## $`Quadro da analise de variancia\n------------------------------------------------------------------------\n`
+## Quadro da analise de variancia
+## ------------------------------------------------------------------------
 ##                   GL      SQ      QM      Fc  Pr(&gt;Fc)    
 ## Épocas             7 19.0482 2.72117 18.8291    4e-06 ***
 ## Bloco              2  0.3434 0.17171  1.1882 0.333718    
@@ -1605,7 +1609,6 @@ CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
 ## Total             47 25.6734                             
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
 ## ------------------------------------------------------------------------
 ## CV 1 = 13.80697 %
 ## CV 2 = 10.71998 %

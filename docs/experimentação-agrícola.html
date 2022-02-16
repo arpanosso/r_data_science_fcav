@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -554,19 +557,19 @@ Para uma amostra com <span class="math inline">\(n\)</span> elementos, ditos <sp
 \hat{m} = \frac{\sum_{i=1}^{n}x_i}{n} = \frac{5+3+2+4+3}{5} = \frac{17}{5} = 3,4\;cm
 \]</span>
 <img src="img/R.png" /></p>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="experimentação-agrícola.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defina o vetor de dados</span></span>
-<span id="cb496-2"><a href="experimentação-agrícola.html#cb496-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
-<span id="cb496-3"><a href="experimentação-agrícola.html#cb496-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb496-4"><a href="experimentação-agrícola.html#cb496-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a soma dos elementos de X (G)</span></span>
-<span id="cb496-5"><a href="experimentação-agrícola.html#cb496-5" aria-hidden="true" tabindex="-1"></a>G<span class="ot">=</span><span class="fu">sum</span>(X)</span>
-<span id="cb496-6"><a href="experimentação-agrícola.html#cb496-6" aria-hidden="true" tabindex="-1"></a>G</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="experimentação-agrícola.html#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Defina o vetor de dados</span></span>
+<span id="cb533-2"><a href="experimentação-agrícola.html#cb533-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>)</span>
+<span id="cb533-3"><a href="experimentação-agrícola.html#cb533-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb533-4"><a href="experimentação-agrícola.html#cb533-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a soma dos elementos de X (G)</span></span>
+<span id="cb533-5"><a href="experimentação-agrícola.html#cb533-5" aria-hidden="true" tabindex="-1"></a>G<span class="ot">=</span><span class="fu">sum</span>(X)</span>
+<span id="cb533-6"><a href="experimentação-agrícola.html#cb533-6" aria-hidden="true" tabindex="-1"></a>G</span></code></pre></div>
 <pre><code>## [1] 17</code></pre>
-<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="experimentação-agrícola.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Encontrando o número total de elementos de X</span></span>
-<span id="cb498-2"><a href="experimentação-agrícola.html#cb498-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">length</span>(X)</span>
-<span id="cb498-3"><a href="experimentação-agrícola.html#cb498-3" aria-hidden="true" tabindex="-1"></a>n</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="experimentação-agrícola.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Encontrando o número total de elementos de X</span></span>
+<span id="cb535-2"><a href="experimentação-agrícola.html#cb535-2" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="fu">length</span>(X)</span>
+<span id="cb535-3"><a href="experimentação-agrícola.html#cb535-3" aria-hidden="true" tabindex="-1"></a>n</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="experimentação-agrícola.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando diretamente a média aritmética</span></span>
-<span id="cb500-2"><a href="experimentação-agrícola.html#cb500-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="experimentação-agrícola.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando diretamente a média aritmética</span></span>
+<span id="cb537-2"><a href="experimentação-agrícola.html#cb537-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X)</span></code></pre></div>
 <pre><code>## [1] 3.4</code></pre>
 <p>A diferença entre um valor observado (<span class="math inline">\(x_i\)</span>) e a média aritmética (<span class="math inline">\(\hat{m}\)</span>) é denominado de desvio (<span class="math inline">\(d_i\)</span>), ou seja:</p>
 <p><span class="math display">\[
@@ -597,14 +600,14 @@ Para uma amostra com <span class="math inline">\(n\)</span> elementos, ditos <sp
 \sum_{i=1}^{N}d_i = 0
 \]</span></p>
 <p><img src="R.png" /></p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="experimentação-agrícola.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando os desvios</span></span>
-<span id="cb502-2"><a href="experimentação-agrícola.html#cb502-2" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span>X<span class="sc">-</span><span class="fu">mean</span>(X)</span>
-<span id="cb502-3"><a href="experimentação-agrícola.html#cb502-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb502-4"><a href="experimentação-agrícola.html#cb502-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentando os valores de desvios</span></span>
-<span id="cb502-5"><a href="experimentação-agrícola.html#cb502-5" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="experimentação-agrícola.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando os desvios</span></span>
+<span id="cb539-2"><a href="experimentação-agrícola.html#cb539-2" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span>X<span class="sc">-</span><span class="fu">mean</span>(X)</span>
+<span id="cb539-3"><a href="experimentação-agrícola.html#cb539-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb539-4"><a href="experimentação-agrícola.html#cb539-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentando os valores de desvios</span></span>
+<span id="cb539-5"><a href="experimentação-agrícola.html#cb539-5" aria-hidden="true" tabindex="-1"></a>d</span></code></pre></div>
 <pre><code>## [1]  1.6 -0.4 -1.4  0.6 -0.4</code></pre>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="experimentação-agrícola.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prova de que o A Soma dos Desvios é igual a Zero</span></span>
-<span id="cb504-2"><a href="experimentação-agrícola.html#cb504-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(d))  <span class="co"># a função rond arredonda a saida da função soma para 0 casas decimais</span></span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="experimentação-agrícola.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prova de que o A Soma dos Desvios é igual a Zero</span></span>
+<span id="cb541-2"><a href="experimentação-agrícola.html#cb541-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sum</span>(d))  <span class="co"># a função rond arredonda a saida da função soma para 0 casas decimais</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
 <div id="medidas-de-dispersão" class="section level3" number="12.2.2">
@@ -696,8 +699,8 @@ s^2 =\frac{(1,6^2+(-0.4)^2+(-1,4)^2+0,6^2+(-0,4)^2)^2}{5-1} = \frac{5.2}{4} = 1,
 s^2 =\frac{\sum_{i=1}^nx_i^2-\frac{(\sum_{i=1}^n x_i)^2}{n}}{n-1} = \frac{(5^2+3^2+2^2+4^2+3^2)-\frac{(5+3+2+4+3)^2}{5}}{5-1} = \frac{63-\frac{(17)^2}{5}}{5-1} = \frac{63-57,8}{4}=1,3 \;cm^2
 \]</span></p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="experimentação-agrícola.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forma mais simples de calcular a variância amostral</span></span>
-<span id="cb506-2"><a href="experimentação-agrícola.html#cb506-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="experimentação-agrícola.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forma mais simples de calcular a variância amostral</span></span>
+<span id="cb543-2"><a href="experimentação-agrícola.html#cb543-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(X)</span></code></pre></div>
 <pre><code>## [1] 1.3</code></pre>
 </div>
 <div id="desvio-padrão" class="section level3" number="12.2.4">
@@ -713,8 +716,8 @@ s^2 =\frac{\sum_{i=1}^nx_i^2-\frac{(\sum_{i=1}^n x_i)^2}{n}}{n-1} = \frac{(5^2+3
 s = \sqrt{1,3} = 1,140175\;cm
 \]</span>
 <img src="img/R.png" /></p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="experimentação-agrícola.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forma mais simples de calcular o desvio padrão</span></span>
-<span id="cb508-2"><a href="experimentação-agrícola.html#cb508-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="experimentação-agrícola.html#cb545-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Forma mais simples de calcular o desvio padrão</span></span>
+<span id="cb545-2"><a href="experimentação-agrícola.html#cb545-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(X)</span></code></pre></div>
 <pre><code>## [1] 1.140175</code></pre>
 </div>
 <div id="erro-padrão-da-média" class="section level3" number="12.2.5">
@@ -737,8 +740,8 @@ s(\hat{m}) = \frac{s}{\sqrt{n}}
 s(\hat{m}) = \frac{s}{\sqrt{n}} = \frac{1,140175}{\sqrt{5}} = 0,5099\;cm
 \]</span></p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="experimentação-agrícola.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erro padrão da média</span></span>
-<span id="cb510-2"><a href="experimentação-agrícola.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="experimentação-agrícola.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erro padrão da média</span></span>
+<span id="cb547-2"><a href="experimentação-agrícola.html#cb547-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
 <pre><code>## [1] 0.509902</code></pre>
 <p>Sempre que apresentarmos uma média, é conveniente apresentar também o seu erro padrão. Assim, no exemplo poderíamos apresentar a média e o seu erro padrão, da seguinte maneira:</p>
 <p><span class="math display">\[
@@ -760,8 +763,8 @@ CV = \frac{100 \cdot s}{\hat{m}}
 CV = \frac{100 \cdot s}{\hat{m}} = \frac{100 \cdot 1,140175}{3,4} = 33,53\%
 \]</span>
 <img src="img/R.png" /></p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="experimentação-agrícola.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficiente de Variação</span></span>
-<span id="cb512-2"><a href="experimentação-agrícola.html#cb512-2" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">mean</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="experimentação-agrícola.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficiente de Variação</span></span>
+<span id="cb549-2"><a href="experimentação-agrícola.html#cb549-2" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">sd</span>(X)<span class="sc">/</span><span class="fu">mean</span>(X)</span></code></pre></div>
 <pre><code>## [1] 33.53457</code></pre>
 
 </div>

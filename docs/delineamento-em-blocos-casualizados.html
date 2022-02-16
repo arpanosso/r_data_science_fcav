@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -1067,9 +1070,9 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot515,8593}{4802,55}=10,74\%
 \]</span></p>
 <p><strong>Aplicação no R</strong></p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="delineamento-em-blocos-casualizados.html#cb582-1" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/milho.txt&quot;</span></span>
-<span id="cb582-2"><a href="delineamento-em-blocos-casualizados.html#cb582-2" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb582-3"><a href="delineamento-em-blocos-casualizados.html#cb582-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="delineamento-em-blocos-casualizados.html#cb620-1" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/milho.txt&quot;</span></span>
+<span id="cb620-2"><a href="delineamento-em-blocos-casualizados.html#cb620-2" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb620-3"><a href="delineamento-em-blocos-casualizados.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
 <pre><code>##      trat bloco    y
 ## 1  OPACO2     1 2812
 ## 2  OPACO2     2 2296
@@ -1077,14 +1080,14 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot515,8593}{4802,55}=10,74\%
 ## 4  OPACO2     4 3301
 ## 5  OPACO2     5 3691
 ## 6 PIRANAO     1 3728</code></pre>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="delineamento-em-blocos-casualizados.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo os fatores e a variável resposta</span></span>
-<span id="cb584-2"><a href="delineamento-em-blocos-casualizados.html#cb584-2" aria-hidden="true" tabindex="-1"></a>trat<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>trat)</span>
-<span id="cb584-3"><a href="delineamento-em-blocos-casualizados.html#cb584-3" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>bloco)</span>
-<span id="cb584-4"><a href="delineamento-em-blocos-casualizados.html#cb584-4" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
-<span id="cb584-5"><a href="delineamento-em-blocos-casualizados.html#cb584-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb584-6"><a href="delineamento-em-blocos-casualizados.html#cb584-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o modelo matemático</span></span>
-<span id="cb584-7"><a href="delineamento-em-blocos-casualizados.html#cb584-7" aria-hidden="true" tabindex="-1"></a>modelo<span class="ot">&lt;-</span><span class="fu">aov</span>(y<span class="sc">~</span>trat<span class="sc">+</span>bloco)</span>
-<span id="cb584-8"><a href="delineamento-em-blocos-casualizados.html#cb584-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="delineamento-em-blocos-casualizados.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo os fatores e a variável resposta</span></span>
+<span id="cb622-2"><a href="delineamento-em-blocos-casualizados.html#cb622-2" aria-hidden="true" tabindex="-1"></a>trat<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>trat)</span>
+<span id="cb622-3"><a href="delineamento-em-blocos-casualizados.html#cb622-3" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>bloco)</span>
+<span id="cb622-4"><a href="delineamento-em-blocos-casualizados.html#cb622-4" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
+<span id="cb622-5"><a href="delineamento-em-blocos-casualizados.html#cb622-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb622-6"><a href="delineamento-em-blocos-casualizados.html#cb622-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o modelo matemático</span></span>
+<span id="cb622-7"><a href="delineamento-em-blocos-casualizados.html#cb622-7" aria-hidden="true" tabindex="-1"></a>modelo<span class="ot">&lt;-</span><span class="fu">aov</span>(y<span class="sc">~</span>trat<span class="sc">+</span>bloco)</span>
+<span id="cb622-8"><a href="delineamento-em-blocos-casualizados.html#cb622-8" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
@@ -1094,11 +1097,11 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot515,8593}{4802,55}=10,74\%
 ## Residuals 12  3193330   266111                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="delineamento-em-blocos-casualizados.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comparação de Médias pelo teste de Tukey</span></span>
-<span id="cb586-2"><a href="delineamento-em-blocos-casualizados.html#cb586-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;agricolae&quot;</span>)</span>
-<span id="cb586-3"><a href="delineamento-em-blocos-casualizados.html#cb586-3" aria-hidden="true" tabindex="-1"></a>glRes<span class="ot">&lt;-</span><span class="fu">df.residual</span>(modelo)</span>
-<span id="cb586-4"><a href="delineamento-em-blocos-casualizados.html#cb586-4" aria-hidden="true" tabindex="-1"></a>QMres<span class="ot">&lt;-</span><span class="fu">deviance</span>(modelo)<span class="sc">/</span>glRes</span>
-<span id="cb586-5"><a href="delineamento-em-blocos-casualizados.html#cb586-5" aria-hidden="true" tabindex="-1"></a>tukey <span class="ot">&lt;-</span> <span class="fu">HSD.test</span>(modelo,<span class="st">&quot;trat&quot;</span>, <span class="at">group=</span><span class="cn">TRUE</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="delineamento-em-blocos-casualizados.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Comparação de Médias pelo teste de Tukey</span></span>
+<span id="cb624-2"><a href="delineamento-em-blocos-casualizados.html#cb624-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;agricolae&quot;</span>)</span>
+<span id="cb624-3"><a href="delineamento-em-blocos-casualizados.html#cb624-3" aria-hidden="true" tabindex="-1"></a>glRes<span class="ot">&lt;-</span><span class="fu">df.residual</span>(modelo)</span>
+<span id="cb624-4"><a href="delineamento-em-blocos-casualizados.html#cb624-4" aria-hidden="true" tabindex="-1"></a>QMres<span class="ot">&lt;-</span><span class="fu">deviance</span>(modelo)<span class="sc">/</span>glRes</span>
+<span id="cb624-5"><a href="delineamento-em-blocos-casualizados.html#cb624-5" aria-hidden="true" tabindex="-1"></a>tukey <span class="ot">&lt;-</span> <span class="fu">HSD.test</span>(modelo,<span class="st">&quot;trat&quot;</span>, <span class="at">group=</span><span class="cn">TRUE</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## Study: modelo ~ &quot;trat&quot;
 ## 
@@ -1126,23 +1129,23 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot515,8593}{4802,55}=10,74\%
 ## AG152      5036.6      b
 ## PIRANAO    4272.4      b
 ## OPACO2     3120.2      c</code></pre>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="delineamento-em-blocos-casualizados.html#cb588-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bar.group</span>(tukey<span class="sc">$</span>groups,</span>
-<span id="cb588-2"><a href="delineamento-em-blocos-casualizados.html#cb588-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">las=</span><span class="dv">1</span>,</span>
-<span id="cb588-3"><a href="delineamento-em-blocos-casualizados.html#cb588-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(y)<span class="sc">*</span><span class="fl">1.10</span>),</span>
-<span id="cb588-4"><a href="delineamento-em-blocos-casualizados.html#cb588-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Cultivares&quot;</span>,</span>
-<span id="cb588-5"><a href="delineamento-em-blocos-casualizados.html#cb588-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Produção (kg por ha)&quot;</span>,</span>
-<span id="cb588-6"><a href="delineamento-em-blocos-casualizados.html#cb588-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">main=</span><span class="st">&quot;Teste de Tukey (5%)&quot;</span>);<span class="fu">box</span>()</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-314-1.png" width="672" /></p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="delineamento-em-blocos-casualizados.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do CV</span></span>
-<span id="cb589-2"><a href="delineamento-em-blocos-casualizados.html#cb589-2" aria-hidden="true" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="dv">100</span><span class="sc">*</span><span class="fu">sqrt</span>(QMres)<span class="sc">/</span><span class="fu">mean</span>(y)</span>
-<span id="cb589-3"><a href="delineamento-em-blocos-casualizados.html#cb589-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">round</span>(cv,<span class="dv">2</span>),<span class="st">&quot;%&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="delineamento-em-blocos-casualizados.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bar.group</span>(tukey<span class="sc">$</span>groups,</span>
+<span id="cb626-2"><a href="delineamento-em-blocos-casualizados.html#cb626-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb626-3"><a href="delineamento-em-blocos-casualizados.html#cb626-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(y)<span class="sc">*</span><span class="fl">1.10</span>),</span>
+<span id="cb626-4"><a href="delineamento-em-blocos-casualizados.html#cb626-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Cultivares&quot;</span>,</span>
+<span id="cb626-5"><a href="delineamento-em-blocos-casualizados.html#cb626-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Produção (kg por ha)&quot;</span>,</span>
+<span id="cb626-6"><a href="delineamento-em-blocos-casualizados.html#cb626-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">main=</span><span class="st">&quot;Teste de Tukey (5%)&quot;</span>);<span class="fu">box</span>()</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-332-1.png" width="672" /></p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="delineamento-em-blocos-casualizados.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do CV</span></span>
+<span id="cb627-2"><a href="delineamento-em-blocos-casualizados.html#cb627-2" aria-hidden="true" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="dv">100</span><span class="sc">*</span><span class="fu">sqrt</span>(QMres)<span class="sc">/</span><span class="fu">mean</span>(y)</span>
+<span id="cb627-3"><a href="delineamento-em-blocos-casualizados.html#cb627-3" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="fu">round</span>(cv,<span class="dv">2</span>),<span class="st">&quot;%&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;10.74%&quot;</code></pre>
 <p>Utilizando o pacote <code>{ExpDes.pt}</code></p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="delineamento-em-blocos-casualizados.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
-<span id="cb591-2"><a href="delineamento-em-blocos-casualizados.html#cb591-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb591-3"><a href="delineamento-em-blocos-casualizados.html#cb591-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb591-4"><a href="delineamento-em-blocos-casualizados.html#cb591-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
-<span id="cb591-5"><a href="delineamento-em-blocos-casualizados.html#cb591-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="delineamento-em-blocos-casualizados.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
+<span id="cb629-2"><a href="delineamento-em-blocos-casualizados.html#cb629-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb629-3"><a href="delineamento-em-blocos-casualizados.html#cb629-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb629-4"><a href="delineamento-em-blocos-casualizados.html#cb629-4" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
+<span id="cb629-5"><a href="delineamento-em-blocos-casualizados.html#cb629-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
 <pre><code>##      trat bloco    y
 ## 1  OPACO2     1 2812
 ## 2  OPACO2     2 2296
@@ -1150,13 +1153,13 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot515,8593}{4802,55}=10,74\%
 ## 4  OPACO2     4 3301
 ## 5  OPACO2     5 3691
 ## 6 PIRANAO     1 3728</code></pre>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="delineamento-em-blocos-casualizados.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dbc</span></span>
-<span id="cb593-2"><a href="delineamento-em-blocos-casualizados.html#cb593-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> dados<span class="sc">$</span>trat <span class="co"># Criando o vetor de tratamentos</span></span>
-<span id="cb593-3"><a href="delineamento-em-blocos-casualizados.html#cb593-3" aria-hidden="true" tabindex="-1"></a>bloco <span class="ot">&lt;-</span> dados<span class="sc">$</span>bloco <span class="co"># Criando o vetor dos blocos</span></span>
-<span id="cb593-4"><a href="delineamento-em-blocos-casualizados.html#cb593-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dados<span class="sc">$</span>y <span class="co"># Criando o vetor com a variável resposta</span></span>
-<span id="cb593-5"><a href="delineamento-em-blocos-casualizados.html#cb593-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb593-6"><a href="delineamento-em-blocos-casualizados.html#cb593-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
-<span id="cb593-7"><a href="delineamento-em-blocos-casualizados.html#cb593-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(trat,bloco,y,<span class="at">mcomp =</span> <span class="st">&quot;tukey&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="delineamento-em-blocos-casualizados.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dbc</span></span>
+<span id="cb631-2"><a href="delineamento-em-blocos-casualizados.html#cb631-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> dados<span class="sc">$</span>trat <span class="co"># Criando o vetor de tratamentos</span></span>
+<span id="cb631-3"><a href="delineamento-em-blocos-casualizados.html#cb631-3" aria-hidden="true" tabindex="-1"></a>bloco <span class="ot">&lt;-</span> dados<span class="sc">$</span>bloco <span class="co"># Criando o vetor dos blocos</span></span>
+<span id="cb631-4"><a href="delineamento-em-blocos-casualizados.html#cb631-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> dados<span class="sc">$</span>y <span class="co"># Criando o vetor com a variável resposta</span></span>
+<span id="cb631-5"><a href="delineamento-em-blocos-casualizados.html#cb631-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb631-6"><a href="delineamento-em-blocos-casualizados.html#cb631-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
+<span id="cb631-7"><a href="delineamento-em-blocos-casualizados.html#cb631-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(trat,bloco,y,<span class="at">mcomp =</span> <span class="st">&quot;tukey&quot;</span>)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
@@ -1973,18 +1976,18 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot4,8681}{142,16}=3,42\%.
 <div id="aplicação-no-r." class="section level2" number="17.7">
 <h2><span class="header-section-number">17.7</span> Aplicação no R.</h2>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="delineamento-em-blocos-casualizados.html#cb595-1" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/macieira.txt&quot;</span></span>
-<span id="cb595-2"><a href="delineamento-em-blocos-casualizados.html#cb595-2" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
-<span id="cb595-3"><a href="delineamento-em-blocos-casualizados.html#cb595-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb595-4"><a href="delineamento-em-blocos-casualizados.html#cb595-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo os fatores e a variável resposta</span></span>
-<span id="cb595-5"><a href="delineamento-em-blocos-casualizados.html#cb595-5" aria-hidden="true" tabindex="-1"></a>trat<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>trat)</span>
-<span id="cb595-6"><a href="delineamento-em-blocos-casualizados.html#cb595-6" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>bloco)</span>
-<span id="cb595-7"><a href="delineamento-em-blocos-casualizados.html#cb595-7" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
-<span id="cb595-8"><a href="delineamento-em-blocos-casualizados.html#cb595-8" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span><span class="fu">tapply</span>(y,bloco,sum,<span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="fu">is.na</span>(B<span class="ot">&lt;-</span><span class="fu">tapply</span>(y,bloco,sum))]</span>
-<span id="cb595-9"><a href="delineamento-em-blocos-casualizados.html#cb595-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb595-10"><a href="delineamento-em-blocos-casualizados.html#cb595-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o modelo para análise preliminar com a parcela perdida</span></span>
-<span id="cb595-11"><a href="delineamento-em-blocos-casualizados.html#cb595-11" aria-hidden="true" tabindex="-1"></a>modelo<span class="ot">&lt;-</span><span class="fu">aov</span>(y<span class="sc">~</span>trat<span class="sc">+</span>bloco)</span>
-<span id="cb595-12"><a href="delineamento-em-blocos-casualizados.html#cb595-12" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="delineamento-em-blocos-casualizados.html#cb633-1" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/macieira.txt&quot;</span></span>
+<span id="cb633-2"><a href="delineamento-em-blocos-casualizados.html#cb633-2" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb633-3"><a href="delineamento-em-blocos-casualizados.html#cb633-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb633-4"><a href="delineamento-em-blocos-casualizados.html#cb633-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraindo os fatores e a variável resposta</span></span>
+<span id="cb633-5"><a href="delineamento-em-blocos-casualizados.html#cb633-5" aria-hidden="true" tabindex="-1"></a>trat<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>trat)</span>
+<span id="cb633-6"><a href="delineamento-em-blocos-casualizados.html#cb633-6" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>bloco)</span>
+<span id="cb633-7"><a href="delineamento-em-blocos-casualizados.html#cb633-7" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
+<span id="cb633-8"><a href="delineamento-em-blocos-casualizados.html#cb633-8" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span><span class="fu">tapply</span>(y,bloco,sum,<span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="fu">is.na</span>(B<span class="ot">&lt;-</span><span class="fu">tapply</span>(y,bloco,sum))]</span>
+<span id="cb633-9"><a href="delineamento-em-blocos-casualizados.html#cb633-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb633-10"><a href="delineamento-em-blocos-casualizados.html#cb633-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o modelo para análise preliminar com a parcela perdida</span></span>
+<span id="cb633-11"><a href="delineamento-em-blocos-casualizados.html#cb633-11" aria-hidden="true" tabindex="-1"></a>modelo<span class="ot">&lt;-</span><span class="fu">aov</span>(y<span class="sc">~</span>trat<span class="sc">+</span>bloco)</span>
+<span id="cb633-12"><a href="delineamento-em-blocos-casualizados.html#cb633-12" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modelo)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
@@ -1994,34 +1997,34 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot4,8681}{142,16}=3,42\%.
 ## Residuals 11 260.68  23.698                  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="delineamento-em-blocos-casualizados.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimando a parcela perdida</span></span>
-<span id="cb597-2"><a href="delineamento-em-blocos-casualizados.html#cb597-2" aria-hidden="true" tabindex="-1"></a>xij<span class="ot">&lt;-</span><span class="fu">predict</span>(modelo,<span class="at">newdata =</span> dados<span class="sc">$</span>bloco<span class="ot">&lt;-</span><span class="fu">as.factor</span>(bloco))[<span class="fu">is.na</span>(y)]</span>
-<span id="cb597-3"><a href="delineamento-em-blocos-casualizados.html#cb597-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb597-4"><a href="delineamento-em-blocos-casualizados.html#cb597-4" aria-hidden="true" tabindex="-1"></a><span class="co"># valor estimado</span></span>
-<span id="cb597-5"><a href="delineamento-em-blocos-casualizados.html#cb597-5" aria-hidden="true" tabindex="-1"></a>xij</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="delineamento-em-blocos-casualizados.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimando a parcela perdida</span></span>
+<span id="cb635-2"><a href="delineamento-em-blocos-casualizados.html#cb635-2" aria-hidden="true" tabindex="-1"></a>xij<span class="ot">&lt;-</span><span class="fu">predict</span>(modelo,<span class="at">newdata =</span> dados<span class="sc">$</span>bloco<span class="ot">&lt;-</span><span class="fu">as.factor</span>(bloco))[<span class="fu">is.na</span>(y)]</span>
+<span id="cb635-3"><a href="delineamento-em-blocos-casualizados.html#cb635-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb635-4"><a href="delineamento-em-blocos-casualizados.html#cb635-4" aria-hidden="true" tabindex="-1"></a><span class="co"># valor estimado</span></span>
+<span id="cb635-5"><a href="delineamento-em-blocos-casualizados.html#cb635-5" aria-hidden="true" tabindex="-1"></a>xij</span></code></pre></div>
 <pre><code>##     18 
 ## 149.44</code></pre>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="delineamento-em-blocos-casualizados.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Substituindo a parcela perdida pelo valor estimado</span></span>
-<span id="cb599-2"><a href="delineamento-em-blocos-casualizados.html#cb599-2" aria-hidden="true" tabindex="-1"></a>y[<span class="fu">is.na</span>(y)]<span class="ot">&lt;-</span>xij</span>
-<span id="cb599-3"><a href="delineamento-em-blocos-casualizados.html#cb599-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb599-4"><a href="delineamento-em-blocos-casualizados.html#cb599-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o novo modelo</span></span>
-<span id="cb599-5"><a href="delineamento-em-blocos-casualizados.html#cb599-5" aria-hidden="true" tabindex="-1"></a>modeloC<span class="ot">&lt;-</span><span class="fu">aov</span>(y<span class="sc">~</span>trat<span class="sc">+</span>bloco)</span>
-<span id="cb599-6"><a href="delineamento-em-blocos-casualizados.html#cb599-6" aria-hidden="true" tabindex="-1"></a>anava<span class="ot">&lt;-</span><span class="fu">anova</span>(modeloC)</span>
-<span id="cb599-7"><a href="delineamento-em-blocos-casualizados.html#cb599-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb599-8"><a href="delineamento-em-blocos-casualizados.html#cb599-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando o fator de correção para o ajuste das soma de quadrados dos tratamentos</span></span>
-<span id="cb599-9"><a href="delineamento-em-blocos-casualizados.html#cb599-9" aria-hidden="true" tabindex="-1"></a>I<span class="ot">&lt;-</span><span class="fu">length</span>(<span class="fu">levels</span>(trat))</span>
-<span id="cb599-10"><a href="delineamento-em-blocos-casualizados.html#cb599-10" aria-hidden="true" tabindex="-1"></a>QMRes<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
-<span id="cb599-11"><a href="delineamento-em-blocos-casualizados.html#cb599-11" aria-hidden="true" tabindex="-1"></a>(U<span class="ot">&lt;-</span>(I<span class="dv">-1</span>)<span class="sc">/</span>(I)<span class="sc">*</span>(xij<span class="sc">-</span>B<span class="sc">/</span>(I<span class="dv">-1</span>))<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="delineamento-em-blocos-casualizados.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Substituindo a parcela perdida pelo valor estimado</span></span>
+<span id="cb637-2"><a href="delineamento-em-blocos-casualizados.html#cb637-2" aria-hidden="true" tabindex="-1"></a>y[<span class="fu">is.na</span>(y)]<span class="ot">&lt;-</span>xij</span>
+<span id="cb637-3"><a href="delineamento-em-blocos-casualizados.html#cb637-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb637-4"><a href="delineamento-em-blocos-casualizados.html#cb637-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o novo modelo</span></span>
+<span id="cb637-5"><a href="delineamento-em-blocos-casualizados.html#cb637-5" aria-hidden="true" tabindex="-1"></a>modeloC<span class="ot">&lt;-</span><span class="fu">aov</span>(y<span class="sc">~</span>trat<span class="sc">+</span>bloco)</span>
+<span id="cb637-6"><a href="delineamento-em-blocos-casualizados.html#cb637-6" aria-hidden="true" tabindex="-1"></a>anava<span class="ot">&lt;-</span><span class="fu">anova</span>(modeloC)</span>
+<span id="cb637-7"><a href="delineamento-em-blocos-casualizados.html#cb637-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb637-8"><a href="delineamento-em-blocos-casualizados.html#cb637-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando o fator de correção para o ajuste das soma de quadrados dos tratamentos</span></span>
+<span id="cb637-9"><a href="delineamento-em-blocos-casualizados.html#cb637-9" aria-hidden="true" tabindex="-1"></a>I<span class="ot">&lt;-</span><span class="fu">length</span>(<span class="fu">levels</span>(trat))</span>
+<span id="cb637-10"><a href="delineamento-em-blocos-casualizados.html#cb637-10" aria-hidden="true" tabindex="-1"></a>QMRes<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+<span id="cb637-11"><a href="delineamento-em-blocos-casualizados.html#cb637-11" aria-hidden="true" tabindex="-1"></a>(U<span class="ot">&lt;-</span>(I<span class="dv">-1</span>)<span class="sc">/</span>(I)<span class="sc">*</span>(xij<span class="sc">-</span>B<span class="sc">/</span>(I<span class="dv">-1</span>))<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##       18 
 ## 102.6951</code></pre>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="delineamento-em-blocos-casualizados.html#cb601-1" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span>Df[<span class="dv">3</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span>Df[<span class="dv">3</span>]<span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb601-2"><a href="delineamento-em-blocos-casualizados.html#cb601-2" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]<span class="sc">-</span>U</span>
-<span id="cb601-3"><a href="delineamento-em-blocos-casualizados.html#cb601-3" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span><span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span><span class="sc">/</span>anava<span class="sc">$</span>Df</span>
-<span id="cb601-4"><a href="delineamento-em-blocos-casualizados.html#cb601-4" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">1</span>]<span class="sc">/</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
-<span id="cb601-5"><a href="delineamento-em-blocos-casualizados.html#cb601-5" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="fu">pf</span>(anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>],anava<span class="sc">$</span>Df[<span class="dv">1</span>],anava<span class="sc">$</span>Df[<span class="dv">3</span>])</span>
-<span id="cb601-6"><a href="delineamento-em-blocos-casualizados.html#cb601-6" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">2</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">2</span>]<span class="sc">/</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
-<span id="cb601-7"><a href="delineamento-em-blocos-casualizados.html#cb601-7" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">pf</span>(anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>],anava<span class="sc">$</span>Df[<span class="dv">2</span>],anava<span class="sc">$</span>Df[<span class="dv">3</span>])</span>
-<span id="cb601-8"><a href="delineamento-em-blocos-casualizados.html#cb601-8" aria-hidden="true" tabindex="-1"></a>anava</span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="delineamento-em-blocos-casualizados.html#cb639-1" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span>Df[<span class="dv">3</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span>Df[<span class="dv">3</span>]<span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb639-2"><a href="delineamento-em-blocos-casualizados.html#cb639-2" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span>[<span class="dv">1</span>]<span class="sc">-</span>U</span>
+<span id="cb639-3"><a href="delineamento-em-blocos-casualizados.html#cb639-3" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span><span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Sum Sq</span><span class="st">`</span><span class="sc">/</span>anava<span class="sc">$</span>Df</span>
+<span id="cb639-4"><a href="delineamento-em-blocos-casualizados.html#cb639-4" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">1</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">1</span>]<span class="sc">/</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+<span id="cb639-5"><a href="delineamento-em-blocos-casualizados.html#cb639-5" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]<span class="ot">&lt;-</span><span class="fu">pf</span>(anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>],anava<span class="sc">$</span>Df[<span class="dv">1</span>],anava<span class="sc">$</span>Df[<span class="dv">3</span>])</span>
+<span id="cb639-6"><a href="delineamento-em-blocos-casualizados.html#cb639-6" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">F value</span><span class="st">`</span>[<span class="dv">2</span>]<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">2</span>]<span class="sc">/</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+<span id="cb639-7"><a href="delineamento-em-blocos-casualizados.html#cb639-7" aria-hidden="true" tabindex="-1"></a>anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>]<span class="ot">&lt;-</span><span class="fu">pf</span>(anava<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">2</span>],anava<span class="sc">$</span>Df[<span class="dv">2</span>],anava<span class="sc">$</span>Df[<span class="dv">3</span>])</span>
+<span id="cb639-8"><a href="delineamento-em-blocos-casualizados.html#cb639-8" aria-hidden="true" tabindex="-1"></a>anava</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: y
@@ -2031,9 +2034,9 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot4,8681}{142,16}=3,42\%.
 ## Residuals 11 260.68  23.698                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="delineamento-em-blocos-casualizados.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Comparações múltiplas para as médias Tukey</span></span>
-<span id="cb603-2"><a href="delineamento-em-blocos-casualizados.html#cb603-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;agricolae&quot;</span>)</span>
-<span id="cb603-3"><a href="delineamento-em-blocos-casualizados.html#cb603-3" aria-hidden="true" tabindex="-1"></a>tukey <span class="ot">&lt;-</span> <span class="fu">HSD.test</span>(modelo,<span class="st">&quot;trat&quot;</span>, <span class="at">group=</span><span class="cn">TRUE</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="delineamento-em-blocos-casualizados.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Comparações múltiplas para as médias Tukey</span></span>
+<span id="cb641-2"><a href="delineamento-em-blocos-casualizados.html#cb641-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(<span class="st">&quot;agricolae&quot;</span>)</span>
+<span id="cb641-3"><a href="delineamento-em-blocos-casualizados.html#cb641-3" aria-hidden="true" tabindex="-1"></a>tukey <span class="ot">&lt;-</span> <span class="fu">HSD.test</span>(modelo,<span class="st">&quot;trat&quot;</span>, <span class="at">group=</span><span class="cn">TRUE</span>,<span class="at">console=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ## Study: modelo ~ &quot;trat&quot;
 ## 
@@ -2063,17 +2066,17 @@ CV=\frac{100\cdot s}{\hat{m}}=\frac{100\cdot4,8681}{142,16}=3,42\%.
 ## T4 140.0100     ab
 ## T3 138.7425      b
 ## T2 138.0250      b</code></pre>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="delineamento-em-blocos-casualizados.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bar.group</span>(tukey<span class="sc">$</span>groups,</span>
-<span id="cb605-2"><a href="delineamento-em-blocos-casualizados.html#cb605-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">las=</span><span class="dv">1</span>,</span>
-<span id="cb605-3"><a href="delineamento-em-blocos-casualizados.html#cb605-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(y)<span class="sc">*</span><span class="fl">1.10</span>),</span>
-<span id="cb605-4"><a href="delineamento-em-blocos-casualizados.html#cb605-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Cultivares&quot;</span>,</span>
-<span id="cb605-5"><a href="delineamento-em-blocos-casualizados.html#cb605-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Produção (kg por ha)&quot;</span>,</span>
-<span id="cb605-6"><a href="delineamento-em-blocos-casualizados.html#cb605-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">main=</span><span class="st">&quot;Teste de Tukey (5%)&quot;</span>);<span class="fu">box</span>()</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="delineamento-em-blocos-casualizados.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do CV</span></span>
-<span id="cb606-2"><a href="delineamento-em-blocos-casualizados.html#cb606-2" aria-hidden="true" tabindex="-1"></a>QMRes<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
-<span id="cb606-3"><a href="delineamento-em-blocos-casualizados.html#cb606-3" aria-hidden="true" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="dv">100</span><span class="sc">*</span><span class="fu">sqrt</span>(QMRes)<span class="sc">/</span><span class="fu">mean</span>(y)</span>
-<span id="cb606-4"><a href="delineamento-em-blocos-casualizados.html#cb606-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(cv,<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="delineamento-em-blocos-casualizados.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bar.group</span>(tukey<span class="sc">$</span>groups,</span>
+<span id="cb643-2"><a href="delineamento-em-blocos-casualizados.html#cb643-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb643-3"><a href="delineamento-em-blocos-casualizados.html#cb643-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fu">max</span>(y)<span class="sc">*</span><span class="fl">1.10</span>),</span>
+<span id="cb643-4"><a href="delineamento-em-blocos-casualizados.html#cb643-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab=</span><span class="st">&quot;Cultivares&quot;</span>,</span>
+<span id="cb643-5"><a href="delineamento-em-blocos-casualizados.html#cb643-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab=</span><span class="st">&quot;Produção (kg por ha)&quot;</span>,</span>
+<span id="cb643-6"><a href="delineamento-em-blocos-casualizados.html#cb643-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">main=</span><span class="st">&quot;Teste de Tukey (5%)&quot;</span>);<span class="fu">box</span>()</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-337-1.png" width="672" /></p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="delineamento-em-blocos-casualizados.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo do CV</span></span>
+<span id="cb644-2"><a href="delineamento-em-blocos-casualizados.html#cb644-2" aria-hidden="true" tabindex="-1"></a>QMRes<span class="ot">&lt;-</span>anava<span class="sc">$</span><span class="st">`</span><span class="at">Mean Sq</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+<span id="cb644-3"><a href="delineamento-em-blocos-casualizados.html#cb644-3" aria-hidden="true" tabindex="-1"></a>cv<span class="ot">&lt;-</span><span class="dv">100</span><span class="sc">*</span><span class="fu">sqrt</span>(QMRes)<span class="sc">/</span><span class="fu">mean</span>(y)</span>
+<span id="cb644-4"><a href="delineamento-em-blocos-casualizados.html#cb644-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(cv,<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3.42</code></pre>
 
 </div>

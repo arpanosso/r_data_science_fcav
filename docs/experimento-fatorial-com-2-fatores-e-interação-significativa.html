@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -1321,23 +1324,23 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
 \]</span>
 ## Aplicação no R</p>
 <p><img src="R.png" /></p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote par análise de variância</span></span>
-<span id="cb614-2"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb614-3"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt&quot;</span></span>
-<span id="cb614-4"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-5"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
-<span id="cb614-6"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-7"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-7" aria-hidden="true" tabindex="-1"></a>Inseticidas<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Ins)</span>
-<span id="cb614-8"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-9"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-9" aria-hidden="true" tabindex="-1"></a>Doses<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Dos)</span>
-<span id="cb614-10"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-11"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-11" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>Y</span>
-<span id="cb614-12"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-13"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb614-13" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Doses,Inseticidas,y,mean)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-329-1.png" width="672" /></p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Inseticidas,Doses,y,mean)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-329-2.png" width="672" /></p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dic</span>(Inseticidas,Doses,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Inseticidas&quot;</span>, <span class="st">&quot;Doses&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote par análise de variância</span></span>
+<span id="cb652-2"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb652-3"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/inseticidas.txt&quot;</span></span>
+<span id="cb652-4"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb652-5"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb652-6"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb652-7"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-7" aria-hidden="true" tabindex="-1"></a>Inseticidas<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Ins)</span>
+<span id="cb652-8"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb652-9"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-9" aria-hidden="true" tabindex="-1"></a>Doses<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Dos)</span>
+<span id="cb652-10"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb652-11"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-11" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>Y</span>
+<span id="cb652-12"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb652-13"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb652-13" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Doses,Inseticidas,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-347-1.png" width="672" /></p>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb653-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(Inseticidas,Doses,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-347-2.png" width="672" /></p>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dic</span>(Inseticidas,Doses,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Inseticidas&quot;</span>, <span class="st">&quot;Doses&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
 ## FATOR 1:  Inseticidas 
@@ -1347,12 +1350,12 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
 ## 
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
-##                   GL     SQ      QM      Fc     Pr&gt;Fc
-## Inseticidas        3  860.3  286.78  3.7984 0.0312885
-## Doses              1  620.2  620.17  8.2141 0.0112029
-## Inseticidas*Doses  3 3124.8 1041.61 13.7962 0.0001057
-## Residuo           16 1208.0   75.50                  
-## Total             23 5813.3                          
+##                   GL     SQ QM      Fc     Pr&gt;Fc
+## Inseticidas        3  860.3  3  3.7984 0.0312885
+## Doses              1  620.2  4  8.2141 0.0112029
+## Inseticidas*Doses  3 3124.8  2 13.7962 0.0001057
+## Residuo           16 1208.0  5                  
+## Total             23 5813.3  1                  
 ## ------------------------------------------------------------------------
 ## CV = 17.79 %
 ## 
@@ -1374,10 +1377,10 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
 ## ------------------------------------------------------------------------
 ##                     GL        SQ       QM      Fc  Pr.Fc
 ## Doses                1  620.1667 620.1667  8.2141 0.0112
-## Inseticidas:Doses 1  3 2880.9167 960.3056 12.7193 0.0002
+## Inseticidas:Doses 1  3 2880.9167 960.3056 12.7193  2e-04
 ## Inseticidas:Doses 2  3 1104.2500 368.0833  4.8753 0.0135
-## Residuo             16 1208.0000  75.5000      NA     NA
-## Total               23 5813.3333 252.7536      NA     NA
+## Residuo             16 1208.0000  75.5000               
+## Total               23 5813.3333 252.7536               
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -1417,9 +1420,9 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
 ## Doses:Inseticidas 1  1   88.16667   88.16667  1.1678 0.2959
 ## Doses:Inseticidas 2  1  384.00000  384.00000  5.0861 0.0385
 ## Doses:Inseticidas 3  1  912.66667  912.66667 12.0883 0.0031
-## Doses:Inseticidas 4  1 2360.16667 2360.16667 31.2605 0.0000
-## Residuo             16 1208.00000   75.50000      NA     NA
-## Total               23 5813.33333  252.75362      NA     NA
+## Doses:Inseticidas 4  1 2360.16667 2360.16667 31.2605      0
+## Residuo             16 1208.00000   75.50000               
+## Total               23 5813.33333  252.75362               
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -1428,9 +1431,9 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,69}{48,83}=17,80\%
 ## 
 ## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
 ## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        1   50.00000
-## 2        2   57.66667
+##   Niveis   Medias
+## 1      1 50.00000
+## 2      2 57.66667
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -2352,22 +2355,22 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 \]</span>
 ### Aplicação no R</p>
 <p><img src="R.png" /></p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
-<span id="cb618-2"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb618-3"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/crotalaria.txt&quot;</span></span>
-<span id="cb618-4"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb618-5"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
-<span id="cb618-6"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb618-7"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-7" aria-hidden="true" tabindex="-1"></a>esp<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Espaçamento)</span>
-<span id="cb618-8"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-8" aria-hidden="true" tabindex="-1"></a>den<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Densidade)</span>
-<span id="cb618-9"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-9" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Bloco)</span>
-<span id="cb618-10"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-10" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>y</span>
-<span id="cb618-11"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb618-12"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb618-12" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(esp,den,y,mean)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-333-1.png" width="672" /></p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(den,esp,y,mean)</span></code></pre></div>
-<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-333-2.png" width="672" /></p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dbc</span>(esp,den,bloco,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Espaçamento&quot;</span>, <span class="st">&quot;Densidade&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
+<span id="cb656-2"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb656-3"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/crotalaria.txt&quot;</span></span>
+<span id="cb656-4"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb656-5"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-5" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb656-6"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb656-7"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-7" aria-hidden="true" tabindex="-1"></a>esp<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Espaçamento)</span>
+<span id="cb656-8"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-8" aria-hidden="true" tabindex="-1"></a>den<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Densidade)</span>
+<span id="cb656-9"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-9" aria-hidden="true" tabindex="-1"></a>bloco<span class="ot">&lt;-</span><span class="fu">factor</span>(d<span class="sc">$</span>Bloco)</span>
+<span id="cb656-10"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-10" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>d<span class="sc">$</span>y</span>
+<span id="cb656-11"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb656-12"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb656-12" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(esp,den,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-351-1.png" width="672" /></p>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(den,esp,y,mean)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-351-2.png" width="672" /></p>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="experimento-fatorial-com-2-fatores-e-interação-significativa.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dbc</span>(esp,den,bloco,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Espaçamento&quot;</span>, <span class="st">&quot;Densidade&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
 ## FATOR 1:  Espaçamento 
@@ -2377,13 +2380,13 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ## 
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
-##                       GL     SQ     QM      Fc   Pr&gt;Fc
-## Bloco                  2  114.4  57.20  0.8535 0.44444
-## Espaçamento            2 1347.5 673.75 10.0527 0.00149
-## Densidade              2  150.5  75.26  1.1230 0.34964
-## Espaçamento*Densidade  4  860.1 215.02  3.2083 0.04101
-## Residuo               16 1072.3  67.02                
-## Total                 26 3544.9                       
+##                       GL     SQ QM      Fc   Pr&gt;Fc
+## Bloco                  2  114.4  3  0.8535 0.44444
+## Espaçamento            2 1347.5  5 10.0527 0.00149
+## Densidade              2  150.5  6  1.1230 0.34964
+## Espaçamento*Densidade  4  860.1  2  3.2083 0.04101
+## Residuo               16 1072.3  4                
+## Total                 26 3544.9  1                
 ## ------------------------------------------------------------------------
 ## CV = 28.21 %
 ## 
@@ -2406,11 +2409,11 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ##                          GL        SQ        QM      Fc  Pr.Fc
 ## Bloco                     2  114.4004  57.20020  0.8535 0.4444
 ## Densidade                 2  150.5283  75.26417   1.123 0.3496
-## Espaçamento:Densidade 15  2 1583.0186 791.50931 11.8098 0.0007
+## Espaçamento:Densidade 15  2 1583.0186 791.50931 11.8098  7e-04
 ## Espaçamento:Densidade 30  2  179.2489  89.62444  1.3372 0.2904
 ## Espaçamento:Densidade 45  2  445.3134 222.65669  3.3222 0.0621
-## Residuo                  16 1072.3451  67.02157             NA
-## Total                    26 3544.8547 136.34057             NA
+## Residuo                  16 1072.3451  67.02157               
+## Total                    26 3544.8547 136.34057               
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -2430,10 +2433,10 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ## 
 ## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
 ## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        1   28.18333
-## 2        2   32.83167
-## 3        3   21.93900
+##   Niveis   Medias
+## 1      1 28.18333
+## 2      2 32.83167
+## 3      3 21.93900
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -2441,10 +2444,10 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ## 
 ## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
 ## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        1   42.26000
-## 2        2   26.69267
-## 3        3   28.08100
+##   Niveis   Medias
+## 1      1 42.26000
+## 2      2 26.69267
+## 3      3 28.08100
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -2460,8 +2463,8 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ## Densidade:Espaçamento 25  2  519.5526 259.77629   3.876 0.0424
 ## Densidade:Espaçamento 50  2  286.4893 143.24465  2.1373 0.1504
 ## Densidade:Espaçamento 75  2  204.5751 102.28753  1.5262 0.2474
-## Residuo                  16 1072.3451  67.02157             NA
-## Total                    26 3544.8547 136.34057             NA
+## Residuo                  16 1072.3451  67.02157               
+## Total                    26 3544.8547 136.34057               
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -2481,10 +2484,10 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ## 
 ## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
 ## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        1   19.03933
-## 2        2   32.83167
-## 3        3   26.69267
+##   Niveis   Medias
+## 1      1 19.03933
+## 2      2 32.83167
+## 3      3 26.69267
 ## ------------------------------------------------------------------------
 ## 
 ## 
@@ -2492,10 +2495,10 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{8,19}{29,0221}=28,21\
 ## 
 ## De acordo com o teste F, as medias desse fator sao estatisticamente iguais.
 ## ------------------------------------------------------------------------
-##     Niveis     Medias
-## 1        1     16.408
-## 2        2     21.939
-## 3        3     28.081
+##   Niveis Medias
+## 1      1 16.408
+## 2      2 21.939
+## 3      3 28.081
 ## ------------------------------------------------------------------------</code></pre>
 
 </div>

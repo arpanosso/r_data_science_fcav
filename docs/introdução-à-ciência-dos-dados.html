@@ -163,7 +163,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#organização"><i class="fa fa-check"></i><b>4.2</b> Organização</a></li>
 <li class="chapter" data-level="4.3" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#transformação-dos-dados"><i class="fa fa-check"></i><b>4.3</b> Transformação dos dados</a></li>
 <li class="chapter" data-level="4.4" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#visualização"><i class="fa fa-check"></i><b>4.4</b> Visualização</a></li>
-<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a></li>
+<li class="chapter" data-level="4.5" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#modelação"><i class="fa fa-check"></i><b>4.5</b> Modelação</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#exemplo-de-análise-multivariada-pca"><i class="fa fa-check"></i><b>4.5.1</b> Exemplo de Análise multivariada (PCA)</a></li>
+</ul></li>
 <li class="chapter" data-level="4.6" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#comunicação"><i class="fa fa-check"></i><b>4.6</b> Comunicação</a></li>
 <li class="chapter" data-level="4.7" data-path="introdução-à-ciência-dos-dados.html"><a href="introdução-à-ciência-dos-dados.html#programação"><i class="fa fa-check"></i><b>4.7</b> Programação</a></li>
 </ul></li>
@@ -520,8 +523,7 @@ Figure 4.4: Pré-visualização dos dados, observe que o código de importação
 </div>
 <p>Cole as linhas de código no script do R e as execute, para ter a importação dos dados.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introdução-à-ciência-dos-dados.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb13-2"><a href="introdução-à-ciência-dos-dados.html#cb13-2" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;C:/GitHub/r_data_science_fcav/dados/geomorfologia.xlsx&quot;</span>)</span>
-<span id="cb13-3"><a href="introdução-à-ciência-dos-dados.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(geomorfologia)</span></code></pre></div>
+<span id="cb13-2"><a href="introdução-à-ciência-dos-dados.html#cb13-2" aria-hidden="true" tabindex="-1"></a>geomorfologia <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;C:/GitHub/r_data_science_fcav/dados/geomorfologia.xlsx&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
 <img src="img/import_4.png" alt="Após executar o código, os dados devem ser apresentados dessa forma." width="500px" />
 <p class="caption">
@@ -710,15 +712,187 @@ Figure 4.8: Visualização e modelagem são dois processos iterativos, onde a ma
 ## F-statistic: 0.01201 on 1 and 14 DF,  p-value: 0.9143</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introdução-à-ciência-dos-dados.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(mod)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<div id="exemplo-de-análise-multivariada-pca" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Exemplo de Análise multivariada (PCA)</h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<img src="img/multivariada.png" alt="Classificação das técnicas multivariadas (Dependências e Interdependência)." width="400px" />
+<p class="caption">
+Figure 4.9: Classificação das técnicas multivariadas (Dependências e Interdependência).
+</p>
+</div>
+<p>Carregando alguns pacotes</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="introdução-à-ciência-dos-dados.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span></code></pre></div>
+<pre><code>## Carregando pacotes exigidos: permute</code></pre>
+<pre><code>## Carregando pacotes exigidos: lattice</code></pre>
+<pre><code>## This is vegan 2.5-7</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="introdução-à-ciência-dos-dados.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
+<pre><code>## Warning: package &#39;corrplot&#39; was built under R version 4.1.2</code></pre>
+<pre><code>## corrplot 0.92 loaded</code></pre>
+<p>Matriz de Correlação</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="introdução-à-ciência-dos-dados.html#cb45-1" aria-hidden="true" tabindex="-1"></a>geomorfo_num <span class="ot">&lt;-</span> geomorfologia[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)]</span>
+<span id="cb45-2"><a href="introdução-à-ciência-dos-dados.html#cb45-2" aria-hidden="true" tabindex="-1"></a>matriz_correlacao <span class="ot">&lt;-</span> <span class="fu">cor</span>(geomorfo_num)</span>
+<span id="cb45-3"><a href="introdução-à-ciência-dos-dados.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(matriz_correlacao)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="introdução-à-ciência-dos-dados.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(matriz_correlacao, <span class="at">method =</span> <span class="st">&quot;ellipse&quot;</span>)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="introdução-à-ciência-dos-dados.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(matriz_correlacao, <span class="at">lower.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">upper =</span> <span class="st">&quot;ellipse&quot;</span>)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>Notoriamente existem muitas variáveis, vamos filtar e transformas</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="introdução-à-ciência-dos-dados.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(geomorfo_num)</span></code></pre></div>
+<pre><code>## tibble [106 x 17] (S3: tbl_df/tbl/data.frame)
+##  $ AG    : num [1:106] 3.72 4.27 5 3.8 3.1 3.8 3.6 4.7 4.5 5.9 ...
+##  $ AM    : num [1:106] 20.4 22.6 22.7 23.7 22.3 23.8 23.1 25.8 25.5 32.8 ...
+##  $ AF    : num [1:106] 22.9 23.6 22.2 24.4 24.6 19.1 21.7 21.1 18.9 19.8 ...
+##  $ AMF   : num [1:106] 30 28.4 26.9 26.7 26.9 27.1 26.5 24.7 25.4 21.7 ...
+##  $ SILTE : num [1:106] 1.2 1.2 1.2 0.6 2.1 2.2 0.7 0.2 2.5 0.2 ...
+##  $ ARGILA: num [1:106] 21.5 20.4 21.4 20.5 20.7 23.5 23.1 22.7 22 18.5 ...
+##  $ S_A   : num [1:106] 0.05 0.05 0.05 0.02 0.1 0.09 0.03 0.01 0.11 0.01 ...
+##  $ AF_AG : num [1:106] 6.16 5.53 4.44 6.42 7.94 5.03 6.03 4.49 4.2 3.36 ...
+##  $ P     : num [1:106] 42 22 41 27 11 12 11 16 38 25 ...
+##  $ pH    : num [1:106] 4.2 3.8 4.8 4 4.4 4 4.8 5.4 4.4 5.2 ...
+##  $ K     : num [1:106] 0.27 0.11 0.34 0.13 0.11 0.14 0.23 0.28 0.19 0.14 ...
+##  $ Ca    : num [1:106] 1.4 0.4 2.4 0.7 1.4 0.6 1.6 3.3 1.6 2.9 ...
+##  $ Mg    : num [1:106] 0.3 0.1 0.4 0.1 0.3 0.1 0.7 1.3 0.5 1.7 ...
+##  $ H_Al  : num [1:106] 5.2 5.8 4.2 5.2 4.2 5.2 3.4 2.5 5.2 3.1 ...
+##  $ SB    : num [1:106] 1.97 0.61 3.14 0.93 1.81 0.84 2.53 4.88 2.29 4.74 ...
+##  $ T     : num [1:106] 7.17 6.41 7.34 6.13 6.01 6.04 5.93 7.38 7.49 7.84 ...
+##  $ V     : num [1:106] 27 10 43 15 30 14 43 66 31 60 ...</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="introdução-à-ciência-dos-dados.html#cb50-1" aria-hidden="true" tabindex="-1"></a>geomorfo_num<span class="sc">$</span>AREIA <span class="ot">&lt;-</span> geomorfo_num<span class="sc">$</span>AG <span class="sc">+</span> geomorfo_num<span class="sc">$</span>AM <span class="sc">+</span> geomorfo_num<span class="sc">$</span>AF <span class="sc">+</span> geomorfo_num<span class="sc">$</span>AMF</span></code></pre></div>
+<p>Vamos selecionar alguams variáveis</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="introdução-à-ciência-dos-dados.html#cb51-1" aria-hidden="true" tabindex="-1"></a>geomorfo_nun_selecionada <span class="ot">&lt;-</span> geomorfo_num[<span class="fu">c</span>(<span class="st">&quot;AREIA&quot;</span>,<span class="st">&quot;SILTE&quot;</span>,<span class="st">&quot;ARGILA&quot;</span>, <span class="st">&quot;P&quot;</span>, <span class="st">&quot;pH&quot;</span>, <span class="st">&quot;K&quot;</span>,<span class="st">&quot;Ca&quot;</span>,<span class="st">&quot;Mg&quot;</span>,<span class="st">&quot;H_Al&quot;</span>)]</span>
+<span id="cb51-2"><a href="introdução-à-ciência-dos-dados.html#cb51-2" aria-hidden="true" tabindex="-1"></a>matriz_correlacao_selecionada <span class="ot">&lt;-</span> <span class="fu">cor</span>(geomorfo_nun_selecionada)</span>
+<span id="cb51-3"><a href="introdução-à-ciência-dos-dados.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(matriz_correlacao_selecionada,<span class="at">lower.col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">upper =</span> <span class="st">&quot;ellipse&quot;</span>)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>Para a análise de componente principais, primeiramente devemos padronizar o banco de dados, assim utilizamos o argumento <code>scale = TRUE</code> da funçaõ <code>prcompr</code>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="introdução-à-ciência-dos-dados.html#cb52-1" aria-hidden="true" tabindex="-1"></a>da <span class="ot">&lt;-</span> <span class="fu">decostand</span>(geomorfo_nun_selecionada,<span class="at">method =</span> <span class="st">&quot;standardize&quot;</span>,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb52-2"><a href="introdução-à-ciência-dos-dados.html#cb52-2" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(geomorfo_nun_selecionada,<span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb52-3"><a href="introdução-à-ciência-dos-dados.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca)</span></code></pre></div>
+<pre><code>## Importance of components:
+##                           PC1    PC2    PC3     PC4     PC5     PC6     PC7
+## Standard deviation     1.9208 1.5089 1.1682 0.89358 0.69509 0.51859 0.24150
+## Proportion of Variance 0.4099 0.2530 0.1516 0.08872 0.05368 0.02988 0.00648
+## Cumulative Proportion  0.4099 0.6629 0.8146 0.90328 0.95697 0.98685 0.99333
+##                            PC8     PC9
+## Standard deviation     0.19093 0.15359
+## Proportion of Variance 0.00405 0.00262
+## Cumulative Proportion  0.99738 1.00000</code></pre>
+<p>Extraindo os autovalores</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="introdução-à-ciência-dos-dados.html#cb54-1" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb54-2"><a href="introdução-à-ciência-dos-dados.html#cb54-2" aria-hidden="true" tabindex="-1"></a>eig</span></code></pre></div>
+<pre><code>## [1] 3.68947383 2.27684828 1.36474606 0.79848178 0.48314722 0.26893875 0.05832218
+## [8] 0.03645306 0.02358884</code></pre>
+<p>Porcentagem da variância explicada por cada componente</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="introdução-à-ciência-dos-dados.html#cb56-1" aria-hidden="true" tabindex="-1"></a>ve<span class="ot">&lt;-</span>eig<span class="sc">/</span><span class="fu">sum</span>(eig)</span>
+<span id="cb56-2"><a href="introdução-à-ciência-dos-dados.html#cb56-2" aria-hidden="true" tabindex="-1"></a>ve</span></code></pre></div>
+<pre><code>## [1] 0.409941537 0.252983142 0.151638451 0.088720198 0.053683025 0.029882083
+## [7] 0.006480242 0.004050340 0.002620982</code></pre>
+<p>Porcentagem acumulada</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="introdução-à-ciência-dos-dados.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cumsum</span>(ve)</span></code></pre></div>
+<pre><code>## [1] 0.4099415 0.6629247 0.8145631 0.9032833 0.9569664 0.9868484 0.9933287
+## [8] 0.9973790 1.0000000</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="introdução-à-ciência-dos-dados.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pca # Autovalores das variáveis</span></span>
+<span id="cb60-2"><a href="introdução-à-ciência-dos-dados.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pca$x # coordenadas dos acessos</span></span></code></pre></div>
+<p>Correlações entre cada variável - poder discriminante</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="introdução-à-ciência-dos-dados.html#cb61-1" aria-hidden="true" tabindex="-1"></a>mcor<span class="ot">&lt;-</span><span class="fu">cor</span>(da, pca<span class="sc">$</span>x) </span>
+<span id="cb61-2"><a href="introdução-à-ciência-dos-dados.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(mcor)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Screeplot, para verificar os PC maiores que a Unidade, de acordo com Kaiser, valores maiores que 1</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="introdução-à-ciência-dos-dados.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(pca)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="introdução-à-ciência-dos-dados.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(eig,</span>
+<span id="cb63-2"><a href="introdução-à-ciência-dos-dados.html#cb63-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">names.arg=</span><span class="fu">colnames</span>(pca<span class="sc">$</span>rotation),</span>
+<span id="cb63-3"><a href="introdução-à-ciência-dos-dados.html#cb63-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span>)[<span class="dv">1</span>]<span class="sc">*</span><span class="fl">1.1</span>),</span>
+<span id="cb63-4"><a href="introdução-à-ciência-dos-dados.html#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab=</span><span class="st">&quot;Inertia&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;Principal Component&quot;</span>,<span class="at">cex.lab=</span><span class="fl">1.2</span></span>
+<span id="cb63-5"><a href="introdução-à-ciência-dos-dados.html#cb63-5" aria-hidden="true" tabindex="-1"></a>    ,<span class="at">main=</span><span class="st">&quot;Sreeplot&quot;</span>)</span>
+<span id="cb63-6"><a href="introdução-à-ciência-dos-dados.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">1</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-45-2.png" width="672" /></p>
+<p>Construção do Biplot e sua tabela</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="introdução-à-ciência-dos-dados.html#cb64-1" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> geomorfologia<span class="sc">$</span>SUP</span>
+<span id="cb64-2"><a href="introdução-à-ciência-dos-dados.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(<span class="fu">rda</span>(da),<span class="at">pch=</span><span class="dv">2</span>)</span>
+<span id="cb64-3"><a href="introdução-à-ciência-dos-dados.html#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ordihull</span>(<span class="fu">rda</span>(da),</span>
+<span id="cb64-4"><a href="introdução-à-ciência-dos-dados.html#cb64-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">group =</span> grupos,</span>
+<span id="cb64-5"><a href="introdução-à-ciência-dos-dados.html#cb64-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="dv">1</span><span class="sc">:</span><span class="fu">nlevels</span>(<span class="fu">as.factor</span>(grupos)))</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>Construção do biplot usando as funções básicas</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="introdução-à-ciência-dos-dados.html#cb65-1" aria-hidden="true" tabindex="-1"></a>pc1V<span class="ot">&lt;-</span><span class="fu">cor</span>(da,pca<span class="sc">$</span>x)[,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sd</span>(<span class="fu">cor</span>(da,pca<span class="sc">$</span>x)[,<span class="dv">1</span>])</span>
+<span id="cb65-2"><a href="introdução-à-ciência-dos-dados.html#cb65-2" aria-hidden="true" tabindex="-1"></a>pc2V<span class="ot">&lt;-</span><span class="fu">cor</span>(da,pca<span class="sc">$</span>x)[,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sd</span>(<span class="fu">cor</span>(da,pca<span class="sc">$</span>x)[,<span class="dv">2</span>])</span>
+<span id="cb65-3"><a href="introdução-à-ciência-dos-dados.html#cb65-3" aria-hidden="true" tabindex="-1"></a>pc1c<span class="ot">&lt;-</span>pca<span class="sc">$</span>x[,<span class="dv">1</span>]<span class="sc">/</span><span class="fu">sd</span>(pca<span class="sc">$</span>x[,<span class="dv">1</span>])</span>
+<span id="cb65-4"><a href="introdução-à-ciência-dos-dados.html#cb65-4" aria-hidden="true" tabindex="-1"></a>pc2c<span class="ot">&lt;-</span>pca<span class="sc">$</span>x[,<span class="dv">2</span>]<span class="sc">/</span><span class="fu">sd</span>(pca<span class="sc">$</span>x[,<span class="dv">2</span>])</span>
+<span id="cb65-5"><a href="introdução-à-ciência-dos-dados.html#cb65-5" aria-hidden="true" tabindex="-1"></a>nv<span class="ot">&lt;-</span><span class="fu">ncol</span>(da) <span class="co"># número de variáveis utilizadas na análise</span></span>
+<span id="cb65-6"><a href="introdução-à-ciência-dos-dados.html#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pc1V,pc2V,</span>
+<span id="cb65-7"><a href="introdução-à-ciência-dos-dados.html#cb65-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fu">min</span>(<span class="sc">-</span><span class="dv">3</span>,pc1V,pc1c),</span>
+<span id="cb65-8"><a href="introdução-à-ciência-dos-dados.html#cb65-8" aria-hidden="true" tabindex="-1"></a>            <span class="fu">max</span>(pc1V,pc1c,<span class="dv">5</span>)),</span>
+<span id="cb65-9"><a href="introdução-à-ciência-dos-dados.html#cb65-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(pc2V,pc2c),</span>
+<span id="cb65-10"><a href="introdução-à-ciência-dos-dados.html#cb65-10" aria-hidden="true" tabindex="-1"></a>            <span class="fu">max</span>(pc2V,pc2c)),<span class="at">pch=</span><span class="st">&quot;&quot;</span>,<span class="at">las=</span><span class="dv">1</span>,</span>
+<span id="cb65-11"><a href="introdução-à-ciência-dos-dados.html#cb65-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="fu">paste</span>(<span class="st">&quot;PC1 (&quot;</span>,<span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>ve[<span class="dv">1</span>],<span class="dv">2</span>),<span class="st">&quot;%)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb65-12"><a href="introdução-à-ciência-dos-dados.html#cb65-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="fu">paste</span>(<span class="st">&quot;PC2 (&quot;</span>,<span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>ve[<span class="dv">2</span>],<span class="dv">2</span>),<span class="st">&quot;%)&quot;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>),</span>
+<span id="cb65-13"><a href="introdução-à-ciência-dos-dados.html#cb65-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">font.lab=</span><span class="dv">2</span>)</span>
+<span id="cb65-14"><a href="introdução-à-ciência-dos-dados.html#cb65-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>,<span class="at">h=</span><span class="dv">0</span>)</span>
+<span id="cb65-15"><a href="introdução-à-ciência-dos-dados.html#cb65-15" aria-hidden="true" tabindex="-1"></a><span class="fu">arrows</span>(<span class="fu">rep</span>(<span class="dv">0</span>,nv),<span class="fu">rep</span>(<span class="dv">0</span>,nv),pc1V<span class="sc">*</span>.<span class="dv">90</span>,pc2V<span class="sc">*</span>.<span class="dv">90</span>,<span class="at">lwd=</span><span class="fl">1.5</span>,<span class="at">length=</span>.<span class="dv">1</span>)</span>
+<span id="cb65-16"><a href="introdução-à-ciência-dos-dados.html#cb65-16" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(pc1V,pc2V,<span class="fu">names</span>(pc1V),<span class="at">font=</span><span class="dv">4</span>)</span>
+<span id="cb65-17"><a href="introdução-à-ciência-dos-dados.html#cb65-17" aria-hidden="true" tabindex="-1"></a>lv<span class="ot">&lt;-</span><span class="fu">as.factor</span>(grupos);nlv<span class="ot">&lt;-</span><span class="fu">levels</span>(lv)</span>
+<span id="cb65-18"><a href="introdução-à-ciência-dos-dados.html#cb65-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-19"><a href="introdução-à-ciência-dos-dados.html#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando os identificadores dos acesso partir de uma variável categórica</span></span>
+<span id="cb65-20"><a href="introdução-à-ciência-dos-dados.html#cb65-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(nlv)){</span>
+<span id="cb65-21"><a href="introdução-à-ciência-dos-dados.html#cb65-21" aria-hidden="true" tabindex="-1"></a>  ff<span class="ot">&lt;-</span>lv<span class="sc">==</span>nlv[i]  </span>
+<span id="cb65-22"><a href="introdução-à-ciência-dos-dados.html#cb65-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># points(pc1c[ff],pc2c[ff],cex=1.3,col=i,pch=i+15) </span></span>
+<span id="cb65-23"><a href="introdução-à-ciência-dos-dados.html#cb65-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># df$Municípios[ff]</span></span>
+<span id="cb65-24"><a href="introdução-à-ciência-dos-dados.html#cb65-24" aria-hidden="true" tabindex="-1"></a>   <span class="fu">text</span>(pc1c[ff],pc2c[ff],grupos[ff],<span class="at">cex=</span>.<span class="dv">8</span>,<span class="at">col=</span>i)}</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>Tabela do Biplot com as correlações com as PCs e seus respectivos autovetores</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="introdução-à-ciência-dos-dados.html#cb66-1" aria-hidden="true" tabindex="-1"></a>ck<span class="ot">&lt;-</span><span class="fu">sum</span>(pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">&gt;=</span><span class="dv">1</span>)</span>
+<span id="cb66-2"><a href="introdução-à-ciência-dos-dados.html#cb66-2" aria-hidden="true" tabindex="-1"></a>tabelapca<span class="ot">&lt;-</span><span class="fu">vector</span>()</span>
+<span id="cb66-3"><a href="introdução-à-ciência-dos-dados.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>( l <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>ck) tabelapca<span class="ot">&lt;-</span><span class="fu">cbind</span>(tabelapca,mcor[,l])<span class="co">#,pca$rotation[,l])</span></span>
+<span id="cb66-4"><a href="introdução-à-ciência-dos-dados.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tabelapca)<span class="ot">&lt;-</span><span class="fu">paste</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;PC&quot;</span>),ck),<span class="dv">1</span><span class="sc">:</span>ck,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb66-5"><a href="introdução-à-ciência-dos-dados.html#cb66-5" aria-hidden="true" tabindex="-1"></a>pcat<span class="ot">&lt;-</span><span class="fu">round</span>(tabelapca,<span class="dv">3</span>)</span>
+<span id="cb66-6"><a href="introdução-à-ciência-dos-dados.html#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcat)</span></code></pre></div>
+<pre><code>##       PC1               PC2               PC3         
+##  Min.   :-0.7740   Min.   :-0.6470   Min.   :-0.7450  
+##  1st Qu.: 0.0860   1st Qu.:-0.5990   1st Qu.:-0.2750  
+##  Median : 0.4590   Median :-0.4460   Median : 0.0560  
+##  Mean   : 0.2561   Mean   :-0.2092   Mean   :-0.1451  
+##  3rd Qu.: 0.7170   3rd Qu.: 0.0650   3rd Qu.: 0.1340  
+##  Max.   : 0.8960   Max.   : 0.8150   Max.   : 0.2860</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="introdução-à-ciência-dos-dados.html#cb68-1" aria-hidden="true" tabindex="-1"></a>tabelapca<span class="ot">&lt;-</span>tabelapca[<span class="fu">order</span>(<span class="fu">abs</span>(tabelapca[,<span class="dv">1</span>])),]</span>
+<span id="cb68-2"><a href="introdução-à-ciência-dos-dados.html#cb68-2" aria-hidden="true" tabindex="-1"></a>tabelapca</span></code></pre></div>
+<pre><code>##                PC1         PC2         PC3
+## P       0.08588849  0.06523595 -0.74469586
+## K       0.17453865 -0.09655659 -0.72460429
+## AREIA   0.45919323  0.81459224  0.17361541
+## SILTE   0.62733966 -0.59857849  0.28629486
+## ARGILA -0.68956146 -0.60629820 -0.27491327
+## Ca      0.71745561 -0.64652319  0.05554402
+## H_Al   -0.77429361 -0.44592300  0.13433788
+## Mg      0.80916440 -0.49156593  0.05874232
+## pH      0.89593784  0.12384873 -0.26991837</code></pre>
+<p>Uma opção à tabela resumo</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="introdução-à-ciência-dos-dados.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotrix)</span>
+<span id="cb70-2"><a href="introdução-à-ciência-dos-dados.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pyramid.plot</span>(<span class="fu">abs</span>(tabelapca[,<span class="dv">1</span>]),<span class="fu">abs</span>(tabelapca[,<span class="dv">2</span>]),</span>
+<span id="cb70-3"><a href="introdução-à-ciência-dos-dados.html#cb70-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">labels =</span> <span class="fu">names</span>(tabelapca[,<span class="dv">1</span>]),</span>
+<span id="cb70-4"><a href="introdução-à-ciência-dos-dados.html#cb70-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">unit=</span><span class="st">&quot;Correlation&quot;</span>,<span class="at">gap=</span>.<span class="dv">1</span>,<span class="at">raxlab=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,<span class="dv">1</span>),</span>
+<span id="cb70-5"><a href="introdução-à-ciência-dos-dados.html#cb70-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">top.labels =</span> <span class="fu">c</span>(<span class="st">&quot;PC1 (33.85%)&quot;</span>, <span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;PC2 (25.16%)&quot;</span>),</span>
+<span id="cb70-6"><a href="introdução-à-ciência-dos-dados.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="at">laxlab=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.25</span>,.<span class="dv">5</span>,.<span class="dv">75</span>,<span class="dv">1</span>),</span>
+<span id="cb70-7"><a href="introdução-à-ciência-dos-dados.html#cb70-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">lxcol=</span><span class="fu">c</span>(<span class="st">&quot;darkgray&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;darkgray&quot;</span>,<span class="st">&quot;darkgray&quot;</span>,<span class="st">&quot;darkgray&quot;</span>,</span>
+<span id="cb70-8"><a href="introdução-à-ciência-dos-dados.html#cb70-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;darkgray&quot;</span>),<span class="at">rxcol=</span><span class="fu">c</span>(<span class="st">&quot;white&quot;</span>,<span class="st">&quot;white&quot;</span>,<span class="st">&quot;darkgray&quot;</span>,<span class="st">&quot;darkgray&quot;</span>,</span>
+<span id="cb70-9"><a href="introdução-à-ciência-dos-dados.html#cb70-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;white&quot;</span>,<span class="st">&quot;white&quot;</span>))</span></code></pre></div>
+<pre><code>## 1 1</code></pre>
+<pre><code>## [1] 5.1 4.1 4.1 2.1</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="introdução-à-ciência-dos-dados.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="dv">1</span><span class="sc">*</span><span class="fu">abs</span>(tabelapca[,<span class="dv">1</span>]),<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="fu">round</span>(tabelapca[,<span class="dv">1</span>],<span class="dv">2</span>))</span>
+<span id="cb73-2"><a href="introdução-à-ciência-dos-dados.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fu">abs</span>(tabelapca[,<span class="dv">2</span>]<span class="sc">+</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">04</span>,<span class="dv">0</span>)),<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,<span class="fu">round</span>(tabelapca[,<span class="dv">2</span>],<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>## Warning in tabelapca[, 2] + c(0, 0, 0, 0, -0.04, 0): comprimento do objeto maior
+## não é múltiplo do comprimento do objeto menor</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="introdução-à-ciência-dos-dados.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
+<p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
 </div>
 <div id="comunicação" class="section level2" number="4.6">
 <h2><span class="header-section-number">4.6</span> Comunicação</h2>
 <p>É a última etapa do Data Science, a mais importante. Não importa quão bem seus modelos e visualizações o levaram a entender os dados, a menos que você também consiga comunicar seus resultados para outras pessoas.</p>
 <p>Uma dica importante, é estudar <strong>RMarkdown</strong>! Ótima linguagem de marcação de texto, utilizada para gerar relatórios em HTML, .doc e pdf. Inclusive, esse material que estamos utilizando no curso.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-50"></span>
 <img src="img/coverRMD.png" alt="https://bookdown.org/yihui/rmarkdown-cookbook/" width="200px" />
 <p class="caption">
-Figure 4.9: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/</a>
+Figure 4.10: <a href="https://bookdown.org/yihui/rmarkdown-cookbook/" class="uri">https://bookdown.org/yihui/rmarkdown-cookbook/</a>
 </p>
 </div>
 </div>

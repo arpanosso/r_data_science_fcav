@@ -51,10 +51,9 @@ knitr::include_graphics("img/import_3.png")
 
 Cole as linhas de código no script do R e as execute, para ter a importação dos dados.
 
-```{r,eval=FALSE}
+```{r}
 library(readxl)
 geomorfologia <- read_excel("C:/GitHub/r_data_science_fcav/dados/geomorfologia.xlsx")
-View(geomorfologia)
 ```
 
 ```{r echo=FALSE, fig.cap="Após executar o código, os dados devem ser apresentados dessa forma.", fig.align='center', out.width = "500px"}
@@ -167,6 +166,168 @@ plot(da$ARGILA,da$T)
 mod<-lm(da$T~da$ARGILA)
 summary.lm(mod)
 abline(mod)
+```
+
+
+### Exemplo de Análise multivariada (PCA)
+
+```{r echo=FALSE, fig.cap="Classificação das técnicas multivariadas (Dependências e Interdependência).", fig.align='center', out.width = "400px"}
+knitr::include_graphics("img/multivariada.png")
+```
+Carregando alguns pacotes
+
+```{r}
+library(vegan)
+library(corrplot)
+```
+
+Matriz de Correlação
+
+```{r}
+geomorfo_num <- geomorfologia[-(1:5)]
+matriz_correlacao <- cor(geomorfo_num)
+corrplot(matriz_correlacao)
+```
+
+```{r}
+corrplot(matriz_correlacao, method = "ellipse")
+```
+
+```{r}
+corrplot.mixed(matriz_correlacao, lower.col = "black", upper = "ellipse")
+```
+
+Notoriamente existem muitas variáveis, vamos filtar e transformas
+
+```{r}
+str(geomorfo_num)
+geomorfo_num$AREIA <- geomorfo_num$AG + geomorfo_num$AM + geomorfo_num$AF + geomorfo_num$AMF
+```
+Vamos selecionar alguams variáveis
+
+```{r}
+geomorfo_nun_selecionada <- geomorfo_num[c("AREIA","SILTE","ARGILA", "P", "pH", "K","Ca","Mg","H_Al")]
+matriz_correlacao_selecionada <- cor(geomorfo_nun_selecionada)
+corrplot.mixed(matriz_correlacao_selecionada,lower.col = "black", upper = "ellipse")
+```
+
+Para a análise de componente principais, primeiramente devemos padronizar o banco de dados, assim utilizamos o argumento `scale = TRUE` da funçaõ `prcompr`.
+
+```{r}
+da <- decostand(geomorfo_nun_selecionada,method = "standardize",na.rm = TRUE)
+pca <- prcomp(geomorfo_nun_selecionada,scale. = TRUE)
+summary(pca)
+```
+
+Extraindo os autovalores
+
+```{r}
+eig <- pca$sdev^2
+eig
+```
+
+Porcentagem da variância explicada por cada componente
+
+```{r}
+ve<-eig/sum(eig)
+ve
+```
+
+Porcentagem acumulada
+```{r}
+cumsum(ve)
+```
+
+
+```{r}
+# pca # Autovalores das variáveis
+# pca$x # coordenadas dos acessos
+```
+
+
+Correlações entre cada variável - poder discriminante
+```{r}
+mcor<-cor(da, pca$x) 
+corrplot(mcor)
+```
+
+Screeplot, para verificar os PC maiores que a Unidade, de acordo com Kaiser, valores maiores que 1
+
+```{r}
+screeplot(pca)
+barplot(eig,
+        names.arg=colnames(pca$rotation),
+        ylim=c(0,(pca$sdev^2)[1]*1.1),
+    ylab="Inertia",xlab="Principal Component",cex.lab=1.2
+    ,main="Sreeplot")
+abline(h=1,lty=2)
+```
+
+Construção do Biplot e sua tabela
+```{r}
+grupos <- geomorfologia$SUP
+biplot(rda(da),pch=2)
+ordihull(rda(da),
+         group = grupos,
+         col=1:nlevels(as.factor(grupos)))
+
+```
+
+Construção do biplot usando as funções básicas
+```{r}
+pc1V<-cor(da,pca$x)[,1]/sd(cor(da,pca$x)[,1])
+pc2V<-cor(da,pca$x)[,2]/sd(cor(da,pca$x)[,2])
+pc1c<-pca$x[,1]/sd(pca$x[,1])
+pc2c<-pca$x[,2]/sd(pca$x[,2])
+nv<-ncol(da) # número de variáveis utilizadas na análise
+plot(pc1V,pc2V,
+     xlim=c(min(-3,pc1V,pc1c),
+            max(pc1V,pc1c,5)),
+     ylim=c(min(pc2V,pc2c),
+            max(pc2V,pc2c)),pch="",las=1,
+     xlab=paste("PC1 (",round(100*ve[1],2),"%)",sep=""),
+     ylab=paste("PC2 (",round(100*ve[2],2),"%)",sep=""),
+     font.lab=2)
+abline(v=0,h=0)
+arrows(rep(0,nv),rep(0,nv),pc1V*.90,pc2V*.90,lwd=1.5,length=.1)
+text(pc1V,pc2V,names(pc1V),font=4)
+lv<-as.factor(grupos);nlv<-levels(lv)
+
+# Adicionando os identificadores dos acesso partir de uma variável categórica
+for(i in 1:length(nlv)){
+  ff<-lv==nlv[i]  
+  # points(pc1c[ff],pc2c[ff],cex=1.3,col=i,pch=i+15) 
+  # df$Municípios[ff]
+   text(pc1c[ff],pc2c[ff],grupos[ff],cex=.8,col=i)}
+```
+
+Tabela do Biplot com as correlações com as PCs e seus respectivos autovetores
+```{r}
+ck<-sum(pca$sdev^2>=1)
+tabelapca<-vector()
+for( l in 1:ck) tabelapca<-cbind(tabelapca,mcor[,l])#,pca$rotation[,l])
+colnames(tabelapca)<-paste(rep(c("PC"),ck),1:ck,sep="")
+pcat<-round(tabelapca,3)
+summary(pcat)
+tabelapca<-tabelapca[order(abs(tabelapca[,1])),]
+tabelapca
+```
+
+Uma opção à tabela resumo
+
+```{r}
+library(plotrix)
+pyramid.plot(abs(tabelapca[,1]),abs(tabelapca[,2]),
+             labels = names(tabelapca[,1]),
+             unit="Correlation",gap=.1,raxlab=c(0,0.25,.5,.75,1),
+             top.labels = c("PC1 (33.85%)", "Variable", "PC2 (25.16%)"),
+laxlab=c(0,0.25,.5,.75,1),
+             lxcol=c("darkgray","white","darkgray","darkgray","darkgray",
+             "darkgray"),rxcol=c("white","white","darkgray","darkgray",
+             "white","white"))
+text(-1*abs(tabelapca[,1]),1:6,round(tabelapca[,1],2))
+text(abs(tabelapca[,2]+c(0,0,0,0,-.04,0)),1:6,round(tabelapca[,2],2))
+box()
 ```
 
 ## Comunicação
