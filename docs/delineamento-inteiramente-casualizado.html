@@ -496,22 +496,22 @@ E1 &amp; E2 &amp; E3 &amp; E4
 \]</span></p>
 <p>Assim, um sorteio para distribuição dos tratamentos às parcelas poderia ser o seguinte:</p>
 <p><img src="img/Rlogo.png" /></p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="delineamento-inteiramente-casualizado.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o número de tratamentos e repetições</span></span>
-<span id="cb571-2"><a href="delineamento-inteiramente-casualizado.html#cb571-2" aria-hidden="true" tabindex="-1"></a>I <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb571-3"><a href="delineamento-inteiramente-casualizado.html#cb571-3" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb571-4"><a href="delineamento-inteiramente-casualizado.html#cb571-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb571-5"><a href="delineamento-inteiramente-casualizado.html#cb571-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando os tratamentos a partir da letras do conjunto LETTERS já definidos no R</span></span>
-<span id="cb571-6"><a href="delineamento-inteiramente-casualizado.html#cb571-6" aria-hidden="true" tabindex="-1"></a>tratamentos <span class="ot">&lt;-</span>  <span class="fu">rep</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span>I], J)</span>
-<span id="cb571-7"><a href="delineamento-inteiramente-casualizado.html#cb571-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb571-8"><a href="delineamento-inteiramente-casualizado.html#cb571-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando as repetições</span></span>
-<span id="cb571-9"><a href="delineamento-inteiramente-casualizado.html#cb571-9" aria-hidden="true" tabindex="-1"></a>repeticoes <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>J, <span class="fu">rep</span>(I,J))</span>
-<span id="cb571-10"><a href="delineamento-inteiramente-casualizado.html#cb571-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb571-11"><a href="delineamento-inteiramente-casualizado.html#cb571-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando os identificadores (nomes) das parcelas</span></span>
-<span id="cb571-12"><a href="delineamento-inteiramente-casualizado.html#cb571-12" aria-hidden="true" tabindex="-1"></a>parcelas <span class="ot">&lt;-</span> <span class="fu">paste0</span>(tratamentos,repeticoes)</span>
-<span id="cb571-13"><a href="delineamento-inteiramente-casualizado.html#cb571-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb571-14"><a href="delineamento-inteiramente-casualizado.html#cb571-14" aria-hidden="true" tabindex="-1"></a><span class="co"># definindo a semente aleatória e sorteio das parcelas, sem reposição</span></span>
-<span id="cb571-15"><a href="delineamento-inteiramente-casualizado.html#cb571-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1235</span>)</span>
-<span id="cb571-16"><a href="delineamento-inteiramente-casualizado.html#cb571-16" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(parcelas, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="delineamento-inteiramente-casualizado.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o número de tratamentos e repetições</span></span>
+<span id="cb575-2"><a href="delineamento-inteiramente-casualizado.html#cb575-2" aria-hidden="true" tabindex="-1"></a>I <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb575-3"><a href="delineamento-inteiramente-casualizado.html#cb575-3" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb575-4"><a href="delineamento-inteiramente-casualizado.html#cb575-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb575-5"><a href="delineamento-inteiramente-casualizado.html#cb575-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando os tratamentos a partir da letras do conjunto LETTERS já definidos no R</span></span>
+<span id="cb575-6"><a href="delineamento-inteiramente-casualizado.html#cb575-6" aria-hidden="true" tabindex="-1"></a>tratamentos <span class="ot">&lt;-</span>  <span class="fu">rep</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span>I], J)</span>
+<span id="cb575-7"><a href="delineamento-inteiramente-casualizado.html#cb575-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb575-8"><a href="delineamento-inteiramente-casualizado.html#cb575-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando as repetições</span></span>
+<span id="cb575-9"><a href="delineamento-inteiramente-casualizado.html#cb575-9" aria-hidden="true" tabindex="-1"></a>repeticoes <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>J, <span class="fu">rep</span>(I,J))</span>
+<span id="cb575-10"><a href="delineamento-inteiramente-casualizado.html#cb575-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb575-11"><a href="delineamento-inteiramente-casualizado.html#cb575-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Criando os identificadores (nomes) das parcelas</span></span>
+<span id="cb575-12"><a href="delineamento-inteiramente-casualizado.html#cb575-12" aria-hidden="true" tabindex="-1"></a>parcelas <span class="ot">&lt;-</span> <span class="fu">paste0</span>(tratamentos,repeticoes)</span>
+<span id="cb575-13"><a href="delineamento-inteiramente-casualizado.html#cb575-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb575-14"><a href="delineamento-inteiramente-casualizado.html#cb575-14" aria-hidden="true" tabindex="-1"></a><span class="co"># definindo a semente aleatória e sorteio das parcelas, sem reposição</span></span>
+<span id="cb575-15"><a href="delineamento-inteiramente-casualizado.html#cb575-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1235</span>)</span>
+<span id="cb575-16"><a href="delineamento-inteiramente-casualizado.html#cb575-16" aria-hidden="true" tabindex="-1"></a><span class="fu">sample</span>(parcelas, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>##  [1] &quot;E3&quot; &quot;B3&quot; &quot;C1&quot; &quot;E4&quot; &quot;E1&quot; &quot;D3&quot; &quot;D1&quot; &quot;D4&quot; &quot;C3&quot; &quot;C4&quot; &quot;A4&quot; &quot;B2&quot; &quot;B1&quot; &quot;B4&quot; &quot;A2&quot;
 ## [16] &quot;E2&quot; &quot;D2&quot; &quot;C2&quot; &quot;A1&quot; &quot;A3&quot;</code></pre>
 <p><span class="math display">\[
@@ -999,17 +999,17 @@ CV = 100 \cdot \frac{s}{\hat{m}} = 100 \cdot \frac{4,32}{34,2} = 12,63\%
 <p>Utilizando o R para obtermos o quadro da análise de variância, os dados estão disponíveis online em:</p>
 <p><a href="https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/img/aula05/mandioca.txt">Mandioca</a>.</p>
 <p><img src="img/Rlogo.png" /></p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="delineamento-inteiramente-casualizado.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
-<span id="cb573-2"><a href="delineamento-inteiramente-casualizado.html#cb573-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb573-3"><a href="delineamento-inteiramente-casualizado.html#cb573-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb573-4"><a href="delineamento-inteiramente-casualizado.html#cb573-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caminho dos dados</span></span>
-<span id="cb573-5"><a href="delineamento-inteiramente-casualizado.html#cb573-5" aria-hidden="true" tabindex="-1"></a>url<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/img/aula05/mandioca.txt&quot;</span></span>
-<span id="cb573-6"><a href="delineamento-inteiramente-casualizado.html#cb573-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb573-7"><a href="delineamento-inteiramente-casualizado.html#cb573-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo o arquivo de dados</span></span>
-<span id="cb573-8"><a href="delineamento-inteiramente-casualizado.html#cb573-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(url, <span class="at">h =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb573-9"><a href="delineamento-inteiramente-casualizado.html#cb573-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb573-10"><a href="delineamento-inteiramente-casualizado.html#cb573-10" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
-<span id="cb573-11"><a href="delineamento-inteiramente-casualizado.html#cb573-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="delineamento-inteiramente-casualizado.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
+<span id="cb577-2"><a href="delineamento-inteiramente-casualizado.html#cb577-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb577-3"><a href="delineamento-inteiramente-casualizado.html#cb577-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb577-4"><a href="delineamento-inteiramente-casualizado.html#cb577-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caminho dos dados</span></span>
+<span id="cb577-5"><a href="delineamento-inteiramente-casualizado.html#cb577-5" aria-hidden="true" tabindex="-1"></a>url<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/experimentacao-agricola-unesp-fcav/master/img/aula05/mandioca.txt&quot;</span></span>
+<span id="cb577-6"><a href="delineamento-inteiramente-casualizado.html#cb577-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb577-7"><a href="delineamento-inteiramente-casualizado.html#cb577-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo o arquivo de dados</span></span>
+<span id="cb577-8"><a href="delineamento-inteiramente-casualizado.html#cb577-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(url, <span class="at">h =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb577-9"><a href="delineamento-inteiramente-casualizado.html#cb577-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb577-10"><a href="delineamento-inteiramente-casualizado.html#cb577-10" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
+<span id="cb577-11"><a href="delineamento-inteiramente-casualizado.html#cb577-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
 <pre><code>##    Trat Rep    Y
 ## 1 IAC_5   1 38.9
 ## 2 IAC_5   2 25.4
@@ -1017,12 +1017,12 @@ CV = 100 \cdot \frac{s}{\hat{m}} = 100 \cdot \frac{4,32}{34,2} = 12,63\%
 ## 4 IAC_5   4 25.7
 ## 5 IAC_5   5 29.3
 ## 6 IAC_7   1 20.9</code></pre>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="delineamento-inteiramente-casualizado.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dic</span></span>
-<span id="cb575-2"><a href="delineamento-inteiramente-casualizado.html#cb575-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Trat) <span class="co"># Criando o vetor de tratamentos</span></span>
-<span id="cb575-3"><a href="delineamento-inteiramente-casualizado.html#cb575-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> dados<span class="sc">$</span>Y <span class="co"># Criando o vetor com a variável resposta</span></span>
-<span id="cb575-4"><a href="delineamento-inteiramente-casualizado.html#cb575-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb575-5"><a href="delineamento-inteiramente-casualizado.html#cb575-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
-<span id="cb575-6"><a href="delineamento-inteiramente-casualizado.html#cb575-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(trat, resp, <span class="at">mcomp =</span> <span class="st">&quot;tukey&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="delineamento-inteiramente-casualizado.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dic</span></span>
+<span id="cb579-2"><a href="delineamento-inteiramente-casualizado.html#cb579-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dados<span class="sc">$</span>Trat) <span class="co"># Criando o vetor de tratamentos</span></span>
+<span id="cb579-3"><a href="delineamento-inteiramente-casualizado.html#cb579-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> dados<span class="sc">$</span>Y <span class="co"># Criando o vetor com a variável resposta</span></span>
+<span id="cb579-4"><a href="delineamento-inteiramente-casualizado.html#cb579-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb579-5"><a href="delineamento-inteiramente-casualizado.html#cb579-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
+<span id="cb579-6"><a href="delineamento-inteiramente-casualizado.html#cb579-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(trat, resp, <span class="at">mcomp =</span> <span class="st">&quot;tukey&quot;</span>)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
@@ -1077,7 +1077,7 @@ CV = 100 \cdot \frac{s}{\hat{m}} = 100 \cdot \frac{4,32}{34,2} = 12,63\%
 <p>Todo o delineamento experimental é estruturado para que haja um perfeito balanceamento, e a perda de parcelas causa um quebra neste balanceamento, acarretando modificações no método de análise estatística.</p>
 <p>Para ilustrar o procedimento de análise de um experimento inteiramente casualizado, não balanceado, vamos utilizar o exemplo seguinte, referente a dados adaptados do trabalho de <strong><em>CARDOSO FILHO (1974)</em></strong> e se referem a produção de matéria seca de cultivares de sorgo, em t/ha.</p>
 <p>Experimento de produção de matéria seca de cultivares de sorgo, em t/ha. Para os cultivares, <em>H</em> = <em>Híbrido</em> e <em>V</em> = <em>Variedade</em>.</p>
-<pre><code>## Warning: package &#39;knitr&#39; was built under R version 4.1.2</code></pre>
+<pre><code>## Warning: package &#39;knitr&#39; was built under R version 4.1.1</code></pre>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1623,17 +1623,17 @@ CV=100\cdot \frac{s}{\hat{m}} = 100\cdot \frac{0,6716}{14,83}=4,53\%
 <p>Utilizando o R para obtermos o quadro da análise de variância, os dados estão disponíveis online em:
 <a href="https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sorgo.txt">sorgo</a>.</p>
 <p><img src="img/Rlogo.png" /></p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="delineamento-inteiramente-casualizado.html#cb578-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
-<span id="cb578-2"><a href="delineamento-inteiramente-casualizado.html#cb578-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb578-3"><a href="delineamento-inteiramente-casualizado.html#cb578-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb578-4"><a href="delineamento-inteiramente-casualizado.html#cb578-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caminho dos dados</span></span>
-<span id="cb578-5"><a href="delineamento-inteiramente-casualizado.html#cb578-5" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sorgo.txt&quot;</span></span>
-<span id="cb578-6"><a href="delineamento-inteiramente-casualizado.html#cb578-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb578-7"><a href="delineamento-inteiramente-casualizado.html#cb578-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo o arquivo de dados</span></span>
-<span id="cb578-8"><a href="delineamento-inteiramente-casualizado.html#cb578-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb578-9"><a href="delineamento-inteiramente-casualizado.html#cb578-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb578-10"><a href="delineamento-inteiramente-casualizado.html#cb578-10" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
-<span id="cb578-11"><a href="delineamento-inteiramente-casualizado.html#cb578-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="delineamento-inteiramente-casualizado.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
+<span id="cb582-2"><a href="delineamento-inteiramente-casualizado.html#cb582-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb582-3"><a href="delineamento-inteiramente-casualizado.html#cb582-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb582-4"><a href="delineamento-inteiramente-casualizado.html#cb582-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caminho dos dados</span></span>
+<span id="cb582-5"><a href="delineamento-inteiramente-casualizado.html#cb582-5" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sorgo.txt&quot;</span></span>
+<span id="cb582-6"><a href="delineamento-inteiramente-casualizado.html#cb582-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb582-7"><a href="delineamento-inteiramente-casualizado.html#cb582-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo o arquivo de dados</span></span>
+<span id="cb582-8"><a href="delineamento-inteiramente-casualizado.html#cb582-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb582-9"><a href="delineamento-inteiramente-casualizado.html#cb582-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb582-10"><a href="delineamento-inteiramente-casualizado.html#cb582-10" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
+<span id="cb582-11"><a href="delineamento-inteiramente-casualizado.html#cb582-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
 <pre><code>##          Trat     Y
 ## 1      NK300H 10.27
 ## 2   Sordan67H  9.77
@@ -1641,12 +1641,12 @@ CV=100\cdot \frac{s}{\hat{m}} = 100\cdot \frac{0,6716}{14,83}=4,53\%
 ## 4  Pionner93H 21.22
 ## 5       SartV 20.20
 ## 6      NK300H 11.55</code></pre>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="delineamento-inteiramente-casualizado.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dic</span></span>
-<span id="cb580-2"><a href="delineamento-inteiramente-casualizado.html#cb580-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> dados<span class="sc">$</span>Trat[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor de tratamentos sem os valores perdidos</span></span>
-<span id="cb580-3"><a href="delineamento-inteiramente-casualizado.html#cb580-3" aria-hidden="true" tabindex="-1"></a>massa_seca <span class="ot">&lt;-</span> dados<span class="sc">$</span>Y[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor com a variável resposta semos valores perdidos</span></span>
-<span id="cb580-4"><a href="delineamento-inteiramente-casualizado.html#cb580-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb580-5"><a href="delineamento-inteiramente-casualizado.html#cb580-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
-<span id="cb580-6"><a href="delineamento-inteiramente-casualizado.html#cb580-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(trat,massa_seca,<span class="at">mcomp =</span> <span class="st">&quot;tukey&quot;</span>, <span class="at">sigT =</span> .<span class="dv">01</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="delineamento-inteiramente-casualizado.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dic</span></span>
+<span id="cb584-2"><a href="delineamento-inteiramente-casualizado.html#cb584-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> dados<span class="sc">$</span>Trat[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor de tratamentos sem os valores perdidos</span></span>
+<span id="cb584-3"><a href="delineamento-inteiramente-casualizado.html#cb584-3" aria-hidden="true" tabindex="-1"></a>massa_seca <span class="ot">&lt;-</span> dados<span class="sc">$</span>Y[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor com a variável resposta semos valores perdidos</span></span>
+<span id="cb584-4"><a href="delineamento-inteiramente-casualizado.html#cb584-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb584-5"><a href="delineamento-inteiramente-casualizado.html#cb584-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
+<span id="cb584-6"><a href="delineamento-inteiramente-casualizado.html#cb584-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(trat,massa_seca,<span class="at">mcomp =</span> <span class="st">&quot;tukey&quot;</span>, <span class="at">sigT =</span> .<span class="dv">01</span>)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
@@ -1712,7 +1712,7 @@ t_{obs} = \frac{\hat{Y}}{s(\hat{Y})}=\frac{-30,98}{1.25}=-24,78^{**} \\
 t_{tab (22 GLres)} \begin{cases}5\%=2,07\\1\%=2,82 \end{cases}
 \]</span></p>
 <p><strong>Conclusão</strong>: Como <span class="math inline">\(t_{obs} &gt; t_{tab}\)</span>, rejeitamos <span class="math inline">\(H_0\)</span> e concluímos que a média do grupo de híbridos diferem da média da variedade SART, sendo que, em médias, a variedade possui maior produção de matéria seca que os híbridos.</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="delineamento-inteiramente-casualizado.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(agricolae)</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="delineamento-inteiramente-casualizado.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(agricolae)</span></code></pre></div>
 <pre><code>## Carregando pacotes exigidos: agricolae</code></pre>
 <pre><code>## Warning: package &#39;agricolae&#39; was built under R version 4.1.2</code></pre>
 <pre><code>## 
@@ -1720,35 +1720,35 @@ t_{tab (22 GLres)} \begin{cases}5\%=2,07\\1\%=2,82 \end{cases}
 <pre><code>## The following objects are masked from &#39;package:ExpDes.pt&#39;:
 ## 
 ##     lastC, order.group, tapply.stat</code></pre>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="delineamento-inteiramente-casualizado.html#cb587-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">tapply</span>(massa_seca,trat,mean,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb587-2"><a href="delineamento-inteiramente-casualizado.html#cb587-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">tapply</span>(massa_seca,trat, .nac<span class="ot">&lt;-</span><span class="cf">function</span>(x) {x<span class="ot">&lt;-</span><span class="fu">na.omit</span>(x);<span class="fu">length</span>(x)})</span>
-<span id="cb587-3"><a href="delineamento-inteiramente-casualizado.html#cb587-3" aria-hidden="true" tabindex="-1"></a>QMRes <span class="ot">&lt;-</span> <span class="fl">0.4510</span></span>
-<span id="cb587-4"><a href="delineamento-inteiramente-casualizado.html#cb587-4" aria-hidden="true" tabindex="-1"></a>glRes <span class="ot">&lt;-</span> <span class="dv">22</span></span>
-<span id="cb587-5"><a href="delineamento-inteiramente-casualizado.html#cb587-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb587-6"><a href="delineamento-inteiramente-casualizado.html#cb587-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb587-7"><a href="delineamento-inteiramente-casualizado.html#cb587-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Híbridos vs Variedades</span></span>
-<span id="cb587-8"><a href="delineamento-inteiramente-casualizado.html#cb587-8" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="delineamento-inteiramente-casualizado.html#cb591-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">tapply</span>(massa_seca,trat,mean,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb591-2"><a href="delineamento-inteiramente-casualizado.html#cb591-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">tapply</span>(massa_seca,trat, .nac<span class="ot">&lt;-</span><span class="cf">function</span>(x) {x<span class="ot">&lt;-</span><span class="fu">na.omit</span>(x);<span class="fu">length</span>(x)})</span>
+<span id="cb591-3"><a href="delineamento-inteiramente-casualizado.html#cb591-3" aria-hidden="true" tabindex="-1"></a>QMRes <span class="ot">&lt;-</span> <span class="fl">0.4510</span></span>
+<span id="cb591-4"><a href="delineamento-inteiramente-casualizado.html#cb591-4" aria-hidden="true" tabindex="-1"></a>glRes <span class="ot">&lt;-</span> <span class="dv">22</span></span>
+<span id="cb591-5"><a href="delineamento-inteiramente-casualizado.html#cb591-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb591-6"><a href="delineamento-inteiramente-casualizado.html#cb591-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb591-7"><a href="delineamento-inteiramente-casualizado.html#cb591-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Híbridos vs Variedades</span></span>
+<span id="cb591-8"><a href="delineamento-inteiramente-casualizado.html#cb591-8" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
 <pre><code>##      NK300H  Pionner93H Pionner988H       SartV   Sordan67H 
 ##    11.22000    21.01200     9.96750    20.91167    10.46167</code></pre>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="delineamento-inteiramente-casualizado.html#cb589-1" aria-hidden="true" tabindex="-1"></a>c1<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">1</span>) <span class="co"># atribua os coeficientes de acordo com a ordem das médias</span></span>
-<span id="cb589-2"><a href="delineamento-inteiramente-casualizado.html#cb589-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">Y1=</span><span class="fu">sum</span>(m<span class="sc">*</span>c1))</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="delineamento-inteiramente-casualizado.html#cb593-1" aria-hidden="true" tabindex="-1"></a>c1<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="sc">-</span><span class="dv">4</span>,<span class="dv">1</span>) <span class="co"># atribua os coeficientes de acordo com a ordem das médias</span></span>
+<span id="cb593-2"><a href="delineamento-inteiramente-casualizado.html#cb593-2" aria-hidden="true" tabindex="-1"></a>(<span class="at">Y1=</span><span class="fu">sum</span>(m<span class="sc">*</span>c1))</span></code></pre></div>
 <pre><code>## [1] -30.9855</code></pre>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="delineamento-inteiramente-casualizado.html#cb591-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">tobs=</span>Y1<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>(c1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>r)<span class="sc">*</span>QMRes))</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="delineamento-inteiramente-casualizado.html#cb595-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">tobs=</span>Y1<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">sum</span>(c1<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>r)<span class="sc">*</span>QMRes))</span></code></pre></div>
 <pre><code>## [1] -24.84052</code></pre>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="delineamento-inteiramente-casualizado.html#cb593-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">tc5=</span><span class="fu">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>,glRes))</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="delineamento-inteiramente-casualizado.html#cb597-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">tc5=</span><span class="fu">qt</span>(<span class="dv">1</span><span class="fl">-0.05</span><span class="sc">/</span><span class="dv">2</span>,glRes))</span></code></pre></div>
 <pre><code>## [1] 2.073873</code></pre>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="delineamento-inteiramente-casualizado.html#cb595-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">tc1=</span><span class="fu">qt</span>(<span class="dv">1</span><span class="fl">-0.01</span><span class="sc">/</span><span class="dv">2</span>,glRes))</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="delineamento-inteiramente-casualizado.html#cb599-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">tc1=</span><span class="fu">qt</span>(<span class="dv">1</span><span class="fl">-0.01</span><span class="sc">/</span><span class="dv">2</span>,glRes))</span></code></pre></div>
 <pre><code>## [1] 2.818756</code></pre>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="delineamento-inteiramente-casualizado.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção do Gráfico para interpretação</span></span>
-<span id="cb597-2"><a href="delineamento-inteiramente-casualizado.html#cb597-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,glRes),<span class="sc">-</span><span class="dv">30</span>,<span class="dv">9</span>,<span class="at">xlab=</span><span class="st">&quot;t&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;D(t)&quot;</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
-<span id="cb597-3"><a href="delineamento-inteiramente-casualizado.html#cb597-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>)</span>
-<span id="cb597-4"><a href="delineamento-inteiramente-casualizado.html#cb597-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(tc5,<span class="sc">-</span>tc5,tc1,<span class="sc">-</span>tc1),<span class="at">col=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
-<span id="cb597-5"><a href="delineamento-inteiramente-casualizado.html#cb597-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>tobs,<span class="at">col=</span><span class="dv">4</span>,<span class="at">lty=</span><span class="dv">1</span>)</span>
-<span id="cb597-6"><a href="delineamento-inteiramente-casualizado.html#cb597-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">2.8</span>,.<span class="dv">1</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=2.5%&quot;</span>)))</span>
-<span id="cb597-7"><a href="delineamento-inteiramente-casualizado.html#cb597-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=0.5%&quot;</span>)))</span>
-<span id="cb597-8"><a href="delineamento-inteiramente-casualizado.html#cb597-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="fl">2.8</span>,.<span class="dv">1</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=2.5%&quot;</span>)))</span>
-<span id="cb597-9"><a href="delineamento-inteiramente-casualizado.html#cb597-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="dv">4</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=0.5%&quot;</span>)))</span>
-<span id="cb597-10"><a href="delineamento-inteiramente-casualizado.html#cb597-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tobs,.<span class="dv">05</span>,<span class="st">&quot;tobs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="delineamento-inteiramente-casualizado.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construção do Gráfico para interpretação</span></span>
+<span id="cb601-2"><a href="delineamento-inteiramente-casualizado.html#cb601-2" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x,glRes),<span class="sc">-</span><span class="dv">30</span>,<span class="dv">9</span>,<span class="at">xlab=</span><span class="st">&quot;t&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;D(t)&quot;</span>,<span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb601-3"><a href="delineamento-inteiramente-casualizado.html#cb601-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">0</span>)</span>
+<span id="cb601-4"><a href="delineamento-inteiramente-casualizado.html#cb601-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(tc5,<span class="sc">-</span>tc5,tc1,<span class="sc">-</span>tc1),<span class="at">col=</span><span class="dv">2</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
+<span id="cb601-5"><a href="delineamento-inteiramente-casualizado.html#cb601-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>tobs,<span class="at">col=</span><span class="dv">4</span>,<span class="at">lty=</span><span class="dv">1</span>)</span>
+<span id="cb601-6"><a href="delineamento-inteiramente-casualizado.html#cb601-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="fl">2.8</span>,.<span class="dv">1</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=2.5%&quot;</span>)))</span>
+<span id="cb601-7"><a href="delineamento-inteiramente-casualizado.html#cb601-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">4</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=0.5%&quot;</span>)))</span>
+<span id="cb601-8"><a href="delineamento-inteiramente-casualizado.html#cb601-8" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="fl">2.8</span>,.<span class="dv">1</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=2.5%&quot;</span>)))</span>
+<span id="cb601-9"><a href="delineamento-inteiramente-casualizado.html#cb601-9" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="sc">-</span><span class="dv">4</span>,.<span class="dv">02</span>,<span class="fu">expression</span>(<span class="fu">paste</span>(alpha,<span class="st">&quot;=0.5%&quot;</span>)))</span>
+<span id="cb601-10"><a href="delineamento-inteiramente-casualizado.html#cb601-10" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tobs,.<span class="dv">05</span>,<span class="st">&quot;tobs&quot;</span>)</span></code></pre></div>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-319-1.png" width="672" /></p>
 </div>
 <div id="teste-de-duncan-para-a-comparação-das-médias" class="section level3" number="15.5.7">
@@ -1906,17 +1906,17 @@ Pionner988H
 <div id="utilizando-o-r" class="section level3" number="15.5.8">
 <h3><span class="header-section-number">15.5.8</span> Utilizando o R</h3>
 <p><img src="Rlogo.png" /></p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="delineamento-inteiramente-casualizado.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
-<span id="cb598-2"><a href="delineamento-inteiramente-casualizado.html#cb598-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb598-3"><a href="delineamento-inteiramente-casualizado.html#cb598-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb598-4"><a href="delineamento-inteiramente-casualizado.html#cb598-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caminho dos dados</span></span>
-<span id="cb598-5"><a href="delineamento-inteiramente-casualizado.html#cb598-5" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sorgo.txt&quot;</span></span>
-<span id="cb598-6"><a href="delineamento-inteiramente-casualizado.html#cb598-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb598-7"><a href="delineamento-inteiramente-casualizado.html#cb598-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo o arquivo de dados</span></span>
-<span id="cb598-8"><a href="delineamento-inteiramente-casualizado.html#cb598-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb598-9"><a href="delineamento-inteiramente-casualizado.html#cb598-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb598-10"><a href="delineamento-inteiramente-casualizado.html#cb598-10" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
-<span id="cb598-11"><a href="delineamento-inteiramente-casualizado.html#cb598-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="delineamento-inteiramente-casualizado.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para a análise</span></span>
+<span id="cb602-2"><a href="delineamento-inteiramente-casualizado.html#cb602-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb602-3"><a href="delineamento-inteiramente-casualizado.html#cb602-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb602-4"><a href="delineamento-inteiramente-casualizado.html#cb602-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Caminho dos dados</span></span>
+<span id="cb602-5"><a href="delineamento-inteiramente-casualizado.html#cb602-5" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sorgo.txt&quot;</span></span>
+<span id="cb602-6"><a href="delineamento-inteiramente-casualizado.html#cb602-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb602-7"><a href="delineamento-inteiramente-casualizado.html#cb602-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo o arquivo de dados</span></span>
+<span id="cb602-8"><a href="delineamento-inteiramente-casualizado.html#cb602-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb602-9"><a href="delineamento-inteiramente-casualizado.html#cb602-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb602-10"><a href="delineamento-inteiramente-casualizado.html#cb602-10" aria-hidden="true" tabindex="-1"></a><span class="co"># verificando os 6 primeiros registros</span></span>
+<span id="cb602-11"><a href="delineamento-inteiramente-casualizado.html#cb602-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code></pre></div>
 <pre><code>##          Trat     Y
 ## 1      NK300H 10.27
 ## 2   Sordan67H  9.77
@@ -1924,12 +1924,12 @@ Pionner988H
 ## 4  Pionner93H 21.22
 ## 5       SartV 20.20
 ## 6      NK300H 11.55</code></pre>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="delineamento-inteiramente-casualizado.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dic</span></span>
-<span id="cb600-2"><a href="delineamento-inteiramente-casualizado.html#cb600-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> dados<span class="sc">$</span>Trat[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor de tratamentos sem os valores perdidos</span></span>
-<span id="cb600-3"><a href="delineamento-inteiramente-casualizado.html#cb600-3" aria-hidden="true" tabindex="-1"></a>massa_seca <span class="ot">&lt;-</span> dados<span class="sc">$</span>Y[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor com a variável resposta semos valores perdidos</span></span>
-<span id="cb600-4"><a href="delineamento-inteiramente-casualizado.html#cb600-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb600-5"><a href="delineamento-inteiramente-casualizado.html#cb600-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
-<span id="cb600-6"><a href="delineamento-inteiramente-casualizado.html#cb600-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(trat,massa_seca,<span class="at">mcomp =</span> <span class="st">&quot;duncan&quot;</span>, <span class="at">sigT =</span> .<span class="dv">01</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="delineamento-inteiramente-casualizado.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise de variância e teste de Tukey com a função dic</span></span>
+<span id="cb604-2"><a href="delineamento-inteiramente-casualizado.html#cb604-2" aria-hidden="true" tabindex="-1"></a>trat <span class="ot">&lt;-</span> dados<span class="sc">$</span>Trat[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor de tratamentos sem os valores perdidos</span></span>
+<span id="cb604-3"><a href="delineamento-inteiramente-casualizado.html#cb604-3" aria-hidden="true" tabindex="-1"></a>massa_seca <span class="ot">&lt;-</span> dados<span class="sc">$</span>Y[<span class="sc">!</span><span class="fu">is.na</span>(dados<span class="sc">$</span>Y)] <span class="co"># Criando o vetor com a variável resposta semos valores perdidos</span></span>
+<span id="cb604-4"><a href="delineamento-inteiramente-casualizado.html#cb604-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb604-5"><a href="delineamento-inteiramente-casualizado.html#cb604-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função</span></span>
+<span id="cb604-6"><a href="delineamento-inteiramente-casualizado.html#cb604-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dic</span>(trat,massa_seca,<span class="at">mcomp =</span> <span class="st">&quot;duncan&quot;</span>, <span class="at">sigT =</span> .<span class="dv">01</span>)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------

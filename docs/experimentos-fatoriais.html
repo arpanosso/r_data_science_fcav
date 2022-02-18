@@ -1191,55 +1191,55 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{0,3700}{3,9267}=9,42\
 <p><strong>Aplicação no R</strong></p>
 <p><img src="R.png" /></p>
 <p><strong>Utilizando as funções básicas e o pacote agricolae</strong></p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="experimentos-fatoriais.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
-<span id="cb646-2"><a href="experimentos-fatoriais.html#cb646-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb646-3"><a href="experimentos-fatoriais.html#cb646-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb646-4"><a href="experimentos-fatoriais.html#cb646-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb646-5"><a href="experimentos-fatoriais.html#cb646-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho do banco de dados</span></span>
-<span id="cb646-6"><a href="experimentos-fatoriais.html#cb646-6" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/solofungi.txt&quot;</span></span>
-<span id="cb646-7"><a href="experimentos-fatoriais.html#cb646-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb646-8"><a href="experimentos-fatoriais.html#cb646-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrada da dados</span></span>
-<span id="cb646-9"><a href="experimentos-fatoriais.html#cb646-9" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
-<span id="cb646-10"><a href="experimentos-fatoriais.html#cb646-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb646-11"><a href="experimentos-fatoriais.html#cb646-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Guardando os fatores (tratamentos de solo e fungicidas) e a variável resposta (y)</span></span>
-<span id="cb646-12"><a href="experimentos-fatoriais.html#cb646-12" aria-hidden="true" tabindex="-1"></a>solos<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>S)</span>
-<span id="cb646-13"><a href="experimentos-fatoriais.html#cb646-13" aria-hidden="true" tabindex="-1"></a>fungicida<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>F)</span>
-<span id="cb646-14"><a href="experimentos-fatoriais.html#cb646-14" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
-<span id="cb646-15"><a href="experimentos-fatoriais.html#cb646-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb646-16"><a href="experimentos-fatoriais.html#cb646-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico da interação</span></span>
-<span id="cb646-17"><a href="experimentos-fatoriais.html#cb646-17" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
-<span id="cb646-18"><a href="experimentos-fatoriais.html#cb646-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(S,F) <span class="sc">%&gt;%</span> </span>
-<span id="cb646-19"><a href="experimentos-fatoriais.html#cb646-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Y =</span> <span class="fu">mean</span>(y)) <span class="sc">%&gt;%</span> </span>
-<span id="cb646-20"><a href="experimentos-fatoriais.html#cb646-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>S, <span class="at">y=</span>Y,<span class="at">col=</span><span class="fu">as.factor</span>(F)))<span class="sc">+</span></span>
-<span id="cb646-21"><a href="experimentos-fatoriais.html#cb646-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb646-22"><a href="experimentos-fatoriais.html#cb646-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Tratamentos do solo&quot;</span>,<span class="at">y=</span><span class="st">&quot;Altura de plantas (cm)&quot;</span>,<span class="at">col=</span><span class="st">&quot;Fungicida&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="experimentos-fatoriais.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
+<span id="cb650-2"><a href="experimentos-fatoriais.html#cb650-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb650-3"><a href="experimentos-fatoriais.html#cb650-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb650-4"><a href="experimentos-fatoriais.html#cb650-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb650-5"><a href="experimentos-fatoriais.html#cb650-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho do banco de dados</span></span>
+<span id="cb650-6"><a href="experimentos-fatoriais.html#cb650-6" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/solofungi.txt&quot;</span></span>
+<span id="cb650-7"><a href="experimentos-fatoriais.html#cb650-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb650-8"><a href="experimentos-fatoriais.html#cb650-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrada da dados</span></span>
+<span id="cb650-9"><a href="experimentos-fatoriais.html#cb650-9" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb650-10"><a href="experimentos-fatoriais.html#cb650-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb650-11"><a href="experimentos-fatoriais.html#cb650-11" aria-hidden="true" tabindex="-1"></a><span class="co">#Guardando os fatores (tratamentos de solo e fungicidas) e a variável resposta (y)</span></span>
+<span id="cb650-12"><a href="experimentos-fatoriais.html#cb650-12" aria-hidden="true" tabindex="-1"></a>solos<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>S)</span>
+<span id="cb650-13"><a href="experimentos-fatoriais.html#cb650-13" aria-hidden="true" tabindex="-1"></a>fungicida<span class="ot">&lt;-</span><span class="fu">as.factor</span>(dados<span class="sc">$</span>F)</span>
+<span id="cb650-14"><a href="experimentos-fatoriais.html#cb650-14" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
+<span id="cb650-15"><a href="experimentos-fatoriais.html#cb650-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb650-16"><a href="experimentos-fatoriais.html#cb650-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico da interação</span></span>
+<span id="cb650-17"><a href="experimentos-fatoriais.html#cb650-17" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb650-18"><a href="experimentos-fatoriais.html#cb650-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(S,F) <span class="sc">%&gt;%</span> </span>
+<span id="cb650-19"><a href="experimentos-fatoriais.html#cb650-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Y =</span> <span class="fu">mean</span>(y)) <span class="sc">%&gt;%</span> </span>
+<span id="cb650-20"><a href="experimentos-fatoriais.html#cb650-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>S, <span class="at">y=</span>Y,<span class="at">col=</span><span class="fu">as.factor</span>(F)))<span class="sc">+</span></span>
+<span id="cb650-21"><a href="experimentos-fatoriais.html#cb650-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb650-22"><a href="experimentos-fatoriais.html#cb650-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Tratamentos do solo&quot;</span>,<span class="at">y=</span><span class="st">&quot;Altura de plantas (cm)&quot;</span>,<span class="at">col=</span><span class="st">&quot;Fungicida&quot;</span>)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;S&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-342-1.png" width="672" /></p>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="experimentos-fatoriais.html#cb648-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
-<span id="cb648-2"><a href="experimentos-fatoriais.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(S,F) <span class="sc">%&gt;%</span> </span>
-<span id="cb648-3"><a href="experimentos-fatoriais.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Y =</span> <span class="fu">mean</span>(y)) <span class="sc">%&gt;%</span> </span>
-<span id="cb648-4"><a href="experimentos-fatoriais.html#cb648-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>F, <span class="at">y=</span>Y,<span class="at">col=</span><span class="fu">as.factor</span>(S)))<span class="sc">+</span></span>
-<span id="cb648-5"><a href="experimentos-fatoriais.html#cb648-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
-<span id="cb648-6"><a href="experimentos-fatoriais.html#cb648-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fungicida&quot;</span>,<span class="at">y=</span><span class="st">&quot;Altura de plantas (cm)&quot;</span>,<span class="at">col=</span><span class="st">&quot;Tratamento do solo&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="experimentos-fatoriais.html#cb652-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb652-2"><a href="experimentos-fatoriais.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(S,F) <span class="sc">%&gt;%</span> </span>
+<span id="cb652-3"><a href="experimentos-fatoriais.html#cb652-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Y =</span> <span class="fu">mean</span>(y)) <span class="sc">%&gt;%</span> </span>
+<span id="cb652-4"><a href="experimentos-fatoriais.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>F, <span class="at">y=</span>Y,<span class="at">col=</span><span class="fu">as.factor</span>(S)))<span class="sc">+</span></span>
+<span id="cb652-5"><a href="experimentos-fatoriais.html#cb652-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb652-6"><a href="experimentos-fatoriais.html#cb652-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Fungicida&quot;</span>,<span class="at">y=</span><span class="st">&quot;Altura de plantas (cm)&quot;</span>,<span class="at">col=</span><span class="st">&quot;Tratamento do solo&quot;</span>)</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;S&#39;. You can override using the `.groups` argument.</code></pre>
 <p><img src="r_data_science_fcav_files/figure-html/unnamed-chunk-342-2.png" width="672" /></p>
 <p><strong>Utilizando ao pacrote ExpDes.pt, mais prático</strong></p>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="experimentos-fatoriais.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
-<span id="cb650-2"><a href="experimentos-fatoriais.html#cb650-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
-<span id="cb650-3"><a href="experimentos-fatoriais.html#cb650-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb650-4"><a href="experimentos-fatoriais.html#cb650-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho do banco de dados</span></span>
-<span id="cb650-5"><a href="experimentos-fatoriais.html#cb650-5" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/solofungi.txt&quot;</span></span>
-<span id="cb650-6"><a href="experimentos-fatoriais.html#cb650-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb650-7"><a href="experimentos-fatoriais.html#cb650-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrada da dados</span></span>
-<span id="cb650-8"><a href="experimentos-fatoriais.html#cb650-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
-<span id="cb650-9"><a href="experimentos-fatoriais.html#cb650-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb650-10"><a href="experimentos-fatoriais.html#cb650-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Guardando os fatores (tratamentos de solo e fungicidas) e a variável resposta (y)</span></span>
-<span id="cb650-11"><a href="experimentos-fatoriais.html#cb650-11" aria-hidden="true" tabindex="-1"></a>solos<span class="ot">&lt;-</span>dados<span class="sc">$</span>S</span>
-<span id="cb650-12"><a href="experimentos-fatoriais.html#cb650-12" aria-hidden="true" tabindex="-1"></a>fungicida<span class="ot">&lt;-</span>dados<span class="sc">$</span>F</span>
-<span id="cb650-13"><a href="experimentos-fatoriais.html#cb650-13" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
-<span id="cb650-14"><a href="experimentos-fatoriais.html#cb650-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb650-15"><a href="experimentos-fatoriais.html#cb650-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função fat2.dic do pacote ExpDes.pt</span></span>
-<span id="cb650-16"><a href="experimentos-fatoriais.html#cb650-16" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dic</span>(solos,fungicida,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Trat_Solo&quot;</span>, <span class="st">&quot;Fungicida&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="experimentos-fatoriais.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote para análise de variância</span></span>
+<span id="cb654-2"><a href="experimentos-fatoriais.html#cb654-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ExpDes.pt)</span>
+<span id="cb654-3"><a href="experimentos-fatoriais.html#cb654-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-4"><a href="experimentos-fatoriais.html#cb654-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo o caminho do banco de dados</span></span>
+<span id="cb654-5"><a href="experimentos-fatoriais.html#cb654-5" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/solofungi.txt&quot;</span></span>
+<span id="cb654-6"><a href="experimentos-fatoriais.html#cb654-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-7"><a href="experimentos-fatoriais.html#cb654-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrada da dados</span></span>
+<span id="cb654-8"><a href="experimentos-fatoriais.html#cb654-8" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span><span class="cn">TRUE</span>)</span>
+<span id="cb654-9"><a href="experimentos-fatoriais.html#cb654-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-10"><a href="experimentos-fatoriais.html#cb654-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Guardando os fatores (tratamentos de solo e fungicidas) e a variável resposta (y)</span></span>
+<span id="cb654-11"><a href="experimentos-fatoriais.html#cb654-11" aria-hidden="true" tabindex="-1"></a>solos<span class="ot">&lt;-</span>dados<span class="sc">$</span>S</span>
+<span id="cb654-12"><a href="experimentos-fatoriais.html#cb654-12" aria-hidden="true" tabindex="-1"></a>fungicida<span class="ot">&lt;-</span>dados<span class="sc">$</span>F</span>
+<span id="cb654-13"><a href="experimentos-fatoriais.html#cb654-13" aria-hidden="true" tabindex="-1"></a>y<span class="ot">&lt;-</span>dados<span class="sc">$</span>y</span>
+<span id="cb654-14"><a href="experimentos-fatoriais.html#cb654-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb654-15"><a href="experimentos-fatoriais.html#cb654-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizando a função fat2.dic do pacote ExpDes.pt</span></span>
+<span id="cb654-16"><a href="experimentos-fatoriais.html#cb654-16" aria-hidden="true" tabindex="-1"></a><span class="fu">fat2.dic</span>(solos,fungicida,y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Trat_Solo&quot;</span>, <span class="st">&quot;Fungicida&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
 ## FATOR 1:  Trat_Solo 
@@ -1249,12 +1249,12 @@ CV=100\cdot \frac{\sqrt{QM_{res}}}{\hat{m}}=100\cdot \frac{0,3700}{3,9267}=9,42\
 ## 
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
-##                     GL     SQ QM     Fc   Pr&gt;Fc
-## Trat_Solo            3 30.395  5 74.004 0.00000
-## Fungicida            1  0.209  4  1.527 0.23439
-## Trat_Solo*Fungicida  3  0.413  3  1.005 0.41607
-## Residuo             16  2.191  2               
-## Total               23 33.208  1               
+##                     GL     SQ      QM     Fc   Pr&gt;Fc
+## Trat_Solo            3 30.395 10.1317 74.004 0.00000
+## Fungicida            1  0.209  0.2091  1.527 0.23439
+## Trat_Solo*Fungicida  3  0.413  0.1376  1.005 0.41607
+## Residuo             16  2.191  0.1369               
+## Total               23 33.208                       
 ## ------------------------------------------------------------------------
 ## CV = 9.42 %
 ## 

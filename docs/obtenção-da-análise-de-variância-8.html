@@ -1586,10 +1586,10 @@ CV_a = 100\frac{s_a}{\hat{m}}=100\frac{\sqrt{0,1445}}{2,7534} = 13,81\%
 CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
 \]</span></p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="obtenção-da-análise-de-variância-8.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
-<span id="cb664-2"><a href="obtenção-da-análise-de-variância-8.html#cb664-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sojapsub.txt&quot;</span></span>
-<span id="cb664-3"><a href="obtenção-da-análise-de-variância-8.html#cb664-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
-<span id="cb664-4"><a href="obtenção-da-análise-de-variância-8.html#cb664-4" aria-hidden="true" tabindex="-1"></a><span class="fu">psub2.dbc</span>(d<span class="sc">$</span>E,d<span class="sc">$</span>V,d<span class="sc">$</span>Bloco,d<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Épocas&quot;</span>,<span class="st">&quot;Variedades&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="obtenção-da-análise-de-variância-8.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
+<span id="cb668-2"><a href="obtenção-da-análise-de-variância-8.html#cb668-2" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/sojapsub.txt&quot;</span></span>
+<span id="cb668-3"><a href="obtenção-da-análise-de-variância-8.html#cb668-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho,<span class="at">h=</span>T)</span>
+<span id="cb668-4"><a href="obtenção-da-análise-de-variância-8.html#cb668-4" aria-hidden="true" tabindex="-1"></a><span class="fu">psub2.dbc</span>(d<span class="sc">$</span>E,d<span class="sc">$</span>V,d<span class="sc">$</span>Bloco,d<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;Épocas&quot;</span>,<span class="st">&quot;Variedades&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
 ## FATOR 1 (parcela):  Épocas 
@@ -1597,8 +1597,7 @@ CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
 ## ------------------------------------------------------------------------
 ## 
 ## ------------------------------------------------------------------------
-## Quadro da analise de variancia
-## ------------------------------------------------------------------------
+## $`Quadro da analise de variancia\n------------------------------------------------------------------------\n`
 ##                   GL      SQ      QM      Fc  Pr(&gt;Fc)    
 ## Épocas             7 19.0482 2.72117 18.8291    4e-06 ***
 ## Bloco              2  0.3434 0.17171  1.1882 0.333718    
@@ -1609,6 +1608,7 @@ CV_b = 100\frac{s_b}{\hat{m}}=100\frac{\sqrt{0,0871}}{2,7534} = 10,72\%
 ## Total             47 25.6734                             
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
 ## ------------------------------------------------------------------------
 ## CV 1 = 13.80697 %
 ## CV 2 = 10.71998 %

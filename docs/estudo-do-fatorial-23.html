@@ -1582,12 +1582,12 @@ s=\sqrt{QM_{Res}}=\sqrt{66,03}=8,13\;kg\;parcela^{-1} \\
 CV=100\cdot \frac{8,13}{40,56}=20,04\%
 \]</span></p>
 <p><img src="img/R.png" /></p>
-<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="estudo-do-fatorial-23.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise prelinimar</span></span>
-<span id="cb660-2"><a href="estudo-do-fatorial-23.html#cb660-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
-<span id="cb660-3"><a href="estudo-do-fatorial-23.html#cb660-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/cafeeiro3fatores.txt&quot;</span></span>
-<span id="cb660-4"><a href="estudo-do-fatorial-23.html#cb660-4" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb660-5"><a href="estudo-do-fatorial-23.html#cb660-5" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Trat<span class="ot">&lt;-</span><span class="fu">paste</span>(dados<span class="sc">$</span>N,dados<span class="sc">$</span>P,dados<span class="sc">$</span>K,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb660-6"><a href="estudo-do-fatorial-23.html#cb660-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(dados<span class="sc">$</span>Trat,dados<span class="sc">$</span>Bloco,dados<span class="sc">$</span>Y)</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="estudo-do-fatorial-23.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise prelinimar</span></span>
+<span id="cb664-2"><a href="estudo-do-fatorial-23.html#cb664-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(ExpDes.pt)</span>
+<span id="cb664-3"><a href="estudo-do-fatorial-23.html#cb664-3" aria-hidden="true" tabindex="-1"></a>caminho<span class="ot">&lt;-</span><span class="st">&quot;https://raw.githubusercontent.com/arpanosso/ExpAgr_2020/master/dados/cafeeiro3fatores.txt&quot;</span></span>
+<span id="cb664-4"><a href="estudo-do-fatorial-23.html#cb664-4" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span><span class="fu">read.table</span>(caminho, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb664-5"><a href="estudo-do-fatorial-23.html#cb664-5" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>Trat<span class="ot">&lt;-</span><span class="fu">paste</span>(dados<span class="sc">$</span>N,dados<span class="sc">$</span>P,dados<span class="sc">$</span>K,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb664-6"><a href="estudo-do-fatorial-23.html#cb664-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dbc</span>(dados<span class="sc">$</span>Trat,dados<span class="sc">$</span>Bloco,dados<span class="sc">$</span>Y)</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Quadro da analise de variancia
 ## ------------------------------------------------------------------------
@@ -1623,8 +1623,8 @@ CV=100\cdot \frac{8,13}{40,56}=20,04\%
 ##   c   000     34.36667 
 ##   c   001     33.46667 
 ## ------------------------------------------------------------------------</code></pre>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="estudo-do-fatorial-23.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise com desdobramento para estudo dos fatores e interações</span></span>
-<span id="cb662-2"><a href="estudo-do-fatorial-23.html#cb662-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fat3.dbc</span>(dados<span class="sc">$</span>N,dados<span class="sc">$</span>P,dados<span class="sc">$</span>K,dados<span class="sc">$</span>Bloco,dados<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;N&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="st">&quot;K&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="estudo-do-fatorial-23.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análise com desdobramento para estudo dos fatores e interações</span></span>
+<span id="cb666-2"><a href="estudo-do-fatorial-23.html#cb666-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fat3.dbc</span>(dados<span class="sc">$</span>N,dados<span class="sc">$</span>P,dados<span class="sc">$</span>K,dados<span class="sc">$</span>Bloco,dados<span class="sc">$</span>Y,<span class="at">fac.names =</span> <span class="fu">c</span>(<span class="st">&quot;N&quot;</span>,<span class="st">&quot;P&quot;</span>,<span class="st">&quot;K&quot;</span>))</span></code></pre></div>
 <pre><code>## ------------------------------------------------------------------------
 ## Legenda:
 ## FATOR 1:  N 

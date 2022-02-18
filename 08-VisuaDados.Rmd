@@ -25,7 +25,7 @@ Vamos criar um gráfico do teor de argila do solo ao longo do transecto estudado
 
 Para isso utilizaremos dois operadores:
 
-  **1)** `%>%` -  chamado **PIPE** do pacote `dplyr` o qual pode ser construído com o atalho **Ctrl + Shift + M**.
+  **1)** `%>%` -  chamado **PIPE** do pacote `magrittr` o qual pode ser construído com o atalho **Ctrl + Shift + M**.
   
   **2)** `+` -  adição, para o controle das camadas gráficas e parâmetros específicos após aplicar a função `ggplot()`.
 
